@@ -1,4 +1,4 @@
-package com.zipcompany.gamex;
+package com.zipcompany.gamex.controller;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
