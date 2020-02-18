@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 // TODO
 //  create local database, uncomment data jpa in pom.xml and fix application.properties
 
-
-
 @RestController
 public class ExampleController {
 
