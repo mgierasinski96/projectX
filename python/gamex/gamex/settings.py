@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'users',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -66,6 +67,8 @@ TEMPLATES = [
         },
     },
 ]
+
+AUTH_USER_MODEL = 'users.User'
 
 WSGI_APPLICATION = 'gamex.wsgi.application'
 

@@ -1,4 +1,4 @@
-#!M:\Users\derle\Desktop\projectX\python\gamex\venv\Scripts\python.exe
+#!M:\Users\derle\Desktop\projectX\python\gamex\gameEnv\Scripts\python.exe
 # EASY-INSTALL-ENTRY-SCRIPT: 'pip==19.0.3','console_scripts','pip3'
 __requires__ = 'pip==19.0.3'
 import re
