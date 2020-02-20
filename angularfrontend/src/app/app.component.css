@@ -1,4 +1,4 @@
-#topMenu
+#menuGorne
 {
   height: 200px;
   background: yellow;
@@ -19,11 +19,6 @@
 #sideMenu ul li{
   border-bottom:2px solid gold;
   padding-bottom: 20px;
-}
-#temporaryLoginAndRegistration
-{
-  border: 2px solid blue;
-  position: relative;
 }
 
 

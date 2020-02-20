@@ -10,7 +10,8 @@ import {UserService} from './services/user.service';
 export class AppComponent implements OnInit {
   register;
   login;
-  user_data = [{username: 'anubis', hp: '135'}];
+  token = '';
+  user_data;
 
   constructor(private userService: UserService) { }
 
@@ -23,9 +24,16 @@ export class AppComponent implements OnInit {
     };
     this.login = {
       username: '',
-      password: '',
-      token: ''
+      password: ''
     };
+    try {
+      if (sessionStorage.getItem('user_data') != null) {
+        this.user_data = sessionStorage.getItem('user_data');
+      }
+      if (sessionStorage.getItem('token') != null) {
+        this.token = sessionStorage.getItem('token');
+      } else { this.token = ''; }
+    } catch (e) { console.log(e);}
   }
   onRegister() {
     this.userService.registerUser(this.register).subscribe(
@@ -38,8 +46,9 @@ export class AppComponent implements OnInit {
   onLogin() {
     this.userService.loginUser(this.login).subscribe(
       response => {
-        this.login.token = response['token'];
-        window.sessionStorage.setItem('token', 'token ' + response['token']);
+        sessionStorage.setItem('token', 'token ' + response['token']);
+        this.token = 'token ' + response['token'];
+        document.getElementById('loggedUsername').innerText = 'Logged as ' + this.login.username;
         this.getUserData();
         alert('User ' + this.login.username + ' has been logged in!');
       },
@@ -49,14 +58,18 @@ export class AppComponent implements OnInit {
   getUserData() {
     this.userService.getUserData().subscribe(
       data => {
+        data = JSON.stringify(data);
         this.user_data = data;
-        console.log(this.user_data);
+        console.log(data);
+        sessionStorage.setItem('user_data', data);
       },
       error => {
         console.log(error);
       }
     );
   }
-
-
+  onLogout() {
+    sessionStorage.clear();
+    this.ngOnInit();
+  }
 }

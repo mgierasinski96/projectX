@@ -14,7 +14,5 @@ class UserViewSet(viewsets.ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         user = User.objects.filter(username=self.request.user.username)
-        print(user)
         serializer = UserStatsSerializer(user, many=True)
-        # return User.objects.filter(username=self.request.user.username)
         return Response(serializer.data)
