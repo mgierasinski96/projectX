@@ -10,9 +10,9 @@ import {UserService} from './user.service';
 export class AppComponent implements OnInit {
   register;
   login;
+  user_data = [{username: 'anubis', hp: '135'}];
 
-  constructor(private userService: UserService) {
-  }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.register = {
@@ -39,10 +39,24 @@ export class AppComponent implements OnInit {
     this.userService.loginUser(this.login).subscribe(
       response => {
         this.login.token = response['token'];
-        console.log(this.login.token);
+        window.sessionStorage.setItem('token', 'token ' + response['token']);
+        this.getUserData();
         alert('User ' + this.login.username + ' has been logged in!');
       },
       error => console.log('error', error)
     );
   }
+  getUserData() {
+    this.userService.getUserData().subscribe(
+      data => {
+        this.user_data = data;
+        console.log(this.user_data);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+
 }

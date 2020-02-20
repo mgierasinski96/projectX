@@ -12,3 +12,9 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
         return user
+
+
+class UserStatsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        exclude = ('password', )
