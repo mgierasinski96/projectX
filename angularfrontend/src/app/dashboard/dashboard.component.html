@@ -2,7 +2,11 @@
 <div class="bg-img">
   <div id="infoBox">
 
-   tresc
+    <ul>
+      <li *ngFor="let hero of heroes">
+       Imie: {{ hero.username }} Złoto: {{ hero.gold }}
+      </li>
+    </ul>
   </div>
   <div class="content">
   </div>

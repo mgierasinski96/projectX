@@ -1,11 +1,12 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div *ngIf="login.token == ''" style="text-align:center">
-  <div id="menuGorne">
+<div *ngIf="login.token == ''" style="text-align:center" id="temporaryLoginAndRegistration">
+  <div id="topMenu">
     <ol >
       <li> <h2><a [routerLink]="['/']"><span>Widok</span></a></h2></li>
       <li> <h2> <a [routerLink]="['/newPage1']"><span>Widok1</span></a></h2></li>
     </ol>
   </div>
+
   <div>
   <h1>Welcome to ProjectX!</h1>
   <input [(ngModel)]="register.username" placeholder="Username" type="text"><br>
@@ -31,6 +32,22 @@
     <input [(ngModel)]="login.password" placeholder="Password" type="password"><br>
     <button (click)="onLogin()">Login</button>
   </div>
+  <div id="sideMenu">
+    <div id="insideSideMenu">
+    <ul>
+      <li>sklep</li>
+      <li>wyprawy</li>
+      <li>zielarstwo</li>
+      <li>zielarstwo</li>
+      <li>zielarstwo</li>
+      <li>zielarstwo</li>
+      <li>zielarstwo</li>
+      <li>zielarstwo</li>
+      <li>zielarstwo</li>
+    </ul>
+    </div>
+  </div>
+
 </div>
   <div *ngIf="login.token != ''">
     <ul>

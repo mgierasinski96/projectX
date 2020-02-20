@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ExamplespringService} from '../services/examplespring.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,15 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  currentUser: string;
-  constructor() { }
-
+  heroes;
+  constructor(private userService: ExamplespringService) { }
   ngOnInit() {
-    this.currentUser = this.readLocalStorageValue('currentUser');
+    this.userService.getStudents().subscribe(response => {
+      this.heroes = response;
+    });
   }
-
-  readLocalStorageValue(key: string): string {
-    return localStorage.getItem(key);
-  }
-
 }

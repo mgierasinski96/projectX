@@ -1,5 +1,29 @@
-#menuGorne
+#topMenu
 {
   height: 200px;
   background: yellow;
 }
+#sideMenu
+{
+  position: absolute;
+  height: 400px;
+  width: 200px;
+  background: green;
+  left: 0px;
+  top: 250px;
+}
+
+#sideMenu ul {
+  list-style-image: url("https://img.icons8.com/metro/15/000000/sword.png");
+}
+#sideMenu ul li{
+  border-bottom:2px solid gold;
+  padding-bottom: 20px;
+}
+#temporaryLoginAndRegistration
+{
+  border: 2px solid blue;
+  position: relative;
+}
+
+

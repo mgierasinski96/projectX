@@ -8,6 +8,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {NewPage1Component} from './newPage1/newPage1.component';
 import {FormsModule} from '@angular/forms';
+import {ExamplespringService} from './services/examplespring.service';
 
 
 
@@ -23,7 +24,7 @@ import {FormsModule} from '@angular/forms';
         FormsModule,
         HttpClientModule
     ],
-  providers: [],
+  providers: [ExamplespringService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

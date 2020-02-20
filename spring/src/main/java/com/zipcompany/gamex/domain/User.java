@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "User")
+@Table(name = "users_user")
 public class User {
 
     @Id
@@ -14,10 +14,7 @@ public class User {
     private String email;
     private String username;
 
-    @Temporal(TemporalType.DATE)
     private Date date_joined;
-
-    @Temporal(TemporalType.DATE)
     private Date last_login;
 
     private boolean is_admin;
@@ -39,6 +36,11 @@ public class User {
     private int toughness;
     private double total_damage;
     private double defense;
+
+    public User(){ this.date_joined=new Date();
+    this.last_login=new Date();
+    }
+
 
     public Long getId() {
         return id;
