@@ -53,8 +53,8 @@ class User(AbstractBaseUser):
     profession = models.CharField(max_length=20,
                                   choices=PROFESSION_CHOICES,
                                   default=WARRIOR)  # TODO: change to relation with professions' table
-    max_hp = models.IntegerField(default=100)
-    current_hp = models.IntegerField(default=100)
+    max_hp = models.FloatField(default=100)
+    current_hp = models.FloatField(default=100)
     level = models.IntegerField(default=1)
     exp = models.FloatField(default=0)  # current lvl exp
     total_exp = models.FloatField(default=0)  # total exp earned from the beginning

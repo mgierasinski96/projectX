@@ -1,13 +1,15 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div *ngIf="login.token == ''" style="text-align:center">
+<div>
   <div id="menuGorne">
     <ol >
       <li> <h2><a [routerLink]="['/']"><span>Widok</span></a></h2></li>
       <li> <h2> <a [routerLink]="['/newPage1']"><span>Widok1</span></a></h2></li>
     </ol>
   </div>
-  <div>
+  <div *ngIf="token == ''" style="text-align:center">
+    <h1>token: {{token}}</h1>
   <h1>Welcome to ProjectX!</h1>
+    <h2 id="loggedUsername"></h2>
   <input [(ngModel)]="register.username" placeholder="Username" type="text"><br>
   <input [(ngModel)]="register.email" placeholder="Email" type="text"><br>
   <input [(ngModel)]="register.password" placeholder="Password" type="password"><br>
@@ -22,23 +24,24 @@
      <input type="radio" name="profession" id="sorcerer" [(ngModel)]="register.profession" value="SC">
      <label for="sorcerer"><span></span> Sorcerer</label>
     </div>
+      <button (click)="onRegister()">Register</button>
   </div>
-  </div>
-  <button (click)="onRegister()">Register</button>
 
-  <div>
     <input [(ngModel)]="login.username" placeholder="Username" type="text"><br>
     <input [(ngModel)]="login.password" placeholder="Password" type="password"><br>
     <button (click)="onLogin()">Login</button>
   </div>
+
+<!--  USER LOGGED IN VIEW -->
 </div>
-  <div *ngIf="login.token != ''">
+  <div *ngIf="token != ''">
+    <h2>{{token}}</h2>
+    <h1>Character Information</h1>
     <ul>
-      <div *ngFor="let user of user_data">
-        <pre>{{user | json}}</pre>
-<!--        <h2>username: {{user.username}}</h2>-->
-<!--        <h2>class: {{user.profession}}</h2>-->
+      <div style="text-align:center">
+        <pre>{{user_data | json}}</pre>
       </div>
     </ul>
+    <button (click)="onLogout()">Logout</button>
   </div>
 <router-outlet></router-outlet>
