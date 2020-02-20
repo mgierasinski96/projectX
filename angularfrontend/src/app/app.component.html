@@ -1,9 +1,44 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div id="menuGorne">
-  <ol >
- <li> <h2><a [routerLink]="['/']"><span>Widok</span></a></h2></li>
-    <li> <h2> <a [routerLink]="['/newPage1']"><span>Widok1</span></a></h2></li>
-  </ol>
-</div>
+<div *ngIf="login.token == ''" style="text-align:center">
+  <div id="menuGorne">
+    <ol >
+      <li> <h2><a [routerLink]="['/']"><span>Widok</span></a></h2></li>
+      <li> <h2> <a [routerLink]="['/newPage1']"><span>Widok1</span></a></h2></li>
+    </ol>
+  </div>
+  <div>
+  <h1>Welcome to ProjectX!</h1>
+  <input [(ngModel)]="register.username" placeholder="Username" type="text"><br>
+  <input [(ngModel)]="register.email" placeholder="Email" type="text"><br>
+  <input [(ngModel)]="register.password" placeholder="Password" type="password"><br>
 
+  <div class="radio-item">
+    <div class="label-text">Profession</div>
+      <div class="item">
+        <input type="radio" name="profession" id="warrior" [(ngModel)]="register.profession" value="WR">
+        <label for="warrior"><span></span> Warrior</label>
+      </div>
+    <div class="item">
+     <input type="radio" name="profession" id="sorcerer" [(ngModel)]="register.profession" value="SC">
+     <label for="sorcerer"><span></span> Sorcerer</label>
+    </div>
+  </div>
+  </div>
+  <button (click)="onRegister()">Register</button>
+
+  <div>
+    <input [(ngModel)]="login.username" placeholder="Username" type="text"><br>
+    <input [(ngModel)]="login.password" placeholder="Password" type="password"><br>
+    <button (click)="onLogin()">Login</button>
+  </div>
+</div>
+  <div *ngIf="login.token != ''">
+    <ul>
+      <div *ngFor="let user of user_data">
+        <pre>{{user | json}}</pre>
+<!--        <h2>username: {{user.username}}</h2>-->
+<!--        <h2>class: {{user.profession}}</h2>-->
+      </div>
+    </ul>
+  </div>
 <router-outlet></router-outlet>

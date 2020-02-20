@@ -7,10 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
-// TODO
-//  create local database, uncomment data jpa in pom.xml and fix application.properties
-
 @RestController
 @RequestMapping("/user")
 public class ExampleController {

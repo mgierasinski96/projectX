@@ -1,25 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="71e91eba-e415-4f39-a4cd-94b32ad0842d" name="Default Changelist" comment="" />
+    <list default="true" id="1ad5377b-a364-4859-ac68-43fb7c450e60" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../angularfrontend/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../angularfrontend/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../angularfrontend/src/app/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/src/app/user.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamex/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="ProjectId" id="1Y1P8Gzf8YhpR0NbiUd4MDzUhWQ" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="1Y2PgSsb8JRbjqantm1rHBxic1Z" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../angularfrontend" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager">
     <configuration name="gamex" type="Python.DjangoServer" factoryName="Django server">
@@ -51,12 +74,13 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="71e91eba-e415-4f39-a4cd-94b32ad0842d" name="Default Changelist" comment="" />
-      <created>1582106966258</created>
+      <changelist id="1ad5377b-a364-4859-ac68-43fb7c450e60" name="Default Changelist" comment="" />
+      <created>1582137826867</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1582106966258</updated>
-      <workItem from="1582106970107" duration="500000" />
+      <updated>1582137826867</updated>
+      <workItem from="1582137829726" duration="23758000" />
+      <workItem from="1582191817331" duration="7304000" />
     </task>
     <servers />
   </component>
@@ -64,9 +88,13 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1582106972227">
+    <state x="739" y="274" key="FileChooserDialogImpl" timestamp="1582191838389">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1582106972227" />
+    <state x="739" y="274" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1582191838389" />
+    <state x="461" y="162" key="SettingsEditor" timestamp="1582138045784">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="162" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1582138045784" />
   </component>
 </project>
