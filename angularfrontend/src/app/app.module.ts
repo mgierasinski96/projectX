@@ -9,6 +9,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {NewPage1Component} from './newPage1/newPage1.component';
 import {FormsModule} from '@angular/forms';
 import {ExamplespringService} from './services/examplespring.service';
+import {MycharacterComponent} from './mycharacter/mycharacter.component';
 
 
 
@@ -16,7 +17,8 @@ import {ExamplespringService} from './services/examplespring.service';
   declarations: [
     DashboardComponent,
     NewPage1Component,
-    AppComponent
+    AppComponent,
+    MycharacterComponent
   ],
     imports: [
   AppRoutingModule,

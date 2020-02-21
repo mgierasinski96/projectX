@@ -1,6 +1,11 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div>
   <div id="menuGorne">
+    <ol >
+      <li> <h2><a [routerLink]="['/']"><span>Widok</span></a></h2></li>
+      <li> <h2> <a [routerLink]="['/newPage1']"><span>Widok1</span></a></h2></li>
+      <li> <h2> <a [routerLink]="['/myMenu']"><span>menuU</span></a></h2></li>
+    </ol>
     <div id="sideMenu">
     <div id="insideSideMenu">
     <ul>
@@ -15,13 +20,8 @@
     <li>zielarstwo</li>
     </ul>
     </div>
-    <ol >
-      <li> <h2><a [routerLink]="['/']"><span>Widok</span></a></h2></li>
-      <li> <h2> <a [routerLink]="['/newPage1']"><span>Widok1</span></a></h2></li>
-    </ol>
   </div>
   <div *ngIf="token == ''" style="text-align:center">
-    <h1>token: {{token}}</h1>
     <h1>Welcome to ProjectX!</h1>
     <h2 id="loggedUsername"></h2>
     <input [(ngModel)]="register.username" placeholder="Username" type="text"><br>

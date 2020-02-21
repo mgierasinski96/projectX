@@ -1,0 +1,37 @@
+#items{
+
+  position: relative;
+  width: 100%;
+  background: whitesmoke;
+  height: 520px;
+}
+#equippedItems td img
+{
+  width: 110px;
+  height: 110px;
+}
+
+#equippedItems
+{
+  margin-top: 5px;
+  left:210px;
+  position: absolute;
+  background: rgb(93,73,57);
+}
+
+#backpack
+ {
+  background: rgb(198,193,137);
+  position: absolute;
+   right:50px;
+   margin-top: 5px;
+ }
+.itemSlot
+{
+  width: 90px;
+  height: 90px;
+  background-image: url('../../assets/images/backpackSlot.png');
+}
+
+
+
