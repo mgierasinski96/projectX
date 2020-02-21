@@ -2,11 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ad5377b-a364-4859-ac68-43fb7c450e60" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../angularfrontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../angularfrontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../angularfrontend/src/app/app.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/src/app/app.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../angularfrontend/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/src/app/app.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../angularfrontend/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../angularfrontend/src/app/dashboard/dashboard.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/src/app/dashboard/dashboard.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../angularfrontend/src/app/services/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/src/app/services/user.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamex/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -82,6 +88,7 @@
       <workItem from="1582191817331" duration="7304000" />
       <workItem from="1582219640373" duration="7000" />
       <workItem from="1582219979767" duration="5558000" />
+      <workItem from="1582244163207" duration="12765000" />
     </task>
     <servers />
   </component>

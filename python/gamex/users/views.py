@@ -7,8 +7,14 @@ from .serializers import UserSerializer, UserStatsSerializer
 
 
 # Create your views here.
-class UserViewSet(viewsets.ModelViewSet):
+class UserRegisterView(viewsets.ModelViewSet):
+    queryset = User.objects.none()
     serializer_class = UserSerializer
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.none()
+    serializer_class = UserStatsSerializer
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
 

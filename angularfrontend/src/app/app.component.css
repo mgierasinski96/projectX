@@ -7,10 +7,28 @@
 {
   position: absolute;
   height: 400px;
-  width: 200px;
+  width: 15%;
   background: green;
-  left: 0px;
+  left: 25px;
   top: 250px;
+}
+#userMenu
+{
+  position: absolute;
+  height: 400px;
+  width: 60%;
+  background: red;
+  left: 250px;
+  top: 250px;
+}
+#trainingTable
+{
+  border-collapse: collapse;
+}
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
 }
 
 #sideMenu ul {

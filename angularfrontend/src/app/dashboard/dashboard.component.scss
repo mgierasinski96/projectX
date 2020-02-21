@@ -1,5 +1,5 @@
 .container {
-    display: flex;    
+    display: flex;
     justify-content: center;
   height: 100%;
   font-family: 'Bree Serif';font-size: 22px;
@@ -216,7 +216,7 @@ input[type=text]:focus, input[type=password]:focus {
   position: absolute;
   right: 25px;
   top:40px;
-  width: 300px;
+  width: 15%;
   height: 420px;
   border: 2px dotted black;
 }

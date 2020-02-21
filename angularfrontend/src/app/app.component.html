@@ -20,42 +20,61 @@
       <li> <h2> <a [routerLink]="['/newPage1']"><span>Widok1</span></a></h2></li>
     </ol>
   </div>
-  <div *ngIf="token == ''" style="text-align:center">
-    <h1>token: {{token}}</h1>
-    <h1>Welcome to ProjectX!</h1>
-    <h2 id="loggedUsername"></h2>
-    <input [(ngModel)]="register.username" placeholder="Username" type="text"><br>
-    <input [(ngModel)]="register.email" placeholder="Email" type="text"><br>
-    <input [(ngModel)]="register.password" placeholder="Password" type="password"><br>
+</div>
+  <div id = "userMenu">
+    <!--  User not authenticated view  -->
+    <div *ngIf="token == ''"  style="text-align:center">
+      <h1>Welcome to ProjectX!</h1>
+      <h2 id="loggedUsername"></h2>
+      <input [(ngModel)]="register.username" placeholder="Username" type="text"><br>
+      <input [(ngModel)]="register.email" placeholder="Email" type="text"><br>
+      <input [(ngModel)]="register.password" placeholder="Password" type="password"><br>
 
-    <div class="radio-item">
-      <div class="label-text">Profession</div>
-      <div class="item">
-        <input type="radio" name="profession" id="warrior" [(ngModel)]="register.profession" value="WR">
-        <label for="warrior"><span></span> Warrior</label>
+      <div class="radio-item">
+        <div class="label-text">Profession</div>
+          <div class="item">
+            <input type="radio" name="profession" id="warrior" [(ngModel)]="register.profession" value="WR">
+            <label for="warrior"><span></span> Warrior</label>
+          </div>
+          <div class="item">
+            <input type="radio" name="profession" id="sorcerer" [(ngModel)]="register.profession" value="SC">
+            <label for="sorcerer"><span></span> Sorcerer</label>
+        </div>
+        <button (click)="onRegister()">Register</button>
       </div>
-      <div class="item">
-        <input type="radio" name="profession" id="sorcerer" [(ngModel)]="register.profession" value="SC">
-        <label for="sorcerer"><span></span> Sorcerer</label>
-      </div>
-      <button (click)="onRegister()">Register</button>
+      <input [(ngModel)]="login.username" placeholder="Username" type="text"><br>
+      <input [(ngModel)]="login.password" placeholder="Password" type="password"><br>
+      <button (click)="onLogin()">Login</button>
     </div>
 
-    <input [(ngModel)]="login.username" placeholder="Username" type="text"><br>
-    <input [(ngModel)]="login.password" placeholder="Password" type="password"><br>
-    <button (click)="onLogin()">Login</button>
+    <!--  USER LOGGED IN VIEW -->
+    <div *ngIf="token != ''" style="text-align:center">
+      <h1>{{ user_data }}</h1>
+      <table id="trainingTable">
+        <tr>
+          <th>Strength: {{ user_data.strength }}</th>
+          <th><button (click)="addStrength()">+</button></th>
+        </tr>
+        <tr>
+          <th>Wisdom: {{ user_data.wisdom }}</th>
+          <th><button (click)="addWisdom()">+</button></th>
+        </tr>
+        <tr>
+          <th>Luck: {{ user_data.luck }}</th>
+          <th><button (click)="addLuck()">+</button></th>
+        </tr>
+        <tr>
+          <th>Toughness: {{ user_data.toughness }}</th>
+          <th><button (click)="addToughness()">+</button></th>
+        </tr>
+
+      </table>
+
+<!--      <div id="skillsTraining">-->
+<!--        &lt;!&ndash;    User Stats Training here    &ndash;&gt;-->
+<!--      </div>-->
+      <button (click)="onLogout()">Logout</button>
+    </div>
   </div>
 
-  <!--  USER LOGGED IN VIEW -->
-</div>
-<div *ngIf="token != ''">
-  <h2>{{token}}</h2>
-  <h1>Character Information</h1>
-  <ul>
-    <div style="text-align:center">
-      <pre>{{user_data | json}}</pre>
-    </div>
-  </ul>
-  <button (click)="onLogout()">Logout</button>
-</div>
 <router-outlet></router-outlet>

@@ -27,13 +27,13 @@ export class AppComponent implements OnInit {
       password: ''
     };
     try {
-      if (sessionStorage.getItem('user_data') != null) {
-        this.user_data = sessionStorage.getItem('user_data');
-      }
       if (sessionStorage.getItem('token') != null) {
         this.token = sessionStorage.getItem('token');
+      }
+      if (sessionStorage.getItem('user_data') != null) {
+        this.user_data = JSON.parse(sessionStorage.getItem('user_data'))[0];
       } else { this.token = ''; }
-    } catch (e) { console.log(e);}
+    } catch (e) { console.log(e); }
   }
   onRegister() {
     this.userService.registerUser(this.register).subscribe(
@@ -50,7 +50,7 @@ export class AppComponent implements OnInit {
         this.token = 'token ' + response['token'];
         document.getElementById('loggedUsername').innerText = 'Logged as ' + this.login.username;
         this.getUserData();
-        alert('User ' + this.login.username + ' has been logged in!');
+        // alert('User ' + this.login.username + ' has been logged in!');
       },
       error => console.log('error', error)
     );
@@ -58,10 +58,9 @@ export class AppComponent implements OnInit {
   getUserData() {
     this.userService.getUserData().subscribe(
       data => {
-        data = JSON.stringify(data);
-        this.user_data = data;
-        console.log(data);
-        sessionStorage.setItem('user_data', data);
+        this.user_data = data[0];
+        console.log(this.user_data);
+        sessionStorage.setItem('user_data', JSON.stringify(data));
       },
       error => {
         console.log(error);
@@ -71,5 +70,29 @@ export class AppComponent implements OnInit {
   onLogout() {
     sessionStorage.clear();
     this.ngOnInit();
+  }
+
+  addStrength() {
+    this.userService.addStrength(this.user_data).subscribe(
+
+    );
+  }
+
+  addWisdom() {
+    this.userService.addWisdom(this.user_data.wisdom).subscribe(
+
+    );
+  }
+
+  addLuck() {
+    this.userService.addLuck(this.user_data.luck).subscribe(
+
+    );
+  }
+
+  addToughness() {
+    this.userService.addToughness(this.user_data.toughness).subscribe(
+
+    );
   }
 }

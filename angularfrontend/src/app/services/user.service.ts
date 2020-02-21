@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/observable';
+import {UserData} from '../models/user-data';
 
 @Injectable()
 export class UserService {
@@ -11,16 +12,20 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   registerUser(userData): Observable<any> {
-    return this.http.post(this.baseurl + '/user/users/', userData);
+    console.log(userData);
+    return this.http.post(this.baseurl + '/create/', userData);
   }
   loginUser(userData): Observable<any> {
-    return this.http.post(this.baseurl + '/user/auth/', userData);
+    return this.http.post(this.baseurl + '/auth/', userData);
   }
-  getUserData(): Observable<any> {
+  getUserData(): Observable<UserData[]> {
     console.log(window.sessionStorage.getItem('token'));
     this.httpHeaders = new HttpHeaders({'Authorization': window.sessionStorage.getItem('token'),
                                            'Content-Type': 'application/json'});
-    return this.http.get(this.baseurl + '/user/users/', {headers: this.httpHeaders});
+    return this.http.get<UserData[]>(this.baseurl + '/user/', {headers: this.httpHeaders});
   }
 
+  addStrength(user_data) Observable<any> {
+    
+  }
 }

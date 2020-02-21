@@ -17,4 +17,4 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 class UserStatsSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('password', 'email', 'date_joined', 'is_staff', 'is_superuser')
+        exclude = ('password', 'email', 'date_joined', 'is_staff', 'is_superuser', 'is_admin', )
