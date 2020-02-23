@@ -47,34 +47,60 @@
       <button (click)="onLogin()">Login</button>
     </div>
 
+<!--    &lt;!&ndash;  USER LOGGED IN VIEW &ndash;&gt;-->
+<!--    <div *ngIf="(token != '' && canRender)" style="text-align:left">-->
+<!--      <h1>Gold: {{ userData.gold }}</h1>-->
+
+<!--      &lt;!&ndash;   User Skills Training Table   &ndash;&gt;-->
+<!--      <table id="trainingTable">-->
+<!--        <tr>-->
+<!--          <th>Strength: {{ userData.strength }}</th>-->
+<!--          <div *ngIf="(userData.gold - userData.strength * 2) >= 0; else elseBlock"><button mat-raised-button (click)="addStrength()" >+</button></div>-->
+<!--          <ng-template #elseBlock><button mat-raised-button disabled>+</button></ng-template>-->
+<!--          <th>Price: {{ userData.strength | getSkillPrice: strMulti }}</th>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--          <th>Wisdom: {{ userData.wisdom }}</th>-->
+<!--          <div *ngIf="(userData.gold - userData.wisdom * 2) >= 0; else elseBlock"><button mat-raised-button (click)="addWisdom()" >+</button></div>-->
+<!--          <ng-template #elseBlock><button mat-raised-button disabled>+</button></ng-template>-->
+<!--          <th>Price: {{ userData.wisdom | getSkillPrice: wisMulti }}</th>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--          <th>Luck: {{ userData.luck }}</th>-->
+<!--          <div *ngIf="(userData.gold - userData.luck * 2) >= 0; else elseBlock"><button mat-raised-button (click)="addLuck()" >+</button></div>-->
+<!--          <ng-template #elseBlock><button mat-raised-button disabled>+</button></ng-template>-->
+<!--          <th>Price: {{ userData.luck | getSkillPrice: lckMulti }}</th>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--          <th>Toughness: {{ userData.toughness }}</th>-->
+<!--          <div *ngIf="(userData.gold - userData.toughness * 2) >= 0; else elseBlock"><button mat-raised-button (click)="addToughness()" >+</button></div>-->
+<!--          <ng-template #elseBlock><button mat-raised-button disabled>+</button></ng-template>-->
+<!--          <th>Price: {{ userData.toughness | getSkillPrice: tghMulti }}</th>-->
+<!--        </tr>-->
+<!--      </table>-->
+
+<!--      <button (click)="onLogout()" >Logout</button>-->
+<!--    </div>-->
     <!--  USER LOGGED IN VIEW -->
-    <div *ngIf="token != ''" style="text-align:center">
-      <h1>{{ user_data }}</h1>
-      <table id="trainingTable">
-        <tr>
-          <th>Strength: {{ user_data.strength }}</th>
-          <th><button (click)="addStrength()">+</button></th>
-        </tr>
-        <tr>
-          <th>Wisdom: {{ user_data.wisdom }}</th>
-          <th><button (click)="addWisdom()">+</button></th>
-        </tr>
-        <tr>
-          <th>Luck: {{ user_data.luck }}</th>
-          <th><button (click)="addLuck()">+</button></th>
-        </tr>
-        <tr>
-          <th>Toughness: {{ user_data.toughness }}</th>
-          <th><button (click)="addToughness()">+</button></th>
+    <div *ngIf="(token != '' && canRender)" style="text-align:left">
+      <h1>Gold: {{ userData.gold }}</h1>
+
+      <!--   User Skills Training Table   -->
+      <table id="trainingTable" >
+        <tr *ngFor='let skill of userData.skills | keyvalue'>
+          <th>{{ skill.key | titlecase }}: {{ skill.value }}</th>
+          <th>Price:
+            <span id="{{ skill.key }}">{{ skill.key | getSkillPrice: skill.value }}</span>
+          </th>
+          <div *ngIf="skill.key | checkSkillPossible: userData.gold; else elseBlock"><button mat-raised-button (click)="addSkill(skill.key)">+</button></div>
+<!--          <th>Price:-->
+<!--            <span id="{{ skill.key }}">{{ skill.key | getSkillPrice: skill.value }}</span>-->
+<!--          </th>-->
+          <ng-template #elseBlock><button mat-raised-button disabled>+</button></ng-template>
         </tr>
 
       </table>
-
-<!--      <div id="skillsTraining">-->
-<!--        &lt;!&ndash;    User Stats Training here    &ndash;&gt;-->
-<!--      </div>-->
-      <button (click)="onLogout()">Logout</button>
+      <button (click)="onLogout()" >Logout</button>
     </div>
   </div>
-
 <router-outlet></router-outlet>

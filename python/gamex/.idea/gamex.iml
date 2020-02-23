@@ -16,15 +16,10 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/gameEnv" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.7 (gamex) (2)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.7 (gamex)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
-    <option name="TEMPLATE_FOLDERS">
-      <list>
-        <option value="$MODULE_DIR$/../gamex\templates" />
-      </list>
-    </option>
   </component>
 </module>

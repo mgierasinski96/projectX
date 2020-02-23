@@ -9,20 +9,27 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {NewPage1Component} from './newPage1/newPage1.component';
 import {FormsModule} from '@angular/forms';
 import {ExamplespringService} from './services/examplespring.service';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonModule} from '@angular/material/button';
+import { SkillPricePipe } from './skill-price.pipe';
+import { CheckSkillPossiblePipe } from './check-skill-possible.pipe';
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
     NewPage1Component,
-    AppComponent
+    AppComponent,
+    SkillPricePipe,
+    CheckSkillPossiblePipe
   ],
     imports: [
-  AppRoutingModule,
+        AppRoutingModule,
         BrowserModule,
         FormsModule,
-        HttpClientModule
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatButtonModule
     ],
   providers: [ExamplespringService],
   bootstrap: [AppComponent]

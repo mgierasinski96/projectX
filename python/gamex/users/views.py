@@ -13,7 +13,7 @@ class UserRegisterView(viewsets.ModelViewSet):
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.none()
+    queryset = User.objects.all()
     serializer_class = UserStatsSerializer
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)

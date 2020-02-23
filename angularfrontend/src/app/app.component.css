@@ -17,7 +17,7 @@
   position: absolute;
   height: 400px;
   width: 60%;
-  background: red;
+  background: gray;
   left: 250px;
   top: 250px;
 }
@@ -38,5 +38,23 @@ td, th {
   border-bottom:2px solid gold;
   padding-bottom: 20px;
 }
+.mat-raised-button {
+  margin: 6px 8px 6px 8px;
+  min-width: 25px;
+  border-radius: 3px;
+  font-size: 25px;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration:none;
+  /*border: none;*/
+  outline: none;
+  margin-right: 8px;
+  margin-right: 8px;
+  background-color: darkgreen;
 
+}
+.mat-raised-button[disabled] {
+  background-color: firebrick;
+
+}
 

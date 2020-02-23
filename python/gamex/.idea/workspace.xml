@@ -1,15 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1ad5377b-a364-4859-ac68-43fb7c450e60" name="Default Changelist" comment="">
+    <list default="true" id="b6b0a433-b69e-429b-8892-a5736953acb4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../angularfrontend/.angular-cli.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../angularfrontend/.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../angularfrontend/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../angularfrontend/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../angularfrontend/angularfrontend.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../angularfrontend/e2e/app.e2e-spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../angularfrontend/e2e/app.po.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../angularfrontend/e2e/tsconfig.e2e.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../angularfrontend/karma.conf.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/karma.conf.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../angularfrontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../angularfrontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../angularfrontend/protractor.conf.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../angularfrontend/src/app/app.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/src/app/app.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../angularfrontend/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/src/app/app.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../angularfrontend/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/src/app/app.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../angularfrontend/src/app/dashboard/dashboard.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/src/app/dashboard/dashboard.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../angularfrontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/src/app/app.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../angularfrontend/src/app/services/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/src/app/services/user.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../angularfrontend/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../angularfrontend/src/polyfills.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/src/polyfills.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../angularfrontend/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/src/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../angularfrontend/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../angularfrontend/tslint.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/tslint.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gamex.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gamex.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/Activate.ps1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/activate" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/activate.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/deactivate.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/django-admin.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/django-admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/easy_install-3.7-script.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/easy_install-3.7.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/easy_install-script.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/easy_install.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/libcrypto-1_1-x64.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/libssl-1_1-x64.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/pip-script.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/pip.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/pip3-script.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/pip3.7-script.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/pip3.7.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/pip3.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/python.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/python3.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/python37.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/pythonw.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/sqlformat.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/sqlite3.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/tcl86t.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/tk86t.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/vcruntime140.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameEnv/pyvenv.cfg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/gamex/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/urls.py" afterDir="false" />
@@ -23,20 +69,11 @@
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Python Script" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="ProjectId" id="1Y2PgSsb8JRbjqantm1rHBxic1Z" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="1" id="Add" />
-  </component>
+  <component name="ProjectId" id="1YDyLGYTcgzlWkbrZEd1J7tiNts" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -46,7 +83,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../PythonProgramming/django/crud" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager">
@@ -57,8 +94,8 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="SDK_HOME" value="M:\Users\derle\Desktop\projectX_git\projectX\python\gamex\gameEnv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -79,16 +116,12 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="1ad5377b-a364-4859-ac68-43fb7c450e60" name="Default Changelist" comment="" />
-      <created>1582137826867</created>
+      <changelist id="b6b0a433-b69e-429b-8892-a5736953acb4" name="Default Changelist" comment="" />
+      <created>1582491403150</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1582137826867</updated>
-      <workItem from="1582137829726" duration="23758000" />
-      <workItem from="1582191817331" duration="7304000" />
-      <workItem from="1582219640373" duration="7000" />
-      <workItem from="1582219979767" duration="5558000" />
-      <workItem from="1582244163207" duration="12765000" />
+      <updated>1582491403150</updated>
+      <workItem from="1582491408138" duration="1024000" />
     </task>
     <servers />
   </component>
@@ -96,14 +129,17 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="739" y="274" key="FileChooserDialogImpl" timestamp="1582229344513">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="2334" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582491550329">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="739" y="274" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1582191838389" />
-    <state x="739" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1582229344513" />
-    <state x="461" y="162" key="SettingsEditor" timestamp="1582138045784">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="2334" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1582491550329" />
+    <state x="2659" y="274" key="FileChooserDialogImpl" timestamp="1582491545854">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="461" y="162" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1582138045784" />
+    <state x="2659" y="274" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1582491545854" />
+    <state x="2381" y="162" key="SettingsEditor" timestamp="1582491686043">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2381" y="162" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1582491686043" />
   </component>
 </project>

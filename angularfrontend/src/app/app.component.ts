@@ -11,7 +11,8 @@ export class AppComponent implements OnInit {
   register;
   login;
   token = '';
-  user_data;
+  userData;
+  canRender = false;
 
   constructor(private userService: UserService) { }
 
@@ -20,18 +21,17 @@ export class AppComponent implements OnInit {
       username: '',
       password: '',
       email: '',
-      profession: ''
+      profession: '',
+
     };
     this.login = {
       username: '',
       password: ''
     };
     try {
-      if (sessionStorage.getItem('token') != null) {
-        this.token = sessionStorage.getItem('token');
-      }
-      if (sessionStorage.getItem('user_data') != null) {
-        this.user_data = JSON.parse(sessionStorage.getItem('user_data'))[0];
+      if (localStorage.getItem('token') != null) {
+        this.token = localStorage.getItem('token');
+        this.getUserData();
       } else { this.token = ''; }
     } catch (e) { console.log(e); }
   }
@@ -46,53 +46,124 @@ export class AppComponent implements OnInit {
   onLogin() {
     this.userService.loginUser(this.login).subscribe(
       response => {
-        sessionStorage.setItem('token', 'token ' + response['token']);
-        this.token = 'token ' + response['token'];
+        localStorage.setItem('token', 'token ' + response.token);
+        this.token = 'token ' + response.token;
         document.getElementById('loggedUsername').innerText = 'Logged as ' + this.login.username;
         this.getUserData();
         // alert('User ' + this.login.username + ' has been logged in!');
       },
-      error => console.log('error', error)
+      error => {
+        console.log('error', error);
+      },
     );
   }
   getUserData() {
     this.userService.getUserData().subscribe(
       data => {
-        this.user_data = data[0];
-        console.log(this.user_data);
-        sessionStorage.setItem('user_data', JSON.stringify(data));
+        if (data[0]) {
+          this.userData = data[0];
+          this.userData.skills = {
+            // strength: ['Strength', this.userData.strength],
+            // wisdom: ['Wisdom', this.userData.wisdom],
+            // luck: ['Luck', this.userData.luck],
+            // toughness: ['Toughness', this.userData.toughness],
+            strength: this.userData.strength,
+            wisdom: this.userData.wisdom,
+            luck: this.userData.luck,
+            toughness: this.userData.toughness,
+          };
+          this.canRender = true;
+        }
+        // localStorage.setItem('userData', JSON.stringify(data));
+      },
+      error => {
+        console.log('error', error);
+      }
+    );
+  }
+
+  // checkSkillPossible(name) {
+  //   if (name === 'strength') {
+  //     return;
+  //   }
+  //   if (name === 'wisdom') {
+  //     return;
+  //   }
+  //   if (name === 'luck') {
+  //     return;
+  //   }
+  //   if (name === 'toughness') {
+  //     return;
+  //   }
+  // }
+
+  onLogout() {
+    localStorage.clear();
+    this.ngOnInit();
+  }
+
+    addSkill(skill) {
+    switch (skill) {
+      case 'strength':
+        this.addStrength();
+        break;
+
+      case 'wisdom':
+        this.addWisdom();
+        break;
+
+      case 'luck':
+        this.addLuck();
+        break;
+
+      case 'toughness':
+        this.addToughness();
+        break;
+    }
+  }
+
+  addStrength() {
+    this.userService.addStat(this.userData, 'strength').subscribe(
+      data => {
+        this.getUserData();
+      },
+      error => {
+        console.log(error);
+      }
+
+    );
+  }
+
+  addWisdom() {
+    this.userService.addStat(this.userData, 'wisdom').subscribe(
+      data => {
+        this.getUserData();
       },
       error => {
         console.log(error);
       }
     );
   }
-  onLogout() {
-    sessionStorage.clear();
-    this.ngOnInit();
-  }
-
-  addStrength() {
-    this.userService.addStrength(this.user_data).subscribe(
-
-    );
-  }
-
-  addWisdom() {
-    this.userService.addWisdom(this.user_data.wisdom).subscribe(
-
-    );
-  }
 
   addLuck() {
-    this.userService.addLuck(this.user_data.luck).subscribe(
-
+    this.userService.addStat(this.userData, 'luck').subscribe(
+      data => {
+        this.getUserData();
+      },
+      error => {
+        console.log(error);
+      }
     );
   }
 
   addToughness() {
-    this.userService.addToughness(this.user_data.toughness).subscribe(
-
+    this.userService.addStat(this.userData, 'toughness').subscribe(
+      data => {
+        this.getUserData();
+      },
+      error => {
+        console.log(error);
+      }
     );
   }
 }
