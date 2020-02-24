@@ -1,0 +1,46 @@
+
+<div id="drop" >
+
+<!--<ul>-->
+    <!--<li *ngFor="let p of powiazane">-->
+      <!--<h1> {{p.item.itemName}} wypada z {{p.monster.monsterName}} ({{p.dropRate}})</h1>-->
+    <!--</li>-->
+  <!--</ul>-->
+
+  <h1>{{nazwa}} wypada z:</h1><!-- TRZEBA TO JAKOS LADNIEJ ZROBIC -->
+  <table>
+
+    <tr *ngFor="let p of powiazane">
+      <td><h1>{{p.monster.monsterName}}</h1></td>
+      <td><h1>({{p.dropRate}})</h1></td>
+    </tr>
+  </table>
+
+
+
+</div>
+
+
+<!--mozna losowac liczby stosujac rozklad normalny czyli tzw. rozklad Gaussa-->
+<!--//Rozklad normalny zachodzi wtedy kiedy losowana wartosc zalezy od sumy badz sredniej wszystkich czynnikow-->
+<!--//wplywajacych na losowosc-->
+<!--//Aby uzyskac go w programie dodajemy do siebie funkcje Math.random(), a nastepnie dzielimy przez ilosc dodanych funkcji-->
+<!--function simulateEvent(chances) {-->
+<!--var sum = 0;-->
+<!--chances.forEach(function(chance) { sum+=chance;    });-->
+
+<!--//sum==17-->
+<!--//5,9,2,1-->
+<!--var rand = Math.random();//<0-1)-->
+<!--var chance = 0;-->
+<!--for(var i=0; i<chances.length; i++) {-->
+<!--chance+=chances[i]/sum;-->
+<!--if(rand<chance) {-->
+<!--return i;-->
+<!--}-->
+<!--}             return -1; }-->
+
+<!--var rewards = ["gold coin","silver coin","diamond","god sword"];-->
+<!--var likelihoods = [2,9,2,0];-->
+
+<!--alert("You get a "+rewards[simulateEvent(likelihoods)]);-->

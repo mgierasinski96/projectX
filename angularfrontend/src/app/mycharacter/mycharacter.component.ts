@@ -13,11 +13,9 @@ export class MycharacterComponent implements OnInit {
   previusDragContainer;
   idOfItemThatWasInEnteredSlot;
   wasItemInEnteredSlot;
-  realPrevContainer;
-  i;
+
   constructor(private userService: ExamplespringService) { }
   ngOnInit() {
-    this.i = 0;
     this.userService.getStudents().subscribe(response => {
       this.heroes = response;
     });
