@@ -49,9 +49,7 @@ export class MycharacterComponent implements OnInit {
   }
   dragEntered(event: CdkDragEnter) {
       // event.item.element.nativeElement.style.display = 'none';
-    console.log(event.container.element.nativeElement.id)
         document.getElementById(event.container.element.nativeElement.parentElement.children[0].id).style.opacity = '0.3';
-    console.log(event.container.element.nativeElement.children[0])
       // document.getElementById(event.container.element.nativeElement.id).removeChild
       // (document.getElementsByClassName('cdk-drag exItem cdk-drag-placeholder')[0]);
       if (event.container.element.nativeElement.children.length > 1) {
@@ -82,11 +80,13 @@ export class MycharacterComponent implements OnInit {
 
   drop(event: any) {
     document.getElementById(event.container.element.nativeElement.parentElement.children[0].id).style.opacity = '1';
+    event.previousContainer.removeItem(event.item);
     document.getElementById(event.container.element.nativeElement.id).append
     (document.getElementById(event.item.element.nativeElement.id));
-      console.log('z ' + event.previousContainer.element.nativeElement.id);
-      console.log('do ' + event.container.element.nativeElement.id);
       // event.previousContainer.removeItem(event.item);
+    if (event.container === event.previousContainer) {
+      event.container.addItem(event.item);
+    }
 
   }
 }
