@@ -82,27 +82,12 @@ export class AppComponent implements OnInit {
     );
   }
 
-  // checkSkillPossible(name) {
-  //   if (name === 'strength') {
-  //     return;
-  //   }
-  //   if (name === 'wisdom') {
-  //     return;
-  //   }
-  //   if (name === 'luck') {
-  //     return;
-  //   }
-  //   if (name === 'toughness') {
-  //     return;
-  //   }
-  // }
-
   onLogout() {
     localStorage.clear();
     this.ngOnInit();
   }
 
-    addSkill(skill) {
+  addSkill(skill) {
     switch (skill) {
       case 'strength':
         this.addStrength();

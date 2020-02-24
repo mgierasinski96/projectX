@@ -2,64 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b6b0a433-b69e-429b-8892-a5736953acb4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../angularfrontend/.angular-cli.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../angularfrontend/.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../angularfrontend/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../angularfrontend/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../angularfrontend/angularfrontend.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../angularfrontend/e2e/app.e2e-spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../angularfrontend/e2e/app.po.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../angularfrontend/e2e/tsconfig.e2e.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../angularfrontend/karma.conf.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/karma.conf.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../angularfrontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../angularfrontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../angularfrontend/protractor.conf.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../angularfrontend/src/app/app.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/src/app/app.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../angularfrontend/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/src/app/app.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../angularfrontend/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/src/app/app.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../angularfrontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../angularfrontend/src/app/services/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/src/app/services/user.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../angularfrontend/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/src/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../angularfrontend/src/polyfills.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/src/polyfills.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../angularfrontend/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/src/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../angularfrontend/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../angularfrontend/tslint.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/tslint.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gamex.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gamex.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../angularfrontend/src/app/skill-price.pipe.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../angularfrontend/src/app/skill-price.pipe.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/Activate.ps1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/activate" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/activate.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/deactivate.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/django-admin.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/django-admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/easy_install-3.7-script.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/easy_install-3.7.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/easy_install-script.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/easy_install.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/libcrypto-1_1-x64.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/libssl-1_1-x64.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/pip-script.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/pip.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/pip3-script.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/pip3.7-script.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/pip3.7.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/pip3.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/python.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/python3.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/python37.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/pythonw.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/sqlformat.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/sqlite3.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/tcl86t.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/tk86t.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameEnv/Scripts/vcruntime140.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameEnv/pyvenv.cfg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamex/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamex/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +69,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1582491403150</updated>
-      <workItem from="1582491408138" duration="1024000" />
+      <workItem from="1582491408138" duration="1757000" />
     </task>
     <servers />
   </component>

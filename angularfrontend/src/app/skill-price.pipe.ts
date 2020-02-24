@@ -10,7 +10,6 @@ export class SkillPricePipe implements PipeTransform {
   lckMulti = 2.4; // multiplier for luck's upgrade price
 
   transform(name: any, skill: any): number {
-    console.log('Pipe called!');
     switch (name) {
       case 'strength':
         return Math.floor(Math.pow(skill - 4, this.strMulti));

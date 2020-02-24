@@ -39,7 +39,7 @@
           <div class="item">
             <input type="radio" name="profession" id="sorcerer" [(ngModel)]="register.profession" value="SC">
             <label for="sorcerer"><span></span> Sorcerer</label>
-        </div>
+          </div>
         <button (click)="onRegister()">Register</button>
       </div>
       <input [(ngModel)]="login.username" placeholder="Username" type="text"><br>
@@ -47,60 +47,50 @@
       <button (click)="onLogin()">Login</button>
     </div>
 
-<!--    &lt;!&ndash;  USER LOGGED IN VIEW &ndash;&gt;-->
-<!--    <div *ngIf="(token != '' && canRender)" style="text-align:left">-->
-<!--      <h1>Gold: {{ userData.gold }}</h1>-->
-
-<!--      &lt;!&ndash;   User Skills Training Table   &ndash;&gt;-->
-<!--      <table id="trainingTable">-->
-<!--        <tr>-->
-<!--          <th>Strength: {{ userData.strength }}</th>-->
-<!--          <div *ngIf="(userData.gold - userData.strength * 2) >= 0; else elseBlock"><button mat-raised-button (click)="addStrength()" >+</button></div>-->
-<!--          <ng-template #elseBlock><button mat-raised-button disabled>+</button></ng-template>-->
-<!--          <th>Price: {{ userData.strength | getSkillPrice: strMulti }}</th>-->
-<!--        </tr>-->
-<!--        <tr>-->
-<!--          <th>Wisdom: {{ userData.wisdom }}</th>-->
-<!--          <div *ngIf="(userData.gold - userData.wisdom * 2) >= 0; else elseBlock"><button mat-raised-button (click)="addWisdom()" >+</button></div>-->
-<!--          <ng-template #elseBlock><button mat-raised-button disabled>+</button></ng-template>-->
-<!--          <th>Price: {{ userData.wisdom | getSkillPrice: wisMulti }}</th>-->
-<!--        </tr>-->
-<!--        <tr>-->
-<!--          <th>Luck: {{ userData.luck }}</th>-->
-<!--          <div *ngIf="(userData.gold - userData.luck * 2) >= 0; else elseBlock"><button mat-raised-button (click)="addLuck()" >+</button></div>-->
-<!--          <ng-template #elseBlock><button mat-raised-button disabled>+</button></ng-template>-->
-<!--          <th>Price: {{ userData.luck | getSkillPrice: lckMulti }}</th>-->
-<!--        </tr>-->
-<!--        <tr>-->
-<!--          <th>Toughness: {{ userData.toughness }}</th>-->
-<!--          <div *ngIf="(userData.gold - userData.toughness * 2) >= 0; else elseBlock"><button mat-raised-button (click)="addToughness()" >+</button></div>-->
-<!--          <ng-template #elseBlock><button mat-raised-button disabled>+</button></ng-template>-->
-<!--          <th>Price: {{ userData.toughness | getSkillPrice: tghMulti }}</th>-->
-<!--        </tr>-->
-<!--      </table>-->
-
-<!--      <button (click)="onLogout()" >Logout</button>-->
-<!--    </div>-->
     <!--  USER LOGGED IN VIEW -->
     <div *ngIf="(token != '' && canRender)" style="text-align:left">
-      <h1>Gold: {{ userData.gold }}</h1>
-
       <!--   User Skills Training Table   -->
-      <table id="trainingTable" >
-        <tr *ngFor='let skill of userData.skills | keyvalue'>
-          <th>{{ skill.key | titlecase }}: {{ skill.value }}</th>
-          <th>Price:
-            <span id="{{ skill.key }}">{{ skill.key | getSkillPrice: skill.value }}</span>
-          </th>
-          <div *ngIf="skill.key | checkSkillPossible: userData.gold; else elseBlock"><button mat-raised-button (click)="addSkill(skill.key)">+</button></div>
-<!--          <th>Price:-->
-<!--            <span id="{{ skill.key }}">{{ skill.key | getSkillPrice: skill.value }}</span>-->
-<!--          </th>-->
-          <ng-template #elseBlock><button mat-raised-button disabled>+</button></ng-template>
-        </tr>
-
-      </table>
-      <button (click)="onLogout()" >Logout</button>
+      <div id="trainingMenu">
+        <h1>Gold: {{ userData.gold }}</h1>
+        <table id="trainingTable" >
+          <tr *ngFor='let skill of userData.skills | keyvalue'>
+            <th>{{ skill.key | titlecase }}: {{ skill.value }}</th>
+            <span style="display: none" id="{{ skill.key }}">{{ skill.key | getSkillPrice: skill.value }}</span>
+            <div *ngIf="skill.key | checkSkillPossible: userData.gold; else elseBlock"><button mat-raised-button (click)="addSkill(skill.key)">+</button></div>
+            <th>Price: {{ skill.key | getSkillPrice: skill.value }}</th>
+            <ng-template #elseBlock><button mat-raised-button disabled>+</button></ng-template>
+          </tr>
+        </table>
+      </div>
+      <div id="playerInfo">
+        <div id="playerLevel">
+          <span class="statName">Level</span>
+          <span id="charLvl" class="statValue">{{ userData.level }}</span>
+        </div>
+        <div id="playerHealth">
+          <span class="statName">Health</span>
+          <span id="charHp" class="statValue">{{ userData.max_hp }}</span>
+          <div class="progressBarBg">
+            <div [ngStyle]="{'width.%': 10}" class="progressBarFg"></div>
+          </div>
+        </div>
+        <div id="playerExperience">
+          <span class="statName">Experience</span>
+          <span id="charExp" class="statValue">{{ userData.exp }}</span>
+          <div class="progressBarBg">
+            <div [ngStyle]="{'width.%': 10}" class="progressBarFg"></div>
+          </div>
+        </div>
+        <div id="playerDamage">
+          <span class="statName">Damage</span>
+          <span id="charDmg" class="statValue">{{ userData.total_damage }}</span>
+        </div>
+        <div id="playerDefense">
+          <span class="statName">Defense</span>
+          <span id="charDef" class="statValue">{{ userData.defense }}</span>
+        </div>
+      </div>
     </div>
+    <button (click)="onLogout()" >Logout</button>
   </div>
 <router-outlet></router-outlet>

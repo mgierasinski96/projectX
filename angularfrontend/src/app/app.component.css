@@ -18,12 +18,17 @@
   height: 400px;
   width: 60%;
   background: gray;
-  left: 250px;
+  left: 20%;
   top: 250px;
 }
-#trainingTable
+#trainingMenu
 {
-  border-collapse: collapse;
+  position: relative;
+  top: 25px;
+  left: 25px;
+  width: 35%;
+  float: left;
+
 }
 td, th {
   border: 1px solid #dddddd;
@@ -57,4 +62,61 @@ td, th {
   background-color: firebrick;
 
 }
+#playerInfo{
+  /*color: #695220;*/
+  width: 20%;
+  position: relative;
+  margin-top: 2%;
+  text-align: left;
+  margin-left: 2%;
+  margin-right: 2%;
+  float: right;
+}
+.statName {
+  position: relative;
+  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  top: -3px;
+  margin-left: 10px;
+  display: block;
+  font-size: .9em;
 
+}
+.statValue {
+  position: relative;
+  display: block;
+  float: right;
+  width: 60px;
+  text-align: right;
+  top: -23px;
+  right: 5px;
+  font-weight: bold;
+}
+
+.progressBarFg{
+  height: 10px;
+  width: 100%;
+  background: green;
+}
+.progressBarBg{
+  height: 10px;
+  background: red;
+  flex: 5;
+}
+
+/*#charLvl{*/
+/*  */
+/*}*/
+
+/*#charExp{*/
+
+/*}*/
+
+/*#charDmg{*/
+
+/*}*/
+
+/*#charDef{*/
+
+/*}*/
