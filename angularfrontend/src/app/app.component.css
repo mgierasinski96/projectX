@@ -1,7 +1,13 @@
+*{
+  margin: 0;
+  padding:0 ;
+}
+
 #menuGorne
 {
-  height: 200px;
+  height: 70px;
   background: yellow;
+  z-index: 100;
 }
 #sideMenu
 {
@@ -9,12 +15,14 @@
   height: 400px;
   width: 200px;
   background: green;
-  left: 0px;
-  top: 250px;
+  left: 10px;
+  top: 180px;
+  z-index: 100;
 }
 
 #sideMenu ul {
   list-style-image: url("https://img.icons8.com/metro/15/000000/sword.png");
+
 }
 #sideMenu ul li{
   border-bottom:2px solid gold;
