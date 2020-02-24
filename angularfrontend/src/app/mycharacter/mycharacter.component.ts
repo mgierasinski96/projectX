@@ -13,8 +13,11 @@ export class MycharacterComponent implements OnInit {
   previusDragContainer;
   idOfItemThatWasInEnteredSlot;
   wasItemInEnteredSlot;
+  realPrevContainer;
+  i;
   constructor(private userService: ExamplespringService) { }
   ngOnInit() {
+    this.i = 0;
     this.userService.getStudents().subscribe(response => {
       this.heroes = response;
     });
@@ -45,11 +48,10 @@ export class MycharacterComponent implements OnInit {
     // console.log('drag start' + this.previusDragContainer);
   }
   dragEntered(event: CdkDragEnter) {
-      console.log(event.container.element.nativeElement.id);
       // event.item.element.nativeElement.style.display = 'none';
-      if (!event.container.element.nativeElement.parentElement.children[0].id.includes('slot')) {
+    console.log(event.container.element.nativeElement.id)
         document.getElementById(event.container.element.nativeElement.parentElement.children[0].id).style.opacity = '0.3';
-      }
+    console.log(event.container.element.nativeElement.children[0])
       // document.getElementById(event.container.element.nativeElement.id).removeChild
       // (document.getElementsByClassName('cdk-drag exItem cdk-drag-placeholder')[0]);
       if (event.container.element.nativeElement.children.length > 1) {
@@ -78,9 +80,13 @@ export class MycharacterComponent implements OnInit {
     document.getElementById(event.container.element.nativeElement.parentElement.children[0].id).style.opacity = '1';
   }
 
-  drop(event: CdkDragDrop<string[]>) {
+  drop(event: any) {
     document.getElementById(event.container.element.nativeElement.parentElement.children[0].id).style.opacity = '1';
     document.getElementById(event.container.element.nativeElement.id).append
     (document.getElementById(event.item.element.nativeElement.id));
+      console.log('z ' + event.previousContainer.element.nativeElement.id);
+      console.log('do ' + event.container.element.nativeElement.id);
+      // event.previousContainer.removeItem(event.item);
+
   }
 }
