@@ -1,0 +1,43 @@
+<div id="potwor">potworpotworpotwpor
+  <div id="infoBox">
+
+    <ul>
+      <li *ngFor="let monster of monsters">
+      ID: {{monster.id}} Nazwa: {{monster.monsterName}}
+      </li>
+    </ul>
+
+
+
+
+    <!--<ul>-->
+      <!--<li *ngFor="let item of items">-->
+        <!--ID: {{item.id}} Nazwa: {{item.itemName}}-->
+      <!--</li>-->
+    <!--</ul>-->
+  <!--</div>-->
+<table>
+
+  <tr *ngFor="let item of items">
+    <td><a [routerLink]="['/drop/',item.id]"><img src="http://localhost:8080/user/getItemImage/{{item.id}}"></a></td>
+
+  </tr>
+</table>
+
+
+  <!--<ul>-->
+    <!--<li  *ngFor="let item of items">-->
+      <!--&lt;!&ndash;<a [routerLink]="['/drop/',item.id]">{{item.itemName}}</a>&ndash;&gt;-->
+      <!--<a [routerLink]="['/drop/',item.id]"><img src="http://localhost:8080/user/getItemImage/{{item.id}}"></a>-->
+      <!--&lt;!&ndash;<img src="http://localhost:8080/user/getItemImage/1">&ndash;&gt;-->
+    <!--</li>-->
+  <!--</ul>-->
+
+
+
+
+  <button (click)="listMonsters()" id="przycisk" >Wyswietl potwory</button>
+  <button  (click)="listItems()" id="przycisk2" >Wyswietl przedmioty</button>
+  <!--<button  (click)="listPowiazane()" id="przycisk3" >Wyswietl powiazane</button>-->
+</div>
+</div>

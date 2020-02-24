@@ -9,6 +9,12 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {NewPage1Component} from './newPage1/newPage1.component';
 import {FormsModule} from '@angular/forms';
 import {ExamplespringService} from './services/examplespring.service';
+import { PotworComponent } from './potwor/potwor.component';
+import {PotworService} from './services/potwor.service';
+import { DropComponent } from './drop/drop.component';
+import {DropService} from './services/drop.service';
+
+
 
 
 
@@ -16,7 +22,9 @@ import {ExamplespringService} from './services/examplespring.service';
   declarations: [
     DashboardComponent,
     NewPage1Component,
-    AppComponent
+    AppComponent,
+    PotworComponent,
+    DropComponent
   ],
     imports: [
   AppRoutingModule,
@@ -24,7 +32,7 @@ import {ExamplespringService} from './services/examplespring.service';
         FormsModule,
         HttpClientModule
     ],
-  providers: [ExamplespringService],
+  providers: [ExamplespringService, PotworService, DropService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
