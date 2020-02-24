@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set "VIRTUAL_ENV=M:\Users\derle\Desktop\projectX\python\gamex\gameEnv"
+set "VIRTUAL_ENV=M:\Users\derle\Desktop\projectX_git\projectX\python\gamex\gameEnv"
 
 if not defined PROMPT (
     set "PROMPT=$P$G"

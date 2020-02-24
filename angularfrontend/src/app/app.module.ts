@@ -1,3 +1,4 @@
+
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
@@ -13,6 +14,10 @@ import {PotworComponent} from './potwor/potwor.component';
 import {PotworService} from './services/potwor.service';
 import {DropComponent} from './drop/drop.component';
 import {DropService} from './services/drop.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { SkillPricePipe } from './skill-price.pipe';
+import { CheckSkillPossiblePipe } from './check-skill-possible.pipe';
 
 
 @NgModule({
@@ -22,14 +27,18 @@ import {DropService} from './services/drop.service';
     AppComponent,
     PotworComponent,
     DropComponent,
-    MycharacterComponent
+    MycharacterComponent,
+    SkillPricePipe,
+    CheckSkillPossiblePipe
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    DragDropModule
+    DragDropModule,
+    BrowserAnimationsModule,
+    MatButtonModule
   ],
   providers: [ExamplespringService, PotworService, DropService],
   bootstrap: [AppComponent]

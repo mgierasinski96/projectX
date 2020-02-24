@@ -5,7 +5,7 @@ from rest_framework import serializers
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ('username', 'email', 'password', 'profession')
+        fields = ('id', 'username', 'email', 'password', 'profession')
         extra_kwargs = {'password': {'write_only': True, 'required': True},
                         'username': {'write_only': True, 'required': False}}
 
@@ -17,4 +17,4 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 class UserStatsSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('password', 'email', 'date_joined', 'is_staff', 'is_superuser')
+        exclude = ('password', 'email', 'date_joined', 'is_staff', 'is_superuser', 'is_admin', )

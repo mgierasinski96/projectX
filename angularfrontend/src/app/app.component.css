@@ -13,11 +13,35 @@
 {
   position: absolute;
   height: 400px;
-  width: 200px;
+  width: 15%;
   background: green;
-  left: 10px;
   top: 180px;
   z-index: 100;
+  left: 25px;
+  top: 250px;
+}
+#userMenu
+{
+  position: absolute;
+  height: 400px;
+  width: 60%;
+  background: gray;
+  left: 20%;
+  top: 250px;
+}
+#trainingMenu
+{
+  position: relative;
+  top: 25px;
+  left: 25px;
+  width: 35%;
+  float: left;
+
+}
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
 }
 
 #sideMenu ul {
@@ -28,5 +52,80 @@
   border-bottom:2px solid gold;
   padding-bottom: 20px;
 }
+.mat-raised-button {
+  margin: 6px 8px 6px 8px;
+  min-width: 25px;
+  border-radius: 3px;
+  font-size: 25px;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration:none;
+  /*border: none;*/
+  outline: none;
+  margin-right: 8px;
+  margin-right: 8px;
+  background-color: darkgreen;
 
+}
+.mat-raised-button[disabled] {
+  background-color: firebrick;
 
+}
+#playerInfo{
+  /*color: #695220;*/
+  width: 20%;
+  position: relative;
+  margin-top: 2%;
+  text-align: left;
+  margin-left: 2%;
+  margin-right: 2%;
+  float: right;
+}
+.statName {
+  position: relative;
+  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  top: -3px;
+  margin-left: 10px;
+  display: block;
+  font-size: .9em;
+
+}
+.statValue {
+  position: relative;
+  display: block;
+  float: right;
+  width: 60px;
+  text-align: right;
+  top: -23px;
+  right: 5px;
+  font-weight: bold;
+}
+
+.progressBarFg{
+  height: 10px;
+  width: 100%;
+  background: green;
+}
+.progressBarBg{
+  height: 10px;
+  background: red;
+  flex: 5;
+}
+
+/*#charLvl{*/
+/*  */
+/*}*/
+
+/*#charExp{*/
+
+/*}*/
+
+/*#charDmg{*/
+
+/*}*/
+
+/*#charDef{*/
+
+/*}*/
