@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from './services/user.service';
+import {CheckSkillPossiblePipe} from './pipes/check-skill-possible.pipe';
+import {GetNextLvlExpPipe} from './pipes/get-next-lvl-exp.pipe';
+import {async} from '@angular/core/testing';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +16,7 @@ export class AppComponent implements OnInit {
   token = '';
   userData;
   canRender = false;
+  addedExpPoints: number;
 
   constructor(private userService: UserService) { }
 
@@ -31,8 +35,11 @@ export class AppComponent implements OnInit {
     try {
       if (localStorage.getItem('token') != null) {
         this.token = localStorage.getItem('token');
-        this.getUserData();
-      } else { this.token = ''; }
+        this.userData = JSON.parse(localStorage.getItem('userData'))[0];
+        console.log(this.userData);
+        this.canRender = true;
+        // this.getUserData();
+      } else { this.getUserData(); this.token = ''; }
     } catch (e) { console.log(e); }
   }
   onRegister() {
@@ -74,7 +81,7 @@ export class AppComponent implements OnInit {
           };
           this.canRender = true;
         }
-        // localStorage.setItem('userData', JSON.stringify(data));
+        localStorage.setItem('userData', JSON.stringify(data));
       },
       error => {
         console.log('error', error);
@@ -88,23 +95,30 @@ export class AppComponent implements OnInit {
   }
 
   addSkill(skill) {
-    switch (skill) {
-      case 'strength':
-        this.addStrength();
-        break;
+    this.ngOnInit();
+    console.log('gold: ', this.userData.gold);
+    console.log('skill: ', skill);
+    const safetyCheck = new CheckSkillPossiblePipe().transform(skill, this.userData.gold);
+    console.log(safetyCheck);
+    if (safetyCheck) {
+      switch (skill) {
+        case 'strength':
+          this.addStrength();
+          break;
 
-      case 'wisdom':
-        this.addWisdom();
-        break;
+        case 'wisdom':
+          this.addWisdom();
+          break;
 
-      case 'luck':
-        this.addLuck();
-        break;
+        case 'luck':
+          this.addLuck();
+          break;
 
-      case 'toughness':
-        this.addToughness();
-        break;
-    }
+        case 'toughness':
+          this.addToughness();
+          break;
+      }
+    } else { alert('Check if you have enough money!'); }
   }
 
   addStrength() {
@@ -150,5 +164,63 @@ export class AppComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  updateUserData() {
+    // update userdata by changes in database, since user is stored in localSessionStorage simple refresh is not enough
+    // delete it later
+    this.getUserData();
+    console.log(this.userData);
+  }
+
+  // addExpPoints() {
+  //   // custom function to add exp points
+  //   // delete it later
+  //   this.userService.addExpPoints(this.userData, this.addedExpPoints).subscribe(
+  //     response => {
+  //       if (response) {
+  //         this.getUserData();
+  //       }
+  //       this.checkLvlUp();
+  //     },
+  //     error => {
+  //       console.log('error', error);
+  //     },
+  //   );
+  // }
+  addExpPoints() {
+    // custom function to add exp points
+    // delete it later
+    this.userService.addExpPoints(this.userData, this.addedExpPoints).then(data => {
+      console.log('After subscribe');
+      if (data) {
+        this.getUserData();
+        console.log(this.userData.exp);
+        console.log('After get user data!');
+        this.checkLvlUp();
+      }
+    });
+    // this.checkLvlUp();
+  }
+
+
+  private checkLvlUp() {
+    const expToGo = new GetNextLvlExpPipe().transform(this.userData.level);
+    console.log('EXP TO GO: ', expToGo);
+    console.log('USER EXP: ', this.userData.exp);
+    if (expToGo <= this.userData.exp) {
+      console.log('UPDATE USER LEVEL!!!!!!!!!!!!');
+      this.userData.exp -= expToGo;
+      this.userData.level += 1;
+      this.userService.addLevel(this.userData).subscribe(
+        response => {
+          console.log('service passed');
+          this.getUserData();
+        },
+        error => {
+          console.log('error', error);
+        },
+      );
+    }
   }
 }

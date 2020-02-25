@@ -78,8 +78,9 @@
         <div id="playerExperience">
           <span class="statName">Experience</span>
           <span id="charExp" class="statValue">{{ userData.exp }}</span>
+          <span id="expToGo" class="statValue">{{ userData.level | getNextLvlExp }}</span>
           <div class="progressBarBg">
-            <div [ngStyle]="{'width.%': 10}" class="progressBarFg"></div>
+            <div style="background: gold" [ngStyle]="{'width.%': 48}" class="progressBarFg"></div>
           </div>
         </div>
         <div id="playerDamage">
@@ -93,6 +94,9 @@
       </div>
     </div>
     <button (click)="onLogout()" >Logout</button>
+    <button (click)="updateUserData()" >Update User Data</button>
+    <input [(ngModel)]="addedExpPoints" type="number">
+    <button (click)="addExpPoints()" >Submit</button>
   </div>
 <router-outlet></router-outlet>
 </div>

@@ -7,6 +7,7 @@ export class CheckSkillPossiblePipe implements PipeTransform {
 
   transform(value: any, gold: any): boolean {
     const price = parseInt(document.getElementById(value).innerText, 10);
+    console.log('CheckSkillPrice price: ', price);
     switch (value) {
       case 'strength':
         return gold - price >= 0;

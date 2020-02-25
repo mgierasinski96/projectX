@@ -78,10 +78,10 @@ export class MycharacterComponent implements OnInit {
 
   drop(event: any) {
     document.getElementById(event.container.element.nativeElement.parentElement.children[0].id).style.opacity = '1';
-    event.previousContainer.removeItem(event.item);
-    document.getElementById(event.container.element.nativeElement.id).append
-    (document.getElementById(event.item.element.nativeElement.id));
-      // event.previousContainer.removeItem(event.item);
+    if  (event.container != event.previousContainer){
+      event.previousContainer.removeItem(event.item);
+    }
+    document.getElementById(event.container.element.nativeElement.id).append(document.getElementById(event.item.element.nativeElement.id));
     if (event.container === event.previousContainer) {
       event.container.addItem(event.item);
     }

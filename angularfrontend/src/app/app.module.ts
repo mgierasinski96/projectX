@@ -1,4 +1,3 @@
-
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
@@ -16,8 +15,9 @@ import {DropComponent} from './drop/drop.component';
 import {DropService} from './services/drop.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
-import { SkillPricePipe } from './skill-price.pipe';
-import { CheckSkillPossiblePipe } from './check-skill-possible.pipe';
+import { SkillPricePipe } from './pipes/skill-price.pipe';
+import { CheckSkillPossiblePipe } from './pipes/check-skill-possible.pipe';
+import { GetNextLvlExpPipe } from './pipes/get-next-lvl-exp.pipe';
 
 
 @NgModule({
@@ -29,7 +29,8 @@ import { CheckSkillPossiblePipe } from './check-skill-possible.pipe';
     DropComponent,
     MycharacterComponent,
     SkillPricePipe,
-    CheckSkillPossiblePipe
+    CheckSkillPossiblePipe,
+    GetNextLvlExpPipe
   ],
   imports: [
     AppRoutingModule,

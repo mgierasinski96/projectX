@@ -34,7 +34,7 @@
   position: relative;
   top: 25px;
   left: 25px;
-  width: 35%;
+  width: auto;
   float: left;
 
 }
@@ -74,29 +74,33 @@ td, th {
 #playerInfo{
   /*color: #695220;*/
   width: 20%;
-  position: relative;
+  position: absolute;
   margin-top: 2%;
   text-align: left;
-  margin-left: 2%;
-  margin-right: 2%;
+  right: 2%;
   float: right;
+  display: inline-flex;
+  flex-direction: column;
 }
 .statName {
   position: relative;
   overflow: hidden;
   overflow-x: hidden;
   overflow-y: hidden;
+  float: left;
   top: -3px;
   margin-left: 10px;
+  margin-right: 10px;
   display: block;
   font-size: .9em;
+  width: 70%;
 
 }
 .statValue {
   position: relative;
   display: block;
   float: right;
-  width: 60px;
+  width: 20%;
   text-align: right;
   top: -23px;
   right: 5px;
@@ -104,14 +108,18 @@ td, th {
 }
 
 .progressBarFg{
+  position: relative;
   height: 10px;
   width: 100%;
+  display: block;
   background: green;
 }
 .progressBarBg{
+  position: relative;
+  display: block;
   height: 10px;
+  top: 20px;
   background: red;
-  flex: 5;
 }
 
 /*#charLvl{*/
