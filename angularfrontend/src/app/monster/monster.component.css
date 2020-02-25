@@ -1,0 +1,35 @@
+#monster
+{
+  position: absolute;
+  width: 80%;
+  height: 600px;
+  left:200px;
+  background: cadetblue;
+}
+#sygnatura
+{
+  position: absolute;
+  left: 0px;
+  margin-top: 0;
+}
+
+#statystyki
+{
+position: absolute;
+  left: 180px;
+
+}
+.table{
+  border-collapse: collapse;
+}
+
+#loot
+{
+  position: absolute;
+  margin-top: 200px;
+}
+h3{
+  padding: 0px;
+  margin: 0px;
+}
+

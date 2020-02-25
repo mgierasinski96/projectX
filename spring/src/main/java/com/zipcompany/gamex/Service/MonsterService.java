@@ -3,6 +3,7 @@ package com.zipcompany.gamex.Service;
 import com.zipcompany.gamex.domain.Monster;
 import org.springframework.stereotype.Service;
 
+import java.sql.Blob;
 import java.util.List;
 
 
@@ -12,7 +13,10 @@ public interface MonsterService {
     List<Monster> getAllMonsters();
     Monster findMonsterById(Long id);
     List<Monster> findMonstersById(Long id);
+    public Blob getPhotoById(long id);
 
-   // Monster findMonsterByName(String monsterName);
+    Monster getMonsterById(Long monsterId);
+
+    // Monster findMonsterByName(String monsterName);
 
 }

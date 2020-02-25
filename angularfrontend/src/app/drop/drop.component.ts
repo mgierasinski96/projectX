@@ -13,6 +13,12 @@ export class DropComponent implements OnInit {
   numer;
   nazwa;
 
+  itemSila;
+  itemInteligencja;
+  itemObrona;
+  itemObrazenia;
+
+  index;
 
   constructor(private dropService: DropService, private route: ActivatedRoute) {
   }
@@ -22,6 +28,13 @@ export class DropComponent implements OnInit {
     this.dropService.getPowiazane(this.numer).subscribe( response => {
       this.powiazane = response;
       this.nazwa = response[0].item.itemName;
+
+      this.index = response[0].item.id;
+
+      this.itemSila = response[0].item.itemStrength;
+      this.itemInteligencja = response[0].item.itemWidsdom;
+      this.itemObrona = response[0].item.itemDefense;
+      this.itemObrazenia = response[0].item.itemDamage;
     });
   }
 

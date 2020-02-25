@@ -14,6 +14,7 @@ import {Params} from '@angular/router';
 export class DropService {
 
   API_URL = 'http://localhost:8080/user/drop/';
+  API_URL_DWA = 'http://localhost:8080/user/monsterdrop/';
 
 
   private currentUser: any;
@@ -22,6 +23,9 @@ export class DropService {
   }
    getPowiazane(id: number): Observable<any> {
     return this.httpClient.get<any>(this.API_URL + id);
+  }
+  getDrop(id: number): Observable<any> {
+    return this.httpClient.get<any>(this.API_URL_DWA + id);
   }
 
 }

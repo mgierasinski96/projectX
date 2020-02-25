@@ -19,6 +19,10 @@ public class Monster {
     private int monsterHealth;
     private int monsterDamage;
     private long monsterExp;
+    @Lob
+    private byte[] monsterImage;
+
+
 
 
     @JsonIgnore
@@ -37,6 +41,14 @@ public class Monster {
         this.monsterHealth = monsterHealth;
         this.monsterDamage = monsterDamage;
         this.monsterExp = monsterExp;
+    }
+
+    public byte[] getMonsterImage() {
+        return monsterImage;
+    }
+
+    public void setMonsterImage(byte[] monsterImage) {
+        this.monsterImage = monsterImage;
     }
 
     @Id

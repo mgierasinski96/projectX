@@ -1,11 +1,22 @@
 <div id="potwor">potworpotworpotwpor
   <div id="infoBox">
 
-    <ul>
-      <li *ngFor="let monster of monsters">
-      ID: {{monster.id}} Nazwa: {{monster.monsterName}}
-      </li>
-    </ul>
+
+
+
+    <table>
+      <tr *ngFor="let monster of monsters">
+        <td><a [routerLink]="['/monster/', monster.id]"> <img src="http://localhost:8080/user/getMonsterImage/{{monster.id}}"></a></td>
+        <td><h2>{{monster.monsterName}}</h2></td>
+      </tr>
+    </table>
+
+    <!--<ul>-->
+      <!--<li *ngFor="let monster of monsters">-->
+        <!--<img src="http://localhost:8080/user/getMonsterImage/{{monster.id}}">-->
+      <!--&lt;!&ndash;{{monster.monsterName}}&ndash;&gt;-->
+      <!--</li>-->
+    <!--</ul>-->
 
 
 

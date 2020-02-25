@@ -1,0 +1,41 @@
+<div id="monster">
+<div id="sygnatura">
+<table>
+  <tr>
+    <td><h2>{{nazwaPotwora}}</h2></td>
+  </tr>
+  <tr>
+    <img src="http://localhost:8080/user/getMonsterImage/{{idPotwora}}">
+  </tr>
+</table>
+</div>
+
+  <div id="statystyki">
+    <h2>Statystyki</h2>
+    <table cellspacing="0" cellpadding="0">
+      <tr>
+        <td><h3>Poziom: {{poziomPotwora}}</h3></td>
+      </tr>
+      <tr>
+        <td><h3>EXP: {{expPotwora}}</h3></td>
+      </tr>
+      <tr>
+        <td><h3>Życie: {{hpPotwora}}</h3></td>
+      </tr>
+      <tr>
+        <td><h3>Obrażenia: {{obrazeniaPotwora}}</h3></td>
+      </tr>
+    </table>
+  </div>
+
+<div id="loot">
+  <table>
+    <tr *ngFor="let c of coLeci">
+      <td><h2>{{c.item.itemName}}</h2></td>
+      <!--<td><img src="http://localhost:8080/user/getItemImage/{{c.item.id}}"></td>-->
+      <td><a [routerLink]="['/drop/',c.item.id]"><img src="http://localhost:8080/user/getItemImage/{{c.item.id}}"></a></td>
+      <td><h2>({{c.dropRate}})</h2></td>
+    </tr>
+  </table>
+</div>
+</div>

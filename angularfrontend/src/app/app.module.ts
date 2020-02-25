@@ -13,6 +13,7 @@ import {PotworComponent} from './potwor/potwor.component';
 import {PotworService} from './services/potwor.service';
 import {DropComponent} from './drop/drop.component';
 import {DropService} from './services/drop.service';
+import { MonsterComponent } from './monster/monster.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {DropService} from './services/drop.service';
     AppComponent,
     PotworComponent,
     DropComponent,
-    MycharacterComponent
+    MycharacterComponent,
+    MonsterComponent
   ],
   imports: [
     AppRoutingModule,

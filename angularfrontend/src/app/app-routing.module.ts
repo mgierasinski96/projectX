@@ -5,6 +5,7 @@ import {NewPage1Component} from './newPage1/newPage1.component';
 import {PotworComponent} from './potwor/potwor.component';
 import {DropComponent} from './drop/drop.component';
 import {MycharacterComponent} from './mycharacter/mycharacter.component';
+import {MonsterComponent} from './monster/monster.component';
 
 // Delkaracja na jakim url ma się wyrenderować jaki komponent. Pojawi się w miejscu deklaracji <router-outlet>
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path: 'potwor', component: PotworComponent},
   {path: 'newPage1', component: NewPage1Component},
   {path: 'drop/:id', component: DropComponent, pathMatch: 'full'},
+  {path: 'monster/:id', component: MonsterComponent, pathMatch: 'full'},
   {path: 'newPage1', component: NewPage1Component},
   {path: 'myMenu', component: MycharacterComponent}
 ];

@@ -1,21 +1,57 @@
+<div id="drop">
 
-<div id="drop" >
-
-<!--<ul>-->
-    <!--<li *ngFor="let p of powiazane">-->
-      <!--<h1> {{p.item.itemName}} wypada z {{p.monster.monsterName}} ({{p.dropRate}})</h1>-->
-    <!--</li>-->
+  <!--<ul>-->
+  <!--<li *ngFor="let p of powiazane">-->
+  <!--<h1> {{p.item.itemName}} wypada z {{p.monster.monsterName}} ({{p.dropRate}})</h1>-->
+  <!--</li>-->
   <!--</ul>-->
 
-  <h1>{{nazwa}} wypada z:</h1><!-- TRZEBA TO JAKOS LADNIEJ ZROBIC -->
-  <table>
+  <div id="sygnatura_przedmiotu">
+    <table>
+      <tr>
+        <td><h1>{{nazwa}}</h1><!-- TRZEBA TO JAKOS LADNIEJ ZROBIC --></td>
+      </tr>
+      <tr>
+        <td>
+          <img src="http://localhost:8080/user/getItemImage/{{index}}">
+        </td>
+      </tr>
+    </table>
+  </div>
 
-    <tr *ngFor="let p of powiazane">
-      <td><h1>{{p.monster.monsterName}}</h1></td>
-      <td><h1>({{p.dropRate}})</h1></td>
-    </tr>
-  </table>
+  <div id="statystyka_przedmiotu">
+    <table>
+      <tr *ngIf="itemObrona > 0">
+        <td><h3>Obrona: +{{itemObrona}}</h3></td>
+      </tr>
 
+      <tr *ngIf="itemObrazenia > 0">
+        <td><h3>Obrazenia: +{{itemObrazenia}}</h3></td>
+      </tr>
+      <tr *ngIf="itemSila > 0">
+        <td><h3>Sila: +{{itemSila}}</h3></td>
+      </tr>
+      <tr *ngIf="itemInteligencja > 0">
+        <td><h3>Inteligencja: +{{itemInteligencja}}</h3></td>
+      </tr>
+    </table>
+  </div>
+
+
+  <div id="loot">
+    <table>
+      <tr>
+        <td><h1>Wypada z:</h1></td>
+      </tr>
+      <tr *ngFor="let p of powiazane">
+        <!--<td><h1>{{p.monster.monsterName}}</h1></td>-->
+        <td><a [routerLink]="['/monster/',p.monster.id]"><img
+          src="http://localhost:8080/user/getMonsterImage/{{p.monster.id}}"></a></td>
+        <td><h1>{{p.monster.monsterName}}</h1></td>
+        <td><h1>({{p.dropRate}})</h1></td>
+      </tr>
+    </table>
+  </div>
 
 
 </div>

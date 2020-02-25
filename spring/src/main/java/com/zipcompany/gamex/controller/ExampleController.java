@@ -94,9 +94,6 @@ public class ExampleController {
     List<MonsterItem> whatDropsThisItem(@PathVariable(value = "id") Long itemId) {
       Item item = itemService.getItemById(itemId);
 
-
-
-
       return item.getMonsterItems();
 
 
@@ -111,6 +108,12 @@ public class ExampleController {
       //return monsterItemService.findByItemId(itemId);
       //return null;
   }
+  @GetMapping("/monsterdrop/{id}")
+  List<MonsterItem> whatItemsDropThisMonster(@PathVariable(value = "id") Long monsterId){
+        Monster monster = monsterService.getMonsterById(monsterId);
+
+        return  monster.getMonsterItems();
+  }
 
 
     @RequestMapping(value = "getItemImage/{id}")
@@ -121,7 +124,16 @@ public class ExampleController {
         InputStream inputStream = new ByteArrayInputStream(bytes);
         IOUtils.copy(inputStream, response.getOutputStream());
 
-        System.out.println(itemService.getItemById(id).getItemName());
+       // System.out.println(itemService.getItemById(id).getItemName());
+    }
+
+    @RequestMapping(value = "getMonsterImage/{id}")
+    public void getMonsterPhoto(HttpServletResponse response, @PathVariable("id") long id) throws Exception {
+        response.setContentType("image/jpeg");
+        Blob ph = monsterService.getPhotoById(id);
+        byte[] bytes = ph.getBytes(1, (int) ph.length());
+        InputStream inputStream = new ByteArrayInputStream(bytes);
+        IOUtils.copy(inputStream, response.getOutputStream());
     }
 
 
