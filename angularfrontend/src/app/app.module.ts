@@ -18,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { SkillPricePipe } from './skill-price.pipe';
 import { CheckSkillPossiblePipe } from './check-skill-possible.pipe';
+import {ShopComponent} from './shop/shop.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { CheckSkillPossiblePipe } from './check-skill-possible.pipe';
     DropComponent,
     MycharacterComponent,
     SkillPricePipe,
+    ShopComponent,
     CheckSkillPossiblePipe
   ],
   imports: [

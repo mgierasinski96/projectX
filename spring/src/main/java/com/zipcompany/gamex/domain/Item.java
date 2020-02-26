@@ -18,6 +18,7 @@ public class Item {
 
     private Long id;
     private String itemName;
+
     private ItemType itemType;
 
     @Lob
