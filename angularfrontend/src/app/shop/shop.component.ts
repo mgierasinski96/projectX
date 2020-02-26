@@ -2,6 +2,7 @@
 import {ExamplespringService} from '../services/examplespring.service';
 import {Component, OnInit} from '@angular/core';
 import {CdkDragDrop, CdkDragEnter, CdkDragExit, CdkDragStart} from '@angular/cdk/drag-drop';
+import {DropService} from '../services/drop.service';
 
 @Component({
   selector: 'shop-dashboard',
@@ -9,20 +10,20 @@ import {CdkDragDrop, CdkDragEnter, CdkDragExit, CdkDragStart} from '@angular/cdk
   styleUrls: ['./shop.component.scss']
 })
 export class ShopComponent implements OnInit {
-  heroes;
   previusDragContainer;
   idOfItemThatWasInEnteredSlot;
   wasItemInEnteredSlot;
-  infoAboutItem;
-  allItems;
-  rect;
+  infoAboutItem;//div with item info
+  allItems;//contains user items and shop items
+  itemsToShop;//items in shop
+  rect;//infoAboutItem is displayed basing on rect
 
-  constructor(private userService: ExamplespringService) {
+  constructor(private dropService: DropService) {
   }
 
   ngOnInit() {
-    this.userService.getStudents().subscribe(response => {
-      this.heroes = response;
+    this.dropService.getRandomItemsToShop(6).subscribe(response => {
+      this.itemsToShop = response;
     });
     this.allItems = document.getElementsByClassName('exItem');
     console.log(this.allItems.length);

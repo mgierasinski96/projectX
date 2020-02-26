@@ -1,9 +1,6 @@
 package com.zipcompany.gamex.controller;
 
-import com.zipcompany.gamex.Service.ItemService;
-import com.zipcompany.gamex.Service.MonsterItemService;
-import com.zipcompany.gamex.Service.MonsterService;
-import com.zipcompany.gamex.Service.UserService;
+import com.zipcompany.gamex.Service.*;
 import com.zipcompany.gamex.domain.Item;
 import com.zipcompany.gamex.domain.Monster;
 import com.zipcompany.gamex.domain.MonsterItem;
@@ -16,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.sql.Blob;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -34,10 +32,14 @@ public class ExampleController {
     @Autowired
     MonsterItemService monsterItemService;
 
-    @GetMapping("/hello")
-    public String helloFromExampleController() {
+//   @Autowired
+//    SchedulerService schedulerService;
 
-        return "hello from example controller";
+    @GetMapping(value="/getRandomItemsToShop/{pcs}")
+    public List<Item> getRandomItemsToShop(@PathVariable long pcs)
+    {
+//      return schedulerService.randomItemsToShop();
+        return itemService.getRandomItemsToShop(pcs);
     }
 
     @PostMapping("")

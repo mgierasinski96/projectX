@@ -48,4 +48,10 @@ public class ItemServiceImpl implements ItemService {
         return photo;
     }
 
+    @Override
+    public List<Item> getRandomItemsToShop(long pcs) {
+        return itemRepository.getRandomItemsToShop(pcs);
+    }
+
+
 }
