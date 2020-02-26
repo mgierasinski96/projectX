@@ -11,5 +11,6 @@ public interface ItemService {
     List<Item> getAllItems();
     Item getItemById(Long id);
     public Blob getPhotoById(long id);
+    public List<Item> getRandomItemsToShop(long pcs);
 
 }
