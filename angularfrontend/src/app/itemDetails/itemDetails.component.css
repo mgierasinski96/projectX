@@ -1,0 +1,32 @@
+#drop
+{
+  position: absolute;
+  width: 80%;
+  height: 600px;
+  left:208px;
+  background: ghostwhite;
+}
+#sygnatura_przedmiotu
+{
+  position: absolute;
+  left: 150px;
+  margin-top: 0px;
+}
+#statystyka_przedmiotu
+{
+  position: absolute;
+  left: 300px;
+  margin-top: 50px;
+
+}
+#loot
+{
+  position: absolute;
+  left: 110px;
+  margin-top: 250px;
+}
+h3{
+  padding: 0px;
+  margin: 0px;
+}
+

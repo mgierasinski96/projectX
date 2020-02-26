@@ -20,6 +20,11 @@ public class Item {
     private String itemName;
     private ItemType itemType;
 
+    private int itemDamage;
+    private int itemDefense;
+    private int itemStrength;
+    private int itemWidsdom;
+
     @Lob
     private byte[] itemPicture;
 
@@ -27,6 +32,38 @@ public class Item {
     public Item(String itemName, ItemType itemType) {
         this.itemName = itemName;
         this.itemType = itemType;
+    }
+
+    public int getItemDamage() {
+        return itemDamage;
+    }
+
+    public void setItemDamage(int itemDamage) {
+        this.itemDamage = itemDamage;
+    }
+
+    public int getItemDefense() {
+        return itemDefense;
+    }
+
+    public void setItemDefense(int itemDefense) {
+        this.itemDefense = itemDefense;
+    }
+
+    public int getItemStrength() {
+        return itemStrength;
+    }
+
+    public void setItemStrength(int itemStrength) {
+        this.itemStrength = itemStrength;
+    }
+
+    public int getItemWidsdom() {
+        return itemWidsdom;
+    }
+
+    public void setItemWidsdom(int itemWidsdom) {
+        this.itemWidsdom = itemWidsdom;
     }
 
     public ItemType getItemType() {

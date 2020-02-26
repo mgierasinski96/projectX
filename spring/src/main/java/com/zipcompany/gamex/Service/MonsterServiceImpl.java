@@ -3,7 +3,12 @@ package com.zipcompany.gamex.Service;
 import com.zipcompany.gamex.domain.Monster;
 import com.zipcompany.gamex.repository.MonsterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+
+import javax.sql.DataSource;
+import javax.transaction.Transactional;
+import java.sql.Blob;
 
 import java.util.List;
 
@@ -36,4 +41,23 @@ public class MonsterServiceImpl implements MonsterService {
 //    public Monster findMonsterByName(String monsterName) {
 //        return monsterRepository.findMonsterByName(monsterName);
 //    }
+
+    private JdbcTemplate jdbcTemp;
+
+    public MonsterServiceImpl(DataSource dataSource) {
+        jdbcTemp = new JdbcTemplate(dataSource);
+    }
+
+
+    @Transactional
+    public Blob getPhotoById(long id) {
+        String query = "select m.monster_image from monster m where monster_id=?";
+        Blob photo = jdbcTemp.queryForObject(query, new Object[] { id }, Blob.class);
+        return photo;
+    }
+
+    @Override
+    public Monster getMonsterById(Long monsterId) {
+        return monsterRepository.findMonsterById(monsterId);
+    }
 }

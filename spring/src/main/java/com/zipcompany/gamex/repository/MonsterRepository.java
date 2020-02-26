@@ -12,8 +12,6 @@ import java.util.List;
 @Transactional
 public interface MonsterRepository extends JpaRepository<Monster, Long> {
 
-        //Monster findMonsterByName(String monsterName);
-
     Monster findMonsterById(Long id);
     List<Monster> findMonstersById(Long id);
 

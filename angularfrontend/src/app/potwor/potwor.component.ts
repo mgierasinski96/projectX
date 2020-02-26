@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {PotworService} from '../services/potwor.service';
 
+
 @Component({
   selector: 'app-potwor',
   templateUrl: './potwor.component.html',
@@ -9,7 +10,6 @@ import {PotworService} from '../services/potwor.service';
 export class PotworComponent implements OnInit {
   monsters;
   items;
-
 
   constructor(private potworService: PotworService) { }
 
@@ -25,5 +25,6 @@ export class PotworComponent implements OnInit {
       this.items = response;
     });
   }
+
 
 }

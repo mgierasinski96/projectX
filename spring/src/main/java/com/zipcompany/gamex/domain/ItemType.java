@@ -2,5 +2,7 @@ package com.zipcompany.gamex.domain;
 
 public enum ItemType {
 
-    HELM, ZBROJA, REKAWICE, BUTY, BRON, TARCZA, AMULET, PIERSCIEN, PAS
+
+    KOLCZYKI, HELM, AMULET, BRON, ZBROJA, TARCZA, REKAWICE, BUTY, PIERSCIEN
+
 }
