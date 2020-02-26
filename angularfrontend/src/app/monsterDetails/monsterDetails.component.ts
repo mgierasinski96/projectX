@@ -4,10 +4,10 @@ import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-monster',
-  templateUrl: './monster.component.html',
-  styleUrls: ['./monster.component.css']
+  templateUrl: './monsterDetails.component.html',
+  styleUrls: ['./monsterDetails.component.css']
 })
-export class MonsterComponent implements OnInit {
+export class MonsterDetailsComponent implements OnInit {
   coLeci;
   index;
   nazwaPotwora;
@@ -22,7 +22,7 @@ export class MonsterComponent implements OnInit {
 
   ngOnInit() {
     this.index = this.route.snapshot.paramMap.get("id");
-    this.dropService.getDrop(this.index).subscribe(response => {
+    this.dropService.getItemsWhichDropFromThisMonster(this.index).subscribe(response => {
       this.coLeci = response;
       this.nazwaPotwora = response[0].monster.monsterName;
       this.idPotwora = response[0].monster.id;

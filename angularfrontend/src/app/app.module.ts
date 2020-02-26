@@ -11,9 +11,11 @@ import {MycharacterComponent} from './mycharacter/mycharacter.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {PotworComponent} from './potwor/potwor.component';
 import {PotworService} from './services/potwor.service';
-import {DropComponent} from './drop/drop.component';
+import {ItemDetailsComponent} from './itemDetails/itemDetails.component';
 import {DropService} from './services/drop.service';
-import { MonsterComponent } from './monster/monster.component';
+import { MonsterDetailsComponent } from './monsterDetails/monsterDetails.component';
+
+
 
 
 @NgModule({
@@ -22,9 +24,9 @@ import { MonsterComponent } from './monster/monster.component';
     NewPage1Component,
     AppComponent,
     PotworComponent,
-    DropComponent,
+    ItemDetailsComponent,
     MycharacterComponent,
-    MonsterComponent
+    MonsterDetailsComponent,
   ],
   imports: [
     AppRoutingModule,

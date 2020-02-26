@@ -5,7 +5,7 @@
     <td><h2>{{nazwaPotwora}}</h2></td>
   </tr>
   <tr>
-    <img src="http://localhost:8080/user/getMonsterImage/{{idPotwora}}">
+    <img src="http://localhost:8080/monster/getMonsterImage/{{idPotwora}}">
   </tr>
 </table>
 </div>
@@ -33,7 +33,7 @@
     <tr *ngFor="let c of coLeci">
       <td><h2>{{c.item.itemName}}</h2></td>
       <!--<td><img src="http://localhost:8080/user/getItemImage/{{c.item.id}}"></td>-->
-      <td><a [routerLink]="['/drop/',c.item.id]"><img src="http://localhost:8080/user/getItemImage/{{c.item.id}}"></a></td>
+      <td><a [routerLink]="['/item/',c.item.id]"><img src="http://localhost:8080/item/getItemImage/{{c.item.id}}"></a></td>
       <td><h2>({{c.dropRate}})</h2></td>
     </tr>
   </table>

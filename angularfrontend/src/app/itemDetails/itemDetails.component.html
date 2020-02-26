@@ -13,7 +13,7 @@
       </tr>
       <tr>
         <td>
-          <img src="http://localhost:8080/user/getItemImage/{{index}}">
+          <img src="http://localhost:8080/item/getItemImage/{{index}}">
         </td>
       </tr>
     </table>
@@ -46,7 +46,7 @@
       <tr *ngFor="let p of powiazane">
         <!--<td><h1>{{p.monster.monsterName}}</h1></td>-->
         <td><a [routerLink]="['/monster/',p.monster.id]"><img
-          src="http://localhost:8080/user/getMonsterImage/{{p.monster.id}}"></a></td>
+          src="http://localhost:8080/monster/getMonsterImage/{{p.monster.id}}"></a></td>
         <td><h1>{{p.monster.monsterName}}</h1></td>
         <td><h1>({{p.dropRate}})</h1></td>
       </tr>

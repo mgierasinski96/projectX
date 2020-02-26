@@ -13,19 +13,17 @@ import {Params} from '@angular/router';
 @Injectable()
 export class DropService {
 
-  API_URL = 'http://localhost:8080/user/drop/';
-  API_URL_DWA = 'http://localhost:8080/user/monsterdrop/';
-
-
-  private currentUser: any;
+  API_URL_WHAT_DROP_THIS_ITEM = 'http://localhost:8080/item/drop/';
+  API_URL_WHAT_DROPS_THIS_MONSTER = 'http://localhost:8080/monster/monsterdrop/';
 
   constructor(private httpClient: HttpClient) {
   }
-   getPowiazane(id: number): Observable<any> {
-    return this.httpClient.get<any>(this.API_URL + id);
+   getMonstersWhichDropThisItem(id: number): Observable<any> {
+    return this.httpClient.get<any>(this.API_URL_WHAT_DROP_THIS_ITEM + id);
   }
-  getDrop(id: number): Observable<any> {
-    return this.httpClient.get<any>(this.API_URL_DWA + id);
+  getItemsWhichDropFromThisMonster(id: number): Observable<any> {
+    return this.httpClient.get<any>(this.API_URL_WHAT_DROPS_THIS_MONSTER + id);
   }
+
 
 }
