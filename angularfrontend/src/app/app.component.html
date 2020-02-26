@@ -50,19 +50,37 @@
 
     <!--  USER LOGGED IN VIEW -->
     <div *ngIf="(token != '' && canRender)" style="text-align:left">
-      <!--   User Skills Training Table   -->
       <div id="trainingMenu">
-        <h1>Gold: {{ userData.gold }}</h1>
-        <table id="trainingTable" >
-          <tr *ngFor='let skill of userData.skills | keyvalue'>
-            <th>{{ skill.key | titlecase }}: {{ skill.value }}</th>
-            <span style="display: none" id="{{ skill.key }}">{{ skill.key | getSkillPrice: skill.value }}</span>
-            <div *ngIf="skill.key | checkSkillPossible: userData.gold; else elseBlock"><button mat-raised-button (click)="addSkill(skill.key)">+</button></div>
-            <th>Price: {{ skill.key | getSkillPrice: skill.value }}</th>
+      <h1>Gold: {{ userData.gold }}</h1>
+      <!--   User Skills Training Table   -->
+        <table id="trainingTable">
+          <tr>
+            <th>Strength: {{ userData.strength }}</th>
+            <th><span>Price: </span><span id="strUpgrade">{{ 'strength' | getSkillPrice: userData.strength }}</span></th>
+            <div *ngIf="'strength' | checkSkillPossible: userData.gold; else elseBlock"><button mat-raised-button (click)="addSkill('strength')" >+</button></div>
+            <ng-template #elseBlock><button mat-raised-button disabled>+</button></ng-template>
+          </tr>
+          <tr>
+            <th>Wisdom: {{ userData.wisdom }}</th>
+            <th><span>Price: </span><span id="wisUpgrade">{{ 'wisdom' | getSkillPrice: userData.wisdom }}</span></th>
+            <div *ngIf="'wisdom' | checkSkillPossible: userData.gold; else elseBlock"><button mat-raised-button (click)="addSkill('wisdom')" >+</button></div>
+            <ng-template #elseBlock><button mat-raised-button disabled>+</button></ng-template>
+          </tr>
+          <tr>
+            <th>Luck: {{ userData.luck }}</th>
+            <th><span>Price: </span><span id="lckUpgrade">{{ 'luck' | getSkillPrice: userData.luck }}</span></th>
+            <div *ngIf="'luck' | checkSkillPossible: userData.gold; else elseBlock"><button mat-raised-button (click)="addSkill('luck')" >+</button></div>
+            <ng-template #elseBlock><button mat-raised-button disabled>+</button></ng-template>
+          </tr>
+          <tr>
+            <th>Toughness: {{ userData.toughness }}</th>
+            <th><span>Price: </span><span id="tghUpgrade">{{ 'toughness' | getSkillPrice: userData.toughness }}</span></th>
+            <div *ngIf="'toughness' | checkSkillPossible: userData.gold; else elseBlock"><button mat-raised-button (click)="addSkill('toughness')" >+</button></div>
             <ng-template #elseBlock><button mat-raised-button disabled>+</button></ng-template>
           </tr>
         </table>
       </div>
+
       <div id="playerInfo">
         <div id="playerLevel">
           <span class="statName">Level</span>
@@ -78,9 +96,11 @@
         <div id="playerExperience">
           <span class="statName">Experience</span>
           <span id="charExp" class="statValue">{{ userData.exp }}</span>
-          <span id="expToGo" class="statValue">{{ userData.level | getNextLvlExp }}</span>
+          <div class="statName">
+            <span id="expToGo" class="statValue">{{ userData.level | getNextLvlExp }}</span>
+          </div>
           <div class="progressBarBg">
-            <div style="background: gold" [ngStyle]="{'width.%': 48}" class="progressBarFg"></div>
+            <div style="background: gold" [ngStyle]="{'width.%': (userData.exp | getExpBarWidth) }" class="progressBarFg"></div>
           </div>
         </div>
         <div id="playerDamage">
@@ -92,11 +112,13 @@
           <span id="charDef" class="statValue">{{ userData.defense }}</span>
         </div>
       </div>
+      <button (click)="onLogout()" >Logout</button>
+      <button (click)="updateUserData()" >Update User Data</button>
+      <input [(ngModel)]="addedExpPoints" type="number">
+      <button (click)="addExpPoints()" >Submit</button>
+      </div>
     </div>
-    <button (click)="onLogout()" >Logout</button>
-    <button (click)="updateUserData()" >Update User Data</button>
-    <input [(ngModel)]="addedExpPoints" type="number">
-    <button (click)="addExpPoints()" >Submit</button>
+  <button (click)="onLogout()" >Logout</button>
   </div>
 <router-outlet></router-outlet>
 </div>

@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
         console.log(this.userData);
         this.canRender = true;
         // this.getUserData();
-      } else { this.getUserData(); this.token = ''; }
+      } else { this.token = ''; }
     } catch (e) { console.log(e); }
   }
   onRegister() {
@@ -51,11 +51,11 @@ export class AppComponent implements OnInit {
     );
   }
   onLogin() {
+    console.log(this.login);
     this.userService.loginUser(this.login).subscribe(
       response => {
         localStorage.setItem('token', 'token ' + response.token);
         this.token = 'token ' + response.token;
-        document.getElementById('loggedUsername').innerText = 'Logged as ' + this.login.username;
         this.getUserData();
         // alert('User ' + this.login.username + ' has been logged in!');
       },
@@ -69,16 +69,6 @@ export class AppComponent implements OnInit {
       data => {
         if (data[0]) {
           this.userData = data[0];
-          this.userData.skills = {
-            // strength: ['Strength', this.userData.strength],
-            // wisdom: ['Wisdom', this.userData.wisdom],
-            // luck: ['Luck', this.userData.luck],
-            // toughness: ['Toughness', this.userData.toughness],
-            strength: this.userData.strength,
-            wisdom: this.userData.wisdom,
-            luck: this.userData.luck,
-            toughness: this.userData.toughness,
-          };
           this.canRender = true;
         }
         localStorage.setItem('userData', JSON.stringify(data));
@@ -96,10 +86,8 @@ export class AppComponent implements OnInit {
 
   addSkill(skill) {
     this.ngOnInit();
-    console.log('gold: ', this.userData.gold);
-    console.log('skill: ', skill);
+    window.addEventListener("mo")
     const safetyCheck = new CheckSkillPossiblePipe().transform(skill, this.userData.gold);
-    console.log(safetyCheck);
     if (safetyCheck) {
       switch (skill) {
         case 'strength':
@@ -173,54 +161,41 @@ export class AppComponent implements OnInit {
     console.log(this.userData);
   }
 
-  // addExpPoints() {
-  //   // custom function to add exp points
-  //   // delete it later
-  //   this.userService.addExpPoints(this.userData, this.addedExpPoints).subscribe(
-  //     response => {
-  //       if (response) {
-  //         this.getUserData();
-  //       }
-  //       this.checkLvlUp();
-  //     },
-  //     error => {
-  //       console.log('error', error);
-  //     },
-  //   );
-  // }
   addExpPoints() {
     // custom function to add exp points
     // delete it later
-    this.userService.addExpPoints(this.userData, this.addedExpPoints).then(data => {
-      console.log('After subscribe');
-      if (data) {
-        this.getUserData();
-        console.log(this.userData.exp);
-        console.log('After get user data!');
-        this.checkLvlUp();
-      }
-    });
-    // this.checkLvlUp();
+
+    this.userService.addExpPoints(this.userData, this.addedExpPoints).subscribe(
+      response => {
+        if (response) {
+          this.userData = response;
+          localStorage.setItem('userData', this.userData);
+          this.checkLvlUp();
+        }
+        // this.checkLvlUp();
+      },
+      error => {
+        console.log('error', error);
+      },
+    );
   }
 
 
   private checkLvlUp() {
     const expToGo = new GetNextLvlExpPipe().transform(this.userData.level);
-    console.log('EXP TO GO: ', expToGo);
-    console.log('USER EXP: ', this.userData.exp);
+
     if (expToGo <= this.userData.exp) {
-      console.log('UPDATE USER LEVEL!!!!!!!!!!!!');
       this.userData.exp -= expToGo;
       this.userData.level += 1;
       this.userService.addLevel(this.userData).subscribe(
         response => {
-          console.log('service passed');
           this.getUserData();
+          this.checkLvlUp();
         },
         error => {
           console.log('error', error);
         },
       );
-    }
+    } else { this.getUserData(); }
   }
 }

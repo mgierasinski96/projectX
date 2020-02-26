@@ -17,10 +17,10 @@ export class SkillPricePipe implements PipeTransform {
       case 'wisdom':
         return Math.floor(Math.pow(skill - 4, this.wisMulti));;
 
-      case 'luck':
+      case 'luck' :
         return Math.floor(Math.pow(skill - 4, this.lckMulti));;
 
-      case 'toughness':
+      case 'toughness' :
         return Math.floor(Math.pow(skill - 4, this.tghMulti));;
     }
   }

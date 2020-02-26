@@ -18,6 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { SkillPricePipe } from './pipes/skill-price.pipe';
 import { CheckSkillPossiblePipe } from './pipes/check-skill-possible.pipe';
 import { GetNextLvlExpPipe } from './pipes/get-next-lvl-exp.pipe';
+import { GetExpBarWidthPipe } from './pipes/get-exp-bar-width.pipe';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { GetNextLvlExpPipe } from './pipes/get-next-lvl-exp.pipe';
     MycharacterComponent,
     SkillPricePipe,
     CheckSkillPossiblePipe,
-    GetNextLvlExpPipe
+    GetNextLvlExpPipe,
+    GetExpBarWidthPipe
   ],
   imports: [
     AppRoutingModule,
