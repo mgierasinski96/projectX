@@ -3,8 +3,6 @@ import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
-import {DashboardComponent} from './dashboard/dashboard.component';
-import {NewPage1Component} from './newPage1/newPage1.component';
 import {FormsModule} from '@angular/forms';
 import {ExamplespringService} from './services/examplespring.service';
 import {MycharacterComponent} from './mycharacter/mycharacter.component';
@@ -19,15 +17,13 @@ import { CheckSkillPossiblePipe } from './pipes/check-skill-possible.pipe';
 import { GetNextLvlExpPipe } from './pipes/get-next-lvl-exp.pipe';
 import { GetExpBarWidthPipe } from './pipes/get-exp-bar-width.pipe';
 import { MonsterDetailsComponent } from './monsterDetails/monsterDetails.component';
-import { SkillPricePipe } from './skill-price.pipe';
+import { SkillPricePipe } from './pipes/skill-price.pipe';
 import {ShopComponent} from './shop/shop.component';
 
 
 
 @NgModule({
   declarations: [
-    DashboardComponent,
-    NewPage1Component,
     AppComponent,
     PotworComponent,
     MycharacterComponent,
