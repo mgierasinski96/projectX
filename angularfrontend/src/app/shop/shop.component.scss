@@ -79,7 +79,6 @@
 {
   position: absolute;
   width: 150px;
-  height: 100px;
   background:yellow;
   visibility: hidden;
   z-index: 300;
@@ -90,6 +89,7 @@
   color: black;
   font-weight: bold;
 }
+
 
 @keyframes changeVisibility {
   0% {opacity: 0;}
