@@ -15,6 +15,11 @@ export class MycharacterComponent implements OnInit {
   userItems;
   itemImg;
   actualHoverItem;
+  myItemName;
+  myItemDamage;
+  myItemStrength;
+  myItemWidsdom;
+  myItemDefense;
 
   constructor(private userService: ExamplespringService, private dropService: DropService) {
   }
@@ -89,8 +94,8 @@ export class MycharacterComponent implements OnInit {
 
     this.rect = ev.target.getBoundingClientRect();
     this.infoAboutItem = document.getElementById('infoAboutItem');
-    this.infoAboutItem.style.left = this.rect.left + 100 + 'px';
-    this.infoAboutItem.style.top = this.rect.top - 130 + 'px';
+    this.infoAboutItem.style.left = this.rect.left + 'px';
+    this.infoAboutItem.style.top = this.rect.top * 0.9 + 'px';
     this.infoAboutItem.style.visibility = 'visible';
   }
 
@@ -107,6 +112,11 @@ export class MycharacterComponent implements OnInit {
   }
 
   dragStart(event: CdkDragStart) {
+    this.myItemDefense = document.getElementById('itemDefense').innerText ? document.getElementById('itemDefense').innerText : 0;
+    this.myItemDamage = document.getElementById('itemDamage').innerText ? document.getElementById('itemDamage').innerText : 0;
+    this.myItemName = document.getElementById('itemName').innerText
+    this.myItemStrength = document.getElementById('itemStrength').innerText ? document.getElementById('itemStrength').innerText : 0;
+    this.myItemWidsdom = document.getElementById('itemWidsdom').innerText ? document.getElementById('itemWidsdom').innerText : 0;
     document.getElementById('wrongItemWarning').style.animation = ''; // reset animacji dla wrongItemWarning
     this.previusDragContainer = event.source.element.nativeElement.parentElement.id; // miejsce z ktorego rozpoczynam drag
   }
@@ -132,28 +142,38 @@ export class MycharacterComponent implements OnInit {
       }
       // PRZELICZANIE STATYSTYK
       // jesli przenosisz z innego miejsca niz relacja plecak-plecak to... -> CZYLI
-      // DZIALAJ DLA KAZDEGO MOZLIWEGO PRZENIESIA ZA WYJATKIEM PLECAK-PLECAK i jeśli nic nie ma na tym slocie
+      // DZIALAJ DLA KAZDEGO MOZLIWEGO PRZENIESIA ZA WYJATKIEM PLECAK-PLECAK BO TUTAJ TRZEBA TO BYLO ROZDZIELIC, ZEBY
+      // DLA KAZDEGO PONIZSZEGO PRZENIESIA OBLICZAC STATYSTKI
       if (((!this.previusDragContainer.includes('slot') || !event.container.element.nativeElement.id.includes('slot'))
         && event.container.element.nativeElement.children[0].children.length === 0)) {
         document.getElementById(event.container.element.nativeElement.children[0].id).append
         (document.getElementById(event.item.element.nativeElement.children[0].id));
         console.log('tak trzeba przeliczyc staty');
+
+
+        // NIE MOZNA DOKONYWAC ZAMIANY PRZEDMIOTOW PRZENOSZAC PRZEDMIOT NA PRZEDMIOT -> TRZEBA PRZENIESC DO WOLNEGO MIEJSCA
+        // #TODO
+        // #TODO
+        // #TODO
+        // #TODO
+        // WSZYSTKIE parametry itemu dostepne W ZMIENNYCH
+        // console.log(this.myItemName); // maja wartosc dodatnia lub ujemna lub 0
+        // console.log(this.myItemWidsdom);
+        // console.log(this.myItemStrength);
+        // console.log(this.myItemDefense);
+        // console.log(this.myItemDamage);
+        // if(this.previousContainer.includes('slot') => to przenosimy z plecaka do eq czyli dodaj staty
+        // #TODO
+        // if(!this.previousContainer.includes('slot') => to przenosimy z eq do plecaka czyli odejmij staty
+        // #TODO
+        // #TODO
+        // #TODO
+        // #TODO
+        // MIEJSCE NA KOD PRZELICZAJACY STATYSTYKI PO UPUSZCZENIU PRZEDMIOTU
+
+
+        // MIEJSCE NA KOD PRZELICZAJACY STATYSTYKI PO UPUSZCZENIU PRZEDMIOTU
       }
-
-        // NIE MOZNA DOKONAC ZAMIANY PRZEDMIOTOW PRZENOSZAC PRZEDMIOT Z EQ DO PLECAKA TRZEBA PRZENIESC DO WOLNEGO MIEJSCA
-       // #TODO
-        // #TODO
-        // #TODO
-        // #TODO
-        // #TODO
-        // #TODO
-        // #TODO
-        // #TODO
-        // #TODO
-        // MIEJSCE NA KOD PRZELICZAJACY STATYSTYKI PO UPUSZCZENIU PRZEDMIOTU
-
-
-        // MIEJSCE NA KOD PRZELICZAJACY STATYSTYKI PO UPUSZCZENIU PRZEDMIOTU
       } else {
         // jesli przeniesienie w ogole nie bylo niemozliwe to:
         document.getElementById('wrongItemWarning').style.animation = 'changeVisibility 2s';

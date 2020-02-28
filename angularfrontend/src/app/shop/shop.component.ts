@@ -90,8 +90,8 @@ export class ShopComponent implements OnInit {
       document.getElementById('itemWidsdom').parentElement.style.display = 'none';
     }
 
-    this.infoAboutItem.style.left = this.rect.left +'px';
-    this.infoAboutItem.style.top = this.rect.top*0.9 +'px';
+    this.infoAboutItem.style.left = this.rect.left + 'px';
+    this.infoAboutItem.style.top = this.rect.top * 0.9 + 'px';
     this.infoAboutItem.style.visibility = 'visible';
   }
 
@@ -151,6 +151,9 @@ export class ShopComponent implements OnInit {
         document.getElementById('dialog').innerText = 'Dobry wybór!';
 
         // #TODO
+        // #TODO
+        // #TODO
+        // #TODO
         // DODAJ DO PLECAKA POSTACI I ODEJMIJ ZLOTO, ZMIEN ID ITEMU NA JAKIES INNE POKI CO BYLE NIE ZE SLOWEM SHOP
 
 
@@ -166,20 +169,22 @@ export class ShopComponent implements OnInit {
     // upuszczenie z backpacka do sklepu czyli dodaj zloto usun przedmiot NIE DA SIE GO KUPIC PONOWNIE CZY ZOSTAJE W SKLEPIE
     // I MOZNA SPOWROTEM ODKUPIC?
     if (event.container.element.nativeElement.id.includes('shop') && this.previusDragContainer.includes('slot')) {
-
-      // #TODO
-      // USUN Z PLECAKA POSTACI (DODAJ DO SKLEPU CZY USUN CALKOWICIE?) I DODAJ ZLOTO
-
-      // TYMCZASOWO JESLI COS TAM JEST TO NIE POZWOL DODAC -> DO WYRZUCENIA W PRZYSZLOSCI
       if (event.container.element.nativeElement.children.length >= 2) { // jesli jest tam jakis przdmiot to NIE WYKONUJ
         document.getElementById(this.previusDragContainer).append
         (document.getElementById(event.item.element.nativeElement.id));
         event.previousContainer.addItem(event.item);
-      }
-      // USUN Z PLECAKA POSTACI I DODAJ ZLOTO
+      } else { // USUN Z PLECAKA POSTACI, DODAJ ZLOTO I WYSWIETL KOMUNIKAT
+        // #TODO
+        // USUN Z PLECAKA POSTACI (DODAJ DO SKLEPU CZY USUN CALKOWICIE?) I DODAJ ZLOTO
+        // #TODO
+        // #TODO
+        // #TODO
+        // #TODO
 
+        // TYMCZASOWO JESLI COS TAM JEST TO NIE POZWOL DODAC -> DO WYRZUCENIA W PRZYSZLOSCI
       document.getElementById('shopAssisantDialog').style.animation = 'changeVisibility 6s';
       document.getElementById('dialog').innerText = 'Pff masz tu swoje grosze';
+      }
     }
     // przesuniecie miedzy okienkami sklepu - NIE POZWOL WYKONAC
     if (this.previusDragContainer.includes('shop') && event.container.element.nativeElement.id.includes('shop')) {
