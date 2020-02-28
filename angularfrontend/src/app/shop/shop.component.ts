@@ -90,8 +90,8 @@ export class ShopComponent implements OnInit {
       document.getElementById('itemWidsdom').parentElement.style.display = 'none';
     }
 
-    this.infoAboutItem.style.left = this.rect.left + 100 + 'px';
-    this.infoAboutItem.style.top = this.rect.top - 130 + 'px';
+    this.infoAboutItem.style.left = this.rect.left +'px';
+    this.infoAboutItem.style.top = this.rect.top*0.9 +'px';
     this.infoAboutItem.style.visibility = 'visible';
   }
 
