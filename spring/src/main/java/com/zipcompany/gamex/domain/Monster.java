@@ -4,17 +4,22 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.*;
-import java.util.stream.Stream;
 
 @Entity
 @Table(name = "monster")
 public class Monster {
 
-
-
+    @Id
+    @Column(name = "MONSTER_ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String monsterName;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "primaryKey.monster")
     private List<MonsterItem> monsterItems;
+
     private int monsterLevel;
     private int monsterHealth;
     private int monsterDamage;
@@ -22,11 +27,18 @@ public class Monster {
     @Lob
     private byte[] monsterImage;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    Location location;
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 
 
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "primaryKey.monster", cascade = CascadeType.ALL)
     public List<MonsterItem> getMonsterItems() {
         return monsterItems;
     }
@@ -35,13 +47,21 @@ public class Monster {
 
     }
 
-    public Monster(String monsterName, int monsterLevel, int monsterHealth, int monsterDamage, long monsterExp) {
-        this.monsterName = monsterName;
-        this.monsterLevel = monsterLevel;
-        this.monsterHealth = monsterHealth;
-        this.monsterDamage = monsterDamage;
-        this.monsterExp = monsterExp;
+    public Long getId() {
+        return id;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+//    public Monster(String monsterName, int monsterLevel, int monsterHealth, int monsterDamage, long monsterExp) {
+//        this.monsterName = monsterName;
+//        this.monsterLevel = monsterLevel;
+//        this.monsterHealth = monsterHealth;
+//        this.monsterDamage = monsterDamage;
+//        this.monsterExp = monsterExp;
+//    }
+
 
     public byte[] getMonsterImage() {
         return monsterImage;
@@ -50,18 +70,6 @@ public class Monster {
     public void setMonsterImage(byte[] monsterImage) {
         this.monsterImage = monsterImage;
     }
-
-    @Id
-    @Column(name = "MONSTER_ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
 
     public Monster(String monsterName) {
         this.monsterName = monsterName;
@@ -75,8 +83,6 @@ public class Monster {
     public void setMonsterItems(List<MonsterItem> monsterItems) {
         this.monsterItems = monsterItems;
     }
-
-
 
     public String getMonsterName() {
         return monsterName;

@@ -17,6 +17,8 @@ public interface MonsterService {
 
     Monster getMonsterById(Long monsterId);
 
+    Monster getOneRandomMonsterForLocation(String locationName);
+
     // Monster findMonsterByName(String monsterName);
 
 }

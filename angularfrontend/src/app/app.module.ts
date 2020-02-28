@@ -19,6 +19,7 @@ import { GetExpBarWidthPipe } from './pipes/get-exp-bar-width.pipe';
 import { MonsterDetailsComponent } from './monsterDetails/monsterDetails.component';
 import { SkillPricePipe } from './pipes/skill-price.pipe';
 import {ShopComponent} from './shop/shop.component';
+import {LocationComponent} from './location/location.component';
 
 
 
@@ -35,6 +36,7 @@ import {ShopComponent} from './shop/shop.component';
     MycharacterComponent,
     MonsterDetailsComponent,
     ShopComponent,
+    LocationComponent
 
   ],
   imports: [

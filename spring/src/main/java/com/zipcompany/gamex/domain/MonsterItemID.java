@@ -11,12 +11,15 @@ import java.util.Objects;
 @Embeddable
 public class MonsterItemID implements Serializable {
 
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL)
     private Monster monster;
-
-    private Item item;
 
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
+    private Item item;
+
+
     public Monster getMonster(){
         return monster;
     }
@@ -25,8 +28,7 @@ public class MonsterItemID implements Serializable {
         this.monster = monster;
     }
 
-    @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL)
+
     public Item getItem() {
         return item;
     }

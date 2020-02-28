@@ -60,4 +60,9 @@ public class MonsterServiceImpl implements MonsterService {
     public Monster getMonsterById(Long monsterId) {
         return monsterRepository.findMonsterById(monsterId);
     }
+
+    @Override
+    public Monster getOneRandomMonsterForLocation(String locationName) {
+        return monsterRepository.getOneRandomMonsterForLocation(locationName);
+    }
 }
