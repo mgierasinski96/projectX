@@ -86,7 +86,6 @@ export class AppComponent implements OnInit {
 
   addSkill(skill) {
     this.ngOnInit();
-   // window.addEventListener("mo")
     const safetyCheck = new CheckSkillPossiblePipe().transform(skill, this.userData.gold);
     if (safetyCheck) {
       switch (skill) {

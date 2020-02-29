@@ -13,10 +13,10 @@ export class ShopComponent implements OnInit {
   previusDragContainer;
   idOfItemThatWasInEnteredSlot;
   wasItemInEnteredSlot;
-  infoAboutItem;//div with item info
-  allItems;//contains user items and shop items
-  itemsToShop;//items in shop
-  rect;//infoAboutItem is displayed basing on rect
+  infoAboutItem; //div with item info
+  allItems; //contains user items and shop items
+  itemsToShop; //items in shop
+  rect; //infoAboutItem is displayed basing on rect
 
   constructor(private dropService: DropService) {
   }
@@ -73,7 +73,7 @@ export class ShopComponent implements OnInit {
           // this.swapElements(event.container.element.nativeElement.children[1].id,
           //   this.previusDragContainer); //z plecaka do plecaka
       }
-    } else if(!(this.previusDragContainer.includes('shop') && event.container.element.nativeElement.id.includes('shop'))){
+    } else if (!(this.previusDragContainer.includes('shop') && event.container.element.nativeElement.id.includes('shop'))) {
       document.getElementById('shopAssisantDialog').style.animation = 'changeVisibility 2s';
       document.getElementById('dialog').innerText = 'Co to za chłam!!';
     }
@@ -96,7 +96,7 @@ export class ShopComponent implements OnInit {
       if (event.container !== event.previousContainer) {
         event.previousContainer.removeItem(event.item);
       }
-      console.log(event.container.element.nativeElement.id)
+      console.log(event.container.element.nativeElement.id);
       document.getElementById(event.container.element.nativeElement.id).append
       (document.getElementById(event.item.element.nativeElement.id));
 

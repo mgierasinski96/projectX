@@ -1,0 +1,21 @@
+<div id="menu">
+
+  <div id="trainingMenu" *ngIf="canRender">
+    <div id="userGold">
+      <span>Gold: {{ userData.gold }}</span>
+    </div>
+    <div class="trainingField" *ngFor="let skill of userSkills | keyvalue">
+      <!--   Jak ułożyć spana w spanie tak, żeby drugi span się pokazywał po prawej stronie pierwszego spana   -->
+      <span class="skillName">{{ skill.key | titlecase }}: <span class=""> {{ skill.value }}</span></span>
+      <span class="trainingPrice">Price: {{ skillPrices[skill.key] }}</span>
+      <div class="trainingButton" *ngIf="skillPrices[skill.key] <= userData.gold; else elseBlock">
+        <span><button mat-raised-button (click)="addSkill(skill.key)">+</button></span>
+      </div>
+      <ng-template #elseBlock>
+        <span class="trainingButton"><button mat-raised-button disabled>+</button></span>
+      </ng-template>
+    </div>
+
+  </div>
+
+</div>
