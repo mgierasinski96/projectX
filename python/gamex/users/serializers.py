@@ -64,7 +64,7 @@ class UserStatsSerializer(DynamicFieldsModelSerializer):
         if skill == 'toughness':
             hp  = value * prof.hp_tgh_multi        # hp calculated for new skill value
             hp -= (value - 1) * prof.hp_tgh_multi  # subtract old skill value
-            return {'current_hp': hp, 'max_hp': user.max_hp - user.current_hp + hp}
+            return {'current_hp': user.current_hp + hp, 'max_hp': user.max_hp + hp}
         elif skill == 'wisdom' or skill == 'strength':
             if skill == prof.dmg_stat:
                 # update dmg stat

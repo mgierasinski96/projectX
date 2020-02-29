@@ -12,7 +12,7 @@
         <span><button mat-raised-button (click)="addSkill(skill.key)">+</button></span>
       </div>
       <ng-template #elseBlock>
-        <span class="trainingButton"><button mat-raised-button disabled>+</button></span>
+        <span class="trainingButton"><button class="tooltip" mat-raised-button disabled>+<span class="tooltiptext">Not enough money</span></button></span>
       </ng-template>
     </div>
 
