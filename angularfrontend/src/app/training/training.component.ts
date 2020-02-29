@@ -19,17 +19,15 @@ export class TrainingComponent implements OnInit {
       if (localStorage.getItem('token') != null) {
         this.token = localStorage.getItem('token');
         this.prepareData();
-        console.log('finish oninit');
       } else { console.log('training comp ngOnInit else call!'); }
     } catch (e) { console.log(e); }
   }
 
   private prepareData() {
-    console.log('Start prepare Data');
     this.userService.getUserData().subscribe(
       response => {
          this.userData = response[0];
-         console.log('Finish get user data');
+         console.log(this.userData);
          this.getUserSkills();
       },
       error => {
@@ -38,11 +36,10 @@ export class TrainingComponent implements OnInit {
     );
   }
   private getUserSkills() {
-    console.log('Start Get User Skills');
     this.userService.getUserSkills(this.userData).subscribe(
       response => {
         this.userSkills = response[0];
-        console.log('finish get user skills', this.userSkills);
+        console.log(this.userSkills);
         this.getSkillPrices();
       },
       error => {
@@ -51,11 +48,9 @@ export class TrainingComponent implements OnInit {
     );
   }
   private getSkillPrices() {
-    console.log('Start Get User Skills');
     this.userService.getSkillPrices(this.userData).subscribe(
       response => {
         this.skillPrices = response
-        console.log('Finish get skill prices');
         console.log(this.skillPrices);
         this.canRender = true;
       },
@@ -68,7 +63,8 @@ export class TrainingComponent implements OnInit {
     this.userService.addSkill(this.userData, skill).subscribe(
       response => {
         this.skillPrices = response;
-        this.canRender = false;
+        // this.canRender = false;
+        // this.prepareData();
         this.ngOnInit();
       },
       error => {

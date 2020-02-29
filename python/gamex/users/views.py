@@ -3,16 +3,16 @@ from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import UpdateAPIView
-from django.http import QueryDict
 
-from .models import User
+from .models import User, Profession
 from .serializers import (
     UserSerializer,
     UserDetailSerializer,
     UserStatsSerializer,
     UserExpSerializer,
     GetStatsSerializer,
-    GetStatsPriceSerializer
+    GetStatsPriceSerializer,
+    ProfessionDetailSerializer,
     )
 import math
 
@@ -31,9 +31,17 @@ class UserViewSet(viewsets.ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         user = User.objects.filter(id=request.user.id)
-        # user = User.objects.all()
         serializer = UserDetailSerializer(user, many=True)
-        return Response(serializer.data)
+
+        prof = Profession.objects.filter(id=user.first().profession.id)
+        prof_serializer = ProfessionDetailSerializer(prof, many=True)
+
+        # change profession field from id to object
+        return_data = serializer.data[0]
+        return_data['profession'] = prof_serializer.data[0]
+
+
+        return Response([return_data])
 
 
 class UserStatsUpdateView(UpdateAPIView):
@@ -46,9 +54,6 @@ class UserStatsUpdateView(UpdateAPIView):
     @classmethod
     def get_extra_actions(cls):
         return []
-
-    # def get_object(self, id):
-    #     return User.objects.filter(id=id).first()
 
     def patch(self, request, is_item=False, *args, **kwargs):
         model = request.user

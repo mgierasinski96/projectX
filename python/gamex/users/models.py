@@ -8,14 +8,14 @@ class Profession(models.Model):
     avatar = models.TextField()
 
     # stats price
-    strength  = models.FloatField() # WR: 2.6, SC : 2.2
-    wisdom    = models.FloatField() # WR: 2.2, SC : 2.6
+    strength  = models.FloatField()            # WR: 2.6, SC : 2.2
+    wisdom    = models.FloatField()            # WR: 2.2, SC : 2.6
     luck      = models.FloatField(default=2.4) # WR: 2.4, SC : 2.4
     toughness = models.FloatField(default=2.3) # WR: 2.3, SC : 2.3
 
     # Health Points
-    hp_tgh_multi = models.FloatField(default=12.5)  # WR: 16.5, SC : 12.5
-    hp_lvl_diff  = models.FloatField(default=-1)     # WR: -1, SC :
+    hp_tgh_multi = models.FloatField(default=12.5) # WR: 16.5, SC : 12.5
+    hp_lvl_diff  = models.FloatField(default=-1)   # WR: -1, SC :
 
     # Resistances
     def_stat = models.CharField(max_length=20, unique=False) # WR: 'wisdom, SC : 'strength'
@@ -101,7 +101,7 @@ class User(AbstractBaseUser):
         (SORCERER, 'Sorcerer'),
     ]
 
-    profession = models.ForeignKey(Profession, on_delete=models.CASCADE, null=True, blank=True)
+    profession   = models.ForeignKey(Profession, on_delete=models.CASCADE, null=True, blank=True)
 
     max_hp       = models.FloatField(default=100)
     current_hp   = models.FloatField(default=100)

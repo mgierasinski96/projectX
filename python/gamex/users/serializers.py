@@ -20,6 +20,12 @@ class UserDetailSerializer(serializers.ModelSerializer):
         exclude = ('password', 'email', 'date_joined', 'is_staff', 'is_superuser', 'is_admin', )
 
 
+class ProfessionDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profession
+        fields = ('name', 'avatar', )
+
+
 class DynamicFieldsModelSerializer(serializers.ModelSerializer):
     """
     A ModelSerializer that takes an additional `fields` argument that
@@ -50,11 +56,36 @@ class UserStatsSerializer(DynamicFieldsModelSerializer):
         multiplier  = getattr(self.instance.profession, name)
         return math.floor(math.pow((value - 4), multiplier))
 
+    def update_parameters(self, skill, value):
+        print('update parameters')
+        print(skill, ' : ', value)
+        user = self.instance
+        prof = user.profession
+        if skill == 'toughness':
+            hp  = value * prof.hp_tgh_multi        # hp calculated for new skill value
+            hp -= (value - 1) * prof.hp_tgh_multi  # subtract old skill value
+            return {'current_hp': hp, 'max_hp': user.max_hp - user.current_hp + hp}
+        elif skill == 'wisdom' or skill == 'strength':
+            if skill == prof.dmg_stat:
+                # update dmg stat
+                dmg = 1 + value / 10
+                return {'total_damage': dmg}
+            else:
+                # update def stat
+                defense = value / 2
+                return {'defense': defense}
+        elif skill == 'luck':
+            # TODO: Add some fields for luck skill
+            return {}
+
     def validate(self, attrs):
         name, value = list(attrs.items())[0]
         price = self.get_price(name, value)
         if self.instance.gold - price >= 0:
-            return {name: value+1, 'gold': self.instance.gold - price}
+            data = self.update_parameters(name, value+1)
+            data[name] = value + 1
+            data['gold'] = self.instance.gold - price
+            return data
         raise serializers.ValidationError('Not enough money for update!')
 
 

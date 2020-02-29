@@ -3,10 +3,10 @@
   <div id="trainingMenu" *ngIf="canRender">
     <div id="userGold">
       <span>Gold: {{ userData.gold }}</span>
+      <span style="padding-left: 40px">Prof: {{ userData.profession }}</span>
     </div>
     <div class="trainingField" *ngFor="let skill of userSkills | keyvalue">
-      <!--   Jak ułożyć spana w spanie tak, żeby drugi span się pokazywał po prawej stronie pierwszego spana   -->
-      <span class="skillName">{{ skill.key | titlecase }}: <span class=""> {{ skill.value }}</span></span>
+      <div class="skillName">{{ skill.key | titlecase }}: <span class="skillValue"> {{ skill.value }}</span></div>
       <span class="trainingPrice">Price: {{ skillPrices[skill.key] }}</span>
       <div class="trainingButton" *ngIf="skillPrices[skill.key] <= userData.gold; else elseBlock">
         <span><button mat-raised-button (click)="addSkill(skill.key)">+</button></span>
@@ -19,3 +19,4 @@
   </div>
 
 </div>
+

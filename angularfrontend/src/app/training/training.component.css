@@ -42,6 +42,7 @@
 .skillValue{
   position: relative;
   text-align: right;
+  float: right;
 }
 .trainingPrice{
   position: relative;
@@ -71,4 +72,8 @@
   color: firebrick;
   background-color: gray;
 
+}
+.mat-raised-button:hover:not([disabled])
+{
+  background-color: goldenrod;
 }
