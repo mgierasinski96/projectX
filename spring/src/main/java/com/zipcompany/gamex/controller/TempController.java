@@ -1,14 +1,14 @@
 package com.zipcompany.gamex.controller;
 
-import com.zipcompany.gamex.Service.ItemService;
-import com.zipcompany.gamex.Service.MonsterItemService;
-import com.zipcompany.gamex.Service.MonsterService;
-import com.zipcompany.gamex.Service.UserService;
+import com.zipcompany.gamex.Service.*;
+import com.zipcompany.gamex.domain.ChatMessage;
 import com.zipcompany.gamex.domain.Item;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+@RestController
 public class TempController {
 
     @Autowired
@@ -22,6 +22,19 @@ public class TempController {
 
     @Autowired
     MonsterItemService monsterItemService;
+
+    @Autowired
+    ChatService chatService;
+
+    @GetMapping(value = "/getAllChatMessages")
+    List<ChatMessage> getAllChatMessages() {
+        return chatService.getAllChatMessages();
+    }
+
+    @PostMapping(value = "/safeChatMessage")
+    ChatMessage getAllChatMessages(@RequestBody ChatMessage chatMessage) {
+        return chatService.safeMessage(chatMessage);
+    }
 
     //    @PostMapping("/monsters/{monsterId}/{itemId}")
 //    void addMonsterToItem(@PathVariable(value = "monsterId") Long monsterId, @PathVariable(value = "itemId") Long itemId){

@@ -20,6 +20,7 @@ import { MonsterDetailsComponent } from './monsterDetails/monsterDetails.compone
 import { SkillPricePipe } from './pipes/skill-price.pipe';
 import {ShopComponent} from './shop/shop.component';
 import {LocationComponent} from './location/location.component';
+import {ChatService} from './services/chat.service';
 
 
 
@@ -48,7 +49,7 @@ import {LocationComponent} from './location/location.component';
     BrowserAnimationsModule,
     MatButtonModule
   ],
-  providers: [ExamplespringService, PotworService, DropService],
+  providers: [ExamplespringService, PotworService, DropService, ChatService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
