@@ -25,6 +25,8 @@ public class UserItem {
     @Lob
     private byte[] itemPicture;
 
+    private String backpackSlot;
+
     @JsonIgnore
     @ManyToOne
     private UserBackpack userBackpack;
@@ -52,6 +54,14 @@ public class UserItem {
         this.itemWidsdom = itemWidsdom;
         this.itemPicture = itemPicture;
         this.userBackpack = userBackpack;
+    }
+
+    public String getBackpackSlot() {
+        return backpackSlot;
+    }
+
+    public void setBackpackSlot(String backpackSlot) {
+        this.backpackSlot = backpackSlot;
     }
 
     public Long getId() {
