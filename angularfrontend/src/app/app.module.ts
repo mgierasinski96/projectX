@@ -20,7 +20,7 @@ import { MonsterDetailsComponent } from './monsterDetails/monsterDetails.compone
 import { SkillPricePipe } from './pipes/skill-price.pipe';
 import {ShopComponent} from './shop/shop.component';
 import { UserItemsComponent } from './user-items/user-items.component';
-
+import { TrainingComponent } from './training/training.component';
 
 
 @NgModule({
@@ -37,7 +37,7 @@ import { UserItemsComponent } from './user-items/user-items.component';
     MonsterDetailsComponent,
     ShopComponent,
     UserItemsComponent,
-
+    TrainingComponent
   ],
   imports: [
     AppRoutingModule,

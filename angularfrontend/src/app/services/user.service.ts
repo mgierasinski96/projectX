@@ -18,17 +18,18 @@ export class UserService {
   loginUser(userData): Observable<any> {
     return this.http.post(this.baseurl + '/auth/', userData);
   }
-  getUserData(): Observable<UserData[]> {
+  getUserData(): Observable<any> {
+    console.log('getUserdata: ', localStorage.getItem('token'));
     this.httpHeaders = new HttpHeaders({Authorization: localStorage.getItem('token'),
                                            'Content-Type': 'application/json'});
-    return this.http.get<UserData[]>(this.baseurl + '/user/', {headers: this.httpHeaders});
+    return this.http.get(this.baseurl + '/user/', {headers: this.httpHeaders});
   }
 
   addStat(userData, statName): Observable<any> {
     const price = new SkillPricePipe().transform(statName, userData[statName]);
     const body = {gold: userData.gold - price};
     body[statName] = userData[statName] + 1;
-    console.log('add stat service!')
+    console.log('add stat service!');
     this.httpHeaders = new HttpHeaders({Authorization: localStorage.getItem('token'),
                                            'Content-Type': 'application/json'});
     return this.http.patch(this.baseurl + '/user/' + userData.id + '/', body, {headers: this.httpHeaders});
@@ -46,5 +47,23 @@ export class UserService {
     this.httpHeaders = new HttpHeaders({Authorization: localStorage.getItem('token'),
                                            'Content-Type': 'application/json'});
     return this.http.patch(this.baseurl + '/user/' + userData.id + '/', body, {headers: this.httpHeaders});
+  }
+
+  getUserSkills(userData): Observable<any> {
+    this.httpHeaders = new HttpHeaders({Authorization: localStorage.getItem('token'),
+                                           'Content-Type': 'application/json'});
+    return this.http.get(this.baseurl + '/user/' + userData.id + '/get-stats/', {headers: this.httpHeaders});
+  }
+
+  getSkillPrices(userData): Observable<any> {
+    this.httpHeaders = new HttpHeaders({Authorization: localStorage.getItem('token'),
+                                           'Content-Type': 'application/json'});
+    return this.http.get(this.baseurl + '/user/' + userData.id + '/stats-price/', {headers: this.httpHeaders});
+  }
+  addSkill(userData, skill): Observable<any> {
+    this.httpHeaders = new HttpHeaders({Authorization: localStorage.getItem('token'),
+                                           'Content-Type': 'application/json'});
+    const body = {skill: skill};
+    return this.http.patch(this.baseurl + '/user/' + userData.id + '/training/', body, {headers: this.httpHeaders});
   }
 }

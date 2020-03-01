@@ -2,7 +2,7 @@
 <div>
   <div id="menuGorne">
     <ol >
-      <li> <h2><a [routerLink]="['/']"><span>Widok głowny</span></a></h2></li>
+      <li> <h2> <a [routerLink]="['/']"><span>Widok głowny</span></a></h2></li>
       <li> <h2> <a [routerLink]="['/myMenu']"><span>menuU</span></a></h2></li>
       <li> <h2> <a [routerLink]="['/potwor']"><span>Widok-potwor</span></a></h2></li>
       <li> <h2> <a [routerLink]="['/user-items']"><span>Przedmioty uzytkownika</span></a></h2></li>
@@ -11,8 +11,8 @@
     <div id="insideSideMenu">
     <ul>
     <li><a [routerLink]="['/shop']"><span>Sklep</span></a></li>
-    <li>wyprawy</li>
-    <li>zielarstwo</li>
+    <li><a [routerLink]="['/training']"><span>Training</span></a></li>
+    <li><a [routerLink]="['/']"><span>Widok głowny</span></a></li>
     <li>zielarstwo</li>
     <li>zielarstwo</li>
     <li>zielarstwo</li>
@@ -34,11 +34,11 @@
       <div class="radio-item">
         <div class="label-text">Profession</div>
           <div class="item">
-            <input type="radio" name="profession" id="warrior" [(ngModel)]="register.profession" value="WR">
+            <input type="radio" name="profession" id="warrior" [(ngModel)]="register.profession" value=1>
             <label for="warrior"><span></span> Warrior</label>
           </div>
           <div class="item">
-            <input type="radio" name="profession" id="sorcerer" [(ngModel)]="register.profession" value="SC">
+            <input type="radio" name="profession" id="sorcerer" [(ngModel)]="register.profession" value=2>
             <label for="sorcerer"><span></span> Sorcerer</label>
           </div>
         <button (click)="onRegister()">Register</button>
@@ -47,76 +47,6 @@
       <input [(ngModel)]="login.password" placeholder="Password" type="password"><br>
       <button (click)="onLogin()">Login</button>
     </div>
-
-    <!--  USER LOGGED IN VIEW -->
-    <div *ngIf="(token != '' && canRender)" style="text-align:left">
-      <div id="trainingMenu">
-      <h1>Gold: {{ userData.gold }}</h1>
-      <!--   User Skills Training Table   -->
-        <table id="trainingTable">
-          <tr>
-            <th>Strength: {{ userData.strength }}</th>
-            <th><span>Price: </span><span id="strUpgrade">{{ 'strength' | getSkillPrice: userData.strength }}</span></th>
-            <div *ngIf="'strength' | checkSkillPossible: userData.gold; else elseBlock"><button mat-raised-button (click)="addSkill('strength')" >+</button></div>
-            <ng-template #elseBlock><button mat-raised-button disabled>+</button></ng-template>
-          </tr>
-          <tr>
-            <th>Wisdom: {{ userData.wisdom }}</th>
-            <th><span>Price: </span><span id="wisUpgrade">{{ 'wisdom' | getSkillPrice: userData.wisdom }}</span></th>
-            <div *ngIf="'wisdom' | checkSkillPossible: userData.gold; else elseBlock"><button mat-raised-button (click)="addSkill('wisdom')" >+</button></div>
-            <ng-template #elseBlock><button mat-raised-button disabled>+</button></ng-template>
-          </tr>
-          <tr>
-            <th>Luck: {{ userData.luck }}</th>
-            <th><span>Price: </span><span id="lckUpgrade">{{ 'luck' | getSkillPrice: userData.luck }}</span></th>
-            <div *ngIf="'luck' | checkSkillPossible: userData.gold; else elseBlock"><button mat-raised-button (click)="addSkill('luck')" >+</button></div>
-            <ng-template #elseBlock><button mat-raised-button disabled>+</button></ng-template>
-          </tr>
-          <tr>
-            <th>Toughness: {{ userData.toughness }}</th>
-            <th><span>Price: </span><span id="tghUpgrade">{{ 'toughness' | getSkillPrice: userData.toughness }}</span></th>
-            <div *ngIf="'toughness' | checkSkillPossible: userData.gold; else elseBlock"><button mat-raised-button (click)="addSkill('toughness')" >+</button></div>
-            <ng-template #elseBlock><button mat-raised-button disabled>+</button></ng-template>
-          </tr>
-        </table>
-      </div>
-
-      <div id="playerInfo">
-        <div id="playerLevel">
-          <span class="statName">Level</span>
-          <span id="charLvl" class="statValue">{{ userData.level }}</span>
-        </div>
-        <div id="playerHealth">
-          <span class="statName">Health</span>
-          <span id="charHp" class="statValue">{{ userData.max_hp }}</span>
-          <div class="progressBarBg">
-            <div [ngStyle]="{'width.%': 10}" class="progressBarFg"></div>
-          </div>
-        </div>
-        <div id="playerExperience">
-          <span class="statName">Experience</span>
-          <span id="charExp" class="statValue">{{ userData.exp }}</span>
-          <div class="statName">
-            <span id="expToGo" class="statValue">{{ userData.level | getNextLvlExp }}</span>
-          </div>
-          <div class="progressBarBg">
-            <div style="background: gold" [ngStyle]="{'width.%': (userData.exp | getExpBarWidth) }" class="progressBarFg"></div>
-          </div>
-        </div>
-        <div id="playerDamage">
-          <span class="statName">Damage</span>
-          <span id="charDmg" class="statValue">{{ userData.total_damage }}</span>
-        </div>
-        <div id="playerDefense">
-          <span class="statName">Defense</span>
-          <span id="charDef" class="statValue">{{ userData.defense }}</span>
-        </div>
-      </div>
-      <button (click)="onLogout()" >Logout</button>
-      <button (click)="updateUserData()" >Update User Data</button>
-      <input [(ngModel)]="addedExpPoints" type="number">
-      <button (click)="addExpPoints()" >Submit</button>
-      </div>
     </div>
   <button (click)="onLogout()" >Logout</button>
   </div>

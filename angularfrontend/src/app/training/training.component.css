@@ -1,0 +1,102 @@
+#menu{
+
+  position: relative;
+  width: 100%;
+  background: whitesmoke;
+  height: 520px;
+}
+#trainingMenu
+{
+  position: relative;
+  background: darkgray;
+  height: 80%;
+  width: 50%;
+  top: 10%;
+  left: 20%;
+  border:1px solid black;
+}
+#userGold{
+  position: relative;
+  font-weight: bold;
+  font-size: 25px;
+  margin: 2%;
+
+}
+.trainingField{
+  position: relative;
+  background: tomato;
+  display: table;
+  width: 95%;
+  height: 15%;
+  margin: 2%;
+  text-align: left;
+}
+.skillName{
+  position: relative;
+  font-size: 25px;
+  width: 30%;
+  padding-left: 2%;
+  display: table-cell;
+  vertical-align: middle;
+}
+.skillValue{
+  position: relative;
+  text-align: right;
+  float: right;
+}
+.trainingPrice{
+  position: relative;
+  display: table-cell;
+  width: 30%;
+  font-size: 25px;
+  text-align: right;
+  padding-right: 2%;
+  vertical-align: middle;
+}
+.trainingButton{
+  position: relative;
+  display: table-cell;
+  width: 5%;
+  font-size: 25px;
+  text-align: right;
+  padding-right: 2%;
+  vertical-align: middle;
+}
+.mat-raised-button {
+  border-radius: 10px;
+  font-size: 35px;
+  text-align: center;
+  background-color: darkgreen;
+}
+.mat-raised-button[disabled] {
+  color: firebrick;
+  background-color: gray;
+
+}
+.mat-raised-button:hover:not([disabled])
+{
+  background-color: goldenrod;
+}
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+.tooltip .tooltiptext {
+  font-size: 12px;
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
