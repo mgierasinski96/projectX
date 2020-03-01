@@ -1,5 +1,27 @@
 <div id="potwor">
-  <div id="infoBox">
+  <div id="inf">
+    <table>
+      <tr *ngIf="def > 0">
+        <td>Obrona: + {{def}}</td>
+      </tr>
+      <tr *ngIf="atk > 0">
+        <td>Obrazenia: +{{atk}}</td>
+      </tr>
+      <tr *ngIf="int > 0">
+        <td>Inteligencja: +{{int}}</td>
+      </tr>
+      <tr *ngIf="sil > 0">
+        <td>Sila: +{{sil}}</td>
+      </tr>
+    </table>
+       </div>
+
+    <table>
+      <tr *ngFor="let item of items">
+        <td (mouseover)="mouseEnter($event, item.id)" (mouseleave)="mouseOutItem($event, item.id)"><a [routerLink]="['/item/',item.id]"><img src="http://localhost:8080/item/getItemImage/{{item.id}}"></a></td>
+      </tr>
+    </table>
+
 
 
     <table>
@@ -10,15 +32,10 @@
     </table>
 
 
-<table>
-  <tr *ngFor="let item of items">
-    <td><a [routerLink]="['/item/',item.id]"><img src="http://localhost:8080/item/getItemImage/{{item.id}}"></a></td>
-  </tr>
-</table>
 
 
   <button (click)="listMonsters()" id="przycisk" >Wyswietl potwory</button>
   <button  (click)="listItems()" id="przycisk2" >Wyswietl przedmioty</button>
 
 </div>
-</div>
+

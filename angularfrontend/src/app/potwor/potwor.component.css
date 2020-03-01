@@ -1,9 +1,10 @@
 #potwor
 {
   position: absolute;
+  margin-top: 100px;
   width: 70%;
   height: 400px;
-  left:208px;
+  left:308px;
   background: green;
 }
 #przycisk
@@ -21,4 +22,19 @@
   position: relative;
   margin-left: 200px;
   margin-top:  100px;
+}
+
+.dwa:hover
+{
+  cursor: move;
+}
+#inf
+{
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background:grey;
+  visibility: hidden;
+  z-index: 300;
+  transition: visibility 50ms linear;
 }

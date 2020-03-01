@@ -19,6 +19,7 @@ public class Item {
     private Long id;
     private String itemName;
 
+    @Enumerated
     private ItemType itemType;
 
     private int itemDamage;

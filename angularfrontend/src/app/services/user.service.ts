@@ -7,7 +7,7 @@ import {SkillPricePipe} from '../pipes/skill-price.pipe';
 @Injectable()
 export class UserService {
 
-  baseurl = 'http://127.0.0.1:8000';
+  baseurl = 'http://localhost:8000';
   private httpHeaders: HttpHeaders;
 
   constructor(private http: HttpClient) { }

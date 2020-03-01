@@ -54,8 +54,6 @@ export class MycharacterComponent implements OnInit {
   mouseOverItem(ev) {
     // ev.target to zdjecie aktualnego przedmiotu
     // wypelnic infoAboutItem statystykami przedmiotu
-
-
     this.rect = ev.target.getBoundingClientRect();
     this.infoAboutItem = document.getElementById('infoAboutItem');
     this.infoAboutItem.style.left = this.rect.left - 720 + 'px';

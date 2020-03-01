@@ -1,5 +1,8 @@
 package com.zipcompany.gamex.domain;
 
+import javax.persistence.Enumerated;
+
+
 public enum ItemType {
 
 

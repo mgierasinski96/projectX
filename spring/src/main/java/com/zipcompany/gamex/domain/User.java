@@ -1,5 +1,7 @@
 package com.zipcompany.gamex.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -21,6 +23,7 @@ public class User {
     private boolean is_active;
     private boolean is_staff;
     private boolean is_superuser;
+
     private int gold;
     private int premium_curr;
     private String profession;
@@ -36,6 +39,20 @@ public class User {
     private int toughness;
     private double total_damage;
     private double defense;
+
+    @JsonIgnore
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userBackpack_id")
+    private UserBackpack userBackpack;
+
+
+    public UserBackpack getUserBackpack() {
+        return userBackpack;
+    }
+
+    public void setUserBackpack(UserBackpack userBackpack) {
+        this.userBackpack = userBackpack;
+    }
 
     public User(){ this.date_joined=new Date();
     this.last_login=new Date();

@@ -1,0 +1,38 @@
+<div id="user_items">
+  <div id="informacja">
+    <table>
+      <tr>
+        <td>{{nazwa}}</td>
+      </tr>
+      <tr *ngIf="def > 0">
+        <td>Obrona: + {{def}}</td>
+      </tr>
+      <tr *ngIf="atk > 0">
+        <td>Obrazenia: +{{atk}}</td>
+      </tr>
+      <tr *ngIf="int > 0">
+        <td>Inteligencja: +{{int}}</td>
+      </tr>
+      <tr *ngIf="sil > 0">
+        <td>Sila: +{{sil}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div style="display: flex; justify-content: flex-end">
+    <div>I'm on the right</div>
+  </div>
+
+
+<button (click)="listUserItems()">Wyswietl przedmioty uzytkownika</button>
+
+
+  <table>
+    <tr *ngFor="let item of itemyUsera">
+      <td><img (mouseover)="mouseEnter($event, item.id)" (mouseout)="mouseOutItem($event, item.id)" src="http://localhost:8080/user/getuserItemImage/{{item.id}}"></td>
+      <!--<td><button (click)="removeItem(item.id); listUserItems()" >Usun przedmiot z ekwipunku</button></td>-->
+      <td><button (click)="removeItem(item.id)">Usun</button> </td>
+    </tr>
+  </table>
+</div>
+
