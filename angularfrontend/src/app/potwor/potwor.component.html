@@ -24,10 +24,11 @@
 
 
 
-    <table>
+    <table border="1">
       <tr *ngFor="let monster of monsters">
         <td><a [routerLink]="['/monster/', monster.id]"> <img src="http://localhost:8080/monster/getMonsterImage/{{monster.id}}"></a></td>
         <td><h2>{{monster.monsterName}}</h2></td>
+        <td><h2>{{monster.location.locationName}}</h2></td>
       </tr>
     </table>
 

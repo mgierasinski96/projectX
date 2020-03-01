@@ -21,6 +21,9 @@ import { SkillPricePipe } from './pipes/skill-price.pipe';
 import {ShopComponent} from './shop/shop.component';
 import { UserItemsComponent } from './user-items/user-items.component';
 import { TrainingComponent } from './training/training.component';
+import {LocationComponent} from './location/location.component';
+import {ChatService} from './services/chat.service';
+
 
 
 @NgModule({
@@ -37,7 +40,8 @@ import { TrainingComponent } from './training/training.component';
     MonsterDetailsComponent,
     ShopComponent,
     UserItemsComponent,
-    TrainingComponent
+    TrainingComponent,
+    LocationComponent
   ],
   imports: [
     AppRoutingModule,
@@ -48,7 +52,7 @@ import { TrainingComponent } from './training/training.component';
     BrowserAnimationsModule,
     MatButtonModule
   ],
-  providers: [ExamplespringService, PotworService, DropService],
+  providers: [ExamplespringService, PotworService, DropService, ChatService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -11,14 +11,11 @@ import javax.persistence.*;
                 joinColumns = @JoinColumn(name = "ITEM_ID")) })
 public class MonsterItem {
 
-
+    @EmbeddedId
     private MonsterItemID primaryKey = new MonsterItemID();
 
     private String dropRate;
 
-
-
-    @EmbeddedId
     public MonsterItemID getPrimaryKey() {
         return primaryKey;
     }

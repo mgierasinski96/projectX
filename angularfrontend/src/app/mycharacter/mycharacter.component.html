@@ -1,49 +1,71 @@
 <div id ="items">
 <div id="wrongItemWarning">Niewłaściwy przedmiot!</div>
+  <div id="infoAboutItem">
+    <table style="width: 100%">
+      <tr>
+        <td colspan="2" style="text-align: center;" id="itemName"></td>
+      </tr>
+      <tr>
+        <td> Obrażenia: </td>
+        <td id="itemDamage"></td>
+      </tr>
+      <tr>
+        <td> Obrona: </td>
+        <td id="itemDefense"></td>
+      </tr>
+      <tr>
+        <td> Siła: </td>
+        <td id="itemStrength"></td>
+      </tr>
+      <tr>
+        <td> Mądrość: </td>
+        <td id="itemWidsdom"></td> <!--UWAGA NA LITEROWKE -->
+      </tr>
+    </table>
+  </div>
   <table id="backpack" cellpadding="0" cellspacing="0">
-    <div id="infoAboutItem">TO JEST INFO O ITEMIE </div>
     <tr>
       <td><div id="slot1" cdkDropList #slot1="cdkDropList"  [cdkDropListConnectedTo]="[earringList,helmetList,necklaceList,weaponList,
-  plateList,shieldList,gauntletsList,bootsList,ringList,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]"  (cdkDropListDropped)="drop($event)" class="itemSlot"><img id="1plate" class="exItem" src="../assets/images/exampleItem.png" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></td>
+  plateList,shieldList,gauntletsList,bootsList,ringList,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]"  (cdkDropListDropped)="drop($event)" class="itemSlot"><div id="userItem1" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div></td>
       <td><div id="slot2" cdkDropList #slot2="cdkDropList"  [cdkDropListConnectedTo]="[earringList,helmetList,necklaceList,weaponList,
-  plateList,shieldList,gauntletsList,bootsList,ringList,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)"  class="itemSlot"><img id="1ring" class="exItem" src="../assets/images/exampleItem2.png" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></td>
+  plateList,shieldList,gauntletsList,bootsList,ringList,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)"  class="itemSlot"><div id="userItem2" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div></td>
       <td><div id="slot3" cdkDropList #slot3="cdkDropList"  [cdkDropListConnectedTo]="[earringList,helmetList,necklaceList,weaponList,
-        plateList,shieldList,gauntletsList,bootsList,ringList,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)"  class="itemSlot"></div></td>
+  plateList,shieldList,gauntletsList,bootsList,ringList,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)"  class="itemSlot"><div id="userItem3" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div></td>
       <td><div id="slot4" cdkDropList #slot4="cdkDropList" [cdkDropListConnectedTo]="[earringList,helmetList,necklaceList,weaponList,
-  plateList,shieldList,gauntletsList,bootsList,ringList,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)" class="itemSlot"></div></td>
+  plateList,shieldList,gauntletsList,bootsList,ringList,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)" class="itemSlot"><div id="userItem4" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div></td>
       <td><div id="slot5" cdkDropList #slot5="cdkDropList" [cdkDropListConnectedTo]="[earringList,helmetList,necklaceList,weaponList,
-  plateList,shieldList,gauntletsList,bootsList,ringList,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)" class="itemSlot"></div></td>
+  plateList,shieldList,gauntletsList,bootsList,ringList,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)" class="itemSlot"><div id="userItem5" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div></td>
     </tr>
     <tr>
       <td><div id="slot6" cdkDropList #slot6="cdkDropList" [cdkDropListConnectedTo]="[earringList,helmetList,necklaceList,weaponList,
-  plateList,shieldList,gauntletsList,bootsList,ringList,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)" class="itemSlot"></div></td>
+  plateList,shieldList,gauntletsList,bootsList,ringList,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)" class="itemSlot"><div id="userItem6" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div></td>
       <td><div id="slot7" cdkDropList #slot7="cdkDropList" [cdkDropListConnectedTo]="[earringList,helmetList,necklaceList,weaponList,
-  plateList,shieldList,gauntletsList,bootsList,ringList,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)" class="itemSlot"></div></td>
+  plateList,shieldList,gauntletsList,bootsList,ringList,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)" class="itemSlot"><div id="userItem7" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div></td>
       <td><div id="slot8" cdkDropList #slot8="cdkDropList" [cdkDropListConnectedTo]="[earringList,helmetList,necklaceList,weaponList,
-        plateList,shieldList,gauntletsList,bootsList,ringList,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)" class="itemSlot"></div></td>
+  plateList,shieldList,gauntletsList,bootsList,ringList,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)" class="itemSlot"><div id="userItem8" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div></td>
       <td><div id="slot9" cdkDropList #slot9="cdkDropList" [cdkDropListConnectedTo]="[earringList,helmetList,necklaceList,weaponList,
-  plateList,shieldList,gauntletsList,bootsList,ringList,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)" class="itemSlot"></div></td>
+  plateList,shieldList,gauntletsList,bootsList,ringList,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)" class="itemSlot"><div id="userItem9" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div></td>
       <td><div id="slot10" cdkDropList #slot10="cdkDropList"[cdkDropListConnectedTo]="[earringList,helmetList,necklaceList,weaponList,
-  plateList,shieldList,gauntletsList,bootsList,ringList,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)" class="itemSlot"></div></td>
+  plateList,shieldList,gauntletsList,bootsList,ringList,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)" class="itemSlot"><div id="userItem10" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div></td>
     </tr>
 
   </table>
 
   <table cellpadding="0" cellspacing="0" id="equippedItems">
     <tr>
-    <td><img id="earringHolderPhoto" src="../assets/images/earringsHolder.png"><div id="earring" cdkDropList  #earringList="cdkDropList"  [cdkDropListConnectedTo]="[slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)" ></div></td>
-    <td><img id="helmetHolderPhoto" src="../assets/images/helmetHolder.png"><div id="helmet" cdkDropList  #helmetList="cdkDropList"  [cdkDropListConnectedTo]="[slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)"></div></td>
-    <td><img id="necklaceHolderPhoto" src="../assets/images/necklaceHolder.png"><div id="necklace" cdkDropList  #necklaceList="cdkDropList"  [cdkDropListConnectedTo]="[slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)"></div></td>
+    <td><img id="earringHolderPhoto" src="../assets/images/earringsHolder.png"><div id="earring" cdkDropList  #earringList="cdkDropList"  [cdkDropListConnectedTo]="[slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)" ><div id="earringE" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div></td>
+    <td><img id="helmetHolderPhoto" src="../assets/images/helmetHolder.png"><div id="helmet" cdkDropList  #helmetList="cdkDropList"  [cdkDropListConnectedTo]="[slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)"><div id="helmetE" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div></td>
+    <td><img id="necklaceHolderPhoto" src="../assets/images/necklaceHolder.png"><div id="necklace" cdkDropList  #necklaceList="cdkDropList"  [cdkDropListConnectedTo]="[slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)"><div id="necklaceE" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div></td>
     </tr>
     <tr>
-      <td><img id="weaponHolderPhoto" src="../assets/images/weaponHolder.png"><div id="weapon" cdkDropList  #weaponList="cdkDropList"  [cdkDropListConnectedTo]="[slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)"></div> </td>
-      <td><img id="plateHolderPhoto" src="../assets/images/plateHolder.png"><div id="plate" cdkDropList  #plateList="cdkDropList"  [cdkDropListConnectedTo]="[slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)"></div></td>
-      <td><img id="shieldHolderPhoto" src="../assets/images/shieldHolder.png"><div id="shield" cdkDropList  #shieldList="cdkDropList"  [cdkDropListConnectedTo]="[slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)"></div></td>
+      <td><img id="weaponHolderPhoto" src="../assets/images/weaponHolder.png"><div id="weapon" cdkDropList  #weaponList="cdkDropList"  [cdkDropListConnectedTo]="[slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)"><div id="weaponE" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div> </td>
+      <td><img id="plateHolderPhoto" src="../assets/images/plateHolder.png"><div id="plate" cdkDropList  #plateList="cdkDropList"  [cdkDropListConnectedTo]="[slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)"><div id="plateE" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div></td>
+      <td><img id="shieldHolderPhoto" src="../assets/images/shieldHolder.png"><div id="shield" cdkDropList  #shieldList="cdkDropList"  [cdkDropListConnectedTo]="[slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)"><div id="shieldE" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div></td>
     </tr>
     <tr>
-      <td><img id="gauntletsHolderPhoto" src="../assets/images/gauntletsHolder.png"><div id="gauntlets" cdkDropList  #gauntletsList="cdkDropList"  [cdkDropListConnectedTo]="[slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)"></div> </td>
-      <td><img id="bootsHolderPhoto" src="../assets/images/bootsHolder.png"><div id="boots" cdkDropList  #bootsList="cdkDropList"  [cdkDropListConnectedTo]="[slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)"></div></td>
-      <td><img id="ringHolderPhoto" src="../assets/images/ringHolder.png"><div id="ring" cdkDropList  #ringList="cdkDropList"  [cdkDropListConnectedTo]="[slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)"></div></td>
+      <td><img id="gauntletsHolderPhoto" src="../assets/images/gauntletsHolder.png"><div id="gauntlets" cdkDropList  #gauntletsList="cdkDropList"  [cdkDropListConnectedTo]="[slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)"><div id="gauntletsE" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div> </td>
+      <td><img id="bootsHolderPhoto" src="../assets/images/bootsHolder.png"><div id="boots" cdkDropList  #bootsList="cdkDropList"  [cdkDropListConnectedTo]="[slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)"><div id="bootsE" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div></td>
+      <td><img id="ringHolderPhoto" src="../assets/images/ringHolder.png"><div id="ring" cdkDropList  #ringList="cdkDropList"  [cdkDropListConnectedTo]="[slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)"><div id="ringE" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div></td>
     </tr>
 
   </table>

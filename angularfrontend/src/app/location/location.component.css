@@ -1,0 +1,70 @@
+#container {
+  position: absolute;
+  left: 20%;
+  width: 1000px;
+  height: 600px;
+  background-image: url('/../../assets/images/exmap.png');
+}
+  #mapContent
+  {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+#grunwaldzka
+{
+  background: yellow;
+  position: absolute;
+  padding: 30px;
+  left: 200px;
+  top:200px;
+
+}
+#grunwaldzka:hover
+{
+  cursor: pointer;
+}
+#fightWindow
+{
+  z-index: 200;
+  width: 800px;
+  height: 580px;
+  left:50%;
+  margin-left: -400px;
+  top:50%;
+  margin-top: -290px;
+  position: absolute;
+  background: lightgray;
+  display: none;
+}
+#contentOfFightWindow
+{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+#closeFightWindowIcon
+{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+#closeFightWindowIcon:hover
+{
+  cursor: pointer;
+}
+#monsterImage
+{
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  right: 100px;
+  top:100px;
+}
+#infoAboutUpcomingFight
+{
+  top: 100px;
+  right: 500px;
+  position: absolute;
+}

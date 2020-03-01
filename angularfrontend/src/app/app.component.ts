@@ -3,6 +3,7 @@ import {UserService} from './services/user.service';
 import {CheckSkillPossiblePipe} from './pipes/check-skill-possible.pipe';
 import {GetNextLvlExpPipe} from './pipes/get-next-lvl-exp.pipe';
 import {async} from '@angular/core/testing';
+import {ChatService} from './services/chat.service';
 
 @Component({
   selector: 'app-root',
@@ -17,11 +18,11 @@ export class AppComponent implements OnInit {
   userData;
   canRender = false;
   addedExpPoints: number;
-
-  constructor(private userService: UserService) {
-  }
+  chatResponses;
+  constructor(private userService: UserService, private chatService: ChatService) { }
 
   ngOnInit() {
+
     this.register = {
       username: '',
       password: '',
@@ -46,7 +47,18 @@ export class AppComponent implements OnInit {
       console.log(e);
     }
   }
+  showChatBox() {
+    document.getElementById('chatBox').style.display = 'inline-block';
+    this.chatService.getAllChatMessages().subscribe(response => {
+      this.chatResponses = response;
 
+    });
+
+  }
+
+  closeChatBox() {
+    document.getElementById('chatBox').style.display = 'none';
+  }
   onRegister() {
     this.userService.registerUser(this.register).subscribe(
       response => {

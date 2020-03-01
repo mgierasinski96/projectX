@@ -67,9 +67,6 @@
 {
   cursor: move;
 }
-//.cdk-drag-placeholder {
-//  display:none;
-//}
 .cdk-drag-placeholder
 {
   opacity: 0;
@@ -110,9 +107,8 @@ color: red;
 #infoAboutItem
 {
   position: absolute;
-width: 100px;
-  height: 100px;
-  background:blue;
+  width: 150px;
+  background:yellow;
   visibility: hidden;
   z-index: 300;
   transition: visibility 50ms linear;

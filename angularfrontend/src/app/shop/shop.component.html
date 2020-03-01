@@ -1,5 +1,33 @@
 <div id ="shop">
-  <div id="infoAboutItem">TO JEST INFO O ITEMIE </div>
+  <div id="infoAboutItem">
+    <table style="width: 100%">
+      <tr>
+        <td colspan="2" style="text-align: center;" id="itemName"></td>
+      </tr>
+      <tr>
+        <td> Obrażenia: </td>
+        <td id="itemDamage"></td>
+      </tr>
+      <tr>
+        <td> Obrona: </td>
+        <td id="itemDefense"></td>
+      </tr>
+      <tr>
+      <td> Siła: </td>
+      <td id="itemStrength"></td>
+    </tr>
+      <tr>
+        <td> Mądrość: </td>
+        <td id="itemWidsdom"></td> <!--UWAGA NA LITEROWKE -->
+      </tr>
+    </table>
+  </div>
+  <!--<div>-->
+  <!--<div style="display: none" #allTheseThings *ngFor="let item of itemsToShop; let last = last">-->
+    <!--<img class='sItem' id="shopItem{{item.id}}" src="http://localhost:8080/item/getItemImage/{{item.id}}" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)">-->
+  <!--</div>-->
+  <!--</div>-->
+
   <table id="backpack" cellpadding="0" cellspacing="0">
     <tr>
       <td><div id="slot1" cdkDropList #slot1="cdkDropList" [cdkDropListConnectedTo]="[shopSlot1,shopSlot2,shopSlot3,shopSlot4,shopSlot5,shopSlot6,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]"  (cdkDropListDropped)="drop($event)" class="itemSlot"><img id="1plate" class="exItem" src="../assets/images/exampleItem.png" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></td>
@@ -21,17 +49,16 @@
   <table cellpadding="0" cellspacing="0" id="shopItems">
     <tr id="shopAssistant"><td colspan="3"><img  src="../assets/images/shopAssistant.png"><div id="shopAssisantDialog"><img src="https://img.icons8.com/office/170/000000/speech-bubble.png"><div id="dialog"></div></div></td></tr>
     <tr>
-    <td><div class="shopSlot" id="shop1" cdkDropList  #shopSlot1="cdkDropList"  [cdkDropListConnectedTo]="[slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10,shopSlot1,shopSlot2,shopSlot3,shopSlot4,shopSlot5,shopSlot6]" (cdkDropListDropped)="drop($event)" ><img id="plateFromShop" class="exItem" src="../assets/images/exampleItem.png" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></td>
-    <td><div class="shopSlot" id="shop2" cdkDropList  #shopSlot2="cdkDropList"  [cdkDropListConnectedTo]="[slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10,shopSlot1,shopSlot2,shopSlot3,shopSlot4,shopSlot5,shopSlot6]" (cdkDropListDropped)="drop($event)" ></div></td>
-    <td><div class="shopSlot" id="shop3" cdkDropList  #shopSlot3="cdkDropList"  [cdkDropListConnectedTo]="[slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10,shopSlot1,shopSlot2,shopSlot3,shopSlot4,shopSlot5,shopSlot6]" (cdkDropListDropped)="drop($event)" ></div></td>
+    <td><div class="shopSlot"  id="shopSlot1"cdkDropList  #shopSlot1="cdkDropList"  [cdkDropListConnectedTo]="[slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10,shopSlot1,shopSlot2,shopSlot3,shopSlot4,shopSlot5,shopSlot6]" (cdkDropListDropped)="drop($event)" ><div id="shopItem1" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div></td>
+    <td><div class="shopSlot"  id="shopSlot2"cdkDropList  #shopSlot2="cdkDropList"  [cdkDropListConnectedTo]="[slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10,shopSlot1,shopSlot2,shopSlot3,shopSlot4,shopSlot5,shopSlot6]" (cdkDropListDropped)="drop($event)" ><div id="shopItem2" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div></td>
+    <td><div class="shopSlot" id="shopSlot3" cdkDropList  #shopSlot3="cdkDropList"  [cdkDropListConnectedTo]="[slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10,shopSlot1,shopSlot2,shopSlot3,shopSlot4,shopSlot5,shopSlot6]" (cdkDropListDropped)="drop($event)" ><div id="shopItem3" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div></td>
     </tr>
     <tr>
-      <td><div class="shopSlot" id="shop4" cdkDropList  #shopSlot4="cdkDropList"  [cdkDropListConnectedTo]="[slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10,shopSlot1,shopSlot2,shopSlot3,shopSlot4,shopSlot5,shopSlot6]" (cdkDropListDropped)="drop($event)" ></div></td>
-      <td><div class="shopSlot" id="shop5" cdkDropList  #shopSlot5="cdkDropList"  [cdkDropListConnectedTo]="[slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10,shopSlot1,shopSlot2,shopSlot3,shopSlot4,shopSlot5,shopSlot6]" (cdkDropListDropped)="drop($event)" ></div></td>
-      <td><div class="shopSlot"id="shop6" cdkDropList  #shopSlot6="cdkDropList"  [cdkDropListConnectedTo]="[slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10,shopSlot1,shopSlot2,shopSlot3,shopSlot4,shopSlot5,shopSlot6]" (cdkDropListDropped)="drop($event)" ></div></td>
+      <td><div class="shopSlot" id="shopSlot4"  cdkDropList  #shopSlot4="cdkDropList"  [cdkDropListConnectedTo]="[slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10,shopSlot1,shopSlot2,shopSlot3,shopSlot4,shopSlot5,shopSlot6]" (cdkDropListDropped)="drop($event)" ><div id="shopItem4" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div></td>
+      <td><div class="shopSlot"  id="shopSlot5" cdkDropList  #shopSlot5="cdkDropList"  [cdkDropListConnectedTo]="[slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10,shopSlot1,shopSlot2,shopSlot3,shopSlot4,shopSlot5,shopSlot6]" (cdkDropListDropped)="drop($event)" ><div id="shopItem5" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div></td>
+      <td><div class="shopSlot"  id="shopSlot6" cdkDropList  #shopSlot6="cdkDropList"  [cdkDropListConnectedTo]="[slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10,shopSlot1,shopSlot2,shopSlot3,shopSlot4,shopSlot5,shopSlot6]" (cdkDropListDropped)="drop($event)" ><div id="shopItem6" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div></td>
     </tr>
 
   </table>
-
 
 </div>

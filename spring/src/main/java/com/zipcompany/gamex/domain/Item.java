@@ -15,7 +15,8 @@ import java.util.Objects;
 @Table(name = "item")
 public class Item {
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String itemName;
 
@@ -26,6 +27,11 @@ public class Item {
     private int itemDefense;
     private int itemStrength;
     private int itemWidsdom;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "primaryKey.item",
+            cascade = CascadeType.ALL)
+    private List<MonsterItem> monsterItems;
 
     @Lob
     private byte[] itemPicture;
@@ -84,7 +90,7 @@ public class Item {
         this.itemPicture = itemPicture;
     }
 
-    private List<MonsterItem> monsterItems;
+
 
     public Item() {
 
@@ -98,9 +104,7 @@ public class Item {
         this.monsterItems.add(monsterItem);
     }
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "primaryKey.item",
-            cascade = CascadeType.ALL)
+
     public List<MonsterItem> getMonsterItems() {
         return monsterItems;
     }
@@ -114,8 +118,7 @@ public class Item {
     //   public List<Monster> getMonsters() {
 //        return monsters;
 //    }
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     public Long getId() {
         return id;
     }
