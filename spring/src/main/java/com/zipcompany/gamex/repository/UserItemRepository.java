@@ -5,6 +5,9 @@ import com.zipcompany.gamex.domain.User;
 import com.zipcompany.gamex.domain.UserItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,13 +21,9 @@ public interface UserItemRepository extends JpaRepository<UserItem, Long> {
 
     UserItem findUserItemById(Long id);
 
-
-
-
-
-//    @Transactional
-//    @Query(value = "SELECT * FROM item ORDER BY RAND() LIMIT :pcs ",nativeQuery = true)
-//    List<Item> getRandomItemsToShop(@Param("pcs") long pcs);
+    @Modifying
+    @Query(value = "update user_items u set u.backpack_slot=:newSlot where u.user_item_id=:itemId", nativeQuery = true)
+    void transferItemToDifferentSlot(@Param("itemId") long itemId, @Param("newSlot") String newSlot);
 
 
 

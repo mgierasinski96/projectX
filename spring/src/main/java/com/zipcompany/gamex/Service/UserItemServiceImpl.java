@@ -3,6 +3,8 @@ package com.zipcompany.gamex.Service;
 import com.zipcompany.gamex.domain.UserItem;
 import com.zipcompany.gamex.repository.UserItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +30,11 @@ public class UserItemServiceImpl implements UserItemService {
         String query = "select i.item_picture from user_items i where i.user_item_id=?";
         Blob photo = jdbcTemp.queryForObject(query, new Object[] { id }, Blob.class);
         return photo;
+    }
+
+    @Override
+    public void transferItemToDifferentSlot(long itemId, String actualSlot) {
+        userItemRepository.transferItemToDifferentSlot(itemId,actualSlot);
     }
 
 

@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class UserItem {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "USER_ITEM_ID")
     private Long id;
 
@@ -45,7 +45,7 @@ public class UserItem {
         this.userBackpack = userBackpack;
     }
 
-    public UserItem(String itemName, ItemType itemType, int itemDamage, int itemDefense, int itemStrength, int itemWidsdom, byte[] itemPicture, UserBackpack userBackpack) {
+    public UserItem(String itemName, ItemType itemType, int itemDamage, int itemDefense, int itemStrength, int itemWidsdom, byte[] itemPicture,String newSlot, UserBackpack userBackpack) {
         this.itemName = itemName;
         this.itemType = itemType;
         this.itemDamage = itemDamage;
@@ -53,6 +53,7 @@ public class UserItem {
         this.itemStrength = itemStrength;
         this.itemWidsdom = itemWidsdom;
         this.itemPicture = itemPicture;
+        this.backpackSlot=newSlot;
         this.userBackpack = userBackpack;
     }
 

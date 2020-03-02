@@ -45,13 +45,18 @@ public class ExampleController {
     UserItemService userItemService;
 
 
+    @GetMapping(value = "/transferItemToDifferentSlot/{itemId}/{newSlotName}")
+    void transferItemToDifferentSlot(@PathVariable("itemId") long itemId, @PathVariable("newSlotName") String newSlotName) {
+        userItemService.transferItemToDifferentSlot(itemId, newSlotName);
+    }
 
-    @PostMapping(value = "/additemtouser/{id}/{idd}")
+    @PostMapping(value = "/additemtouser/{id}/{itemId}/{newSlot}")
     public void addItemToUserBackpack(@PathVariable("id") Long userID,
-                                      @PathVariable("idd") Long itemID) {
+                                      @PathVariable("itemId") Long itemID, @PathVariable("newSlot") String newSlot) {
 
+        System.out.println("dodaje");
         Item item = itemService.getItemById(itemID);
-        UserBackpack userBackpack = userBackpackRepository.findUserBackpackById(userID);
+        UserBackpack userBackpack = userService.getUser(userID).getUserBackpack();
 
         UserItem userItem = new UserItem(item.getItemName(),
                 item.getItemType(),
@@ -60,30 +65,27 @@ public class ExampleController {
                 item.getItemStrength(),
                 item.getItemWidsdom(),
                 item.getItemPicture(),
+                newSlot,
                 userBackpack
                 );
              userBackpack.addItem(userItem);
-            System.out.println("Dodalem " +item.getItemName() + " do plecaka o ID " + userBackpack.getId());
-
             userBackpackRepository.save(userBackpack);
-            System.out.println("Dodaje " + item.getItemName() + " do " + userBackpack.getKolor() + " plecak");
-
-        //User user = userService.getUser(userID);
-        //System.out.println(user.getUserBackpack().getKolor());
 
     }
 
-    @GetMapping(value = "/removeitemfromuser/{id}/{idd}")
+    @GetMapping(value = "/removeitemfromuser/{id}/{previousSlot}")
     public void removeItemFromuserBackpack(@PathVariable("id") Long userID,
-                                           @PathVariable("idd") Long itemID){
+                                           @PathVariable("previousSlot") String previousSlot){
+        userBackpackRepository.deleteItemForUser(userID,previousSlot);
+        System.out.println("wchodze");
 
-        User user = userService.getUser(userID);
-        System.out.println("Liczba przedmiotow w plecaku uzytkownika: " +user.getUserBackpack().getUserItemList().size());
-        System.out.println("Usuwam przedmiot: " + userItemRepository.findUserItemById(itemID).getItemName());
-        user.getUserBackpack().removeItem(userItemRepository.findUserItemById(itemID));
-        //userBackpackRepository.save(user.getUserBackpack());
-        userItemRepository.delete(userItemRepository.findUserItemById(itemID));
-        System.out.println("Liczba przedmiotow w plecaku uzytkownika: " +user.getUserBackpack().getUserItemList().size());
+//        User user = userService.getUser(userID);
+//        System.out.println("Liczba przedmiotow w plecaku uzytkownika: " +user.getUserBackpack().getUserItemList().size());
+//        System.out.println("Usuwam przedmiot: " + userItemRepository.findUserItemById(itemID).getItemName());
+//        user.getUserBackpack().removeItem(userItemRepository.findUserItemById(itemID));
+//        //userBackpackRepository.save(user.getUserBackpack());
+//        userItemRepository.delete(userItemRepository.findUserItemById(itemID));
+//        System.out.println("Liczba przedmiotow w plecaku uzytkownika: " +user.getUserBackpack().getUserItemList().size());
 
 //        User usr = userService.getUser(userID);
 //
@@ -143,6 +145,7 @@ public class ExampleController {
     @GetMapping(value = "/itemyusera/{id}")
     public List<UserItem> getUserItems(@PathVariable("id") Long id){
         User user = userService.getUser(id);
+
         return user.getUserBackpack().getUserItemList();
     }
 

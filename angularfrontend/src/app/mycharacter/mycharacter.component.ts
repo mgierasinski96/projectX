@@ -2,6 +2,7 @@ import {ExamplespringService} from '../services/examplespring.service';
 import {Component, OnInit} from '@angular/core';
 import {CdkDragDrop, CdkDragEnter, CdkDragExit, CdkDragStart, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import {DropService} from '../services/drop.service';
+import {UserItemsService} from '../services/userItems.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,23 +21,31 @@ export class MycharacterComponent implements OnInit {
   myItemStrength;
   myItemWidsdom;
   myItemDefense;
+  myItemId;
+  userItemSlots;
 
-  constructor(private userService: ExamplespringService, private dropService: DropService) {
+  constructor(private userItemsService: UserItemsService) {
   }
 
   ngOnInit() {
-    this.dropService.getRandomItemsToShop(4).subscribe(response => { // W PRZYSZLOSCI NIE MOZNA POBIERAC LOSOWYCH OFC
+    // #TODO NA SZTYWNO PRZYPISANE ID USERA I POBIERANIE DLA NIEGO PRZEDMIOTOW
+    this.userItemsService.getUserItems(4).subscribe(response => { // W PRZYSZLOSCI NIE MOZNA POBIERAC LOSOWYCH OFC
       this.userItems = response;
       window.sessionStorage.setItem('userItems', JSON.stringify(this.userItems));
       for (const item of this.userItems) {  // dla wszystkich pobranych elementow
         this.itemImg = document.createElement('img'); // stworzenie nowego elementu html typu img
-        this.itemImg.src = 'http://localhost:8080/item/getItemImage/' + item.id; // ustawienie zrodla obrazka na backend w springu
-        this.itemImg.id = 'userItemImg' + item.id + item.itemType.toLowerCase(); // przypisanie id przedmiotu do id elementu html
+        this.itemImg.src = '  http://localhost:8080/user/getuserItemImage/' + item.id; // ustawienie zrodla obrazka na backend w springu
+        this.itemImg.id = item.id + '-userItemImg' + item.itemType.toLowerCase(); // przypisanie id przedmiotu do id elementu html
         this.itemImg.addEventListener('mouseover', this.mouseOverItem); // dodanie do obrazka obslugi zdarzen
         this.itemImg.addEventListener('mouseout', this.mouseOutItem);
         // na razie przypisujemy byle gddzie do pola na podstawie id przedmiotu -> i tak jets ich 9 a pol 10
-        document.getElementById('userItem' + item.id).appendChild(this.itemImg);
-        document.getElementById('userItem' + item.id).id = 'userItem' + item.id + item.itemType.toLowerCase();
+        this.userItemSlots = document.getElementsByClassName('userItem');
+        for (const userSlot of this.userItemSlots) {
+          if (userSlot.id === item.backpackSlot) {
+            document.getElementById(userSlot.id).appendChild(this.itemImg);
+          }
+        }
+
       }
     });
   }
@@ -113,7 +122,7 @@ export class MycharacterComponent implements OnInit {
   dragStart(event: CdkDragStart) {
     this.myItemDefense = document.getElementById('itemDefense').innerText ? document.getElementById('itemDefense').innerText : 0;
     this.myItemDamage = document.getElementById('itemDamage').innerText ? document.getElementById('itemDamage').innerText : 0;
-    this.myItemName = document.getElementById('itemName').innerText
+    this.myItemName = document.getElementById('itemName').innerText;
     this.myItemStrength = document.getElementById('itemStrength').innerText ? document.getElementById('itemStrength').innerText : 0;
     this.myItemWidsdom = document.getElementById('itemWidsdom').innerText ? document.getElementById('itemWidsdom').innerText : 0;
     document.getElementById('wrongItemWarning').style.animation = ''; // reset animacji dla wrongItemWarning
@@ -135,8 +144,15 @@ export class MycharacterComponent implements OnInit {
       event.container.element.nativeElement.id.includes('slot')) {
       if (event.container.element.nativeElement.id.includes('slot') && this.previusDragContainer.includes('slot')) {
         if (event.container.element.nativeElement.children[0].children.length === 0) {
+console.log(event.container.element.nativeElement.children[0].id);
+          //przypisz przedmiot w bazie do odpowiedniego slotu po przeniesieinu
+          // this.userItemsService.transferItemToDifferentSlot(event.item.element.nativeElement.children[0].id.split('-')[0],
+          //   event.container.element.nativeElement.children[0].id).subscribe();
+
           document.getElementById(event.container.element.nativeElement.children[0].id).append
           (document.getElementById(event.item.element.nativeElement.children[0].id));
+
+
         }
       }
       // PRZELICZANIE STATYSTYK
@@ -145,6 +161,10 @@ export class MycharacterComponent implements OnInit {
       // DLA KAZDEGO PONIZSZEGO PRZENIESIA OBLICZAC STATYSTKI
       if (((!this.previusDragContainer.includes('slot') || !event.container.element.nativeElement.id.includes('slot'))
         && event.container.element.nativeElement.children[0].children.length === 0)) {
+        this.userItemsService.transferItemToDifferentSlot(event.item.element.nativeElement.children[0].id.split('-')[0],
+          event.container.element.nativeElement.children[0].id).subscribe();
+       // console.log(event.item.element.nativeElement.children[0].id)
+       // console.log(event.previousContainer.element.nativeElement.children[0].id)
         document.getElementById(event.container.element.nativeElement.children[0].id).append
         (document.getElementById(event.item.element.nativeElement.children[0].id));
         console.log('tak trzeba przeliczyc staty');

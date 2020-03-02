@@ -2,6 +2,7 @@ import {ExamplespringService} from '../services/examplespring.service';
 import {AfterViewInit, Component, Directive, ElementRef, EventEmitter, HostBinding, HostListener, OnInit, Output} from '@angular/core';
 import {CdkDragDrop, CdkDragEnd, CdkDragEnter, CdkDragExit, CdkDragStart, DragDrop} from '@angular/cdk/drag-drop';
 import {DropService} from '../services/drop.service';
+import {UserItemsService} from '../services/userItems.service';
 
 @Component({
   selector: 'shop-dashboard',
@@ -14,12 +15,14 @@ export class ShopComponent implements OnInit {
   wasItemInEnteredSlot;
   infoAboutItem; // div with item info
   allItems; // contains user items and shop items
+  userItems;
+  userItemSlots;
   itemsToShop; // items in shop
   rect; // infoAboutItem is displayed basing on rect
   shopSlotIterator; // zmienna typu calkowitego sluzaca do pobrania wszyskich slotow w sklepie bo maja id shopSlot1, shopSlot2
   itemImg; // element html typu obrazek
   actualHoverItem; // item na ktory obecnie najechano
-  constructor(private dropService: DropService) {
+  constructor(private dropService: DropService, private userItemsService: UserItemsService) {
   }
   ngOnInit() {
     this.shopSlotIterator = 1; // ustawienie zmiennej na 1 czyli zaczynamy dodawac przedmioty do okien sklepu od okna1
@@ -31,7 +34,7 @@ export class ShopComponent implements OnInit {
       for (const item of this.itemsToShop) {  // dla wszystkich pobranych elementow
         this.itemImg = document.createElement('img'); // stworzenie nowego elementu html typu img
         this.itemImg.src = 'http://localhost:8080/item/getItemImage/' + item.id; // ustawienie zrodla obrazka na backend w springu
-        this.itemImg.id = 'shopItemId' + item.id; // przypisanie id przedmiotu do id elementu html
+        this.itemImg.id = item.id + '-shopItem' ; // przypisanie id przedmiotu do id elementu html
         this.itemImg.addEventListener('mouseover', this.mouseOverItem); // dodanie do obrazka obslugi zdarzen
         this.itemImg.addEventListener('mouseout', this.mouseOutItem);
 
@@ -41,16 +44,33 @@ export class ShopComponent implements OnInit {
       }
     });
 
-    this.allItems = document.getElementsByClassName('exItem');
-    for (let i = 0; i < this.allItems.length; i++) {
-      this.allItems[i].addEventListener('mouseover', this.mouseOverItem);
-      this.allItems[i].addEventListener('mouseout', this.mouseOutItem);
-    }
+
+    this.userItemsService.getUserItems(4).subscribe(response => { // W PRZYSZLOSCI NIE MOZNA POBIERAC LOSOWYCH OFC
+      this.userItems = response;
+      window.sessionStorage.setItem('userItems', JSON.stringify(this.userItems));
+      for (const item of this.userItems) {  // dla wszystkich pobranych elementow
+        this.itemImg = document.createElement('img'); // stworzenie nowego elementu html typu img
+        this.itemImg.src = '  http://localhost:8080/user/getuserItemImage/' + item.id; // ustawienie zrodla obrazka na backend w springu
+        this.itemImg.id = item.id + '-userItemImg' + item.itemType.toLowerCase(); // przypisanie id przedmiotu do id elementu html
+        this.itemImg.addEventListener('mouseover', this.mouseOverItem); // dodanie do obrazka obslugi zdarzen
+        this.itemImg.addEventListener('mouseout', this.mouseOutItem);
+        // na razie przypisujemy byle gddzie do pola na podstawie id przedmiotu -> i tak jets ich 9 a pol 10
+        this.userItemSlots = document.getElementsByClassName('userItem');
+        for (const userSlot of this.userItemSlots) {
+          if (userSlot.id === item.backpackSlot) {
+            document.getElementById(userSlot.id).appendChild(this.itemImg);
+            document.getElementById(userSlot.id).id = item.id + '-userItem' + item.itemType.toLowerCase();
+            // id musi zaweirac informacje o typie przedmiotu oraz powinno zaweirac informacje o id przedmiotu
+          }
+        }
+
+      }
+    });
   }
 
   mouseOverItem(ev) {
-
     this.itemsToShop = JSON.parse(window.sessionStorage.getItem('items'));
+    this.userItems = JSON.parse(window.sessionStorage.getItem('userItems'));
     for (const item of this.itemsToShop) { // ev.target.id to np shopItemId4 gdzie 4 to id przedmiotu w bazie danych
       if (ev.target.id.includes(item.id)) { // sposrob wszystkich przedmiotow odebranych przez service, trzeba znalezc
         // ten ktorego id jest takie jak id przedmiotu na ktory najechano
@@ -58,6 +78,13 @@ export class ShopComponent implements OnInit {
         break;
       }
     }
+    for (const item of this.userItems) { // ev.target.id to np shopItemId4 gdzie 4 to id przedmiotu w bazie danych
+      if (ev.target.id.includes(item.id)) { // sposrob wszystkich przedmiotow odebranych przez service, trzeba znalezc
+        // ten ktorego id jest takie jak id przedmiotu na ktory najechano
+        this.actualHoverItem = item; // przypisanie tego przedmiotu do actualHoverItem
+        break;
+      }
+    } // zrob to samo dla przedmiotow uzytkownika, bo moga byc calkowocie rozne  od przedmiotow w sklepie
     this.rect = ev.target.getBoundingClientRect();
     this.infoAboutItem = document.getElementById('infoAboutItem');
     // pobieranie danych z actualHoverItem i przypisywanie ich do tabeli ktorej komorki nazywaja sie itemName i itemDamage
@@ -113,10 +140,6 @@ export class ShopComponent implements OnInit {
       // from bag to bag -> nie wykonuj na tym oknie swapa przedmiotow i nie pozwol dodac kolejnego przedmiotu
       // jesli w danym slocie znajduje sie juz inny przedmiot
     } else if (this.previusDragContainer.includes('slot') && event.container.element.nativeElement.id.includes('slot')) {
-      if (event.container.element.nativeElement.children.length > 1) {
-        this.idOfItemThatWasInEnteredSlot = event.container.element.nativeElement.children[1].id;
-        this.wasItemInEnteredSlot = true;
-      }
       // przeciaganie z plecaka do sklepu
     } else if (!(this.previusDragContainer.includes('shop') && event.container.element.nativeElement.id.includes('shop'))) {
       document.getElementById('shopAssisantDialog').style.animation = 'changeVisibility 2s';
@@ -145,9 +168,15 @@ export class ShopComponent implements OnInit {
     }
     // upuszczeniu ze sklepu do backpacka czyli odejmij zloto dodaj przedmiot
     if (this.previusDragContainer.includes('shop') && event.container.element.nativeElement.id.includes('slot')) {
-      if (event.container.element.nativeElement.children.length < 2) {
+      if (event.container.element.nativeElement.children[0].children.length === 0) {
         document.getElementById('shopAssisantDialog').style.animation = 'changeVisibility 2s';
         document.getElementById('dialog').innerText = 'Dobry wybór!';
+        // #TODO ID USERA NA SZTYWNO 4
+
+       this.userItemsService.addItemToUser(4, event.item.element.nativeElement.children[0].id.split('-')[0],
+         event.container.element.nativeElement.children[0].id) .subscribe();
+        document.getElementById(event.container.element.nativeElement.children[0].id).append
+        (document.getElementById(event.item.element.nativeElement.children[0].id));
 
         // #TODO
         // #TODO
@@ -168,11 +197,14 @@ export class ShopComponent implements OnInit {
     // upuszczenie z backpacka do sklepu czyli dodaj zloto usun przedmiot NIE DA SIE GO KUPIC PONOWNIE CZY ZOSTAJE W SKLEPIE
     // I MOZNA SPOWROTEM ODKUPIC?
     if (event.container.element.nativeElement.id.includes('shop') && this.previusDragContainer.includes('slot')) {
-      if (event.container.element.nativeElement.children.length >= 2) { // jesli jest tam jakis przdmiot to NIE WYKONUJ
-        document.getElementById(this.previusDragContainer).append
-        (document.getElementById(event.item.element.nativeElement.id));
-        event.previousContainer.addItem(event.item);
-      } else { // USUN Z PLECAKA POSTACI, DODAJ ZLOTO I WYSWIETL KOMUNIKAT
+      // if (event.container.element.nativeElement.children.length >= 2) { // jesli jest tam jakis przdmiot to NIE WYKONUJ
+      //   document.getElementById(this.previusDragContainer).append
+      //   (document.getElementById(event.item.element.nativeElement.id));
+      //   event.previousContainer.addItem(event.item);
+      // } else { // USUN Z PLECAKA POSTACI, DODAJ ZLOTO I WYSWIETL KOMUNIKAT
+      this.userItemsService.removeItemFromUser(4, 'userItem' + event.previousContainer.element.nativeElement.id.split('-')[1])
+        .subscribe();
+
         // #TODO
         // USUN Z PLECAKA POSTACI (DODAJ DO SKLEPU CZY USUN CALKOWICIE?) I DODAJ ZLOTO
         // #TODO
@@ -183,7 +215,8 @@ export class ShopComponent implements OnInit {
         // TYMCZASOWO JESLI COS TAM JEST TO NIE POZWOL DODAC -> DO WYRZUCENIA W PRZYSZLOSCI
         document.getElementById('shopAssisantDialog').style.animation = 'changeVisibility 6s';
         document.getElementById('dialog').innerText = 'Pff masz tu swoje grosze';
-      }
+      document.getElementById(event.item.element.nativeElement.children[0].id).remove();
+
     }
     // przesuniecie miedzy okienkami sklepu - NIE POZWOL WYKONAC
     if (this.previusDragContainer.includes('shop') && event.container.element.nativeElement.id.includes('shop')) {
@@ -193,11 +226,13 @@ export class ShopComponent implements OnInit {
     }
     // przesuniecie miedzy okienkami  backpacka
     if (this.previusDragContainer.includes('slot') && event.container.element.nativeElement.id.includes('slot')) {
-      if (event.container.element.nativeElement.children.length >= 2) { // jesli jest tam jakis przdmiot to NIE WYKONUJ
-        // na tym widoku nie robimy zamieny itemow miejscami, chcesz zamieniac i sie bawic  to idz do mycharactercomponent
-        document.getElementById(this.previusDragContainer).append
-        (document.getElementById(event.item.element.nativeElement.id));
-        event.previousContainer.addItem(event.item);
+      if (event.container.element.nativeElement.children[0].children.length === 0) {
+        //przypisz przedmiot w bazie do odpowiedniego slotu po przeniesieinu
+        this.userItemsService.transferItemToDifferentSlot(event.item.element.nativeElement.children[0].id.split('-')[0],
+          event.container.element.nativeElement.children[0].id).subscribe();
+
+        document.getElementById(event.container.element.nativeElement.children[0].id).append
+        (document.getElementById(event.item.element.nativeElement.children[0].id));
       }
     }
   }

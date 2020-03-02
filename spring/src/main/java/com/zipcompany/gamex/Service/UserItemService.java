@@ -7,6 +7,7 @@ import java.sql.Blob;
 
 public interface UserItemService {
     public Blob getPhotoById(long id);
+    public void transferItemToDifferentSlot(long itemId,String actualSlot);
 
 
 }

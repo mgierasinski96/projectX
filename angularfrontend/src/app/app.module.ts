@@ -23,6 +23,7 @@ import { UserItemsComponent } from './user-items/user-items.component';
 import { TrainingComponent } from './training/training.component';
 import {LocationComponent} from './location/location.component';
 import {ChatService} from './services/chat.service';
+import {UserItemsService} from './services/userItems.service';
 
 
 
@@ -52,7 +53,7 @@ import {ChatService} from './services/chat.service';
     BrowserAnimationsModule,
     MatButtonModule
   ],
-  providers: [ExamplespringService, PotworService, DropService, ChatService],
+  providers: [ExamplespringService, PotworService, DropService, ChatService, UserItemsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
