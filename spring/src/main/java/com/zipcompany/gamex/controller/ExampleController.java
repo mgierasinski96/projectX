@@ -54,11 +54,13 @@ public class ExampleController {
     public void addItemToUserBackpack(@PathVariable("id") Long userID,
                                       @PathVariable("itemId") Long itemID, @PathVariable("newSlot") String newSlot) {
 
-        System.out.println("dodaje");
         Item item = itemService.getItemById(itemID);
         UserBackpack userBackpack = userService.getUser(userID).getUserBackpack();
 
-        UserItem userItem = new UserItem(item.getItemName(),
+        UserItem userItem = new UserItem(
+                item.getItemPrice(),
+                item.getItemValue(),
+                item.getItemName(),
                 item.getItemType(),
                 item.getItemDamage(),
                 item.getItemDefense(),
@@ -77,7 +79,6 @@ public class ExampleController {
     public void removeItemFromuserBackpack(@PathVariable("id") Long userID,
                                            @PathVariable("previousSlot") String previousSlot){
         userBackpackRepository.deleteItemForUser(userID,previousSlot);
-        System.out.println("wchodze");
 
 //        User user = userService.getUser(userID);
 //        System.out.println("Liczba przedmiotow w plecaku uzytkownika: " +user.getUserBackpack().getUserItemList().size());

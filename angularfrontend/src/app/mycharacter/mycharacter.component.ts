@@ -16,20 +16,20 @@ export class MycharacterComponent implements OnInit {
   userItems;
   itemImg;
   actualHoverItem;
-  myItemName;
+  userItemSlots;
+  myItemName; // zmienne potrzebne do przeliczania statow
   myItemDamage;
   myItemStrength;
   myItemWidsdom;
   myItemDefense;
-  myItemId;
-  userItemSlots;
+
 
   constructor(private userItemsService: UserItemsService) {
   }
 
   ngOnInit() {
     // #TODO NA SZTYWNO PRZYPISANE ID USERA I POBIERANIE DLA NIEGO PRZEDMIOTOW
-    this.userItemsService.getUserItems(4).subscribe(response => { // W PRZYSZLOSCI NIE MOZNA POBIERAC LOSOWYCH OFC
+    this.userItemsService.getUserItems(4).subscribe(response => {
       this.userItems = response;
       window.sessionStorage.setItem('userItems', JSON.stringify(this.userItems));
       for (const item of this.userItems) {  // dla wszystkich pobranych elementow
@@ -99,6 +99,8 @@ export class MycharacterComponent implements OnInit {
     } else {
       document.getElementById('itemWidsdom').parentElement.style.display = 'none';
     }
+      document.getElementById('itemValue').parentElement.style.display = 'inline-block';
+      document.getElementById('itemValue').innerText = this.actualHoverItem.itemValue || 0;
     document.getElementById(this.actualHoverItem.itemType.toLowerCase() + 'HolderPhoto').style.opacity = '0.3';
     this.rect = ev.target.getBoundingClientRect();
     this.infoAboutItem = document.getElementById('infoAboutItem');

@@ -22,6 +22,25 @@ public class UserItem {
     private int itemDefense;
     private int itemStrength;
     private int itemWidsdom;
+    private int itemValue;
+    private int itemPrice;
+
+    public int getItemValue() {
+        return itemValue;
+    }
+
+    public void setItemValue(int itemValue) {
+        this.itemValue = itemValue;
+    }
+
+    public int getItemPrice() {
+        return itemPrice;
+    }
+
+    public void setItemPrice(int itemPrice) {
+        this.itemPrice = itemPrice;
+    }
+
     @Lob
     private byte[] itemPicture;
 
@@ -45,7 +64,9 @@ public class UserItem {
         this.userBackpack = userBackpack;
     }
 
-    public UserItem(String itemName, ItemType itemType, int itemDamage, int itemDefense, int itemStrength, int itemWidsdom, byte[] itemPicture,String newSlot, UserBackpack userBackpack) {
+    public UserItem(int itemPrice, int itemValue,String itemName, ItemType itemType, int itemDamage, int itemDefense, int itemStrength, int itemWidsdom, byte[] itemPicture,String newSlot, UserBackpack userBackpack) {
+        this.itemPrice=itemPrice;
+        this.itemValue=itemValue;
         this.itemName = itemName;
         this.itemType = itemType;
         this.itemDamage = itemDamage;

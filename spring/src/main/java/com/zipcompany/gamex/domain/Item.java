@@ -27,6 +27,8 @@ public class Item {
     private int itemDefense;
     private int itemStrength;
     private int itemWidsdom;
+    private int itemPrice;
+    private int itemValue;
 
     @JsonIgnore
     @OneToMany(mappedBy = "primaryKey.item",
@@ -40,6 +42,22 @@ public class Item {
     public Item(String itemName, ItemType itemType) {
         this.itemName = itemName;
         this.itemType = itemType;
+    }
+
+    public int getItemPrice() {
+        return itemPrice;
+    }
+
+    public void setItemPrice(int itemPrice) {
+        this.itemPrice = itemPrice;
+    }
+
+    public int getItemValue() {
+        return itemValue;
+    }
+
+    public void setItemValue(int itemValue) {
+        this.itemValue = itemValue;
     }
 
     public int getItemDamage() {

@@ -89,7 +89,15 @@
   color: black;
   font-weight: bold;
 }
-
+#infoAboutItem tr
+{
+  width: 100%;
+}
+.cdk-drop-list-dragging div // zawartosc tego diva musi miec pozycje absolutna, bo inaczej jezeli jest jakis item
+  //w miejscu na ktore przeciagamy nowy item to stary sie przesuwa
+{
+  position: absolute;
+}
 
 @keyframes changeVisibility {
   0% {opacity: 0;}
