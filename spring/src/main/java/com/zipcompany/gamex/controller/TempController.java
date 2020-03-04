@@ -31,8 +31,11 @@ public class TempController {
         return chatService.getAllChatMessages();
     }
 
-    @PostMapping(value = "/safeChatMessage")
-    ChatMessage getAllChatMessages(@RequestBody ChatMessage chatMessage) {
+    @GetMapping(value = "/safeChatMessage/{userId}/{content}")
+    ChatMessage safeNewChatMessege(@PathVariable("userId") long userId,@PathVariable("content") String cotent) {
+        ChatMessage chatMessage=new ChatMessage();
+        chatMessage.messageContent(cotent);
+        chatMessage.setUser(userService.getUser(userId));
         return chatService.safeMessage(chatMessage);
     }
 

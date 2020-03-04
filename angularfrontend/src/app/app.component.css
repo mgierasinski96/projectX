@@ -68,6 +68,7 @@
   top:20%;
   left:5%;
   border: 2px solid yellow;
+  overflow: scroll;
 }
 #chatBox{
   width: 300px;

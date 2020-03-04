@@ -13,6 +13,7 @@ import {Params} from '@angular/router';
 @Injectable()
 export class ChatService {
   API_URL_GET_CHAT_MESSAGES = 'http://localhost:8080/getAllChatMessages';
+  API_URL_SAFE_CHAT_MESSEGE = 'http://localhost:8080/safeChatMessage/';
 
 
   private currentUser: any;
@@ -20,6 +21,9 @@ export class ChatService {
   }
   getAllChatMessages(): Observable<any> {
     return this.httpClient.get<any>(this.API_URL_GET_CHAT_MESSAGES);
+  }
+  safeNewMessage(userId: number, messegeContent: String): Observable<any> {
+    return this.httpClient.get<any>(this.API_URL_SAFE_CHAT_MESSEGE + userId + '/' + messegeContent);
   }
 
 

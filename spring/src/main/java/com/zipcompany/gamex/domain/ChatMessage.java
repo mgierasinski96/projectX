@@ -56,4 +56,14 @@ public class ChatMessage {
     public void setMessageDate(Date messageDate) {
         this.messageDate = messageDate;
     }
+
+    @Override
+    public String toString() {
+        return "ChatMessage{" +
+                "id=" + id +
+                ", user=" + user +
+                ", messageContent='" + messageContent + '\'' +
+                ", messageDate=" + messageDate +
+                '}';
+    }
 }

@@ -19,6 +19,9 @@ export class AppComponent implements OnInit {
   canRender = false;
   addedExpPoints: number;
   chatResponses;
+  messegeContent;
+  isChatVisible;
+  once;
   constructor(private userService: UserService, private chatService: ChatService) { }
 
   ngOnInit() {
@@ -51,13 +54,28 @@ export class AppComponent implements OnInit {
     document.getElementById('chatBox').style.display = 'inline-block';
     this.chatService.getAllChatMessages().subscribe(response => {
       this.chatResponses = response;
-
+        document.addEventListener('keyup', this.enterClicked.bind(this));
     });
-
   }
+
+  enterClicked(event: any) {
+    // #TODO to jest  chujowo zrobione i podawane Id usera na sztywno
+    if (event.key === 'Enter') {
+      this.messegeContent = (<HTMLInputElement>document.getElementById('newMessage')).value;
+        this.chatService.safeNewMessage(4, this.messegeContent).subscribe();
+      (<HTMLInputElement>document.getElementById('newMessage')).value = '';
+       this.once = true;
+    }
+    if (this.once) {
+      this.once = false;
+      this.showChatBox();
+    }
+  }
+
 
   closeChatBox() {
     document.getElementById('chatBox').style.display = 'none';
+    document.removeEventListener('keydown' , this.enterClicked);
   }
   onRegister() {
     this.userService.registerUser(this.register).subscribe(
