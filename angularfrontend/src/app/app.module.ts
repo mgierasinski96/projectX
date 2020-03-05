@@ -24,6 +24,12 @@ import { TrainingComponent } from './training/training.component';
 import {LocationComponent} from './location/location.component';
 import {ChatService} from './services/chat.service';
 import {UserItemsService} from './services/userItems.service';
+import {TemporaryComponent} from './temporary/temporary.component';
+import {RankingComponent} from './ranking/ranking.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatSortModule} from '@angular/material/sort';
 
 
 
@@ -42,7 +48,9 @@ import {UserItemsService} from './services/userItems.service';
     ShopComponent,
     UserItemsComponent,
     TrainingComponent,
-    LocationComponent
+    LocationComponent,
+    TemporaryComponent,
+    RankingComponent
   ],
   imports: [
     AppRoutingModule,
@@ -51,7 +59,11 @@ import {UserItemsService} from './services/userItems.service';
     HttpClientModule,
     DragDropModule,
     BrowserAnimationsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSortModule
   ],
   providers: [ExamplespringService, PotworService, DropService, ChatService, UserItemsService],
   bootstrap: [AppComponent]

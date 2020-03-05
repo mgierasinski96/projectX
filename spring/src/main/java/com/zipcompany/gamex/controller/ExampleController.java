@@ -14,6 +14,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @RestController
@@ -43,6 +44,12 @@ public class ExampleController {
 
     @Autowired
     UserItemService userItemService;
+
+    @GetMapping(value = "/userRankingLvlDesc")
+    List<User> getUserRankingList()
+    {
+        return userService.getAllUsersByLvlDesc();
+    }
 
 
     @GetMapping(value = "/transferItemToDifferentSlot/{itemId}/{newSlotName}")

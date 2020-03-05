@@ -1,0 +1,33 @@
+#userRanking
+{
+  position: absolute;
+  width: 1050px;
+  height: 500px;
+  background: aliceblue;
+  left:270px;
+  z-index: 100;
+}
+table {
+  position: absolute;
+  top:60px;
+  width: 100%;
+}
+
+mat-form-field {
+  width: 100%;
+}
+#filtrInput
+{
+  padding: 5px;
+  top:20px;
+  background: white;
+  position: absolute;
+  width: 200px;
+  border: 2px solid black;
+}
+th.mat-sort-header-sorted {
+  color: black;
+}
+::ng-deep .mat-sort-header-sorted {
+  color: red;
+}

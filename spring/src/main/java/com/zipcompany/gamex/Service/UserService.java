@@ -11,4 +11,5 @@ public interface UserService {
     User safeUser(User user);
     List<User> getAllUsers();
     User getUser(Long id);
+    List<User> getAllUsersByLvlDesc();
 }

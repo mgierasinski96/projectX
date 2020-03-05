@@ -1,0 +1,35 @@
+#whatever
+{
+  background: lightgray;
+  width: 1050px;
+  height: 550px;
+  left:250px;
+  position: absolute;
+  z-index: 100;
+
+}
+#imageContainer
+{
+  height: 380px;
+  width: 600px;
+  overflow: hidden;
+  position: relative;
+  border:2px solid blue;
+  background: blue;
+}
+#characterImage{
+  position: absolute;
+  width: 2500px;
+  height: 1050px;
+  left:-1200px;
+  top:-350px;
+  transition-property: left;
+  transition-duration: 2500ms;
+}
+
+@keyframes changeHeight{
+  0% {transform: scale(1);}
+  50% {transform: scale(0.4); }
+  100% {transform: scale(1);}
+}
+
