@@ -26,6 +26,7 @@ public class TempController {
     @Autowired
     ChatService chatService;
 
+
     @GetMapping(value = "/getAllChatMessages")
     List<ChatMessage> getAllChatMessages() {
         return chatService.getAllChatMessages();

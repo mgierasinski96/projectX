@@ -18,7 +18,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 @SpringBootApplication
 @Configuration
-//@EnableScheduling
+@EnableScheduling
 public class GamexApplication {
 
 

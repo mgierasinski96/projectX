@@ -14,6 +14,7 @@ export class UserItemsService {
   API_URL_TRANSFER_ITEM_TO_DIFF_SLOT = 'http://localhost:8080/user/transferItemToDifferentSlot/';
   API_URL_ADD_ITEM_TO_USER = 'http://localhost:8080/user/additemtouser/';
   API_URL_REMOVE_ITEM_FROM_USER = 'http://localhost:8080/user/removeitemfromuser/';
+  API_URL_ITEM_BOUGHT_GENERATE_NEW_ITEM = 'http://localhost:8080/user/itemBought/';
 
   constructor(private httpClient: HttpClient) {
   }
@@ -32,5 +33,9 @@ export class UserItemsService {
 removeItemFromUser(userId: number, previousSlot: String): Observable<any> {
   return this.httpClient.get(this.API_URL_REMOVE_ITEM_FROM_USER + userId + '/' + previousSlot);
 }
+
+  itemBoughtGenerateNewItem(userId: number, itemId: number): Observable<any> {
+    return this.httpClient.get(this.API_URL_ITEM_BOUGHT_GENERATE_NEW_ITEM + userId + '/' + itemId);
+  }
 
 }

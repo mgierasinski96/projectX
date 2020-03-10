@@ -75,6 +75,7 @@ export class MycharacterComponent implements OnInit {
       }
     }
     document.getElementById('itemName').innerText = this.actualHoverItem.itemName;
+    document.getElementById('itemLevel').innerText = this.actualHoverItem.itemLevel;
     if (this.actualHoverItem.itemDamage !== 0) {
       document.getElementById('itemDamage').parentElement.style.display = 'inline-block';
       document.getElementById('itemDamage').innerText = this.actualHoverItem.itemDamage;

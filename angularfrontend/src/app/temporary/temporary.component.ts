@@ -19,22 +19,22 @@ export class TemporaryComponent implements OnInit {
   choseMage() {
 
     document.getElementById('characterImage').style.left='-700px';
-    // document.getElementById('characterImage').style.animation = 'changeHeight 3s';
-    // document.getElementById('characterImage').addEventListener( "animationend",  function() {
-    //
-    //   document.getElementById('characterImage').style.animation = '';
-    //
-    // } );
+    document.getElementById('characterImage').style.animation = 'changeHeight 3s';
+    document.getElementById('characterImage').addEventListener( "animationend",  function() {
+
+      document.getElementById('characterImage').style.animation = '';
+
+    } );
   }
 
   choseWarrior() {
     document.getElementById('characterImage').style.left='-1200px';
-    // document.getElementById('characterImage').style.animation = 'changeHeight 3s';
-    // document.getElementById('characterImage').addEventListener( "animationend",  function() {
-    //
-    //   document.getElementById('characterImage').style.animation = '';
-    //
-    // } );
+    document.getElementById('characterImage').style.animation = 'changeHeight 3s';
+    document.getElementById('characterImage').addEventListener( "animationend",  function() {
+
+      document.getElementById('characterImage').style.animation = '';
+
+    } );
   }
 
 }

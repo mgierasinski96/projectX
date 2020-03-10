@@ -12,7 +12,7 @@
   position: absolute;
    right:80px;
    margin-top: 5px;
-  max-height: 200px;
+  height: 260px;
  }
 #shopItems
 {
@@ -25,14 +25,20 @@
 #backpack tr td
 {
   opacity: 1;
-  max-height: 90px;
+  //max-height: 120px;
+  //height: 120px;
+}
+#backpack td
+{
+  opacity: 1;
+  max-height: 120px;
+  height: 120px;
 }
 .itemSlot,.shopSlot
 {
-  max-height: 90px;
-  width: 90px;
-  height: 90px;
-  background-image: url('../../assets/images/backpackSlot.png');
+  width: 120px;
+  height: 120px;
+  //background-image: url('../../assets/images/backpackSlot.png');
 }
 
 .exItem:hover
@@ -115,7 +121,7 @@
 #backpack .cdk-drop-list
 {
   border:1px solid red;
-  max-height: 90px;
+  max-height: 120px;
 }
 
 

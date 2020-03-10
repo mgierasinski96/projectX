@@ -20,6 +20,9 @@ public class ItemServiceImpl implements ItemService {
     @Autowired
     private ItemRepository itemRepository;
 
+    @Autowired
+    private UserService userService;
+
     @Override
     public Item addItem(Item item) {
         return itemRepository.save(item);
@@ -44,14 +47,17 @@ public class ItemServiceImpl implements ItemService {
     @Transactional
     public Blob getPhotoById(long id) {
         String query = "select i.item_picture from item i where i.id=?";
-        Blob photo = jdbcTemp.queryForObject(query, new Object[] { id }, Blob.class);
+        Blob photo = jdbcTemp.queryForObject(query, new Object[]{id}, Blob.class);
         return photo;
     }
 
     @Override
-    public List<Item> getRandomItemsToShop(long pcs) {
-        return itemRepository.getRandomItemsToShop(pcs);
+    public void itemBoughtGenerateNewItem(long userId, long itemId) {
+
+        Item item= itemRepository.getOneRandomItemThatIsNotInUserShop(userId);
+        itemRepository.generateNewItem(userId,itemId,item.getId());
+
+        //zrobic to na froncie // mozliwe ze trzeba bedzie wywolac settera user.setUserShopItems();
+
     }
-
-
 }

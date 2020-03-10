@@ -65,6 +65,7 @@ public class ExampleController {
         UserBackpack userBackpack = userService.getUser(userID).getUserBackpack();
 
         UserItem userItem = new UserItem(
+                item.getItemLevel(),
                 item.getItemPrice(),
                 item.getItemValue(),
                 item.getItemName(),
@@ -157,14 +158,16 @@ public class ExampleController {
         return user.getUserBackpack().getUserItemList();
     }
 
-
-//   @Autowired
-//    SchedulerService schedulerService;
-    @GetMapping(value = "/getRandomItemsToShop/{pcs}")
-    public List<Item> getRandomItemsToShop(@PathVariable long pcs) {
-//      return schedulerService.randomItemsToShop();
-        return itemService.getRandomItemsToShop(pcs);
+    @GetMapping(value = "/getRandomItemsToShop/{userId}")
+    public List<Item> getRandomItemsToShop(@PathVariable long userId) {
+//
+        return userService.getUser(userId).getShopItems();
     }
+    @GetMapping(value = "/itemBought/{userId}/{itemId}")
+    public void itemBoughtGenerateNewItem(@PathVariable long userId,@PathVariable long itemId) {
+        itemService.itemBoughtGenerateNewItem(userId,itemId);
+    }
+
 
     @PostMapping("")
     User safeUser(@RequestBody User user) {
