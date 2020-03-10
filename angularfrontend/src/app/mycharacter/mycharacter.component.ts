@@ -42,6 +42,10 @@ export class MycharacterComponent implements OnInit {
         this.userItemSlots = document.getElementsByClassName('userItem');
         for (const userSlot of this.userItemSlots) {
           if (userSlot.id === item.backpackSlot) {
+            if (item.backpackSlot.includes('E')) {
+              // (<HTMLElement>document.getElementById(item.itemType.toLowerCase() + 'E').parentNode.parentNode.children[0]).style.opacity = '0';
+              this.itemImg.style.background='rgb(188,183,180)';
+            }
             document.getElementById(userSlot.id).appendChild(this.itemImg);
           }
         }
@@ -123,6 +127,8 @@ export class MycharacterComponent implements OnInit {
   }
 
   dragStart(event: CdkDragStart) {
+    // zawsze jak zaczynamy ciagnac to ustawiamy przezroczystosc tla zdjecia na 0
+    document.getElementById(event.source.element.nativeElement.children[0].id).style.background ='rgba(188,183,180,0)'
     this.myItemDefense = document.getElementById('itemDefense').innerText ? document.getElementById('itemDefense').innerText : 0;
     this.myItemDamage = document.getElementById('itemDamage').innerText ? document.getElementById('itemDamage').innerText : 0;
     this.myItemName = document.getElementById('itemName').innerText;
@@ -142,6 +148,10 @@ export class MycharacterComponent implements OnInit {
 
   drop(event: any) {
     document.getElementById(event.container.element.nativeElement.parentElement.children[0].id).style.opacity = '1';
+    // NIEUDANE PRZENIESIE w przypadku nieudanego przeniesienie z eq kolor tla zdjecia pozostaje szary
+    if ((event.container === event.previousContainer) && !event.container.element.nativeElement.id.includes('slot')) {
+      document.getElementById(event.item.element.nativeElement.children[0].id).style.background = 'rgb(188,183,180)';
+    }
     // sprawdz czy przeniesienie jest mozliwe czyli dla plecaka zawsze jest mozliwe, ale jak juz zakladasz przedmiot to trzeba sprawdzic
     if (event.item.element.nativeElement.children[0].id.includes(event.container.element.nativeElement.id) ||
       event.container.element.nativeElement.id.includes('slot')) {
@@ -172,6 +182,11 @@ console.log(event.container.element.nativeElement.children[0].id);
         (document.getElementById(event.item.element.nativeElement.children[0].id));
         console.log('tak trzeba przeliczyc staty');
 
+        if (event.previousContainer.element.nativeElement.id.includes('slot')) {
+          document.getElementById(event.container.element.nativeElement.children[0].children[0].id).style.background = 'rgb(188,183,180)';
+        }
+
+
 
         // NIE MOZNA DOKONYWAC ZAMIANY PRZEDMIOTOW PRZENOSZAC PRZEDMIOT NA PRZEDMIOT -> TRZEBA PRZENIESC DO WOLNEGO MIEJSCA
         // #TODO
@@ -184,9 +199,9 @@ console.log(event.container.element.nativeElement.children[0].id);
         // console.log(this.myItemStrength);
         // console.log(this.myItemDefense);
         // console.log(this.myItemDamage);
-        // if(this.previousContainer.includes('slot') => to przenosimy z plecaka do eq czyli dodaj staty
+        // if(event.previousContainer.element.nativeElement.id.includes('slot')) => to przenosimy z plecaka do eq czyli dodaj staty
         // #TODO
-        // if(!this.previousContainer.includes('slot') => to przenosimy z eq do plecaka czyli odejmij staty
+        // if( ! event.previousContainer.element.nativeElement.id.includes('slot')) => to przenosimy z eq do plecaka czyli odejmij staty
         // #TODO
         // #TODO
         // #TODO
