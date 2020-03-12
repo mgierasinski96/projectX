@@ -54,7 +54,7 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public void itemBoughtGenerateNewItem(long userId, long itemId) {
 
-        Item item= itemRepository.getOneRandomItemThatIsNotInUserShop(userId);
+        Item item= itemRepository.getOneRandomItemThatIsNotInUserShop(userId,userService.getUser(userId).getLevel(),5);
         itemRepository.generateNewItem(userId,itemId,item.getId());
 
         //zrobic to na froncie // mozliwe ze trzeba bedzie wywolac settera user.setUserShopItems();

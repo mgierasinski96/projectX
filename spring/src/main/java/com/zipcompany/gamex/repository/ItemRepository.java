@@ -36,7 +36,7 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     @Query(value = "update user_shop_items u set u.item_id=:newItemId where u.item_id=:boughtItemId and u.user_id=:userId", nativeQuery = true)
     void generateNewItem(@Param("userId") long userId, @Param("boughtItemId") long boughtItemId,@Param("newItemId") long newItemId);
 
-    @Query(value=" SELECT * FROM item WHERE item.id NOT IN (SELECT item_id FROM user_shop_items where user_id=:userId) ORDER BY RAND() LIMIT 1", nativeQuery = true)
-    Item getOneRandomItemThatIsNotInUserShop(@Param("userId") long userId);
+    @Query(value=" SELECT * FROM item WHERE item.id NOT IN (SELECT item_id FROM user_shop_items where user_id=:userId) and item_level between :userLvl-:varietyLvl and :userLvl+:varietyLvl  ORDER BY RAND() LIMIT 1", nativeQuery = true)
+    Item getOneRandomItemThatIsNotInUserShop(@Param("userId") long userId,@Param("userLvl") long userLvl,@Param("varietyLvl") long varietyLvl);
 
 }
