@@ -15,6 +15,7 @@ export class UserItemsService {
   API_URL_ADD_ITEM_TO_USER = 'http://localhost:8080/user/additemtouser/';
   API_URL_REMOVE_ITEM_FROM_USER = 'http://localhost:8080/user/removeitemfromuser/';
   API_URL_ITEM_BOUGHT_GENERATE_NEW_ITEM = 'http://localhost:8080/user/itemBought/';
+  API_URL_ITEM_UPGRADE_ITEM = 'http://localhost:8080/item/upgradeItem/';
 
   constructor(private httpClient: HttpClient) {
   }
@@ -36,6 +37,9 @@ removeItemFromUser(userId: number, previousSlot: String): Observable<any> {
 
   itemBoughtGenerateNewItem(userId: number, itemId: number): Observable<any> {
     return this.httpClient.get(this.API_URL_ITEM_BOUGHT_GENERATE_NEW_ITEM + userId + '/' + itemId);
+  }
+  upgradeItem(itemId): Observable<any> {
+    return this.httpClient.get(this.API_URL_ITEM_UPGRADE_ITEM + itemId);
   }
 
 }

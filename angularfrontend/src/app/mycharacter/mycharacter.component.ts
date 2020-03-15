@@ -20,7 +20,7 @@ export class MycharacterComponent implements OnInit {
   myItemName; // zmienne potrzebne do przeliczania statow
   myItemDamage;
   myItemStrength;
-  myItemWidsdom;
+  myItemWisdom;
   myItemDefense;
 
 
@@ -109,8 +109,8 @@ export class MycharacterComponent implements OnInit {
     document.getElementById(this.actualHoverItem.itemType.toLowerCase() + 'HolderPhoto').style.opacity = '0.3';
     this.rect = ev.target.getBoundingClientRect();
     this.infoAboutItem = document.getElementById('infoAboutItem');
-    this.infoAboutItem.style.left = this.rect.left + 'px';
-    this.infoAboutItem.style.top = this.rect.top * 0.9 + 'px';
+    this.infoAboutItem.style.left = this.rect.left + 121 + 'px';
+    this.infoAboutItem.style.top = this.rect.top - 121 + 'px';
     this.infoAboutItem.style.visibility = 'visible';
   }
 
@@ -133,7 +133,7 @@ export class MycharacterComponent implements OnInit {
     this.myItemDamage = document.getElementById('itemDamage').innerText ? document.getElementById('itemDamage').innerText : 0;
     this.myItemName = document.getElementById('itemName').innerText;
     this.myItemStrength = document.getElementById('itemStrength').innerText ? document.getElementById('itemStrength').innerText : 0;
-    this.myItemWidsdom = document.getElementById('itemWidsdom').innerText ? document.getElementById('itemWidsdom').innerText : 0;
+    this.myItemWisdom = document.getElementById('itemWidsdom').innerText ? document.getElementById('itemWidsdom').innerText : 0;
     document.getElementById('wrongItemWarning').style.animation = ''; // reset animacji dla wrongItemWarning
     this.previusDragContainer = event.source.element.nativeElement.parentElement.id; // miejsce z ktorego rozpoczynam drag
   }
@@ -157,8 +157,8 @@ export class MycharacterComponent implements OnInit {
       event.container.element.nativeElement.id.includes('slot')) {
       if (event.container.element.nativeElement.id.includes('slot') && this.previusDragContainer.includes('slot')) {
         if (event.container.element.nativeElement.children[0].children.length === 0) {
-console.log(event.container.element.nativeElement.children[0].id);
-          //przypisz przedmiot w bazie do odpowiedniego slotu po przeniesieinu
+//console.log(event.container.element.nativeElement.children[0].id);
+          // przypisz przedmiot w bazie do odpowiedniego slotu po przeniesieinu
           // this.userItemsService.transferItemToDifferentSlot(event.item.element.nativeElement.children[0].id.split('-')[0],
           //   event.container.element.nativeElement.children[0].id).subscribe();
 

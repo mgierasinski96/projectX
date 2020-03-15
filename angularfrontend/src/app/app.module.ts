@@ -30,6 +30,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSortModule} from '@angular/material/sort';
+import {UpgradeItemComponent} from './upgradeItem/upgradeItem.component';
 
 
 
@@ -50,7 +51,8 @@ import {MatSortModule} from '@angular/material/sort';
     TrainingComponent,
     LocationComponent,
     TemporaryComponent,
-    RankingComponent
+    RankingComponent,
+    UpgradeItemComponent
   ],
   imports: [
     AppRoutingModule,

@@ -127,8 +127,8 @@ export class ShopComponent implements OnInit {
     }
 
 
-    this.infoAboutItem.style.left = this.rect.left + 'px';
-    this.infoAboutItem.style.top = this.rect.top * 0.9 + 'px';
+    this.infoAboutItem.style.left = this.rect.left + 121 + 'px';
+    this.infoAboutItem.style.top = this.rect.top  - 121 + 'px';
     this.infoAboutItem.style.visibility = 'visible';
   }
 

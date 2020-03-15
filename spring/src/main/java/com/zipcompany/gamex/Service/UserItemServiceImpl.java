@@ -37,5 +37,21 @@ public class UserItemServiceImpl implements UserItemService {
         userItemRepository.transferItemToDifferentSlot(itemId,actualSlot);
     }
 
+    @Override
+    public UserItem getUserItemById(long id) {
+        return userItemRepository.getOne(id);
+    }
+
+    @Override
+    public void upgradeItem(long itemId, int upgradeBoost) {
+        UserItem userItem=this.getUserItemById(itemId);
+        userItem.setItemDamage(userItem.getItemDamage()+upgradeBoost);
+        userItem.setItemDefense(userItem.getItemDefense()+upgradeBoost);
+        userItem.setItemStrength(userItem.getItemStrength()+upgradeBoost);
+        userItem.setItemWidsdom(userItem.getItemWidsdom()+upgradeBoost);
+        userItem.setItemValue(userItem.getItemValue()+upgradeBoost);
+        userItemRepository.save(userItem);
+    }
+
 
 }
