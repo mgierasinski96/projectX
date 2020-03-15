@@ -44,7 +44,7 @@ export class MycharacterComponent implements OnInit {
           if (userSlot.id === item.backpackSlot) {
             if (item.backpackSlot.includes('E')) {
               // (<HTMLElement>document.getElementById(item.itemType.toLowerCase() + 'E').parentNode.parentNode.children[0]).style.opacity = '0';
-              this.itemImg.style.background='rgb(188,183,180)';
+              this.itemImg.style.background = 'rgb(188,183,180)';
             }
             document.getElementById(userSlot.id).appendChild(this.itemImg);
           }
@@ -85,24 +85,28 @@ export class MycharacterComponent implements OnInit {
       document.getElementById('itemDamage').innerText = this.actualHoverItem.itemDamage;
     } else {
       document.getElementById('itemDamage').parentElement.style.display = 'none';
+      document.getElementById('itemDamage').innerText = this.actualHoverItem.itemDamage;
     }
     if (this.actualHoverItem.itemDefense !== 0) {
       document.getElementById('itemDefense').parentElement.style.display = 'inline-block';
       document.getElementById('itemDefense').innerText = this.actualHoverItem.itemDefense;
     } else {
       document.getElementById('itemDefense').parentElement.style.display = 'none';
+      document.getElementById('itemDefense').innerText = this.actualHoverItem.itemDefense;
     }
     if (this.actualHoverItem.itemStrength !== 0) {
       document.getElementById('itemStrength').parentElement.style.display = 'inline-block';
       document.getElementById('itemStrength').innerText = this.actualHoverItem.itemStrength;
     } else {
       document.getElementById('itemStrength').parentElement.style.display = 'none';
+      document.getElementById('itemStrength').innerText = this.actualHoverItem.itemStrength;
     }
     if (this.actualHoverItem.itemWidsdom !== 0) { // #TODO uwaga na literowke
       document.getElementById('itemWidsdom').parentElement.style.display = 'inline-block';
       document.getElementById('itemWidsdom').innerText = this.actualHoverItem.itemWidsdom;
     } else {
       document.getElementById('itemWidsdom').parentElement.style.display = 'none';
+      document.getElementById('itemWidsdom').innerText = this.actualHoverItem.itemWidsdom;
     }
       document.getElementById('itemValue').parentElement.style.display = 'inline-block';
       document.getElementById('itemValue').innerText = this.actualHoverItem.itemValue || 0;
@@ -128,7 +132,7 @@ export class MycharacterComponent implements OnInit {
 
   dragStart(event: CdkDragStart) {
     // zawsze jak zaczynamy ciagnac to ustawiamy przezroczystosc tla zdjecia na 0
-    document.getElementById(event.source.element.nativeElement.children[0].id).style.background ='rgba(188,183,180,0)'
+    document.getElementById(event.source.element.nativeElement.children[0].id).style.background = 'rgba(188,183,180,0)'
     this.myItemDefense = document.getElementById('itemDefense').innerText ? document.getElementById('itemDefense').innerText : 0;
     this.myItemDamage = document.getElementById('itemDamage').innerText ? document.getElementById('itemDamage').innerText : 0;
     this.myItemName = document.getElementById('itemName').innerText;
@@ -157,7 +161,7 @@ export class MycharacterComponent implements OnInit {
       event.container.element.nativeElement.id.includes('slot')) {
       if (event.container.element.nativeElement.id.includes('slot') && this.previusDragContainer.includes('slot')) {
         if (event.container.element.nativeElement.children[0].children.length === 0) {
-//console.log(event.container.element.nativeElement.children[0].id);
+          // console.log(event.container.element.nativeElement.children[0].id);
           // przypisz przedmiot w bazie do odpowiedniego slotu po przeniesieinu
           // this.userItemsService.transferItemToDifferentSlot(event.item.element.nativeElement.children[0].id.split('-')[0],
           //   event.container.element.nativeElement.children[0].id).subscribe();

@@ -97,24 +97,28 @@ export class ShopComponent implements OnInit {
       document.getElementById('itemDamage').innerText = this.actualHoverItem.itemDamage;
     } else {
       document.getElementById('itemDamage').parentElement.style.display = 'none';
+      document.getElementById('itemDamage').innerText = this.actualHoverItem.itemDamage;
     }
     if (this.actualHoverItem.itemDefense !== 0) {
       document.getElementById('itemDefense').parentElement.style.display = 'inline-block';
       document.getElementById('itemDefense').innerText = this.actualHoverItem.itemDefense;
     } else {
       document.getElementById('itemDefense').parentElement.style.display = 'none';
+      document.getElementById('itemDefense').innerText = this.actualHoverItem.itemDefense;
     }
     if (this.actualHoverItem.itemStrength !== 0) {
       document.getElementById('itemStrength').parentElement.style.display = 'inline-block';
       document.getElementById('itemStrength').innerText = this.actualHoverItem.itemStrength;
     } else {
       document.getElementById('itemStrength').parentElement.style.display = 'none';
+      document.getElementById('itemStrength').innerText = this.actualHoverItem.itemStrength;
     }
     if (this.actualHoverItem.itemWidsdom !== 0) { // #TODO uwaga na literowke
       document.getElementById('itemWidsdom').parentElement.style.display = 'inline-block';
       document.getElementById('itemWidsdom').innerText = this.actualHoverItem.itemWidsdom;
     } else {
       document.getElementById('itemWidsdom').parentElement.style.display = 'none';
+      document.getElementById('itemWidsdom').innerText = this.actualHoverItem.itemWidsdom;
     }
     if (ev.target.parentNode.id.includes('shop')) {
       document.getElementById('itemPrice').parentElement.style.display = 'inline-block';
