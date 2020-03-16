@@ -1,10 +1,48 @@
 <div id="userRanking">
+  <div id="infoAboutItem">
+    <table style="width: 100%">
+      <tr>
+        <td colspan="2" style="text-align: center;" id="itemName"></td>
+      </tr>
+      <tr>
+        <td> Obrażenia: </td>
+        <td id="itemDamage"></td>
+      </tr>
+      <tr>
+        <td> Obrona: </td>
+        <td id="itemDefense"></td>
+      </tr>
+      <tr>
+        <td> Siła: </td>
+        <td id="itemStrength"></td>
+      </tr>
+      <tr>
+        <td> Mądrość: </td>
+        <td id="itemWidsdom"></td> <!--UWAGA NA LITEROWKE -->
+      </tr>
+      <tr>
+        <td> Wartość: </td>
+        <td id="itemValue"></td>
+      </tr>
+      <tr>
+        <td> Poziom: </td>
+        <td id="itemLevel"></td>
+      </tr>
+    </table>
+  </div>
+
   <mat-form-field id="filtrInput">
     Wyszukaj:
     <input  matInput (keyup)="applyFilter($event.target.value)"  />
   </mat-form-field>
 
-  <table mat-table [dataSource]="dataSource" matSort cdkFocusInitial class="mat-elevation-z8">
+  <table id="rankingTable" mat-table [dataSource]="dataSource" matSort cdkFocusInitial class="mat-elevation-z8">
+
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef>Pozycja</th>
+      <td mat-cell *matCellDef="let user; let i = index">{{i+1}}</td>
+    </ng-container>
+
     <ng-container matColumnDef="username">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Nazwa postaci</th>
       <td mat-cell *matCellDef="let user">{{ user.username }}</td>
@@ -26,7 +64,27 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr class="klaska" (click)="displayUserData($event)" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+
+  <table cellpadding="0" cellspacing="0" id="equippedItems">
+    <tr>
+      <td><img id="earringHolderPhoto" src="../assets/images/earringsHolder.png"><div id="earring"><div id="earringE" class="userItem"></div></div></td>
+      <td><img id="helmetHolderPhoto" src="../assets/images/helmetHolder.png"><div id="helmet"><div id="helmetE" class="userItem"></div></div></td>
+      <td><img id="necklaceHolderPhoto" src="../assets/images/necklaceHolder.png"><div id="necklace"><div id="necklaceE" class="userItem"></div></div></td>
+    </tr>
+    <tr>
+      <td><img id="weaponHolderPhoto" src="../assets/images/weaponHolder.png"><div id="weapon"><div id="weaponE" class="userItem"></div></div> </td>
+      <td><img id="plateHolderPhoto" src="../assets/images/plateHolder.png"><div id="plate"><div id="plateE" class="userItem"></div></div></td>
+      <td><img id="shieldHolderPhoto" src="../assets/images/shieldHolder.png"><div id="shield"><div id="shieldE" class="userItem"></div></div></td>
+    </tr>
+    <tr>
+      <td><img id="gauntletsHolderPhoto" src="../assets/images/gauntletsHolder.png"><div id="gauntlets"><div id="gauntletsE" class="userItem"></div></div> </td>
+      <td><img id="bootsHolderPhoto" src="../assets/images/bootsHolder.png"><div id="boots"><div id="bootsE" class="userItem"></div></div></td>
+      <td><img id="ringHolderPhoto" src="../assets/images/ringHolder.png"><div id="ring"><div id="ringE" class="userItem"></div></div></td>
+    </tr>
+
   </table>
 
 

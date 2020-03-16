@@ -33,4 +33,9 @@ public class UserServiceImpl implements UserService {
     public List<User> getAllUsersByLvlDesc() {
         return userRepository.findAllByOrderByLevelDesc();
     }
+
+    @Override
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
 }

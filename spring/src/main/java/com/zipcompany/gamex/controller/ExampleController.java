@@ -150,6 +150,15 @@ public class ExampleController {
 
         // System.out.println(itemService.getItemById(id).getItemName());
     }
+    @GetMapping(value = "/getUserItemsByUsername/{username}")
+    List<UserItem> getUserItemsByUsername(@PathVariable("username") String username) {
+        try {
+            return userService.findByUsername(username).getUserBackpack().getUserItemList();
+        } catch (NullPointerException e) {
+            System.out.println("\n\n\n\nTEN UŻYTKOWNIK NIE MA PRZYPISANEGO PLECAKA");
+        }
+        return Collections.emptyList();
+    }
 
     @GetMapping(value = "/itemyusera/{id}")
     public List<UserItem> getUserItems(@PathVariable("id") Long id){

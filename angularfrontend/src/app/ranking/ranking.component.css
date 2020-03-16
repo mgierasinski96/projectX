@@ -1,20 +1,34 @@
+#infoAboutItem
+{
+  position: absolute;
+  width: 150px;
+  background:yellow;
+  visibility: hidden;
+  z-index: 300;
+  transition: visibility 50ms linear;
+}
 #userRanking
 {
   position: absolute;
-  width: 1050px;
+  width: 1100px;
   height: 500px;
   background: aliceblue;
-  left:270px;
+  left:300px;
   z-index: 100;
 }
-table {
+#rankingTable {
   position: absolute;
   top:60px;
-  width: 100%;
+  width: 60%;
+}
+
+.mat-row:hover {
+  font-weight: bold;
+  cursor: pointer;
 }
 
 mat-form-field {
-  width: 100%;
+  width: 70%;
 }
 #filtrInput
 {
@@ -30,4 +44,40 @@ th.mat-sort-header-sorted {
 }
 ::ng-deep .mat-sort-header-sorted {
   color: red;
+}
+
+#earring, #helmet,#necklace,#weapon,#plate,#shield,#gauntlets,#boots,#ring
+{
+  left:14.5px;
+  width: 120px;
+  height: 120px;
+  top:14px;
+  position: absolute;
+}
+
+#helmet,#plate,#boots
+{
+  left:164.5px;
+}
+#necklace,#shield,#ring
+{
+  left:314.5px;
+}
+
+#weapon,#plate,#shield
+{
+  top:167.5px;
+}
+#gauntlets,#boots,#ring
+{
+  top:321px;
+}
+
+#equippedItems
+{
+
+  margin-top: 5px;
+  right:5px;
+  position: absolute;
+  background: rgb(93,73,57);
 }

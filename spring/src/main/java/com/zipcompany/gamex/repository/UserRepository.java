@@ -15,6 +15,7 @@ public interface UserRepository extends JpaRepository<User,Long> {
 
     User findUserById(Long id);
     List<User> findAllByOrderByLevelDesc();
+    User findByUsername(String username);
 
     @Transactional
     @Query(value = "select *\n" +

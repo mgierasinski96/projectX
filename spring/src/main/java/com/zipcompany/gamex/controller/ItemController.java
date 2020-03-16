@@ -2,6 +2,7 @@ package com.zipcompany.gamex.controller;
 
 import com.zipcompany.gamex.Service.ItemService;
 import com.zipcompany.gamex.Service.UserItemService;
+import com.zipcompany.gamex.Service.UserService;
 import com.zipcompany.gamex.domain.Item;
 import com.zipcompany.gamex.domain.MonsterItem;
 import com.zipcompany.gamex.domain.UserItem;
@@ -14,6 +15,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -22,6 +24,7 @@ public class ItemController {
 
     private ItemService itemService;
     private UserItemService userItemService;
+    private UserService userService;
 
     private final int UPGRADE_BOOST=1;
 
@@ -77,4 +80,5 @@ public class ItemController {
         Item item = itemService.getItemById(itemId);
         return item.getMonsterItems();
     }
+
 }

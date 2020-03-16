@@ -10,18 +10,22 @@ import {Params} from '@angular/router';
 @Injectable()
 export class UserItemsService {
 
-  API_URL_GET_USER_ITEMS = 'http://localhost:8080/user/itemyusera/';
-  API_URL_TRANSFER_ITEM_TO_DIFF_SLOT = 'http://localhost:8080/user/transferItemToDifferentSlot/';
-  API_URL_ADD_ITEM_TO_USER = 'http://localhost:8080/user/additemtouser/';
-  API_URL_REMOVE_ITEM_FROM_USER = 'http://localhost:8080/user/removeitemfromuser/';
+  API_URL_GET_USER_ITEMS =                'http://localhost:8080/user/itemyusera/';
+  API_URL_GET_USER_ITEMS_BY_USERNAME =    'http://localhost:8080/user/getUserItemsByUsername/';
+  API_URL_TRANSFER_ITEM_TO_DIFF_SLOT =    'http://localhost:8080/user/transferItemToDifferentSlot/';
+  API_URL_ADD_ITEM_TO_USER =              'http://localhost:8080/user/additemtouser/';
+  API_URL_REMOVE_ITEM_FROM_USER =         'http://localhost:8080/user/removeitemfromuser/';
   API_URL_ITEM_BOUGHT_GENERATE_NEW_ITEM = 'http://localhost:8080/user/itemBought/';
-  API_URL_ITEM_UPGRADE_ITEM = 'http://localhost:8080/item/upgradeItem/';
+  API_URL_ITEM_UPGRADE_ITEM =             'http://localhost:8080/item/upgradeItem/';
 
   constructor(private httpClient: HttpClient) {
   }
 
   getUserItems(userId: number): Observable<any> {
     return this.httpClient.get<any>(this.API_URL_GET_USER_ITEMS + userId);
+  }
+  getUserItemsByUsername(username: String): Observable<any> {
+    return this.httpClient.get<any>(this.API_URL_GET_USER_ITEMS_BY_USERNAME + username);
   }
 
   transferItemToDifferentSlot(itemId: number, actualSlot: String) {
