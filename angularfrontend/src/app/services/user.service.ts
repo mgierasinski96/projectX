@@ -8,11 +8,14 @@ import {SkillPricePipe} from '../pipes/skill-price.pipe';
 export class UserService {
 
   baseurl = 'http://localhost:8000';
-  spring_baseurl = 'http://localhost:8080/user/userRankingLvlDesc';
+  spring_baseurl = 'http://localhost:8080/user/';
   private httpHeaders: HttpHeaders;
 
   constructor(private http: HttpClient) { }
 
+  getUserByUsername(username: String): Observable<any> {
+    return this.http.get<any>(this.spring_baseurl + 'getUserByUsername/' + username);
+  }
   registerUser(userData): Observable<any> {
     return this.http.post(this.baseurl + '/create/', userData);
   }
@@ -71,6 +74,6 @@ export class UserService {
     // console.log('getUserdata: ', localStorage.getItem('token'));
     // this.httpHeaders = new HttpHeaders({Authorization: localStorage.getItem('token'),
     //   'Content-Type': 'application/json'});
-    return this.http.get(this.spring_baseurl );
+    return this.http.get(this.spring_baseurl + 'userRankingLvlDesc' );
   }
 }

@@ -150,6 +150,13 @@ public class ExampleController {
 
         // System.out.println(itemService.getItemById(id).getItemName());
     }
+
+    @GetMapping(value = "/getUserByUsername/{username}")
+    User getUserByUsername(@PathVariable("username") String username) {
+
+        return userService.findByUsername(username);
+
+    }
     @GetMapping(value = "/getUserItemsByUsername/{username}")
     List<UserItem> getUserItemsByUsername(@PathVariable("username") String username) {
         try {

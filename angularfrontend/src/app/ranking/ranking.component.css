@@ -10,22 +10,56 @@
 #userRanking
 {
   position: absolute;
-  width: 1100px;
-  height: 500px;
+  width: 1150px;
+  height: 630px;
   background: aliceblue;
   left:300px;
   z-index: 100;
+
 }
-#rankingTable {
+#rankingTableHolder {
   position: absolute;
   top:60px;
   width: 60%;
+  height: 500px;
+  overflow-y: scroll;
 }
-
+.mat-row
+{
+  text-align: left;
+}
 .mat-row:hover {
   font-weight: bold;
   cursor: pointer;
 }
+::ng-deep th.mat-header-cell
+{
+  background: red;
+  z-index: 300;
+ width: 200px;
+
+}
+
+
+#rankingTableHolder::-webkit-scrollbar {
+  background: lightgreen;
+
+}
+
+#rankingTableHolder::-webkit-scrollbar-track {
+  border-radius: 12px;
+}
+
+#rankingTableHolder::-webkit-scrollbar-thumb {
+  border-radius: 12px;
+  background: red;
+}
+
+​
+::ng-deep .mat-sort-header-container {
+
+}
+
 
 mat-form-field {
   width: 70%;
@@ -33,7 +67,7 @@ mat-form-field {
 #filtrInput
 {
   padding: 5px;
-  top:20px;
+  top:5px;
   background: white;
   position: absolute;
   width: 200px;
@@ -43,7 +77,7 @@ th.mat-sort-header-sorted {
   color: black;
 }
 ::ng-deep .mat-sort-header-sorted {
-  color: red;
+  color: white;
 }
 
 #earring, #helmet,#necklace,#weapon,#plate,#shield,#gauntlets,#boots,#ring
@@ -73,11 +107,39 @@ th.mat-sort-header-sorted {
   top:321px;
 }
 
-#equippedItems
+#userInfo
 {
-
   margin-top: 5px;
   right:5px;
   position: absolute;
+  display: none;
+}
+#equippedItems
+{
+
+
   background: rgb(93,73,57);
+}
+#userStatistics
+{
+  border: 1px solid black;
+}
+#userStatistics tr td
+{
+  padding: 5px;
+}
+#userStatistics tr td:nth-child(2n)
+{
+  width: 50px;
+  text-align: center;
+}
+#userStatistics tr:nth-child(2n)
+{
+background: lightgray;
+}
+
+
+#userStatistics tr:nth-child(2n+1)
+{
+  background: antiquewhite;
 }

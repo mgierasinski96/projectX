@@ -1,10 +1,20 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {
+  AfterContentChecked,
+  AfterContentInit,
+  AfterViewChecked,
+  AfterViewInit,
+  Component, ElementRef,
+  OnDestroy,
+  OnInit, QueryList,
+  ViewChild, ViewChildren
+} from '@angular/core';
 import {DropService} from '../services/drop.service';
 import {ActivatedRoute} from '@angular/router';
 import {UserService} from '../services/user.service';
-import {MatTableDataSource} from '@angular/material/table';
+import {MatRow, MatTable, MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import {UserItemsService} from '../services/userItems.service';
+import {MatPaginator} from '@angular/material/paginator';
 
 
 @Component({
@@ -12,7 +22,7 @@ import {UserItemsService} from '../services/userItems.service';
   templateUrl: './ranking.component.html',
   styleUrls: ['./ranking.component.css']
 })
-export class RankingComponent implements OnInit {
+export class RankingComponent implements OnInit, AfterViewInit {
 dataSource;
   userItemSlots;
   userItems;
@@ -20,9 +30,11 @@ dataSource;
   actualHoverItem;
   infoAboutItem;
   rect;
+  rows;
 
   displayedColumns: string[] = ['position', 'username', 'level', 'total_exp', 'profession'];
   @ViewChild(MatSort, {static: true}) sort: MatSort;
+
   constructor(private userService: UserService, private userItemsService: UserItemsService) {
   }
 
@@ -31,7 +43,32 @@ dataSource;
       this.dataSource = new MatTableDataSource(response);
       this.dataSource.sort = this.sort;
     });
+    document.addEventListener('DOMContentLoaded', this.documentReady);
   }
+
+  documentReady() {
+
+  }
+
+  ngAfterViewInit() {
+
+    setTimeout(() => {// call this function 300 ms after view init so the mat table is ready
+      this.rows = document.getElementsByClassName('mat-row cdk-row ng-star-inserted');
+      if (this.rows.length > 0) {
+        for (let i = 0; i < this.rows.length; i++) {
+          if (this.rows[i].children[1].innerText === 'admin') { // #TODO == loggedUser.getUsername
+            this.rows[i].style.background = 'lightgreen';
+            this.rows[i].scrollIntoView({
+              behavior: 'smooth',
+              block: 'center'
+            });
+          }
+        }
+
+      }
+    }, 300);
+  }
+
 
 
   applyFilter(filterValue: string) {
@@ -39,15 +76,19 @@ dataSource;
   }
 
   displayUserData(event) {
+    // #TODO if loggedUsername!=event.target.parentNode.children[1].innerText (clicked username)????
+document.getElementById('userInfo').style.display = 'inline-block';
+
     for (let i = 0; i < event.target.parentNode.parentNode.children.length; i++) {
       event.target.parentNode.parentNode.children[i].style.background = 'none';
     }
-    event.target.parentNode.style.background = 'red';
+    event.target.parentNode.style.background = 'lightgreen';
    // console.log(event.target.parentNode.children[1].innerText);
     this.userItemSlots = document.getElementsByClassName('userItem');
     for (const userSlot of this.userItemSlots) {
       userSlot.innerHTML = '';
     }
+
     this.userItemsService.getUserItemsByUsername(event.target.parentNode.children[1].innerText).subscribe(response => {
       this.userItems = response;
       window.sessionStorage.setItem('userItems', JSON.stringify(this.userItems));
@@ -64,6 +105,14 @@ dataSource;
           }
         }
       }
+    });
+    this.userService.getUserByUsername(event.target.parentNode.children[1].innerText).subscribe(response => {
+document.getElementById('userDamageValue').innerText = response.total_damage;
+      document.getElementById('userDefenseValue').innerText = response.toughness;
+      document.getElementById('userStrenghtValue').innerText = response.strength;
+      document.getElementById('userWisdomValue').innerText = response.wisdom;
+      document.getElementById('userLuckValue').innerText = response.luck;
+      document.getElementById('userStaminaValue').innerText = response.stamina;
     });
   }
 
