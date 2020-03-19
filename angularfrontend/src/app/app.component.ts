@@ -4,14 +4,23 @@ import {CheckSkillPossiblePipe} from './pipes/check-skill-possible.pipe';
 import {GetNextLvlExpPipe} from './pipes/get-next-lvl-exp.pipe';
 import {async} from '@angular/core/testing';
 import {ChatService} from './services/chat.service';
+import { MessagingService } from './services/messaging.service';
+import { Message } from '@stomp/stompjs';
+import { StompState } from '@stomp/ng2-stompjs';
+import {DropService} from './services/drop.service';
+
+const WEBSOCKET_URL = 'ws://localhost:8080/socket';
+const EXAMPLE_URL = '/topic/server-broadcaster';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [UserService]
+  providers: [UserService],
+
 })
 export class AppComponent implements OnInit {
+  private messagingService: MessagingService;
   register;
   login;
   token = '';
@@ -22,8 +31,8 @@ export class AppComponent implements OnInit {
   messegeContent;
   isChatVisible;
   once;
-  constructor(private userService: UserService, private chatService: ChatService) { }
-
+  constructor(private userService: UserService, private chatService: ChatService) {
+  }
   ngOnInit() {
 
     this.register = {

@@ -2,6 +2,7 @@ package com.zipcompany.gamex.controller;
 
 import com.zipcompany.gamex.Service.*;
 import com.zipcompany.gamex.domain.*;
+import com.zipcompany.gamex.repository.AuctionItemsRepository;
 import com.zipcompany.gamex.repository.UserBackpackRepository;
 import com.zipcompany.gamex.repository.UserItemRepository;
 import com.zipcompany.gamex.repository.UserRepository;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.sql.Blob;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -34,9 +36,6 @@ public class ExampleController {
 
     @Autowired
     UserBackpackRepository userBackpackRepository;
-
-    @Autowired
-    UserItemRepository userItemRepository;
 
     @Autowired
     UserRepository userRepository;
@@ -72,7 +71,6 @@ public class ExampleController {
                 );
              userBackpack.addItem(userItem);
             userBackpackRepository.save(userBackpack);
-
     }
 
     @GetMapping(value = "/removeitemfromuser/{id}/{previousSlot}")
@@ -99,40 +97,9 @@ public class ExampleController {
     }
 
 
-    @GetMapping(value = "/test/{id}")
-    public void testFunction(@PathVariable("id") Long userID){
 
-//        User user = userService.getUser(userID);
-//        System.out.println("Uzytkownik o nazwie " + user.getUsername() +
-//                " ma plecak w kolorze " + user.getUserBackpack().getKolor() +
-//                " w ktorym znajduje sie " + user.getUserBackpack().getUserItemList().size() +
-//                " przedmiotow.");
-//
-//        UserBackpack userBackpack = userBackpackRepository.findUserBackpackById(userID);
-//        System.out.println("Plecak o kolorze" +userBackpack.getKolor() +
-//                " przypiany jest do uzytkownika o ID " + userBackpack.getUser().getId() +
-//                " i przechowuje aktualnie " + userBackpack.getUserItemList().size() +
-//                " przedmiotow"
-//                );
-
-        //Zwracanie uzykownika na pdostawie podanego ID itemu.
-        User user = userRepository.findUserByUserItemID(userID);
-        System.out.println("" +
-                "");
-       // User user = userItemRepository.findUserByUserItemID(userID);
-        //System.out.println(userItemRepository.findUserByUserItemID(userID));
-        System.out.println(user.getUsername());
-        //User user = userItemRepository.findUserByUserItemID(userID);
-        //System.out.println(user.getUsername());
-        System.out.print("DZIALAM?");
-
-
-
-    }
-
-
-
-    @RequestMapping(value = "getuserItemImage/{id}")
+//TODO: Jak cos sie wysypie to tutaj usun / przed getuser
+    @RequestMapping(value = "/getuserItemImage/{id}")
     public void getItemPhoto(HttpServletResponse response, @PathVariable("id") long id) throws Exception {
         response.setContentType("image/jpeg");
         Blob ph = userItemService.getPhotoById(id);
@@ -155,9 +122,11 @@ public class ExampleController {
 //    SchedulerService schedulerService;
     @GetMapping(value = "/getRandomItemsToShop/{pcs}")
     public List<Item> getRandomItemsToShop(@PathVariable long pcs) {
-//      return schedulerService.randomItemsToShop();
+//      return schedulerService.randomItemsToAuction();
         return itemService.getRandomItemsToShop(pcs);
     }
+
+
 
     @PostMapping("")
     User safeUser(@RequestBody User user) {

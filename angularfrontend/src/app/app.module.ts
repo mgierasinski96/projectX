@@ -24,6 +24,8 @@ import { TrainingComponent } from './training/training.component';
 import {LocationComponent} from './location/location.component';
 import {ChatService} from './services/chat.service';
 import {UserItemsService} from './services/userItems.service';
+import { AuctionHouseComponent } from './auction-house/auction-house.component';
+
 
 
 
@@ -42,7 +44,8 @@ import {UserItemsService} from './services/userItems.service';
     ShopComponent,
     UserItemsComponent,
     TrainingComponent,
-    LocationComponent
+    LocationComponent,
+    AuctionHouseComponent
   ],
   imports: [
     AppRoutingModule,

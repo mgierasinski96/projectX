@@ -37,5 +37,9 @@ public class UserItemServiceImpl implements UserItemService {
         userItemRepository.transferItemToDifferentSlot(itemId,actualSlot);
     }
 
-
+    @Override
+    public void deleteUserItemById(Long id) {
+        System.out.println("kasacja " +id);
+        userItemRepository.deleteuserItemById(id);
+    }
 }

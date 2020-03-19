@@ -25,6 +25,10 @@ public interface UserItemRepository extends JpaRepository<UserItem, Long> {
     @Query(value = "update user_items u set u.backpack_slot=:newSlot where u.user_item_id=:itemId", nativeQuery = true)
     void transferItemToDifferentSlot(@Param("itemId") long itemId, @Param("newSlot") String newSlot);
 
+    @Modifying
+    @Query(value = "delete from user_items where user_items.user_item_id =:itemID", nativeQuery = true)
+    void deleteuserItemById(@Param ("itemID") Long itemID);
+
 
 
 }

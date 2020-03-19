@@ -20,4 +20,8 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     @Query(value = "SELECT * FROM item ORDER BY RAND() LIMIT :pcs ",nativeQuery = true)
     List<Item> getRandomItemsToShop(@Param("pcs") long pcs);
 
+    @Transactional
+    @Query(value = "SELECT * from item ORDER BY RAND() LIMIT 4 ", nativeQuery = true)
+    List<Item> getRandomItemsToAuctionHouse();
+
 }

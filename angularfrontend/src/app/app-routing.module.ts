@@ -8,6 +8,7 @@ import {MonsterDetailsComponent} from './monsterDetails/monsterDetails.component
 import {UserItemsComponent} from './user-items/user-items.component';
 import {TrainingComponent} from './training/training.component';
 import {LocationComponent} from './location/location.component';
+import {AuctionHouseComponent} from './auction-house/auction-house.component';
 
 
 // Delkaracja na jakim url ma się wyrenderować jaki komponent. Pojawi się w miejscu deklaracji <router-outlet>
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path: 'shop', component: ShopComponent},
   {path: 'user-items', component: UserItemsComponent},
   {path: 'training', component: TrainingComponent},
-  {path: 'location1', component: LocationComponent}
+  {path: 'location1', component: LocationComponent},
+  {path: 'auctions', component: AuctionHouseComponent}
 
 ];
 

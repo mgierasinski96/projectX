@@ -53,5 +53,8 @@ public class ItemServiceImpl implements ItemService {
         return itemRepository.getRandomItemsToShop(pcs);
     }
 
-
+    @Override
+    public List<Item> getRandomItemsToAuctionHouse() {
+        return itemRepository.getRandomItemsToAuctionHouse();
+    }
 }

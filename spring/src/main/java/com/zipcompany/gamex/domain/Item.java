@@ -30,6 +30,7 @@ public class Item {
     private int itemPrice;
     private int itemValue;
 
+
     @JsonIgnore
     @OneToMany(mappedBy = "primaryKey.item",
             cascade = CascadeType.ALL)

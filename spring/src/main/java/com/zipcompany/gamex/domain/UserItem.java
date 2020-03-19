@@ -53,7 +53,7 @@ public class UserItem {
     public UserItem(){
 
     }
-    public UserItem(Item item, UserBackpack userBackpack){
+    public UserItem(Item item, String newSlot, UserBackpack userBackpack){
         this.itemName = item.getItemName();
         this.itemType = item.getItemType();
         this.itemDamage = item.getItemDamage();
@@ -61,6 +61,7 @@ public class UserItem {
         this.itemStrength = item.getItemStrength();
         this.itemWidsdom = item.getItemWidsdom();
         this.itemPicture = item.getItemPicture();
+        this.backpackSlot = newSlot;
         this.userBackpack = userBackpack;
     }
 
@@ -85,6 +86,7 @@ public class UserItem {
     public void setBackpackSlot(String backpackSlot) {
         this.backpackSlot = backpackSlot;
     }
+
 
     public Long getId() {
         return id;

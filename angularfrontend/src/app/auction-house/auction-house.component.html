@@ -1,0 +1,46 @@
+<div id="container">
+  <div id="inff">
+    <table>
+      <tr>
+        <td>{{name}}</td>
+      </tr>
+      <tr *ngIf="def > 0">
+        <td>Obrona: + {{def}}</td>
+      </tr>
+      <tr *ngIf="atk > 0">
+        <td>Obrazenia: +{{atk}}</td>
+      </tr>
+      <tr *ngIf="int > 0">
+        <td>Inteligencja: +{{int}}</td>
+      </tr>
+      <tr *ngIf="sil > 0">
+        <td>Sila: +{{sil}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div id="centrumDowodzenia">
+    <h2>Przedmioty dostępne na licytacji</h2>
+  </div>
+
+
+
+  <table id="items" class="my_table">
+
+      <ng-form *ngFor="let item of itemsForSale">
+
+        <tr>
+          <td id="title">{{item.item.itemName}}</td>
+          <td (mouseover)="mouseEnter($event, item.item.id)" (mouseout)="mouseOutItem($event, item.item.id)"><img src="http://localhost:8080/item/getItemImage/{{item.item.id}}"></td>
+          <td><label id="bolder">Aktualna cena: {{item.actualPrice}}</label></td>
+          <td>
+            <input id="input_{{item.id}}" placeholder="Wprowadz kwote" type="number">
+          </td>
+          <td><button id="btn_{{item.id}}_1" (click)="applyBid(item.id, 1)">Licytuj jako 1</button></td>
+          <td id="marginbottom"><button id="btn_{{item.id}}_2" (click)="applyBid(item.id, 4)">Licytuj jako 4</button></td>
+        </tr>
+      </ng-form>
+
+  </table>
+
+</div>
