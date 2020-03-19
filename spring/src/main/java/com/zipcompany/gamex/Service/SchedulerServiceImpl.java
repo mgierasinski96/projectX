@@ -3,17 +3,12 @@ package com.zipcompany.gamex.Service;
 import com.zipcompany.gamex.controller.WebSocketController;
 import com.zipcompany.gamex.domain.AuctionItems;
 import com.zipcompany.gamex.domain.Item;
-import com.zipcompany.gamex.domain.UserBackpack;
-import com.zipcompany.gamex.domain.UserItem;
-import com.zipcompany.gamex.repository.AuctionItemsRepository;
 import com.zipcompany.gamex.repository.ItemRepository;
-import com.zipcompany.gamex.repository.UserBackpackRepository;
-import com.zipcompany.gamex.repository.UserItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-
 import java.util.Date;
+import com.zipcompany.gamex.domain.User;
 import java.util.List;
 
 @Service
@@ -28,6 +23,12 @@ public class SchedulerServiceImpl implements SchedulerService {
 
     @Autowired
     private ItemService itemService;
+
+    @Autowired
+    ItemRepository itemRepository;
+
+    @Autowired
+    UserService userService;
 
     @Override
     @Scheduled(cron = "0 0/1 * * * ?")
@@ -46,4 +47,21 @@ public class SchedulerServiceImpl implements SchedulerService {
     }
 
 
+    @Scheduled(cron = "0 0/2 * * * ?")//2 minutes ( CRON format )
+    public void randomItemsToShop()//scheduler has to be no arg method
+    {
+        itemRepository.deleteAllShopItemsForEachUser();
+        List<User> allUsers = userService.getAllUsers();
+        for (User user : allUsers) {
+                //L
+            List<Item> items = itemRepository.getRandomItemsToShop(6,user.getLevel(),5); //2 SHOP ITEMS FOR EACH USER
+            user.setShopItems(items);
+            for (Item item : items) {
+
+                itemRepository.insertNewShopItem(user.getId(),item.getId());
+            }
+        }
+
+        System.out.println("inserting new shop items for each user");
+    }
 }

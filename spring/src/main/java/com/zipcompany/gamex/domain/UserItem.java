@@ -24,6 +24,15 @@ public class UserItem {
     private int itemWidsdom;
     private int itemValue;
     private int itemPrice;
+    private int itemLevel;
+
+    public int getItemLevel() {
+        return itemLevel;
+    }
+
+    public void setItemLevel(int itemLevel) {
+        this.itemLevel = itemLevel;
+    }
 
     public int getItemValue() {
         return itemValue;
@@ -65,7 +74,8 @@ public class UserItem {
         this.userBackpack = userBackpack;
     }
 
-    public UserItem(int itemPrice, int itemValue,String itemName, ItemType itemType, int itemDamage, int itemDefense, int itemStrength, int itemWidsdom, byte[] itemPicture,String newSlot, UserBackpack userBackpack) {
+    public UserItem(int itemLevel,int itemPrice, int itemValue,String itemName, ItemType itemType, int itemDamage, int itemDefense, int itemStrength, int itemWidsdom, byte[] itemPicture,String newSlot, UserBackpack userBackpack) {
+        this.itemLevel=itemLevel;
         this.itemPrice=itemPrice;
         this.itemValue=itemValue;
         this.itemName = itemName;

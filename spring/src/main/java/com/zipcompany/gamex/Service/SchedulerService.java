@@ -6,7 +6,6 @@ import java.util.List;
 
 public interface SchedulerService {
 
-//    List<Item> randomItemsToAuction();
-
   void randomItemsToAuction();
+   void randomItemsToShop();
 }

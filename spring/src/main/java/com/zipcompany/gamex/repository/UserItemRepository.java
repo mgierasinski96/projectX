@@ -29,6 +29,4 @@ public interface UserItemRepository extends JpaRepository<UserItem, Long> {
     @Query(value = "delete from user_items where user_items.user_item_id =:itemID", nativeQuery = true)
     void deleteuserItemById(@Param ("itemID") Long itemID);
 
-
-
 }

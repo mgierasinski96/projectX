@@ -9,6 +9,9 @@ import {UserItemsComponent} from './user-items/user-items.component';
 import {TrainingComponent} from './training/training.component';
 import {LocationComponent} from './location/location.component';
 import {AuctionHouseComponent} from './auction-house/auction-house.component';
+import {TemporaryComponent} from './temporary/temporary.component';
+import {RankingComponent} from './ranking/ranking.component';
+import {UpgradeItemComponent} from './upgradeItem/upgradeItem.component';
 
 
 // Delkaracja na jakim url ma się wyrenderować jaki komponent. Pojawi się w miejscu deklaracji <router-outlet>
@@ -18,10 +21,14 @@ const routes: Routes = [
   {path: 'monster/:id', component: MonsterDetailsComponent, pathMatch: 'full'},
   {path: 'myMenu', component: MycharacterComponent},
   {path: 'shop', component: ShopComponent},
+  {path: 'blacksmith', component: UpgradeItemComponent},
   {path: 'user-items', component: UserItemsComponent},
   {path: 'training', component: TrainingComponent},
   {path: 'location1', component: LocationComponent},
-  {path: 'auctions', component: AuctionHouseComponent}
+  {path: 'auctions', component: AuctionHouseComponent},
+  {path: 'tmp', component: TemporaryComponent},
+  {path: 'ranking', component: RankingComponent}
+
 
 ];
 

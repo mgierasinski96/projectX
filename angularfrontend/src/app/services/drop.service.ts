@@ -31,8 +31,8 @@ export class DropService {
   getItemsWhichDropFromThisMonster(id: number): Observable<any> {
     return this.httpClient.get<any>(this.API_URL_WHAT_DROPS_THIS_MONSTER + id);
   }
-  getRandomItemsToShop(pcs: number): Observable<any> {
-    return this.httpClient.get<any>(this.API_URL1 + pcs);
+  getShopItemsForUser(userId: number): Observable<any> {
+    return this.httpClient.get<any>(this.API_URL1 + userId);
   }
     getRandomItemsForAuction(): Observable <any> {
     return this.httpClient.get<any> (this.API_URL_RANDOM_ITEMS_TO_AUCTION);

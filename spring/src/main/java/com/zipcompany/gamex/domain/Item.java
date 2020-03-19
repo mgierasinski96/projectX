@@ -29,6 +29,8 @@ public class Item {
     private int itemWidsdom;
     private int itemPrice;
     private int itemValue;
+    private int itemLevel;
+
 
 
     @JsonIgnore
@@ -43,6 +45,14 @@ public class Item {
     public Item(String itemName, ItemType itemType) {
         this.itemName = itemName;
         this.itemType = itemType;
+    }
+
+    public int getItemLevel() {
+        return itemLevel;
+    }
+
+    public void setItemLevel(int itemLevel) {
+        this.itemLevel = itemLevel;
     }
 
     public int getItemPrice() {

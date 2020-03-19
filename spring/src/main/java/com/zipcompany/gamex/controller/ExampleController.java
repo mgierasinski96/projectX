@@ -2,7 +2,6 @@ package com.zipcompany.gamex.controller;
 
 import com.zipcompany.gamex.Service.*;
 import com.zipcompany.gamex.domain.*;
-import com.zipcompany.gamex.repository.AuctionItemsRepository;
 import com.zipcompany.gamex.repository.UserBackpackRepository;
 import com.zipcompany.gamex.repository.UserItemRepository;
 import com.zipcompany.gamex.repository.UserRepository;
@@ -14,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.sql.Blob;
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @RestController
@@ -38,67 +37,54 @@ public class ExampleController {
     UserBackpackRepository userBackpackRepository;
 
     @Autowired
+    UserItemRepository userItemRepository;
+
+    @Autowired
     UserRepository userRepository;
 
     @Autowired
     UserItemService userItemService;
 
-
-    @GetMapping(value = "/transferItemToDifferentSlot/{itemId}/{newSlotName}")
-    void transferItemToDifferentSlot(@PathVariable("itemId") long itemId, @PathVariable("newSlotName") String newSlotName) {
-        userItemService.transferItemToDifferentSlot(itemId, newSlotName);
+    @GetMapping(value = "/userRankingLvlDesc")
+    List<User> getUserRankingList()
+    {
+        return userService.getAllUsersByLvlDesc();
     }
 
-    @PostMapping(value = "/additemtouser/{id}/{itemId}/{newSlot}")
-    public void addItemToUserBackpack(@PathVariable("id") Long userID,
-                                      @PathVariable("itemId") Long itemID, @PathVariable("newSlot") String newSlot) {
 
-        Item item = itemService.getItemById(itemID);
-        UserBackpack userBackpack = userService.getUser(userID).getUserBackpack();
-
-        UserItem userItem = new UserItem(
-                item.getItemPrice(),
-                item.getItemValue(),
-                item.getItemName(),
-                item.getItemType(),
-                item.getItemDamage(),
-                item.getItemDefense(),
-                item.getItemStrength(),
-                item.getItemWidsdom(),
-                item.getItemPicture(),
-                newSlot,
-                userBackpack
-                );
-             userBackpack.addItem(userItem);
-            userBackpackRepository.save(userBackpack);
-    }
-
-    @GetMapping(value = "/removeitemfromuser/{id}/{previousSlot}")
-    public void removeItemFromuserBackpack(@PathVariable("id") Long userID,
-                                           @PathVariable("previousSlot") String previousSlot){
-        userBackpackRepository.deleteItemForUser(userID,previousSlot);
+    @GetMapping(value = "/test/{id}")
+    public void testFunction(@PathVariable("id") Long userID){
 
 //        User user = userService.getUser(userID);
-//        System.out.println("Liczba przedmiotow w plecaku uzytkownika: " +user.getUserBackpack().getUserItemList().size());
-//        System.out.println("Usuwam przedmiot: " + userItemRepository.findUserItemById(itemID).getItemName());
-//        user.getUserBackpack().removeItem(userItemRepository.findUserItemById(itemID));
-//        //userBackpackRepository.save(user.getUserBackpack());
-//        userItemRepository.delete(userItemRepository.findUserItemById(itemID));
-//        System.out.println("Liczba przedmiotow w plecaku uzytkownika: " +user.getUserBackpack().getUserItemList().size());
+//        System.out.println("Uzytkownik o nazwie " + user.getUsername() +
+//                " ma plecak w kolorze " + user.getUserBackpack().getKolor() +
+//                " w ktorym znajduje sie " + user.getUserBackpack().getUserItemList().size() +
+//                " przedmiotow.");
+//
+//        UserBackpack userBackpack = userBackpackRepository.findUserBackpackById(userID);
+//        System.out.println("Plecak o kolorze" +userBackpack.getKolor() +
+//                " przypiany jest do uzytkownika o ID " + userBackpack.getUser().getId() +
+//                " i przechowuje aktualnie " + userBackpack.getUserItemList().size() +
+//                " przedmiotow"
+//                );
 
-//        User usr = userService.getUser(userID);
-//
-//
-//        usr.getUserBackpack().removeItemFrombackpack(itemID);
-//        userBackpackRepository.save(usr.getUserBackpack());
-//        System.out.println("Usuwam przedmiot");
-//        System.out.println("Liczba przedmiotow w plecaku uzytkownika: " +usr.getUserBackpack().getUserItemList().size());
+        //Zwracanie uzykownika na pdostawie podanego ID itemu.
+        User user = userRepository.findUserByUserItemID(userID);
+        System.out.println("" +
+                "");
+        // User user = userItemRepository.findUserByUserItemID(userID);
+        //System.out.println(userItemRepository.findUserByUserItemID(userID));
+        System.out.println(user.getUsername());
+        //User user = userItemRepository.findUserByUserItemID(userID);
+        //System.out.println(user.getUsername());
+        System.out.print("DZIALAM?");
+
+
 
     }
 
 
-
-//TODO: Jak cos sie wysypie to tutaj usun / przed getuser
+    //TODO: Jak cos sie wysypie to tutaj usun / przed getuser
     @RequestMapping(value = "/getuserItemImage/{id}")
     public void getItemPhoto(HttpServletResponse response, @PathVariable("id") long id) throws Exception {
         response.setContentType("image/jpeg");
@@ -110,6 +96,13 @@ public class ExampleController {
         // System.out.println(itemService.getItemById(id).getItemName());
     }
 
+    @GetMapping(value = "/getUserByUsername/{username}")
+    User getUserByUsername(@PathVariable("username") String username) {
+
+        return userService.findByUsername(username);
+
+    }
+
     @GetMapping(value = "/itemyusera/{id}")
     public List<UserItem> getUserItems(@PathVariable("id") Long id){
         User user = userService.getUser(id);
@@ -117,13 +110,10 @@ public class ExampleController {
         return user.getUserBackpack().getUserItemList();
     }
 
-
-//   @Autowired
-//    SchedulerService schedulerService;
-    @GetMapping(value = "/getRandomItemsToShop/{pcs}")
-    public List<Item> getRandomItemsToShop(@PathVariable long pcs) {
-//      return schedulerService.randomItemsToAuction();
-        return itemService.getRandomItemsToShop(pcs);
+    @GetMapping(value = "/getRandomItemsToShop/{userId}")
+    public List<Item> getRandomItemsToShop(@PathVariable long userId) {
+//
+        return userService.getUser(userId).getShopItems();
     }
 
 

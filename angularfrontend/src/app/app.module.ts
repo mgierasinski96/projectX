@@ -4,7 +4,6 @@ import {HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {FormsModule} from '@angular/forms';
-import {ExamplespringService} from './services/examplespring.service';
 import {MycharacterComponent} from './mycharacter/mycharacter.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {PotworComponent} from './potwor/potwor.component';
@@ -23,9 +22,16 @@ import { UserItemsComponent } from './user-items/user-items.component';
 import { TrainingComponent } from './training/training.component';
 import {LocationComponent} from './location/location.component';
 import {ChatService} from './services/chat.service';
-import {UserItemsService} from './services/userItems.service';
+import {UserbackpackService} from './services/userbackpack.service';
 import { AuctionHouseComponent } from './auction-house/auction-house.component';
-
+import {TemporaryComponent} from './temporary/temporary.component';
+import {RankingComponent} from './ranking/ranking.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatSortModule} from '@angular/material/sort';
+import {UpgradeItemComponent} from './upgradeItem/upgradeItem.component';
+import {GuildService} from './services/guild.service';
 
 
 
@@ -45,7 +51,10 @@ import { AuctionHouseComponent } from './auction-house/auction-house.component';
     UserItemsComponent,
     TrainingComponent,
     LocationComponent,
-    AuctionHouseComponent
+    AuctionHouseComponent,
+    TemporaryComponent,
+    RankingComponent,
+    UpgradeItemComponent
   ],
   imports: [
     AppRoutingModule,
@@ -54,9 +63,13 @@ import { AuctionHouseComponent } from './auction-house/auction-house.component';
     HttpClientModule,
     DragDropModule,
     BrowserAnimationsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSortModule
   ],
-  providers: [ExamplespringService, PotworService, DropService, ChatService, UserItemsService],
+  providers: [PotworService, DropService, ChatService, UserbackpackService, GuildService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,0 +1,104 @@
+<div id="blacksmith">
+  <div id="infoAboutItem">
+    <table style="width: 100%">
+      <tr>
+        <td colspan="2" style="text-align: center;" id="itemName"></td>
+      </tr>
+      <tr>
+        <td style="opacity: 0" colspan="2" id="itemId">2</td>
+      </tr>
+      <tr>
+        <td> Obrażenia: </td>
+        <td id="itemDamage"></td>
+      </tr>
+      <tr>
+        <td> Obrona: </td>
+        <td id="itemDefense"></td>
+      </tr>
+      <tr>
+        <td> Siła: </td>
+        <td id="itemStrength"></td>
+      </tr>
+      <tr>
+        <td> Mądrość: </td>
+        <td id="itemWidsdom"></td> <!--UWAGA NA LITEROWKE -->
+      </tr>
+      <tr>
+        <td> Wartość: </td>
+        <td id="itemValue"></td>
+      </tr>
+      <tr>
+        <td> Poziom: </td>
+        <td id="itemLevel"></td>
+      </tr>
+    </table>
+  </div>
+  <table id="backpack" cellpadding="0" cellspacing="0">
+    <tr>
+      <td><div id="slot-1" cdkDropList #slot1="cdkDropList" [cdkDropListConnectedTo]="[blacksmithSlot,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]"  (cdkDropListDropped)="drop($event)" class="itemSlot"><div id="userItem1" class="userItem" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div></td>
+      <td><div id="slot-2" cdkDropList #slot2="cdkDropList" [cdkDropListConnectedTo]="[blacksmithSlot,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)"  class="itemSlot"><div id="userItem2" class="userItem" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div> </div></td>
+      <td><div id="slot-3" cdkDropList #slot3="cdkDropList" [cdkDropListConnectedTo]="[blacksmithSlot,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)"  class="itemSlot"><div id="userItem3" class="userItem" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div></td>
+      <td><div id="slot-4" cdkDropList #slot4="cdkDropList" [cdkDropListConnectedTo]="[blacksmithSlot,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)" class="itemSlot"><div id="userItem4" class="userItem" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div></td>
+      <td><div id="slot-5" cdkDropList #slot5="cdkDropList" [cdkDropListConnectedTo]="[blacksmithSlot,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)" class="itemSlot"><div id="userItem5" class="userItem" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div></td>
+    </tr>
+    <tr>
+      <td><div id="slot-6" cdkDropList #slot6="cdkDropList" [cdkDropListConnectedTo]="[blacksmithSlot,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)" class="itemSlot"><div id="userItem6" class="userItem" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div></td>
+      <td><div id="slot-7" cdkDropList #slot7="cdkDropList" [cdkDropListConnectedTo]="[blacksmithSlot,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)" class="itemSlot"><div id="userItem7" class="userItem" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div></td>
+      <td><div id="slot-8" cdkDropList #slot8="cdkDropList" [cdkDropListConnectedTo]="[blacksmithSlot,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)" class="itemSlot"><div id="userItem8" class="userItem" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div></td>
+      <td><div id="slot-9" cdkDropList #slot9="cdkDropList" [cdkDropListConnectedTo]="[blacksmithSlot,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)" class="itemSlot"><div id="userItem9" class="userItem" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div></td>
+      <td><div id="slot-10" cdkDropList #slot10="cdkDropList"[cdkDropListConnectedTo]="[blacksmithSlot,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)" class="itemSlot"><div id="userItem10" class="userItem" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div></td>
+    </tr>
+
+  </table>
+  <table id="blacksmithMenu">
+    <tr id="shopAssistant"><td colspan="3"><img style="width: 480px;height: 280px" src="../assets/images/shop.gif"><div id="shopAssisantDialog"><img src="https://img.icons8.com/office/170/000000/speech-bubble.png"><div id="dialog"></div></div></td></tr>
+    <tr>
+      <td style="height: 200px"><div id="blacksmithSlotHolder" cdkDropList #blacksmithSlot="cdkDropList" [cdkDropListConnectedTo]="[blacksmithSlot,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)" class="itemSlot"><div id="blacksmithSlot" class="userItem" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div></td>
+      <td>
+        <table id="upgradeStatsTable">
+          <tr style="opacity: 0">
+            <td id="blacksmithItemId"></td>
+          </tr>
+          <tr>
+            <td>Obrażenia:</td>
+            <td id="oldItemDamage">5</td>
+            <td>-></td>
+            <td id="newItemDamage">7</td>
+          </tr>
+          <tr>
+            <td>Obrona:</td>
+            <td id="oldItemDefense">5</td>
+            <td>-></td>
+            <td id="newItemDefense">7</td>
+          </tr>
+          <tr>
+            <td>Siła:</td>
+            <td id="oldItemStrength">5</td>
+            <td>-></td>
+            <td id="newItemStrength">7</td>
+          </tr>
+          <tr>
+            <td>Mądrość:</td>
+            <td id="oldItemWisdom">5</td>
+            <td>-></td>
+            <td id="newItemWisdom">7</td>
+          </tr>
+          <tr>
+            <td>Wartość:</td>
+            <td id="oldItemValue">5</td>
+            <td>-></td>
+            <td id="newItemValue">7</td>
+          </tr>
+        <tr>
+          <td>Koszt</td>
+          <td id="upgradePrice"></td>
+        </tr>
+        </table>
+
+      </td>
+      <td><button (click)="upgradeItem()" id ="upgradeButton">Ulepsz</button></td>
+    </tr>
+
+  </table>
+</div>
+

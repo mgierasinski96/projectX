@@ -1,8 +1,8 @@
-import {ExamplespringService} from '../services/examplespring.service';
 import {AfterViewInit, Component, Directive, ElementRef, EventEmitter, HostBinding, HostListener, OnInit, Output} from '@angular/core';
 import {CdkDragDrop, CdkDragEnd, CdkDragEnter, CdkDragExit, CdkDragStart, DragDrop} from '@angular/cdk/drag-drop';
 import {DropService} from '../services/drop.service';
-import {UserItemsService} from '../services/userItems.service';
+import {UserbackpackService} from '../services/userbackpack.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'shop-dashboard',
@@ -21,11 +21,12 @@ export class ShopComponent implements OnInit {
   actualHoverItem; // item na ktory obecnie najechano
   myItemPrice;
   myItemValue;
-  constructor(private dropService: DropService, private userItemsService: UserItemsService) {
+  myItemId;
+  constructor(private dropService: DropService, private userItemsService: UserbackpackService, private router: Router) {
   }
   ngOnInit() {
     this.shopSlotIterator = 1; // ustawienie zmiennej na 1 czyli zaczynamy dodawac przedmioty do okien sklepu od okna1
-    this.dropService.getRandomItemsToShop(6).subscribe(response => {
+    this.dropService.getShopItemsForUser(4).subscribe(response => {
       this.itemsToShop = response;
       window.sessionStorage.setItem('items', JSON.stringify(this.itemsToShop)); // dodanie itemow do sesji
       // tak zeby mozna sie bylo odwolywac do nich w metodzie mouseOverItem -> kurestwo inaczej mowi ze itemsToShop to undefinied
@@ -88,29 +89,35 @@ export class ShopComponent implements OnInit {
 
     // UWAGA STULEJARSKIE IFY
     document.getElementById('itemName').innerText = this.actualHoverItem.itemName;
+    document.getElementById('itemLevel').innerText = this.actualHoverItem.itemLevel;
+    document.getElementById('itemId').innerText = this.actualHoverItem.id;
     if (this.actualHoverItem.itemDamage !== 0) {
       document.getElementById('itemDamage').parentElement.style.display = 'inline-block';
       document.getElementById('itemDamage').innerText = this.actualHoverItem.itemDamage;
     } else {
       document.getElementById('itemDamage').parentElement.style.display = 'none';
+      document.getElementById('itemDamage').innerText = this.actualHoverItem.itemDamage;
     }
     if (this.actualHoverItem.itemDefense !== 0) {
       document.getElementById('itemDefense').parentElement.style.display = 'inline-block';
       document.getElementById('itemDefense').innerText = this.actualHoverItem.itemDefense;
     } else {
       document.getElementById('itemDefense').parentElement.style.display = 'none';
+      document.getElementById('itemDefense').innerText = this.actualHoverItem.itemDefense;
     }
     if (this.actualHoverItem.itemStrength !== 0) {
       document.getElementById('itemStrength').parentElement.style.display = 'inline-block';
       document.getElementById('itemStrength').innerText = this.actualHoverItem.itemStrength;
     } else {
       document.getElementById('itemStrength').parentElement.style.display = 'none';
+      document.getElementById('itemStrength').innerText = this.actualHoverItem.itemStrength;
     }
     if (this.actualHoverItem.itemWidsdom !== 0) { // #TODO uwaga na literowke
       document.getElementById('itemWidsdom').parentElement.style.display = 'inline-block';
       document.getElementById('itemWidsdom').innerText = this.actualHoverItem.itemWidsdom;
     } else {
       document.getElementById('itemWidsdom').parentElement.style.display = 'none';
+      document.getElementById('itemWidsdom').innerText = this.actualHoverItem.itemWidsdom;
     }
     if (ev.target.parentNode.id.includes('shop')) {
       document.getElementById('itemPrice').parentElement.style.display = 'inline-block';
@@ -123,8 +130,8 @@ export class ShopComponent implements OnInit {
     }
 
 
-    this.infoAboutItem.style.left = this.rect.left + 'px';
-    this.infoAboutItem.style.top = this.rect.top * 0.9 + 'px';
+    this.infoAboutItem.style.left = this.rect.left + 121 + 'px';
+    this.infoAboutItem.style.top = this.rect.top  - 121 + 'px';
     this.infoAboutItem.style.visibility = 'visible';
   }
 
@@ -133,6 +140,7 @@ export class ShopComponent implements OnInit {
   }
 
   dragStart(event: CdkDragStart) {
+    this.myItemId = document.getElementById('itemId').innerText;
     if (event.source.element.nativeElement.id.includes('shop')) {
       this.myItemPrice = document.getElementById('itemPrice').innerText ? document.getElementById('itemPrice').innerText : 0;
     } else {
@@ -188,13 +196,14 @@ export class ShopComponent implements OnInit {
          event.container.element.nativeElement.children[0].id) .subscribe();
         document.getElementById(event.container.element.nativeElement.children[0].id).append
         (document.getElementById(event.item.element.nativeElement.children[0].id));
-
+        this.userItemsService.itemBoughtGenerateNewItem(4, this.myItemId).subscribe();
         // #TODO
         // #TODO
         // #TODO
         // #TODO
         // przeliczaj zloto ODEJMIJ -> cena kupionego przedmiotu dostepna w zmiennej
        console.log('odejmij zloto ' + this.myItemPrice);
+        window.location.reload();
       }
       // jezeli przeciagniales w miejsce gdzie znajduje sie juz inny przedmot to cofnij cala operacje
       if (event.container.element.nativeElement.children.length >= 2) {

@@ -7,11 +7,15 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Repository
 @Transactional
 public interface UserRepository extends JpaRepository<User,Long> {
 
     User findUserById(Long id);
+    List<User> findAllByOrderByLevelDesc();
+    User findByUsername(String username);
 
     @Transactional
     @Query(value = "select *\n" +

@@ -1,8 +1,11 @@
 package com.zipcompany.gamex.controller;
 
 import com.zipcompany.gamex.Service.ItemService;
+import com.zipcompany.gamex.Service.UserItemService;
+import com.zipcompany.gamex.Service.UserService;
 import com.zipcompany.gamex.domain.Item;
 import com.zipcompany.gamex.domain.MonsterItem;
+import com.zipcompany.gamex.domain.UserItem;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +15,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -19,10 +23,13 @@ import java.util.List;
 public class ItemController {
 
     private ItemService itemService;
+    private UserItemService userItemService;
+    private UserService userService;
 
     @Autowired
-    public ItemController(ItemService itemService){
+    public ItemController(ItemService itemService,UserItemService userItemService){
         this.itemService = itemService;
+        this.userItemService=userItemService;
     }
 
 
@@ -64,4 +71,5 @@ public class ItemController {
         Item item = itemService.getItemById(itemId);
         return item.getMonsterItems();
     }
+
 }

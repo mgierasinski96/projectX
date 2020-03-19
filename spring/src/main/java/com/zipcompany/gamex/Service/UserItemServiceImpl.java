@@ -42,4 +42,20 @@ public class UserItemServiceImpl implements UserItemService {
         System.out.println("kasacja " +id);
         userItemRepository.deleteuserItemById(id);
     }
+
+    public UserItem getUserItemById(long id) {
+        return userItemRepository.getOne(id);
+    }
+
+    @Override
+    public void upgradeItem(long itemId, int upgradeBoost) {
+        UserItem userItem=this.getUserItemById(itemId);
+        userItem.setItemDamage(userItem.getItemDamage()+upgradeBoost);
+        userItem.setItemDefense(userItem.getItemDefense()+upgradeBoost);
+        userItem.setItemStrength(userItem.getItemStrength()+upgradeBoost);
+        userItem.setItemWidsdom(userItem.getItemWidsdom()+upgradeBoost);
+        userItem.setItemValue(userItem.getItemValue()+upgradeBoost);
+        userItemRepository.save(userItem);
+    }
+
 }

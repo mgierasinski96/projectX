@@ -8,7 +8,6 @@ import { MessagingService } from './services/messaging.service';
 import { Message } from '@stomp/stompjs';
 import { StompState } from '@stomp/ng2-stompjs';
 import {DropService} from './services/drop.service';
-
 const WEBSOCKET_URL = 'ws://localhost:8080/socket';
 const EXAMPLE_URL = '/topic/server-broadcaster';
 

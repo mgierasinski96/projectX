@@ -3,7 +3,9 @@ package com.zipcompany.gamex.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "users_user")
@@ -40,11 +42,36 @@ public class User {
     private double total_damage;
     private double defense;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "userShopItems",
+            joinColumns = @JoinColumn(name = "userId"),
+            inverseJoinColumns = @JoinColumn(name = "itemId"))
+    private List<Item> shopItems = new ArrayList<>();
+
     @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userBackpack_id")
     private UserBackpack userBackpack;
 
+    @OneToOne
+    @JoinColumn(name = "guild_id")
+    private Guild guild;
+
+    public Guild getGuild() {
+        return guild;
+    }
+
+    public void setGuild(Guild guild) {
+        this.guild = guild;
+    }
+
+    public List<Item> getShopItems() {
+        return shopItems;
+    }
+
+    public void setShopItems(List<Item> shopItems) {
+        this.shopItems = shopItems;
+    }
 
     public UserBackpack getUserBackpack() {
         return userBackpack;

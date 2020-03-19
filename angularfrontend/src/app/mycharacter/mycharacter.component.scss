@@ -8,36 +8,36 @@
 
 #earring, #helmet,#necklace,#weapon,#plate,#shield,#gauntlets,#boots,#ring
 {
-  left:13px;
-  width: 90px;
-  height: 90px;
+  left:14.5px;
+  width: 120px;
+  height: 120px;
   top:14px;
   position: absolute;
 }
 
 #helmet,#plate,#boots
 {
-  left:133px;
+  left:164.5px;
 }
 #necklace,#shield,#ring
 {
-  left:253px;
+  left:314.5px;
 }
 
 #weapon,#plate,#shield
 {
-  top:137.5px;
+  top:167.5px;
 }
 #gauntlets,#boots,#ring
 {
-  top:261px;
+  top:321px;
 }
 
 #equippedItems
 {
 
   margin-top: 5px;
-  left:250px;
+  left:270px;
   position: absolute;
   background: rgb(93,73,57);
 }
@@ -48,19 +48,20 @@
   position: absolute;
    right:80px;
    margin-top: 5px;
-  max-height: 200px;
+  max-height: 260px;
  }
 #backpack tr td
 {
   opacity: 1;
-  max-height: 90px;
+  max-height: 120px;
 }
 .itemSlot
 {
-  max-height: 90px;
-  width: 90px;
-  height: 90px;
-  background-image: url('../../assets/images/backpackSlot.png');
+  max-height: 120px;
+  width: 120px;
+  height: 120px;
+  background: antiquewhite;
+  //background-image: url('../../assets/images/backpackSlot.png');
 }
 
 .exItem:hover
@@ -93,7 +94,7 @@
 #backpack .cdk-drop-list
 {
   border:1px solid red;
-  max-height: 90px;
+  max-height: 120px;
 }
 #wrongItemWarning
 {

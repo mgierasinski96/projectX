@@ -54,10 +54,13 @@ public class AuctionItemsServiceImpl implements AuctionItemsService {
                 UserBackpack userBackpack = userService.getUser(auctionItems.get(i).getWinningUserID()).getUserBackpack();
 
 
+
                 System.out.println(auctionItems.get(i).getItem().getItemPrice())    ;
+
 
                 // TODO: Zmienic przypisanie na sztywno
                 UserItem userItem = new UserItem(
+                        auctionItems.get(i).getItem().getItemLevel(),
                         auctionItems.get(i).getActualPrice(),
                         auctionItems.get(i).getItem().getItemValue(),
                         auctionItems.get(i).getItem().getItemName(),
