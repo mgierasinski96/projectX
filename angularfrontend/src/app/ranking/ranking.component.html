@@ -31,40 +31,68 @@
     </table>
   </div>
 
+  <div id="navi"><span id="users" style="border-right: 2px solid red" (click)="showUsers()">Gracze</span>
+    <span id="guilds" (click)="showGuilds($event)">Gildie</span></div>
   <mat-form-field id="filtrInput">
     Wyszukaj:
     <input  matInput (keyup)="applyFilter($event.target.value)"  />
   </mat-form-field>
+
 <div id="rankingTableHolder">
   <table id="rankingTable" mat-table [dataSource]="dataSource" matSort cdkFocusInitial class="mat-elevation-z8">
 
     <ng-container matColumnDef="position">
       <th  mat-header-cell *matHeaderCellDef>Pozycja</th>
-      <td mat-cell *matCellDef="let user; let i = index">{{i+1}}</td>
+      <td mat-cell (click)="displayUserData($event)" *matCellDef="let user; let i = index">{{i+1}}</td>
     </ng-container>
 
     <ng-container matColumnDef="username">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Nazwa postaci</th>
-      <td mat-cell *matCellDef="let user">{{ user.username }}</td>
+      <td mat-cell (click)="displayUserData($event)" *matCellDef="let user">{{ user.username }}</td>
     </ng-container>
 
     <ng-container matColumnDef="level">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Level</th>
-      <td mat-cell *matCellDef="let user">{{ user.level }}</td>
+      <td mat-cell (click)="displayUserData($event)" *matCellDef="let user">{{ user.level }}</td>
     </ng-container>
 
     <ng-container matColumnDef="total_exp">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Całkowite doświadczenie</th>
-      <td mat-cell *matCellDef="let user">{{ user.total_exp }}</td>
+      <td mat-cell (click)="displayUserData($event)" *matCellDef="let user">{{ user.total_exp }}</td>
     </ng-container>
 
     <ng-container matColumnDef="profession">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Profesja</th>
-      <td mat-cell *matCellDef="let user">{{ user.profession }}</td>
+      <td mat-cell (click)="displayUserData($event)" *matCellDef="let user">{{ user.profession }}</td>
+    </ng-container>
+    <ng-container matColumnDef="guild">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Gildia</th>
+      <td mat-cell (click)="showGuilds($event)" *matCellDef="let user">{{ user.guild?.guildTag || '-' }}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true;"></tr>
-    <tr mat-row (click)="displayUserData($event)"  *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+  <table id="rankingGuildTable" mat-table [dataSource]="dataGuildSource" matSort cdkFocusInitial class="mat-elevation-z8">
+
+    <ng-container matColumnDef="position">
+      <th  mat-header-cell *matHeaderCellDef>Pozycja</th>
+      <td mat-cell *matCellDef="let guild; let i = index">{{i+1}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="guild_name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nazwa</th>
+      <td mat-cell *matCellDef="let guild">{{ guild.guildName }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="guild_tag">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Skrót</th>
+      <td mat-cell *matCellDef="let guild">{{ guild.guildTag }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedGuildColumns;sticky: true;"></tr>
+    <tr mat-row (click)="displayGuildData($event)"  *matRowDef="let row; columns: displayedGuildColumns;"></tr>
 
   </table>
 </div>
@@ -88,14 +116,24 @@
 
   </table>
   <table id="userStatistics">
-    <tr><td>Obrażenia:</td><td id="userDamageValue">-</td></tr>
-    <tr><td>Obrona:</td><td id="userDefenseValue">-</td></tr>
-    <tr><td>Siła:</td><td id="userStrenghtValue">-</td></tr>
-    <tr><td>Mądrość:</td><td id="userWisdomValue">-</td></tr>
-    <tr><td>Szczęście:</td><td id="userLuckValue">-</td></tr>
-    <tr><td>Stamina:</td><td id="userStaminaValue">-</td></tr>
+    <tr><td>Obrażenia:</td><td id="userDamageValue">-</td><td>Obrona:</td><td id="userDefenseValue">-</td></tr>
+    <tr><td>Siła:</td><td id="userStrenghtValue">-</td><td>Mądrość:</td><td id="userWisdomValue">-</td></tr>
+    <tr><td>Szczęście:</td><td id="userLuckValue">-</td><td>Stamina:</td><td id="userStaminaValue">-</td></tr>
   </table>
 </div>
 
+  <div id="guildInfo">
+<table>
+  <tr><td id="guildName"></td> czyli w skrócie <td id="guildTag"></td></tr>
+</table>
+    <h3>Ilość członków: {{guildMembers?.length}}</h3>
+    <h4>Członkowie </h4>
+    <table>
+      <tr><th>Gracz</th><th>Poziom</th><th>Profesja</th></tr>
+      <tr (click)="displayGuildMemberInUserRanking($event)" class="guildMember" *ngFor="let member of guildMembers; let i = index">
+        <td>{{member.username}}</td>  <td style="text-align: center">{{member.level}}</td><td style="text-align: center">{{member.profession}}</td>
+      </tr>
+    </table>
+  </div>
 </div>
 

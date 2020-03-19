@@ -31,6 +31,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSortModule} from '@angular/material/sort';
 import {UpgradeItemComponent} from './upgradeItem/upgradeItem.component';
+import {GuildService} from './services/guild.service';
 
 
 
@@ -67,7 +68,7 @@ import {UpgradeItemComponent} from './upgradeItem/upgradeItem.component';
     MatInputModule,
     MatSortModule
   ],
-  providers: [ExamplespringService, PotworService, DropService, ChatService, UserItemsService],
+  providers: [ExamplespringService, PotworService, DropService, ChatService, UserItemsService, GuildService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

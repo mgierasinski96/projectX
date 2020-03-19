@@ -53,6 +53,17 @@ public class User {
     @JoinColumn(name = "userBackpack_id")
     private UserBackpack userBackpack;
 
+    @OneToOne
+    @JoinColumn(name = "guild_id")
+    private Guild guild;
+
+    public Guild getGuild() {
+        return guild;
+    }
+
+    public void setGuild(Guild guild) {
+        this.guild = guild;
+    }
 
     public List<Item> getShopItems() {
         return shopItems;

@@ -15,6 +15,7 @@ import {MatRow, MatTable, MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import {UserItemsService} from '../services/userItems.service';
 import {MatPaginator} from '@angular/material/paginator';
+import {GuildService} from '../services/guild.service';
 
 
 @Component({
@@ -23,7 +24,8 @@ import {MatPaginator} from '@angular/material/paginator';
   styleUrls: ['./ranking.component.css']
 })
 export class RankingComponent implements OnInit, AfterViewInit {
-dataSource;
+  dataSource;
+  dataGuildSource;
   userItemSlots;
   userItems;
   itemImg;
@@ -31,67 +33,116 @@ dataSource;
   infoAboutItem;
   rect;
   rows;
+  guildMembers
+  loggedUsername;
 
-  displayedColumns: string[] = ['position', 'username', 'level', 'total_exp', 'profession'];
+  displayedColumns: string[] = ['position', 'username', 'level', 'total_exp', 'profession', 'guild'];
+  displayedGuildColumns: string[] = ['position', 'guild_name', 'guild_tag'];
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor(private userService: UserService, private userItemsService: UserItemsService) {
+  constructor(private userService: UserService, private userItemsService: UserItemsService, private guildService: GuildService) {
   }
 
   ngOnInit() {
+    this.loggedUsername = 'dden'; // #TODO == loggedUser.getUsername
     this.userService.getUserRankingOrderByLvlDesc().subscribe(response => {
       this.dataSource = new MatTableDataSource(response);
       this.dataSource.sort = this.sort;
     });
-    document.addEventListener('DOMContentLoaded', this.documentReady);
-  }
-
-  documentReady() {
-
+    this.guildService.getAllGuilds().subscribe(response => {
+      this.dataGuildSource = new MatTableDataSource(response);
+      this.dataGuildSource.sort = this.sort;
+    });
   }
 
   ngAfterViewInit() {
-
-    setTimeout(() => {// call this function 300 ms after view init so the mat table is ready
-      this.rows = document.getElementsByClassName('mat-row cdk-row ng-star-inserted');
-      if (this.rows.length > 0) {
-        for (let i = 0; i < this.rows.length; i++) {
-          if (this.rows[i].children[1].innerText === 'admin') { // #TODO == loggedUser.getUsername
-            this.rows[i].style.background = 'lightgreen';
-            this.rows[i].scrollIntoView({
-              behavior: 'smooth',
-              block: 'center'
-            });
-          }
-        }
-
-      }
-    }, 300);
+    this.scrollTo(this.loggedUsername);
   }
-
-
-
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  displayUserData(event) {
-    // #TODO if loggedUsername!=event.target.parentNode.children[1].innerText (clicked username)????
-document.getElementById('userInfo').style.display = 'inline-block';
+  showGuilds(event) {
+    if (event.target.parentNode.children[5]?.innerText === '-') {
+    } else {
+      document.getElementById('rankingTable').style.display = 'none';
+      document.getElementById('users').style.background = 'none';
+      document.getElementById('rankingGuildTable').style.display = 'inline-block';
+      document.getElementById('guilds').style.background = 'red';
+      document.getElementById('userInfo').style.display = 'none';
+      this.rows = document.getElementsByClassName('mat-row cdk-row ng-star-inserted');
+      for (const row of this.rows) {
+        row.style.background = 'none';
+      }
+      if (event.target.parentNode.children[5]?.innerText) { // przejscie do gildii bezposrednio od usera
+        this.rows = document.getElementsByClassName('mat-row cdk-row ng-star-inserted');
+        for (let i = 0; i < this.rows.length; i++) {
+          if (this.rows[i].children[2].innerText === event.target.parentNode.children[5].innerText) {
+            this.scrollTo(this.rows[i].children[1].innerText);
+              this.getGuildData(this.rows[i].children[1].innerText);
+          }
+        }
+      }
+    }
+  }
 
+  showUsers() {
+    document.getElementById('rankingGuildTable').style.display = 'none';
+    document.getElementById('guilds').style.background = 'none';
+    document.getElementById('rankingTable').style.display = 'inline-block';
+    document.getElementById('users').style.background = 'red';
+    document.getElementById('guildInfo').style.display = 'none';
+    this.rows = document.getElementsByClassName('mat-row cdk-row ng-star-inserted');
+    for (const row of this.rows) {
+      row.style.background = 'none';
+    }
+  }
+
+  displayGuildData(event) {
     for (let i = 0; i < event.target.parentNode.parentNode.children.length; i++) {
       event.target.parentNode.parentNode.children[i].style.background = 'none';
     }
     event.target.parentNode.style.background = 'lightgreen';
-   // console.log(event.target.parentNode.children[1].innerText);
+    this.getGuildData(event.target.parentNode.children[1].innerText);
+  }
+
+  displayUserData(event) {
+    // #TODO if loggedUsername!=event.target.parentNode.children[1].innerText (clicked username)????
+    // czy user moze wyswietlic dane o samym sobie ?
+document.getElementById('userInfo').style.display = 'inline-block';
+    for (let i = 0; i < event.target.parentNode.parentNode.children.length; i++) {
+      event.target.parentNode.parentNode.children[i].style.background = 'none';
+    }
+    event.target.parentNode.style.background = 'lightgreen';
+   this.getUserItemsAndStats(event.target.parentNode.children[1].innerText);
+  }
+
+  displayGuildMemberInUserRanking(event) {
+    this.showUsers();
+    this.scrollTo(event.target.parentNode.children[0].innerText);
+    document.getElementById('userInfo').style.display = 'inline-block';
+    this.getUserItemsAndStats(event.target.parentNode.children[0].innerText);
+  }
+
+  getGuildData(guildName: string) {
+    document.getElementById('guildInfo').style.display = 'inline-block';
+    this.guildService.getGuildByGuildName(guildName).subscribe(response => {
+      document.getElementById('guildName').innerText = response.guildName;
+      document.getElementById('guildTag').innerText = response.guildTag;
+    });
+
+    this.guildService.getGuildMembersByGuildName(guildName).subscribe(response => {
+      this.guildMembers = response;
+
+    });
+  }
+  getUserItemsAndStats(username: string) {
     this.userItemSlots = document.getElementsByClassName('userItem');
     for (const userSlot of this.userItemSlots) {
       userSlot.innerHTML = '';
     }
-
-    this.userItemsService.getUserItemsByUsername(event.target.parentNode.children[1].innerText).subscribe(response => {
+    this.userItemsService.getUserItemsByUsername(username).subscribe(response => {
       this.userItems = response;
-      window.sessionStorage.setItem('userItems', JSON.stringify(this.userItems));
       for (const item of this.userItems) {
         for (const userSlot of this.userItemSlots) {
           if (userSlot.id === item.backpackSlot) {
@@ -106,8 +157,8 @@ document.getElementById('userInfo').style.display = 'inline-block';
         }
       }
     });
-    this.userService.getUserByUsername(event.target.parentNode.children[1].innerText).subscribe(response => {
-document.getElementById('userDamageValue').innerText = response.total_damage;
+    this.userService.getUserByUsername(username).subscribe(response => {
+      document.getElementById('userDamageValue').innerText = response.total_damage;
       document.getElementById('userDefenseValue').innerText = response.toughness;
       document.getElementById('userStrenghtValue').innerText = response.strength;
       document.getElementById('userWisdomValue').innerText = response.wisdom;
@@ -168,6 +219,22 @@ document.getElementById('userDamageValue').innerText = response.total_damage;
     this.infoAboutItem.style.top = this.rect.top - 121 + 'px';
     this.infoAboutItem.style.visibility = 'visible';
 
+  }
+  scrollTo(userNameOrGuildName: string) {
+    setTimeout(() => {// wait 300 ms until mat-table data is ready
+      this.rows = document.getElementsByClassName('mat-row cdk-row ng-star-inserted');
+      if (this.rows.length > 0) {
+        for (let i = 0; i < this.rows.length; i++) {
+          if (this.rows[i].children[1].innerText === userNameOrGuildName) {
+            this.rows[i].style.background = 'lightgreen';
+            this.rows[i].scrollIntoView({
+              behavior: 'smooth', // or auto
+              block: 'center'
+            });
+          }
+        }
+      }
+    }, 300);
   }
 }
 

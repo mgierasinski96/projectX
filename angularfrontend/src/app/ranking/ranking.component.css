@@ -54,6 +54,10 @@
   border-radius: 12px;
   background: red;
 }
+#rankingTable
+{
+  border-left: 5px solid red;
+}
 
 ​
 ::ng-deep .mat-sort-header-container {
@@ -72,6 +76,29 @@ mat-form-field {
   position: absolute;
   width: 200px;
   border: 2px solid black;
+}
+
+#users
+{
+  background: red;
+}
+#rankingGuildTable
+{
+  display: none;
+}
+#navi
+{
+  border: 2px solid blue;
+  top:5px;
+  background: white;
+  position: absolute;
+  left:300px;
+  font-size: 30px;
+}
+
+#navi:hover
+{
+  cursor: pointer;
 }
 th.mat-sort-header-sorted {
   color: black;
@@ -106,18 +133,23 @@ th.mat-sort-header-sorted {
 {
   top:321px;
 }
-
-#userInfo
+.guildMember:hover
 {
+  background: lightgreen;
+  cursor:pointer;
+}
+
+#userInfo,#guildInfo
+{
+  width:440px;
   margin-top: 5px;
   right:5px;
   position: absolute;
   display: none;
+  border:2px solid blue;
 }
 #equippedItems
 {
-
-
   background: rgb(93,73,57);
 }
 #userStatistics
