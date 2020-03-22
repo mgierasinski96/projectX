@@ -1,7 +1,7 @@
 package com.zipcompany.gamex.controller;
 
 import com.zipcompany.gamex.Service.*;
-import com.zipcompany.gamex.domain.ChatMessage;
+import com.zipcompany.gamex.domain.Message;
 import com.zipcompany.gamex.domain.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,21 +24,34 @@ public class TempController {
     MonsterItemService monsterItemService;
 
     @Autowired
-    ChatService chatService;
+    MessageService messageService;
 
 
     @GetMapping(value = "/getAllChatMessages")
-    List<ChatMessage> getAllChatMessages() {
-        return chatService.getAllChatMessages();
+    List<Message> getAllChatMessages() {
+        return messageService.getAllPublicMessages();
     }
 
     @GetMapping(value = "/safeChatMessage/{userId}/{content}")
-    ChatMessage safeNewChatMessege(@PathVariable("userId") long userId,@PathVariable("content") String cotent) {
-        ChatMessage chatMessage=new ChatMessage();
-        chatMessage.messageContent(cotent);
-        chatMessage.setUser(userService.getUser(userId));
-        return chatService.safeMessage(chatMessage);
+    Message safeNewChatMessege(@PathVariable("userId") long userId, @PathVariable("content") String cotent) {
+        Message message =new Message();
+        message.messageContent(cotent);
+        message.setSender(userService.getUser(userId));
+        return messageService.safeMessage(message);
     }
+    @GetMapping(value = "/getPrivateMessages/{username}")
+    List<Message> getPrivateMessages(@PathVariable("username") String username) {
+        return messageService.getAllPrivateMessages(userService.findByUsername(username));
+    }
+
+    @PostMapping(value = "/safePrivateMessage")
+    Message getPrivateMessage(@RequestBody Message message) {
+        return messageService.safeMessage(message);
+    }
+
+
+
+
 
     //    @PostMapping("/monsters/{monsterId}/{itemId}")
 //    void addMonsterToItem(@PathVariable(value = "monsterId") Long monsterId, @PathVariable(value = "itemId") Long itemId){

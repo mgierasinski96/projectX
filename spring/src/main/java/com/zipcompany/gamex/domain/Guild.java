@@ -3,6 +3,7 @@ package com.zipcompany.gamex.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,7 +19,20 @@ public class Guild {
 
     @OneToMany(mappedBy = "guild")
     @JsonIgnore
-    private List<User> guildUsers;
+    private List<User> guildUsers = new ArrayList<>();
+
+    @OneToOne
+    @JsonIgnore
+    @JoinColumn(name = "guildLeader")
+    private User guildLeader;
+
+    public User getGuildLeader() {
+        return guildLeader;
+    }
+
+    public void setGuildLeader(User guildLeader) {
+        this.guildLeader = guildLeader;
+    }
 
     public Long getId() {
         return id;

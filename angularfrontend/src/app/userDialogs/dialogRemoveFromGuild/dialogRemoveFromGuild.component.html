@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>Czy to rozsądne mistrzu?</h2>
+<mat-dialog-content>Czy na pewno chcesz wyrzucić z gildii gracza <b>{{data.username}}</b> o poziomie <b>{{data.level}}</b>?
+  <br>
+To przeciez Twój odwieczny kompan!</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close [mat-dialog-close]="true">Tak, to bezużyteczne ścierwo</button>
+  <button mat-button  mat-dialog-close [mat-dialog-close]="false" >Ok, daj mu szansę</button>
+</mat-dialog-actions>

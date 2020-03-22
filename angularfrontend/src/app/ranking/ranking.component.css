@@ -7,6 +7,17 @@
   z-index: 300;
   transition: visibility 50ms linear;
 }
+#alreadyInGuildWarning
+{
+  color: indigo;
+  font-family: "Arial Black";
+  font-size: 25px;
+  position: absolute;
+  z-index: 300;
+  opacity: 0;
+  right:4%;
+  top:40%;
+}
 #userRanking
 {
   position: absolute;
@@ -133,7 +144,7 @@ th.mat-sort-header-sorted {
 {
   top:321px;
 }
-.guildMember:hover
+.guildMember:hover,#sendGuildInvitation:hover
 {
   background: lightgreen;
   cursor:pointer;
@@ -174,4 +185,10 @@ background: lightgray;
 #userStatistics tr:nth-child(2n+1)
 {
   background: antiquewhite;
+}
+@keyframes changeVisibility {
+  0% {opacity: 0;}
+  10% {opacity: 1; }
+  70% {opacity: 1; top:25%;}
+  100% {opacity: 0; top:25%;}
 }

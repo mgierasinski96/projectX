@@ -1,0 +1,65 @@
+<div id="container">
+  <div id="content">
+    <div id="nonGuildContent" *ngIf="!appUser?.guild">
+      <button id="createGuildButton" (click)="createNewGuildWindow()">Załóż gildię</button>
+      <button id="searchGuildButton"><a [routerLink]="['/ranking/guild/showAll']">Szukaj gildii</a></button>
+    </div>
+
+    <div id="guildContent" *ngIf="appUser?.guild">
+      <table id="guildInfo">
+        <tr><td>Przed Tobą roztaczają sie dobrodziejstwa gildii <b>{{appUser?.guild.guildName}}</b>. Twoja gildia nazywana
+          bywa również <b>{{appUser?.guild.guildTag}}</b></td></tr>
+       <tr><td>Liderem gildii jest mocarny <b id="guildLeader">{{appUser?.guild?.guildLeader?.username}}</b></td></tr>
+        <tr><td>
+          <h3>Ilość członków: <b>{{guildMembers?.length}}</b></h3>
+      <h2>Członkowie </h2>
+      <table>
+
+        <tr><th>Gracz</th><th>Poziom</th><th>Profesja</th><th>Rola</th><th *ngIf="guildLeader?.username === appUser.username"> Zarządzaj graczami </th></tr>
+        <!--first display leader-->
+        <tr class="guildMember">
+        <td> <a [routerLink]="['/ranking/user/', guildLeader?.username || '']">{{guildLeader?.username}}</a></td>  <td>{{guildLeader?.level}}</td><td>{{guildLeader?.profession}}</td><td>Lider</td>
+        </tr>
+        <!--then rest of members-->
+        <ng-container *ngFor="let member of guildMembers; let i = index">
+        <tr class="guildMember"  *ngIf="guildLeader?.username !== member?.username" >
+          <td > <a [routerLink]="['/ranking/user/', member.username]">{{member.username}}</a></td>  <td>{{member.level}}</td><td>{{member.profession}}</td><td id="{{ 'role' + i }}">Członek</td>
+          <td (click)="removeUserFromGuild($event)" class="removeUserFromGuild">Wyrzuc</td>
+        </tr>
+        </ng-container>
+      </table>
+        </td>
+      </table>
+    </div>
+
+
+
+
+    <div id="form">
+      <div id="formContent">
+        <img id="closeCreatingGuildWindow" (click)="closeCreatingGuildWindow()"
+             src="https://img.icons8.com/dusk/64/000000/close-window.png">
+
+        <form class="example-form" (ngSubmit)="createGuild()" [formGroup]="newGuildForm">
+          <mat-form-field appearance="outline">
+            <mat-label>Nazwa gildii</mat-label>
+            <input matInput formControlName="guildName" required/>
+            <mat-error *ngIf="hasError('guildName')">Nazwa jest wymagana!</mat-error>
+          </mat-form-field>
+
+
+          <mat-form-field appearance="outline">
+            <mat-label>Tag gildii</mat-label>
+            <input matInput formControlName="guildTag" required/>
+            <mat-error *ngIf="hasError('guildTag')">Tag jest wymagany!</mat-error>
+          </mat-form-field>
+
+          <button mat-flat-button color="primary" type="submit" style="float: right;" [disabled]="!newGuildForm.valid">
+            Stwórz gildię
+          </button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -16,6 +16,10 @@ import {MatSort} from '@angular/material/sort';
 import {UserbackpackService} from '../services/userbackpack.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {GuildService} from '../services/guild.service';
+import {DialogRemoveFromGuildComponent} from '../userDialogs/dialogRemoveFromGuild/dialogRemoveFromGuild.component';
+import {ToastrService} from 'ngx-toastr';
+import {MatDialog} from '@angular/material/dialog';
+import {DialogAddGuildComponent} from '../userDialogs/addToGuildDialog/dialogAddGuild.component';
 
 
 @Component({
@@ -33,17 +37,26 @@ export class RankingComponent implements OnInit, AfterViewInit {
   infoAboutItem;
   rect;
   rows;
-  guildMembers
-  loggedUsername;
+  guildMembers;
+  loggedUsername; // username
+  guildOrNot; // boloean which view we display guild or user
+  specificUser;  // boloean which view we display guild or user
+  guildLeader;  // user object
+  clickedUser; // user object
 
   displayedColumns: string[] = ['position', 'username', 'level', 'total_exp', 'profession', 'guild'];
   displayedGuildColumns: string[] = ['position', 'guild_name', 'guild_tag'];
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor(private userService: UserService, private userItemsService: UserbackpackService, private guildService: GuildService) {
+  constructor(private userService: UserService, private userItemsService: UserbackpackService,
+              private guildService: GuildService, private route: ActivatedRoute, private dialog: MatDialog) {
   }
-
   ngOnInit() {
+    if (this.route.snapshot.url[1]?.toString() === 'guild') {
+      this.guildOrNot = true;
+    }    else if (this.route.snapshot.url[1]?.toString() === 'user') {
+      this.specificUser = true;
+    }
     this.loggedUsername = 'dden'; // #TODO == loggedUser.getUsername
     this.userService.getUserRankingOrderByLvlDesc().subscribe(response => {
       this.dataSource = new MatTableDataSource(response);
@@ -56,14 +69,44 @@ export class RankingComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.scrollTo(this.loggedUsername);
+    if (this.guildOrNot) {
+      this.showGuilds(event);
+      if (this.route.snapshot.paramMap.get('guildName') !== 'showAll') {
+        this.scrollTo(this.route.snapshot.paramMap.get('guildName'));
+      }
+    } else if (this.specificUser) {
+      console.log('specific user/ ' + this.route.snapshot.paramMap.get('user'))
+      this.scrollTo(this.route.snapshot.paramMap.get('user'));
+    } else {
+      console.log('logged user')
+      this.scrollTo(this.loggedUsername);
+    }
   }
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  sendGuildInvitation() {
+    if (this.clickedUser.guild?.guildName !== 'gumisi') { // #TODO Get logged user guildname from session storage
+    const dialog = this.dialog.open(DialogAddGuildComponent, {
+      data: {
+        username: this.clickedUser.username,
+        level: this.clickedUser.level,
+        myguild: 'pobierzNazweGildiiPoZagolowaniu' // #TODO Get logged user guildname from session storage
+      }
+    });
+    dialog.afterClosed().subscribe(result => {
+      if (result) {
+        this.guildService.sendGuildInvitation(this.clickedUser.username, this.loggedUsername, 'gumisie').subscribe();
+      }
+    });
+    } else {
+      document.getElementById('alreadyInGuildWarning').style.animation = 'changeVisibility 2s';
+    }
+  }
+
   showGuilds(event) {
-    if (event.target.parentNode.children[5]?.innerText === '-') {
+    if (event?.target?.parentNode?.children[5]?.innerText === '-') {
     } else {
       document.getElementById('rankingTable').style.display = 'none';
       document.getElementById('users').style.background = 'none';
@@ -74,7 +117,7 @@ export class RankingComponent implements OnInit, AfterViewInit {
       for (const row of this.rows) {
         row.style.background = 'none';
       }
-      if (event.target.parentNode.children[5]?.innerText) { // przejscie do gildii bezposrednio od usera
+      if (event?.target?.parentNode?.children[5]?.innerText) { // przejscie do gildii bezposrednio od usera
         this.rows = document.getElementsByClassName('mat-row cdk-row ng-star-inserted');
         for (let i = 0; i < this.rows.length; i++) {
           if (this.rows[i].children[2].innerText === event.target.parentNode.children[5].innerText) {
@@ -132,11 +175,14 @@ document.getElementById('userInfo').style.display = 'inline-block';
     });
 
     this.guildService.getGuildMembersByGuildName(guildName).subscribe(response => {
-      this.guildMembers = response;
-
+      this.guildMembers = response; // find all guild
+      this.guildService.getGuildLeaderByGuildName(guildName).subscribe(response1 => {
+        this.guildLeader = response1;
+      });
     });
   }
   getUserItemsAndStats(username: string) {
+    document.getElementById('alreadyInGuildWarning').style.animation = '';
     this.userItemSlots = document.getElementsByClassName('userItem');
     for (const userSlot of this.userItemSlots) {
       userSlot.innerHTML = '';
@@ -158,6 +204,7 @@ document.getElementById('userInfo').style.display = 'inline-block';
       }
     });
     this.userService.getUserByUsername(username).subscribe(response => {
+      this.clickedUser = response;
       document.getElementById('userDamageValue').innerText = response.total_damage;
       document.getElementById('userDefenseValue').innerText = response.toughness;
       document.getElementById('userStrenghtValue').innerText = response.strength;

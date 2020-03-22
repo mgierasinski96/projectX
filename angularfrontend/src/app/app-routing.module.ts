@@ -12,6 +12,8 @@ import {AuctionHouseComponent} from './auction-house/auction-house.component';
 import {TemporaryComponent} from './temporary/temporary.component';
 import {RankingComponent} from './ranking/ranking.component';
 import {UpgradeItemComponent} from './upgradeItem/upgradeItem.component';
+import {GuildComponent} from './guild/guild.component';
+import {MessageComponent} from './message/message.component';
 
 
 // Delkaracja na jakim url ma się wyrenderować jaki komponent. Pojawi się w miejscu deklaracji <router-outlet>
@@ -27,7 +29,11 @@ const routes: Routes = [
   {path: 'location1', component: LocationComponent},
   {path: 'auctions', component: AuctionHouseComponent},
   {path: 'tmp', component: TemporaryComponent},
-  {path: 'ranking', component: RankingComponent}
+  {path: 'ranking', component: RankingComponent},
+  {path: 'ranking/guild/:guildName', component: RankingComponent, pathMatch: 'full'},
+  {path: 'ranking/user/:user', component: RankingComponent, pathMatch: 'full'},
+  {path: 'guild', component: GuildComponent},
+  {path: 'messages', component: MessageComponent}
 
 
 ];

@@ -14,6 +14,7 @@ import {Params} from '@angular/router';
 export class ChatService {
   API_URL_GET_CHAT_MESSAGES = 'http://localhost:8080/getAllChatMessages';
   API_URL_SAFE_CHAT_MESSEGE = 'http://localhost:8080/safeChatMessage/';
+  API_URL_GET_PRIVATE_MESSAGES = 'http://localhost:8080/getPrivateMessages/';
 
 
   private currentUser: any;
@@ -24,6 +25,9 @@ export class ChatService {
   }
   safeNewMessage(userId: number, messegeContent: String): Observable<any> {
     return this.httpClient.get<any>(this.API_URL_SAFE_CHAT_MESSEGE + userId + '/' + messegeContent);
+  }
+  getPrivateMessages(username: string): Observable<any> {
+    return this.httpClient.get<any>(this.API_URL_GET_PRIVATE_MESSAGES + username);
   }
 
 

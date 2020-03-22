@@ -1,4 +1,5 @@
 <div id="userRanking">
+  <div id="alreadyInGuildWarning">Ten gracz jest już w Twojej gildii!</div>
   <div id="infoAboutItem">
     <table style="width: 100%">
       <tr>
@@ -116,7 +117,7 @@
 
   </table>
   <table id="userStatistics">
-    <tr><td>Obrażenia:</td><td id="userDamageValue">-</td><td>Obrona:</td><td id="userDefenseValue">-</td></tr>
+    <tr><td>Obrażenia:</td><td id="userDamageValue">-</td><td>Obrona:</td><td id="userDefenseValue">-</td><td matTooltip="Zaproś gracza do gildii"><img (click)="sendGuildInvitation()" id="sendGuildInvitation" src="https://img.icons8.com/dusk/40/000000/meeting.png"/></td></tr>
     <tr><td>Siła:</td><td id="userStrenghtValue">-</td><td>Mądrość:</td><td id="userWisdomValue">-</td></tr>
     <tr><td>Szczęście:</td><td id="userLuckValue">-</td><td>Stamina:</td><td id="userStaminaValue">-</td></tr>
   </table>
@@ -129,10 +130,20 @@
     <h3>Ilość członków: {{guildMembers?.length}}</h3>
     <h4>Członkowie </h4>
     <table>
-      <tr><th>Gracz</th><th>Poziom</th><th>Profesja</th></tr>
-      <tr (click)="displayGuildMemberInUserRanking($event)" class="guildMember" *ngFor="let member of guildMembers; let i = index">
-        <td>{{member.username}}</td>  <td style="text-align: center">{{member.level}}</td><td style="text-align: center">{{member.profession}}</td>
+      <tr><th>Gracz</th><th>Poziom</th><th>Profesja</th><th>Rola</th></tr>
+      <!--first display leader-->
+      <tr class="guildMember" (click)="displayGuildMemberInUserRanking($event)">
+        <td>{{guildLeader?.username}}</td>  <td style="text-align: center">{{guildLeader?.level}}</td><td style="text-align: center">{{guildLeader?.profession}}</td><td style="text-align: center">Lider</td>
       </tr>
+      <!--then rest of members-->
+      <ng-container *ngFor="let member of guildMembers; let i = index">
+        <tr class="guildMember" (click)="displayGuildMemberInUserRanking($event)"  *ngIf="guildLeader?.username !== member?.username" >
+          <td >{{member.username}}</td>  <td style="text-align: center">{{member.level}}</td><td  style="text-align: center">{{member.profession}}</td><td id="{{ 'role' + i }}" style="text-align: center">Członek</td>
+        </tr>
+      </ng-container>
+      <!--<tr  class="guildMember" *ngFor="let member of guildMembers; let i = index">-->
+        <!--<td>{{member.username}}</td>  <td style="text-align: center">{{member.level}}</td><td style="text-align: center">{{member.profession}}</td><td id="{{ 'role' + i }}" style="text-align: center">Członek</td>-->
+      <!--</tr>-->
     </table>
   </div>
 </div>

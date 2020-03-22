@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MycharacterComponent} from './mycharacter/mycharacter.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {PotworComponent} from './potwor/potwor.component';
@@ -32,6 +32,15 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSortModule} from '@angular/material/sort';
 import {UpgradeItemComponent} from './upgradeItem/upgradeItem.component';
 import {GuildService} from './services/guild.service';
+import {GuildComponent} from './guild/guild.component';
+import {ToastrModule} from 'ngx-toastr';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogRemoveFromGuildComponent } from './userDialogs/dialogRemoveFromGuild/dialogRemoveFromGuild.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {DialogAddGuildComponent} from './userDialogs/addToGuildDialog/dialogAddGuild.component';
+import {MessageComponent} from './message/message.component';
+import {SanitizeHtmlPipe} from './pipes/SanitizeHtmlPipe';
 
 
 
@@ -41,6 +50,7 @@ import {GuildService} from './services/guild.service';
     PotworComponent,
     MycharacterComponent,
     SkillPricePipe,
+    SanitizeHtmlPipe,
     CheckSkillPossiblePipe,
     GetNextLvlExpPipe,
     GetExpBarWidthPipe,
@@ -54,8 +64,13 @@ import {GuildService} from './services/guild.service';
     AuctionHouseComponent,
     TemporaryComponent,
     RankingComponent,
-    UpgradeItemComponent
+    UpgradeItemComponent,
+    GuildComponent,
+    DialogRemoveFromGuildComponent,
+    DialogAddGuildComponent,
+    MessageComponent
   ],
+  entryComponents: [DialogRemoveFromGuildComponent, DialogAddGuildComponent],
   imports: [
     AppRoutingModule,
     BrowserModule,
@@ -63,11 +78,16 @@ import {GuildService} from './services/guild.service';
     HttpClientModule,
     DragDropModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     MatButtonModule,
+    MatTooltipModule,
     MatTableModule,
+    ToastrModule.forRoot(),
     MatFormFieldModule,
+    MatCheckboxModule,
+  MatSortModule,
+    MatDialogModule,
     MatInputModule,
-    MatSortModule
   ],
   providers: [PotworService, DropService, ChatService, UserbackpackService, GuildService],
   bootstrap: [AppComponent]

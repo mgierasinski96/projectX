@@ -6,20 +6,23 @@ import java.util.Date;
 
 
 @Entity
-public class ChatMessage {
+public class Message {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    private User user;
+    private User sender;
+
+    @ManyToOne
+    private User receiver;
 
     private String messageContent;
 
     private Date messageDate;
 
-    public ChatMessage()
+    public Message()
     {
         this.messageDate=new Date();
 
@@ -33,12 +36,28 @@ public class ChatMessage {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public User getSender() {
+        return sender;
+    }
+
+    public void setSender(User sender) {
+        this.sender = sender;
+    }
+
+    public User getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(User receiver) {
+        this.receiver = receiver;
+    }
+
+    public void setMessageContent(String messageContent) {
+        this.messageContent = messageContent;
     }
 
     public String getMessageContent() {
@@ -59,9 +78,8 @@ public class ChatMessage {
 
     @Override
     public String toString() {
-        return "ChatMessage{" +
+        return "Message{" +
                 "id=" + id +
-                ", user=" + user +
                 ", messageContent='" + messageContent + '\'' +
                 ", messageDate=" + messageDate +
                 '}';
