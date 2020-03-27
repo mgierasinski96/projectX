@@ -26,10 +26,11 @@ export class ShopComponent implements OnInit {
   }
   ngOnInit() {
     this.shopSlotIterator = 1; // ustawienie zmiennej na 1 czyli zaczynamy dodawac przedmioty do okien sklepu od okna1
-    this.dropService.getShopItemsForUser(4).subscribe(response => {
+    // #TODO ID USERA NA SZTYWNO 4
+    this.dropService.getShopItemsForUser(14).subscribe(response => {
       this.itemsToShop = response;
       window.sessionStorage.setItem('items', JSON.stringify(this.itemsToShop)); // dodanie itemow do sesji
-      // tak zeby mozna sie bylo odwolywac do nich w metodzie mouseOverItem -> kurestwo inaczej mowi ze itemsToShop to undefinied
+      // tak zeby mozna sie bylo odwolywac do nich w metodzie mouseOverItem -> kurestwo inaczej mowi ze guildItems to undefinied
 
       for (const item of this.itemsToShop) {  // dla wszystkich pobranych elementow
         this.itemImg = document.createElement('img'); // stworzenie nowego elementu html typu img
@@ -44,8 +45,8 @@ export class ShopComponent implements OnInit {
       }
     });
 
-
-    this.userItemsService.getUserItems(4).subscribe(response => { // W PRZYSZLOSCI NIE MOZNA POBIERAC LOSOWYCH OFC
+    // #TODO ID USERA NA SZTYWNO 4
+    this.userItemsService.getUserItems(14).subscribe(response => { // W PRZYSZLOSCI NIE MOZNA POBIERAC LOSOWYCH OFC
       this.userItems = response;
       window.sessionStorage.setItem('userItems', JSON.stringify(this.userItems));
       for (const item of this.userItems) {  // dla wszystkich pobranych elementow
@@ -192,7 +193,7 @@ export class ShopComponent implements OnInit {
         document.getElementById('dialog').innerText = 'Dobry wybór!';
         // #TODO ID USERA NA SZTYWNO 4
 
-       this.userItemsService.addItemToUser(4, event.item.element.nativeElement.children[0].id.split('-')[0],
+       this.userItemsService.addItemToUser(14, event.item.element.nativeElement.children[0].id.split('-')[0],
          event.container.element.nativeElement.children[0].id) .subscribe();
         document.getElementById(event.container.element.nativeElement.children[0].id).append
         (document.getElementById(event.item.element.nativeElement.children[0].id));
@@ -216,7 +217,7 @@ export class ShopComponent implements OnInit {
     // w tym okienku
     if (event.container.element.nativeElement.id.includes('shop') && this.previusDragContainer.includes('slot')) {
       // #TODO ID USERA NA SZTYWNO 4
-      this.userItemsService.removeItemFromUser(4, 'userItem' + event.previousContainer.element.nativeElement.id.split('-')[1])
+      this.userItemsService.removeItemFromUser(14, 'userItem' + event.previousContainer.element.nativeElement.id.split('-')[1])
         .subscribe();
 
         // #TODO

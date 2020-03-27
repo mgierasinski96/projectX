@@ -1,5 +1,6 @@
 package com.zipcompany.gamex.controller;
 
+import com.zipcompany.gamex.DTO.PrivateMessageDTO;
 import com.zipcompany.gamex.Service.*;
 import com.zipcompany.gamex.domain.Message;
 import com.zipcompany.gamex.domain.Item;
@@ -30,6 +31,16 @@ public class TempController {
     @GetMapping(value = "/getAllChatMessages")
     List<Message> getAllChatMessages() {
         return messageService.getAllPublicMessages();
+    }
+
+    @PostMapping(value = "/writePrivateMessage")
+    Message writePrivateMessage(@RequestBody PrivateMessageDTO privateMessageDTO) {
+        Message message = new Message();
+        message.setMessageContent(privateMessageDTO.getContent());
+        message.setReceiver(userService.findByUsername(privateMessageDTO.getReceiver()));
+        message.setSender(userService.findByUsername(privateMessageDTO.getSender()));
+
+       return messageService.safeMessage(message);
     }
 
     @GetMapping(value = "/safeChatMessage/{userId}/{content}")

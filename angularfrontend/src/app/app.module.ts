@@ -41,6 +41,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {DialogAddGuildComponent} from './userDialogs/addToGuildDialog/dialogAddGuild.component';
 import {MessageComponent} from './message/message.component';
 import {SanitizeHtmlPipe} from './pipes/SanitizeHtmlPipe';
+import {GuildStoreComponent} from './guildStore/guildStore.component';
 
 
 
@@ -68,7 +69,8 @@ import {SanitizeHtmlPipe} from './pipes/SanitizeHtmlPipe';
     GuildComponent,
     DialogRemoveFromGuildComponent,
     DialogAddGuildComponent,
-    MessageComponent
+    MessageComponent,
+    GuildStoreComponent
   ],
   entryComponents: [DialogRemoveFromGuildComponent, DialogAddGuildComponent],
   imports: [

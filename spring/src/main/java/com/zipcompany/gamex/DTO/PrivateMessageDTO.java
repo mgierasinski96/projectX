@@ -1,0 +1,40 @@
+package com.zipcompany.gamex.DTO;
+
+public class PrivateMessageDTO {
+    private String content;
+    private String receiver;
+    private String sender;
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(String receiver) {
+        this.receiver = receiver;
+    }
+
+    public String getSender() {
+        return sender;
+    }
+
+    public void setSender(String sender) {
+        this.sender = sender;
+    }
+
+    @Override
+    public String toString() {
+        return "PrivateMessageDTO{" +
+                "content='" + content + '\'' +
+                ", receiver='" + receiver + '\'' +
+                ", sender='" + sender + '\'' +
+                '}';
+    }
+}

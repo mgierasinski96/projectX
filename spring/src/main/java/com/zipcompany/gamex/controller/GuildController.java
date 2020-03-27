@@ -1,11 +1,7 @@
 package com.zipcompany.gamex.controller;
 
-import com.zipcompany.gamex.Service.GuildService;
-import com.zipcompany.gamex.Service.MessageService;
-import com.zipcompany.gamex.Service.UserService;
-import com.zipcompany.gamex.domain.Guild;
-import com.zipcompany.gamex.domain.Message;
-import com.zipcompany.gamex.domain.User;
+import com.zipcompany.gamex.Service.*;
+import com.zipcompany.gamex.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,12 +14,16 @@ public class GuildController {
     private GuildService guildService;
     private UserService userService;
     private MessageService messageService;
+    private UserItemService userItemService;
+    private GuildItemService guildItemService;
 
     @Autowired
-    public GuildController(GuildService guildService, UserService userService,MessageService messageService) {
+    public GuildController(GuildService guildService, UserService userService,MessageService messageService, UserItemService userItemService, GuildItemService guildItemService) {
         this.guildService = guildService;
         this.userService = userService;
         this.messageService = messageService;
+        this.userItemService = userItemService;
+        this.guildItemService = guildItemService;
     }
 
 
@@ -37,8 +37,37 @@ public class GuildController {
         User user=userService.findByUsername(leaderUsername);
         guild.setGuildLeader(user);
         guild.getGuildUsers().add(user);
+        guild.setMainBuildingLevel(1);
+        guild.setStoreLevel(1);
         user.setGuild(guild);
         return guildService.safeGuild(guild);
+    }
+
+    @GetMapping(value ="/addUserItemToGuildStore/{userItemId}/{guildSlot}")
+    public void addUserItemToGuildStore(@PathVariable("userItemId") long userItemId, @PathVariable("guildSlot") String guildSlot)
+    {
+        UserItem userItem=userItemService.getUserItemById(userItemId);
+        userItemService.transferItemToDifferentSlot(userItemId , guildSlot);
+
+        GuildItem guildItem=new GuildItem();
+        guildItem.setGuildSlot(guildSlot);
+        guildItem.setOwnerUsername(userItem.getUserBackpack().getUser().getUsername());
+        guildItem.setUserItem(userItem);
+        guildItemService.safeGuildItem(guildItem);
+
+        Guild guild= userItem.getUserBackpack().getUser().getGuild();
+        guild.getGuildItems().add(guildItem);
+        guildService.safeGuild(guild);
+    }
+
+    @GetMapping(value ="/removeUserItemFromGuildStoreAndAddToUser/{userItemId}/{username}/{backpackSlot}")
+    public void removeUserItemFromGuildStoreAndAddToUser(@PathVariable("userItemId") long userItemId, @PathVariable("username") String username, @PathVariable("backpackSlot") String backpackSlot)
+    {
+        User user= userService.findByUsername(username);
+        UserItem userItem= userItemService.getUserItemById(userItemId);
+        userItem.setUserBackpack(user.getUserBackpack());
+        userItem.setBackpackSlot(backpackSlot);
+        guildItemService.deleteGuildItem(guildItemService.findByUserItem(userItem));
     }
 
     @GetMapping(value = "/sendInvitation/{invitedUsername}/{ivitingUsername}/{guildName}")
@@ -56,6 +85,13 @@ public class GuildController {
             User user=userService.findByUsername(username);
             user.setGuild(null);
             userService.safeUser(user);
+    }
+
+    @GetMapping(value = "/donateGuildGold/{amount}/{username}")
+    public void donateGuildGold(@PathVariable("username") String username, @PathVariable("amount") int amount) {
+        Guild guild=  userService.findByUsername(username).getGuild();
+        guild.setGuildGold(guild.getGuildGold() + amount);
+       guildService.safeGuild(guild);
     }
 
     @GetMapping(value = "/getGuildByGuildName/{guildName}")

@@ -15,7 +15,7 @@ export class ChatService {
   API_URL_GET_CHAT_MESSAGES = 'http://localhost:8080/getAllChatMessages';
   API_URL_SAFE_CHAT_MESSEGE = 'http://localhost:8080/safeChatMessage/';
   API_URL_GET_PRIVATE_MESSAGES = 'http://localhost:8080/getPrivateMessages/';
-
+  API_URL_WRITE_PRIVATE_MESSAGE = 'http://localhost:8080/writePrivateMessage/';
 
   private currentUser: any;
   constructor(private httpClient: HttpClient) {
@@ -30,5 +30,8 @@ export class ChatService {
     return this.httpClient.get<any>(this.API_URL_GET_PRIVATE_MESSAGES + username);
   }
 
+  writePrivateMessage(message): Observable<any> {
+    return this.httpClient.post(this.API_URL_WRITE_PRIVATE_MESSAGE, message);
+  }
 
-}
+  }

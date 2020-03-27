@@ -20,6 +20,8 @@ import {DialogRemoveFromGuildComponent} from '../userDialogs/dialogRemoveFromGui
 import {ToastrService} from 'ngx-toastr';
 import {MatDialog} from '@angular/material/dialog';
 import {DialogAddGuildComponent} from '../userDialogs/addToGuildDialog/dialogAddGuild.component';
+import {FormControl, FormGroup} from '@angular/forms';
+import {ChatService} from '../services/chat.service';
 
 
 @Component({
@@ -43,13 +45,21 @@ export class RankingComponent implements OnInit, AfterViewInit {
   specificUser;  // boloean which view we display guild or user
   guildLeader;  // user object
   clickedUser; // user object
+  guild;
+  newMessageForm = new FormGroup({
+    id: new FormControl(''),
+    receiver: new FormControl(''),
+    content: new FormControl(''),
+    sender: new FormControl(''),
+  });
 
   displayedColumns: string[] = ['position', 'username', 'level', 'total_exp', 'profession', 'guild'];
   displayedGuildColumns: string[] = ['position', 'guild_name', 'guild_tag'];
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(private userService: UserService, private userItemsService: UserbackpackService,
-              private guildService: GuildService, private route: ActivatedRoute, private dialog: MatDialog) {
+              private guildService: GuildService, private route: ActivatedRoute, private dialog: MatDialog,
+              private chatService: ChatService, private toastr: ToastrService) {
   }
   ngOnInit() {
     if (this.route.snapshot.url[1]?.toString() === 'guild') {
@@ -170,8 +180,7 @@ document.getElementById('userInfo').style.display = 'inline-block';
   getGuildData(guildName: string) {
     document.getElementById('guildInfo').style.display = 'inline-block';
     this.guildService.getGuildByGuildName(guildName).subscribe(response => {
-      document.getElementById('guildName').innerText = response.guildName;
-      document.getElementById('guildTag').innerText = response.guildTag;
+  this.guild = response;
     });
 
     this.guildService.getGuildMembersByGuildName(guildName).subscribe(response => {
@@ -213,7 +222,31 @@ document.getElementById('userInfo').style.display = 'inline-block';
       document.getElementById('userStaminaValue').innerText = response.stamina;
     });
   }
+  sendPrivateMessage() {
 
+document.getElementById('messageFormContainer').style.display = 'inline-block';
+    this.newMessageForm.controls['receiver'].setValue(this.clickedUser.username);
+    this.newMessageForm.controls['sender'].setValue(this.loggedUsername);
+    document.getElementById('textAreaContent').focus();
+  }
+
+  sendMessage() {
+    if (!this.newMessageForm.valid) {
+      return false;
+    }
+    this.chatService.writePrivateMessage(this.newMessageForm.value).subscribe(data => {
+        this.toastr.success('Sukces!', 'Wiadomość została wysłana');
+        this.closeMessageWindow();
+      },
+      error => {
+        this.toastr.error('Błąd!', 'Coś poszło nie tak');
+      });
+
+  }
+
+  closeMessageWindow() {
+    document.getElementById('messageFormContainer').style.display = 'none';
+  }
   mouseOutItem() {
     document.getElementById(this.actualHoverItem.itemType.toLowerCase() + 'HolderPhoto').style.opacity = '1';
     this.infoAboutItem.style.visibility = 'hidden';
@@ -282,6 +315,10 @@ document.getElementById('userInfo').style.display = 'inline-block';
         }
       }
     }, 300);
+  }
+
+  hasError(controlName) {
+    return this.newMessageForm.get(controlName).hasError;
   }
 }
 

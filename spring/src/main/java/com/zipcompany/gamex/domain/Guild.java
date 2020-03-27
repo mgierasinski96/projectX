@@ -26,6 +26,50 @@ public class Guild {
     @JoinColumn(name = "guildLeader")
     private User guildLeader;
 
+    private int guildGold;
+
+    private int mainBuildingLevel;
+
+    private int storeLevel;
+
+
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name ="guild_items")
+    private List<GuildItem> guildItems= new ArrayList<>();
+
+    public List<GuildItem> getGuildItems() {
+        return guildItems;
+    }
+
+    public void setGuildItems(List<GuildItem> guildItems) {
+        this.guildItems = guildItems;
+    }
+
+    public int getMainBuildingLevel() {
+        return mainBuildingLevel;
+    }
+
+    public void setMainBuildingLevel(int mainBuildingLevel) {
+        this.mainBuildingLevel = mainBuildingLevel;
+    }
+
+    public int getStoreLevel() {
+        return storeLevel;
+    }
+
+    public void setStoreLevel(int storeLevel) {
+        this.storeLevel = storeLevel;
+    }
+
+    public int getGuildGold() {
+        return guildGold;
+    }
+
+    public void setGuildGold(int guildGold) {
+        this.guildGold = guildGold;
+    }
+
     public User getGuildLeader() {
         return guildLeader;
     }

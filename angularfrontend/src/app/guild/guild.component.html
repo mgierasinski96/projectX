@@ -12,6 +12,20 @@
        <tr><td>Liderem gildii jest mocarny <b id="guildLeader">{{appUser?.guild?.guildLeader?.username}}</b></td></tr>
         <tr><td>
           <h3>Ilość członków: <b>{{guildMembers?.length}}</b></h3>
+         <h3>Ilość złota w skarbcu: <b id="goldAmount">{{appUser?.guild.guildGold}}</b></h3>
+          <form id="guildDonate" (ngSubmit)="donateGuild()" [formGroup]="newGoldForm">
+            <mat-form-field appearance="outline">
+              Dokonaj wpłaty złota:
+              <input matInput formControlName="amount" required/>
+            </mat-form-field>
+            <button mat-flat-button color="primary" type="submit" style="margin-left: 10px" [disabled]="!newGoldForm.valid">
+             Wpłać
+            </button>
+          </form>
+
+          <h2>Budynki </h2>
+          <h3 class="navBuilding">Budynek głowny: {{appUser?.guild.mainBuildingLevel}}</h3>
+          <h3 class="navBuilding" (click)="showStore()">Magazyn: {{appUser?.guild.storeLevel}}</h3>
       <h2>Członkowie </h2>
       <table>
 
@@ -39,7 +53,6 @@
       <div id="formContent">
         <img id="closeCreatingGuildWindow" (click)="closeCreatingGuildWindow()"
              src="https://img.icons8.com/dusk/64/000000/close-window.png">
-
         <form class="example-form" (ngSubmit)="createGuild()" [formGroup]="newGuildForm">
           <mat-form-field appearance="outline">
             <mat-label>Nazwa gildii</mat-label>

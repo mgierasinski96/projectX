@@ -5,6 +5,7 @@ import {GuildService} from '../services/guild.service';
 import { ToastrService } from 'ngx-toastr';
 import {MatDialog} from '@angular/material/dialog';
 import {DialogRemoveFromGuildComponent} from '../userDialogs/dialogRemoveFromGuild/dialogRemoveFromGuild.component';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -20,17 +21,21 @@ export class GuildComponent implements OnInit {
     guildName: new FormControl(''),
     guildTag: new FormControl(''),
   });
-  constructor(private userService: UserService, private guildService: GuildService, private toastr: ToastrService, private dialog: MatDialog) {
+  newGoldForm = new FormGroup({
+    amount: new FormControl('')
+  });
+  constructor(private userService: UserService, private guildService: GuildService, private toastr: ToastrService,
+              private dialog: MatDialog, private router: Router) {
   }
 appUser;
-  guildLeader
-  guildMembers
+  guildLeader;
+  guildMembers;
 
   ngOnInit() {
-   // this.appUser=sessionStorage.getItem('') #TODO GET APP USER FROM SESSION STORAGE AND CHECK IF HE HAS GUILD
+    // this.appUser=sessionStorage.getItem('') #TODO GET APP USER FROM SESSION STORAGE AND CHECK IF HE HAS GUILD
     this.userService.getUserByUsername('dden').subscribe(response => {
 
-this.appUser = response;
+      this.appUser = response;
       if (this.appUser.guild) {
         this.guildService.getGuildLeaderByGuildName(this.appUser.guild.guildName).subscribe(response2 => {
           document.getElementById('guildLeader').innerText = response2.username + ' o poziomie ' + response2.level;
@@ -41,6 +46,19 @@ this.appUser = response;
     });
   }
 
+  donateGuild() {
+
+   // if ( ENTER USER GOLD > this.newGoldForm.controls['amount'].value) { // #TODO ENTER USER GOLD
+      this.guildService.donateGuildGold(this.newGoldForm.controls['amount'].value, this.appUser.username).subscribe();
+      document.getElementById('goldAmount').innerText = parseInt(document.getElementById('goldAmount').innerText,
+        0) + parseInt(this.newGoldForm.controls['amount'].value, 0) + '';
+      this.newGoldForm.controls['amount'].setValue('');
+      this.toastr.success('Dokonałeś wpłaty');
+   // } else {
+   // this.toastr.error('Nie masz wystarczająco złota');
+
+  //  }
+  }
   getGuildData(guildName) {
     this.guildService.getGuildMembersByGuildName(guildName).subscribe(response => {
       this.guildMembers = response; // find all guild members and among them find guild leeader
@@ -87,6 +105,11 @@ this.appUser = response;
 
   closeCreatingGuildWindow() {
     document.getElementById('form').style.display = 'none';
+  }
+  // GUILD BUILDINGS
+  showStore()
+  {
+    this.router.navigateByUrl('/guildStore');
   }
 
 

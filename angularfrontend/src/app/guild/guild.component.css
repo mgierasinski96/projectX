@@ -42,11 +42,15 @@
 input ::ng-deep{
   font-size: 28px;
 }
+#guildDonate
+{
+  position: relative;
+}
 mat-error ::ng-deep{
   color: blue;
   font-size: 14px;
 }
-.removeUserFromGuild:hover
+.removeUserFromGuild:hover, .navBuilding:hover
 {
   cursor: pointer;
   background: red;

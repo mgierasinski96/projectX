@@ -13,7 +13,7 @@
 
       <ng-container matColumnDef="messageDate">
         <th mat-header-cell *matHeaderCellDef mat-sort-header >Data</th>
-        <td mat-cell *matCellDef="let message">{{ message.messageDate  | date:'MMM d, y, H:mm':'pl'}}</td>
+        <td mat-cell class="{{message.messageDate}}" *matCellDef="let message">{{ message.messageDate  | date:'MMM d, y, H:mm':'pl'}}</td>
       </ng-container>
 
         <ng-container matColumnDef="messageContent">
@@ -21,10 +21,44 @@
         <td mat-cell class="eachMessageContent" [innerHTML]="message.messageContent | sanitizeHtml" *matCellDef="let message"></td>
       </ng-container>
 
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header >Akcja</th>
+        <td mat-cell class="eachMessageContent" *matCellDef="let message"><button (click)="sendPrivateMessage($event)">Odpowiedz</button> </td>
+      </ng-container>
+
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row (click)="displayOrHideMessage($event)"  *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
     </div>
 
 
+</div>
+<div id="messageFormContainer">
+  <div id="messageFormContainerContent">
+    <img id="closeMessageWindow" (click)="closeMessageWindow()"
+         src="https://img.icons8.com/dusk/64/000000/close-window.png">
+    <form class="example-form" (ngSubmit)="sendMessage()" [formGroup]="newMessageForm">
+      <mat-form-field appearance="outline">
+        <mat-label>Odbiorca</mat-label>
+        <input matInput readonly formControlName="receiver" required/>
+      </mat-form-field>
+
+
+      <mat-form-field appearance="outline">
+        <mat-label>Zawartość</mat-label>
+        <textarea id="textAreaContent" maxlength="255" rows="6" matInput formControlName="content" required></textarea>
+        <mat-error *ngIf="hasError('content')">Treść jest wymagana!</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Nadawca</mat-label>
+        <input matInput readonly formControlName="sender" required/>
+      </mat-form-field>
+
+      <button mat-flat-button color="primary" type="submit" style="float: right;" [disabled]="!newMessageForm.valid">
+        Wyślij
+      </button>
+    </form>
+  </div>
 </div>

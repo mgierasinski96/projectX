@@ -118,17 +118,19 @@
   </table>
   <table id="userStatistics">
     <tr><td>Obrażenia:</td><td id="userDamageValue">-</td><td>Obrona:</td><td id="userDefenseValue">-</td><td matTooltip="Zaproś gracza do gildii"><img (click)="sendGuildInvitation()" id="sendGuildInvitation" src="https://img.icons8.com/dusk/40/000000/meeting.png"/></td></tr>
-    <tr><td>Siła:</td><td id="userStrenghtValue">-</td><td>Mądrość:</td><td id="userWisdomValue">-</td></tr>
+    <tr><td>Siła:</td><td id="userStrenghtValue">-</td><td>Mądrość:</td><td id="userWisdomValue">-</td><td matTooltip="Wyslij wiadomość" ><img (click)="sendPrivateMessage()" id="sendPrivateMessage" src="https://img.icons8.com/dusk/40/000000/new-message.png"/></td></tr>
     <tr><td>Szczęście:</td><td id="userLuckValue">-</td><td>Stamina:</td><td id="userStaminaValue">-</td></tr>
   </table>
 </div>
 
   <div id="guildInfo">
 <table>
-  <tr><td id="guildName"></td> czyli w skrócie <td id="guildTag"></td></tr>
+  <tr><td>{{guild?.guildName}}</td> czyli w skrócie <td>{{guild?.guildTag}}</td></tr>
 </table>
     <h3>Ilość członków: {{guildMembers?.length}}</h3>
+    <h3>Złoto w skarbcu: {{guild?.guildGold}}</h3>
     <h4>Członkowie </h4>
+
     <table>
       <tr><th>Gracz</th><th>Poziom</th><th>Profesja</th><th>Rola</th></tr>
       <!--first display leader-->
@@ -147,4 +149,31 @@
     </table>
   </div>
 </div>
+<div id="messageFormContainer">
+  <div id="messageFormContainerContent">
+    <img id="closeMessageWindow" (click)="closeMessageWindow()"
+         src="https://img.icons8.com/dusk/64/000000/close-window.png">
+<form class="example-form" (ngSubmit)="sendMessage()" [formGroup]="newMessageForm">
+  <mat-form-field appearance="outline">
+    <mat-label>Odbiorca</mat-label>
+    <input matInput readonly formControlName="receiver" required/>
+  </mat-form-field>
 
+
+  <mat-form-field appearance="outline">
+    <mat-label>Zawartość</mat-label>
+    <textarea id="textAreaContent" maxlength="255" rows="6" matInput formControlName="content" required></textarea>
+    <mat-error *ngIf="hasError('content')">Treść jest wymagana!</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Nadawca</mat-label>
+    <input matInput readonly formControlName="sender" required/>
+  </mat-form-field>
+
+  <button mat-flat-button color="primary" type="submit" style="float: right;" [disabled]="!newMessageForm.valid">
+   Wyślij
+  </button>
+</form>
+</div>
+</div>

@@ -18,22 +18,24 @@ import {SanitizeHtmlPipe} from '../pipes/SanitizeHtmlPipe';
   styleUrls: ['./message.component.css']
 })
 
+
 export class MessageComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   dataMessageSource;
-  displayedColumns: string[] = ['messageDate', 'messageContent', 'sender.username'];
-  // newGuildForm = new FormGroup({
-  //
-  //   id: new FormControl(''),
-  //   guildName: new FormControl(''),
-  //   guildTag: new FormControl(''),
-  // });
-  constructor(private toastr: ToastrService, private chatService: ChatService) {
+  displayedColumns: string[] = ['messageDate', 'messageContent', 'sender.username', 'action'];
+  loggedUsername
+  newMessageForm = new FormGroup({
+    id: new FormControl(''),
+    receiver: new FormControl(''),
+    content: new FormControl(''),
+    sender: new FormControl(''),
+  });
+  constructor(private toastr: ToastrService, private chatService: ChatService ) {
   }
 
-
   ngOnInit() {
-    this.chatService.getPrivateMessages('maciek').subscribe(response => {
+    this.loggedUsername = 'maciek'
+    this.chatService.getPrivateMessages(this.loggedUsername).subscribe(response => {
       this.dataMessageSource = new MatTableDataSource(response);
       this.dataMessageSource.sortingDataAccessor = (item, property) => {
         if (property.includes('.')) {
@@ -72,16 +74,33 @@ export class MessageComponent implements OnInit {
     }
   }
 
-  // hasError(controlName) {
-  //   return this.newGuildForm.get(controlName).hasError;
-  // }
-  // createNewGuildWindow() {
-  //   document.getElementById('form').style.display = 'inline-block';
-  // }
-  //
-  // closeCreatingGuildWindow() {
-  //   document.getElementById('form').style.display = 'none';
-  // }
+  hasError(controlName) {
+    return this.newMessageForm.get(controlName).hasError;
+  }
+  sendPrivateMessage(event) {
+    document.getElementById('messageFormContainer').style.display = 'inline-block';
+    this.newMessageForm.controls['receiver'].setValue(event.target.parentNode.parentNode.children[2].innerText);
+    this.newMessageForm.controls['sender'].setValue(this.loggedUsername);
+    document.getElementById('textAreaContent').focus();
+  }
+
+  sendMessage() {
+    if (!this.newMessageForm.valid) {
+      return false;
+    }
+    this.chatService.writePrivateMessage(this.newMessageForm.value).subscribe(data => {
+        this.toastr.success('Sukces!', 'Wiadomość została wysłana');
+        this.closeMessageWindow();
+      },
+      error => {
+        this.toastr.error('Błąd!', 'Coś poszło nie tak');
+      });
+
+  }
+
+  closeMessageWindow() {
+    document.getElementById('messageFormContainer').style.display = 'none';
+  }
 
 
 }

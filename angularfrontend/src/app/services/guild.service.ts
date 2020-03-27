@@ -39,5 +39,19 @@ getGuildMembersByGuildName(guildName: string): Observable<any> {
     return this.httpClient.get(this.API_URL_GUILD + '/sendInvitation/' + invitedUsername + '/' + ivitingUsername + '/' + guildName);
 
   }
+  donateGuildGold(amount: number, username: string): Observable<any> {
+    return this.httpClient.get(this.API_URL_GUILD + '/donateGuildGold/' + amount + '/' + username);
+
+  }
+  addUserItemToGuildStore(userItemId: number, guildSlot: String): Observable<any> {
+    return this.httpClient.get(this.API_URL_GUILD + '/addUserItemToGuildStore/' + userItemId + '/' + guildSlot);
+
+  }
+
+  removeUserItemFromGuildStoreAndAddToUser(userItemId: number, username: String, userBackpackSlot: String): Observable<any> {
+    return this.httpClient.get(this.API_URL_GUILD + '/removeUserItemFromGuildStoreAndAddToUser/' +
+      userItemId + '/' + username + '/' + userBackpackSlot);
+
+  }
 
 }
