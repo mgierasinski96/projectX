@@ -33,17 +33,25 @@ export class RankingComponent implements OnInit, AfterViewInit {
   infoAboutItem;
   rect;
   rows;
-  guildMembers
+  guildMembers;
   loggedUsername;
-
-  displayedColumns: string[] = ['position', 'username', 'level', 'total_exp', 'profession', 'guild'];
+  guildOrNot; // boloean which view we display guild or user
+  specificUser;  // boloean which view we display guild or user
+  guildLeader;  // user object
+  clickedUser; // user object
+   displayedColumns: string[] = ['position', 'username', 'level', 'total_exp', 'profession', 'guild'];
   displayedGuildColumns: string[] = ['position', 'guild_name', 'guild_tag'];
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor(private userService: UserService, private userItemsService: UserbackpackService, private guildService: GuildService) {
+  constructor(private userService: UserService, private userItemsService: UserbackpackService, private guildService: GuildService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
+    if (this.route.snapshot.url[1]?.toString() === 'guild') {
+      this.guildOrNot = true;
+    }    else if (this.route.snapshot.url[1]?.toString() === 'user') {
+      this.specificUser = true;
+    }
     this.loggedUsername = 'dden'; // #TODO == loggedUser.getUsername
     this.userService.getUserRankingOrderByLvlDesc().subscribe(response => {
       this.dataSource = new MatTableDataSource(response);
@@ -56,7 +64,18 @@ export class RankingComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.scrollTo(this.loggedUsername);
+    if (this.guildOrNot) {
+      this.showGuilds(event);
+      if (this.route.snapshot.paramMap.get('guildName') !== 'showAll') {
+        this.scrollTo(this.route.snapshot.paramMap.get('guildName'));
+      }
+    } else if (this.specificUser) {
+      console.log('specific user/ ' + this.route.snapshot.paramMap.get('user'));
+      this.scrollTo(this.route.snapshot.paramMap.get('user'));
+    } else {
+      console.log('logged user');
+      this.scrollTo(this.loggedUsername);
+    }
   }
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();

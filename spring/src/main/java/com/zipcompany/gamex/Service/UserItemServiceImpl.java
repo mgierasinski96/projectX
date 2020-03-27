@@ -25,6 +25,11 @@ public class UserItemServiceImpl implements UserItemService {
         jdbcTemp = new JdbcTemplate(dataSource);
     }
 
+    @Override
+    public void saveUserItem(UserItem userItem) {
+        userItemRepository.save(userItem);
+    }
+
     @Transactional
     public Blob getPhotoById(long id) {
         String query = "select i.item_picture from user_items i where i.user_item_id=?";

@@ -32,6 +32,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSortModule} from '@angular/material/sort';
 import {UpgradeItemComponent} from './upgradeItem/upgradeItem.component';
 import {GuildService} from './services/guild.service';
+import { MarketPlaceComponent } from './market-place/market-place.component';
 
 
 
@@ -54,7 +55,8 @@ import {GuildService} from './services/guild.service';
     AuctionHouseComponent,
     TemporaryComponent,
     RankingComponent,
-    UpgradeItemComponent
+    UpgradeItemComponent,
+    MarketPlaceComponent
   ],
   imports: [
     AppRoutingModule,

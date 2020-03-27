@@ -285,4 +285,38 @@ public class User {
     public void setDefense(double defense) {
         this.defense = defense;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", date_joined=" + date_joined +
+                ", last_login=" + last_login +
+                ", is_admin=" + is_admin +
+                ", is_active=" + is_active +
+                ", is_staff=" + is_staff +
+                ", is_superuser=" + is_superuser +
+                ", gold=" + gold +
+                ", premium_curr=" + premium_curr +
+                ", profession='" + profession + '\'' +
+                ", max_hp=" + max_hp +
+                ", current_hp=" + current_hp +
+                ", level=" + level +
+                ", exp=" + exp +
+                ", total_exp=" + total_exp +
+                ", stamina=" + stamina +
+                ", strength=" + strength +
+                ", wisdom=" + wisdom +
+                ", luck=" + luck +
+                ", toughness=" + toughness +
+                ", total_damage=" + total_damage +
+                ", defense=" + defense +
+                ", shopItems=" + shopItems +
+                ", userBackpack=" + userBackpack +
+                ", guild=" + guild +
+                '}';
+    }
 }

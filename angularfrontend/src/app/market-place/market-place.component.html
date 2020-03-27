@@ -1,0 +1,196 @@
+<div id="marketPlace">
+  <div id="infoAboutItem">
+    <table style="width: 100%">
+      <tr>
+        <td colspan="2" style="text-align: center;" id="itemName"></td>
+      </tr>
+      <tr>
+        <td style="opacity: 0" colspan="2" id="itemId">2</td>
+      </tr>
+      <tr>
+        <td> Obrażenia:</td>
+        <td id="itemDamage"></td>
+      </tr>
+      <tr>
+        <td> Obrona:</td>
+        <td id="itemDefense"></td>
+      </tr>
+      <tr>
+        <td> Siła:</td>
+        <td id="itemStrength"></td>
+      </tr>
+      <tr>
+        <td> Mądrość:</td>
+        <td id="itemWidsdom"></td> <!--UWAGA NA LITEROWKE -->
+      </tr>
+      <!--<tr>-->
+        <!--<td> Wartość:</td>-->
+        <!--<td id="itemValue"></td>-->
+      <!--</tr>-->
+      <tr>
+        <td> Poziom:</td>
+        <td id="itemLevel"></td>
+      </tr>
+    </table>
+  </div>
+
+
+  <table id="backpack">
+    <tr>
+      <td>
+        <div id="slot-1" cdkDropList #slot1="cdkDropList"
+             [cdkDropListConnectedTo]="[marketPlateSlot,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]"
+             class="itemSlot" (cdkDropListDropped)="drop($event)">
+          <div id="userItem1" class="userItem" cdkDrag (cdkDragStarted)="dragStart($event)"
+               (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div>
+        </div>
+      </td>
+      <td>
+        <div id="slot-2" cdkDropList #slot2="cdkDropList"
+             [cdkDropListConnectedTo]="[marketPlateSlot,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]"
+             class="itemSlot" (cdkDropListDropped)="drop($event)">
+          <div id="userItem2" class="userItem" cdkDrag (cdkDragStarted)="dragStart($event)"
+               (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div>
+        </div>
+      </td>
+      <td>
+        <div id="slot-3" cdkDropList #slot3="cdkDropList"
+             [cdkDropListConnectedTo]="[marketPlateSlot,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]"
+             class="itemSlot" (cdkDropListDropped)="drop($event)">
+          <div id="userItem3" class="userItem" cdkDrag (cdkDragStarted)="dragStart($event)"
+               (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div>
+        </div>
+      </td>
+      <td>
+        <div id="slot-4" cdkDropList #slot4="cdkDropList"
+             [cdkDropListConnectedTo]="[marketPlateSlot,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]"
+             class="itemSlot" (cdkDropListDropped)="drop($event)">
+          <div id="userItem4" class="userItem" cdkDrag (cdkDragStarted)="dragStart($event)"
+               (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div>
+        </div>
+      </td>
+      <td>
+        <div id="slot-5" cdkDropList #slot5="cdkDropList"
+             [cdkDropListConnectedTo]="[marketPlateSlot,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]"
+             class="itemSlot" (cdkDropListDropped)="drop($event)">
+          <div id="userItem5" class="userItem" cdkDrag (cdkDragStarted)="dragStart($event)"
+               (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div id="slot-6" cdkDropList #slot6="cdkDropList"
+             [cdkDropListConnectedTo]="[marketPlateSlot,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]"
+             class="itemSlot" (cdkDropListDropped)="drop($event)">
+          <div id="userItem6" class="userItem" cdkDrag (cdkDragStarted)="dragStart($event)"
+               (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div>
+        </div>
+      </td>
+      <td>
+        <div id="slot-7" cdkDropList #slot7="cdkDropList"
+             [cdkDropListConnectedTo]="[marketPlateSlot,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]"
+             class="itemSlot" (cdkDropListDropped)="drop($event)">
+          <div id="userItem7" class="userItem" cdkDrag (cdkDragStarted)="dragStart($event)"
+               (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div>
+        </div>
+      </td>
+      <td>
+        <div id="slot-8" cdkDropList #slot8="cdkDropList"
+             [cdkDropListConnectedTo]="[marketPlateSlot,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]"
+             class="itemSlot" (cdkDropListDropped)="drop($event)">
+          <div id="userItem8" class="userItem" cdkDrag (cdkDragStarted)="dragStart($event)"
+               (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div>
+        </div>
+      </td>
+      <td>
+        <div id="slot-9" cdkDropList #slot9="cdkDropList"
+             [cdkDropListConnectedTo]="[marketPlateSlot,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]"
+             class="itemSlot" (cdkDropListDropped)="drop($event)">
+          <div id="userItem9" class="userItem" cdkDrag (cdkDragStarted)="dragStart($event)"
+               (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div>
+        </div>
+      </td>
+      <td>
+        <div id="slot-10" cdkDropList #slot10="cdkDropList"
+             [cdkDropListConnectedTo]="[marketPlateSlot,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]"
+             class="itemSlot" (cdkDropListDropped)="drop($event)">
+          <div id="userItem10" class="userItem" cdkDrag (cdkDragStarted)="dragStart($event)"
+               (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+
+  <div id="panel">
+    <table>
+      <tr>
+        <td>
+          <div id="marketPlaceSlotHolder" cdkDropList #marketPlateSlot="cdkDropList"
+               [cdkDropListConnectedTo]="[marketPlateSlot,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]"
+               class="itemSlot" (cdkDropListDropped)="drop($event)">
+            <div id="marketPlaceSlot" class="userItem" cdkDrag (cdkDragStarted)="dragStart($event)"
+                 (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <input placeholder="Wprowadz kwote" type="number" id="priceHolder">
+      </tr>
+      <tr>
+        <button id="btnSell" (click)="sellItem()">Wystaw przedmiot</button>
+        <button id="btnAnuluj" (click)="anuluj()">Anuluj</button>
+        <button id="btnSlot" (click)="ktorySlotWolny()">Szukaj wolnego</button>
+      </tr>
+    </table>
+  </div>
+
+  <div id="filtrowanie">
+    <label for="items">Rodzaj przedmiotu: </label>
+    <select id="items" (change)="selectedType($event.target.value)">
+      <option *ngFor="let item of itemTypes; index as i" value="{{item}}">{{itemNames[i]}}</option>
+    </select>
+
+    <button (click)="filtrInput()">Filtruj</button>
+  </div>
+
+  <div id="przedmioty">
+    <table id="itemsTable" mat-table [dataSource]="dataSource" matSort cdkFocusInitial class="mat-elevation-z8">
+
+      <ng-container matColumnDef="item">
+        <th  mat-header-cell *matHeaderCellDef>Przedmiot</th>
+        <td mat-cell  class="{{item.userItem.itemType}}" (mouseover)="mouseEnter($event, item.userItem.id)" (mouseout)="mouseOutt($event, item.userItem.id)" *matCellDef="let item"><img src="http://localhost:8080/user/getuserItemImage/{{item.userItem.id}}"></td>
+      </ng-container>
+
+      <ng-container matColumnDef="sellerName" >
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Sprzedający</th>
+        <td mat-cell class="{{item.userItem.itemType}}" *matCellDef="let item"><a [routerLink]="['/ranking/user/', item.sellerName]">{{item.sellerName}}</a></td>
+      </ng-container>
+
+      <ng-container matColumnDef="userItem.itemLevel">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Level</th>
+        <td mat-cell class="{{item.userItem.itemType}}" *matCellDef="let item">{{ item.userItem.itemLevel }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Cena</th>
+        <td mat-cell  class="{{item.userItem.itemType}}" *matCellDef="let item">{{ item.price }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="buttons">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat cell class="{{item.userItem.itemType}}" *matCellDef="let item">
+          <ng-container *ngIf="loggedUsername !== item.sellerName"><button id="kup_{{item.userItem.id}}" (click)="kup(item.userItem.id, item.sellerName)">Kup przedmiot</button></ng-container>
+        <ng-container *ngIf="loggedUsername ===  item.sellerName"><button (click)="anulujAukcje(item.userItem.id)">Anuluj</button></ng-container>
+        </td>
+
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true;"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+</div>
+</div>

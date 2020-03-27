@@ -11,6 +11,6 @@ public interface UserItemService {
     public UserItem getUserItemById(long id);
     void upgradeItem(long itemId,int upgradeBoost);
     public void deleteUserItemById(Long id);
-
+    void saveUserItem(UserItem userItem);
 
 }

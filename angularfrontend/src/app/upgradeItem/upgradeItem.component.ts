@@ -150,9 +150,6 @@ export class UpgradeItemComponent implements OnInit {
         (<HTMLButtonElement>document.getElementById('upgradeButton')).disabled = true;
         this.itemInBlacksmithSlotId = 0;
         document.getElementById('upgradeStatsTable').style.display = 'none';
-
-
-
       }
     } else if (this.previusDragContainer.includes('slot') && event.container.element.nativeElement.id.includes('blacksmith')) {
       if (event.container.element.nativeElement.children[0].children.length === 0) {

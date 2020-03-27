@@ -33,6 +33,8 @@
       </tr>
     </table>
   </div>
+
+
   <table id="backpack" cellpadding="0" cellspacing="0">
     <tr>
       <td><div id="slot-1" cdkDropList #slot1="cdkDropList" [cdkDropListConnectedTo]="[blacksmithSlot,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]"  (cdkDropListDropped)="drop($event)" class="itemSlot"><div id="userItem1" class="userItem" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div></td>
@@ -50,10 +52,17 @@
     </tr>
 
   </table>
+
+
   <table id="blacksmithMenu">
     <tr id="shopAssistant"><td colspan="3"><img style="width: 480px;height: 280px" src="../assets/images/shop.gif"><div id="shopAssisantDialog"><img src="https://img.icons8.com/office/170/000000/speech-bubble.png"><div id="dialog"></div></div></td></tr>
     <tr>
-      <td style="height: 200px"><div id="blacksmithSlotHolder" cdkDropList #blacksmithSlot="cdkDropList" [cdkDropListConnectedTo]="[blacksmithSlot,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)" class="itemSlot"><div id="blacksmithSlot" class="userItem" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)"></div></div></td>
+      <td style="height: 200px">
+        <div id="blacksmithSlotHolder" cdkDropList #blacksmithSlot="cdkDropList" [cdkDropListConnectedTo]="[blacksmithSlot,slot1,slot2,slot3,slot4,slot5,slot6,slot7,slot8,slot9,slot10]" (cdkDropListDropped)="drop($event)" class="itemSlot">
+          <div id="blacksmithSlot" class="userItem" cdkDrag (cdkDragStarted)="dragStart($event)" (cdkDragEntered)="dragEntered($event)" (cdkDragExited)="dragExit($event)">
+          </div>
+        </div>
+      </td>
       <td>
         <table id="upgradeStatsTable">
           <tr style="opacity: 0">

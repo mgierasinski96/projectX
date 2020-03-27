@@ -1,5 +1,6 @@
 package com.zipcompany.gamex.controller;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.zipcompany.gamex.Service.ItemService;
 import com.zipcompany.gamex.Service.UserItemService;
 import com.zipcompany.gamex.Service.UserService;
@@ -110,6 +111,11 @@ public class UserBackpackController {
     public void upgradeItem(@PathVariable("itemId") long itemId)
     {
         userItemService.upgradeItem(itemId,this.UPGRADE_BOOST);
+    }
+
+    @GetMapping(value = "/getItem/{itemId}")
+    UserItem getUserItem(@PathVariable ("itemId") Long itemId){
+        return userItemService.getUserItemById(itemId);
     }
 
 }

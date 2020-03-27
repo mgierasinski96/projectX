@@ -230,8 +230,12 @@ export class ShopComponent implements OnInit {
         document.getElementById('shopAssisantDialog').style.animation = 'changeVisibility 6s';
         document.getElementById('dialog').innerText = 'Pff masz tu swoje grosze';
         // USUN ZDJECIA Z CALEGO DOKUMENTU, A CDKDRAG APPENDUJ SPOWROTEM DO DROPLISTY Z KTOREJ PRZENOSZONO
+      console.log(event.item.element.nativeElement.children[0].id); //id i temu
       document.getElementById(event.item.element.nativeElement.children[0].id).remove();
+      console.log(this.previusDragContainer); //slot
+      console.log(event.item.element.nativeElement.id); //useritem
       document.getElementById(this.previusDragContainer).appendChild(document.getElementById(event.item.element.nativeElement.id));
+
 
     }
     // przesuniecie miedzy okienkami sklepu - NIE POZWOL WYKONAC
