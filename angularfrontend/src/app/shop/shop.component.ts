@@ -22,20 +22,28 @@ export class ShopComponent implements OnInit {
   myItemPrice;
   myItemValue;
   myItemId;
+  boughtItem;
+  newShopItem;
+
   constructor(private dropService: DropService, private userItemsService: UserbackpackService, private router: Router) {
   }
+
   ngOnInit() {
+    this.addShopItems();
+    this.listUserItems();
+  }
+
+  addShopItems() {
     this.shopSlotIterator = 1; // ustawienie zmiennej na 1 czyli zaczynamy dodawac przedmioty do okien sklepu od okna1
-    // #TODO ID USERA NA SZTYWNO 4
-    this.dropService.getShopItemsForUser(14).subscribe(response => {
+    this.dropService.getShopItemsForUser(4).subscribe(response => {
       this.itemsToShop = response;
       window.sessionStorage.setItem('items', JSON.stringify(this.itemsToShop)); // dodanie itemow do sesji
-      // tak zeby mozna sie bylo odwolywac do nich w metodzie mouseOverItem -> kurestwo inaczej mowi ze guildItems to undefinied
+      // tak zeby mozna sie bylo odwolywac do nich w metodzie mouseOverItem -> kurestwo inaczej mowi ze itemsToShop to undefinied
 
       for (const item of this.itemsToShop) {  // dla wszystkich pobranych elementow
         this.itemImg = document.createElement('img'); // stworzenie nowego elementu html typu img
         this.itemImg.src = 'http://localhost:8080/item/getItemImage/' + item.id; // ustawienie zrodla obrazka na backend w springu
-        this.itemImg.id = item.id + '-shopItemImg' ; // przypisanie id przedmiotu do id elementu html
+        this.itemImg.id = item.id; // przypisanie id przedmiotu do id elementu html
         this.itemImg.addEventListener('mouseover', this.mouseOverItem); // dodanie do obrazka obslugi zdarzen
         this.itemImg.addEventListener('mouseout', this.mouseOutItem);
 
@@ -44,9 +52,10 @@ export class ShopComponent implements OnInit {
         this.shopSlotIterator += 1; // w kazdej iteracji dodajemy do innego okna sklepu -> okna numerowane shopItem od 1 do 6
       }
     });
+  }
 
-    // #TODO ID USERA NA SZTYWNO 4
-    this.userItemsService.getUserItems(14).subscribe(response => { // W PRZYSZLOSCI NIE MOZNA POBIERAC LOSOWYCH OFC
+  listUserItems() {
+    this.userItemsService.getUserItems(4).subscribe(response => { // W PRZYSZLOSCI NIE MOZNA POBIERAC LOSOWYCH OFC
       this.userItems = response;
       window.sessionStorage.setItem('userItems', JSON.stringify(this.userItems));
       for (const item of this.userItems) {  // dla wszystkich pobranych elementow
@@ -86,9 +95,9 @@ export class ShopComponent implements OnInit {
     } // zrob to samo dla przedmiotow uzytkownika, bo moga byc calkowocie rozne  od przedmiotow w sklepie
     this.rect = ev.target.getBoundingClientRect();
     this.infoAboutItem = document.getElementById('infoAboutItem');
-    // pobieranie danych z actualHoverItem i przypisywanie ich do tabeli ktorej komorki nazywaja sie itemName i itemDamage
-
-    // UWAGA STULEJARSKIE IFY
+    // // pobieranie danych z actualHoverItem i przypisywanie ich do tabeli ktorej komorki nazywaja sie itemName i itemDamage
+    //
+    // // UWAGA STULEJARSKIE IFY
     document.getElementById('itemName').innerText = this.actualHoverItem.itemName;
     document.getElementById('itemLevel').innerText = this.actualHoverItem.itemLevel;
     document.getElementById('itemId').innerText = this.actualHoverItem.id;
@@ -132,7 +141,7 @@ export class ShopComponent implements OnInit {
 
 
     this.infoAboutItem.style.left = this.rect.left + 121 + 'px';
-    this.infoAboutItem.style.top = this.rect.top  - 121 + 'px';
+    this.infoAboutItem.style.top = this.rect.top - 121 + 'px';
     this.infoAboutItem.style.visibility = 'visible';
   }
 
@@ -142,6 +151,7 @@ export class ShopComponent implements OnInit {
 
   dragStart(event: CdkDragStart) {
     this.myItemId = document.getElementById('itemId').innerText;
+    console.log(this.myItemId);
     if (event.source.element.nativeElement.id.includes('shop')) {
       this.myItemPrice = document.getElementById('itemPrice').innerText ? document.getElementById('itemPrice').innerText : 0;
     } else {
@@ -150,6 +160,7 @@ export class ShopComponent implements OnInit {
     document.getElementById('shopAssisantDialog').style.animation = '';
     this.previusDragContainer = event.source.element.nativeElement.parentElement.id; // miejsce z ktorego rozpoczynam drag
   }
+
   dragEntered(event: CdkDragEnter) {
     document.getElementById(event.container.element.nativeElement.parentElement.children[0].id).style.opacity = '0.3';
     // from shop to bag// ale nie wykonuj swapa -> musisz przeciagnac przedmiot w puste okno zeby go kupic inaczej nie mozesz
@@ -176,70 +187,86 @@ export class ShopComponent implements OnInit {
   drop(event: any) {
 
     document.getElementById(event.container.element.nativeElement.parentElement.children[0].id).style.opacity = '1';
-    if (event.container !== event.previousContainer) {
-      event.previousContainer.removeItem(event.item);
-    }
-    document.getElementById(event.container.element.nativeElement.id).append
-    (document.getElementById(event.item.element.nativeElement.id));
-
-    if (event.container === event.previousContainer) {
-      event.container.addItem(event.item);
-    }
+    // if (event.container !== event.previousContainer) {
+    //   event.previousContainer.removeItem(event.item);
+    // }
+    // // TODO: Przez to duplikat
+    // // document.getElementById(event.container.element.nativeElement.id).append
+    // // (document.getElementById(event.item.element.nativeElement.id));
+    // //
+    // if (event.container === event.previousContainer) {
+    //   event.container.addItem(event.item);
+    // }
     // upuszczeniu ze sklepu do backpacka czyli odejmij zloto dodaj przedmiot
     if (this.previusDragContainer.includes('shop') && event.container.element.nativeElement.id.includes('slot')) {
       if (event.container.element.nativeElement.children[0].children.length === 0) {
         // SPRAWDZ CZY STAC USERA NA TEN PRZEDMIOT W POWYZSZYM IFIE CENA DOSTEPNA W ZMIENNEJ this.myItemPrice
         document.getElementById('shopAssisantDialog').style.animation = 'changeVisibility 2s';
         document.getElementById('dialog').innerText = 'Dobry wybór!';
-        // #TODO ID USERA NA SZTYWNO 4
-
-       this.userItemsService.addItemToUser(14, event.item.element.nativeElement.children[0].id.split('-')[0],
-         event.container.element.nativeElement.children[0].id) .subscribe();
-        document.getElementById(event.container.element.nativeElement.children[0].id).append
-        (document.getElementById(event.item.element.nativeElement.children[0].id));
-        this.userItemsService.itemBoughtGenerateNewItem(4, this.myItemId).subscribe();
-        // #TODO
-        // #TODO
-        // #TODO
-        // #TODO
-        // przeliczaj zloto ODEJMIJ -> cena kupionego przedmiotu dostepna w zmiennej
-       console.log('odejmij zloto ' + this.myItemPrice);
-        window.location.reload();
-      }
-      // jezeli przeciagniales w miejsce gdzie znajduje sie juz inny przedmot to cofnij cala operacje
-      if (event.container.element.nativeElement.children.length >= 2) {
-        document.getElementById(this.previusDragContainer).append
-        (document.getElementById(event.item.element.nativeElement.id));
-        event.previousContainer.addItem(event.item);
+        this.userItemsService.addItemToUser(4, event.item.element.nativeElement.children[0].id,
+          event.container.element.nativeElement.children[0].id).subscribe(response => {
+          this.boughtItem = response;
+          this.userItems.push(this.boughtItem);
+          window.sessionStorage.removeItem('userItems');
+          window.sessionStorage.setItem('userItems', JSON.stringify(this.userItems));
+        });
+        document.getElementById(event.container.element.nativeElement.children[0].id).
+        appendChild(event.item.element.nativeElement.children[0]);
+        // # NOW GENERATE NEW ITEM
+        this.userItemsService.itemBoughtGenerateNewItem(4, this.myItemId).subscribe(response => {
+          this.newShopItem = response;
+          this.itemsToShop.push(this.newShopItem);
+          window.sessionStorage.removeItem('items');
+          window.sessionStorage.setItem('items', JSON.stringify(this.itemsToShop));
+          this.itemImg = document.createElement('img'); // stworzenie nowego elementu html typu img
+          this.itemImg.src = 'http://localhost:8080/item/getItemImage/' + this.newShopItem.id;
+          this.itemImg.id = this.newShopItem.id; // przypisanie id przedmiotu do id elementu html
+          this.itemImg.addEventListener('mouseover', this.mouseOverItem); // dodanie do obrazka obslugi zdarzen
+          this.itemImg.addEventListener('mouseout', this.mouseOutItem);
+          document.getElementById(event.previousContainer.element.nativeElement.children[0].id).appendChild(this.itemImg);
+        });
       }
     }
+
+    //  // przeliczaj zloto ODEJMIJ -> cena kupionego przedmiotu dostepna w zmiennej
+    // console.log('odejmij zloto ' + this.myItemPrice);
+    // window.location.reload();
+
+    // jezeli przeciagniales w miejsce gdzie znajduje sie juz inny przedmot to cofnij cala operacje
+    // if (event.container.element.nativeElement.children.length >= 2) {
+    //   document.getElementById(this.previusDragContainer).append
+    //   (document.getElementById(event.item.element.nativeElement.id));
+    //   event.previousContainer.addItem(event.item);
+    // }
+
     // upuszczenie z backpacka do sklepu czyli dodaj zloto usun przedmiot calkowicie i nie patrz na to czy cos tam jest w sklepie
     // w tym okienku
     if (event.container.element.nativeElement.id.includes('shop') && this.previusDragContainer.includes('slot')) {
       // #TODO ID USERA NA SZTYWNO 4
-      this.userItemsService.removeItemFromUser(14, 'userItem' + event.previousContainer.element.nativeElement.id.split('-')[1])
+      this.userItemsService.removeItemFromUser(4, 'userItem' + event.previousContainer.element.nativeElement.id.split('-')[1])
         .subscribe();
 
-        // #TODO
-        // USUN Z PLECAKA POSTACI I USUN CALKOWICIE I DODAJ ZLOTO
+      // #TODO
+      // USUN Z PLECAKA POSTACI I USUN CALKOWICIE I DODAJ ZLOTO
       // wartosc sprzedanego przedmiotu dostepna w zmiennej
       console.log('dodane zloto ' + this.myItemValue);
-        // #TODO
-        // #TODO
-        // #TODO
-        // #TODO
-        document.getElementById('shopAssisantDialog').style.animation = 'changeVisibility 6s';
-        document.getElementById('dialog').innerText = 'Pff masz tu swoje grosze';
-        // USUN ZDJECIA Z CALEGO DOKUMENTU, A CDKDRAG APPENDUJ SPOWROTEM DO DROPLISTY Z KTOREJ PRZENOSZONO
+      // #TODO
+      // #TODO
+      // #TODO
+      // #TODO
+      document.getElementById('shopAssisantDialog').style.animation = 'changeVisibility 6s';
+      document.getElementById('dialog').innerText = 'Pff masz tu swoje grosze';
+      // USUN ZDJECIA Z CALEGO DOKUMENTU, A CDKDRAG APPENDUJ SPOWROTEM DO DROPLISTY Z KTOREJ PRZENOSZONO
+      console.log(event.item.element.nativeElement.children[0].id);
       document.getElementById(event.item.element.nativeElement.children[0].id).remove();
+      console.log(this.previusDragContainer);
+      console.log(event.item.element.nativeElement.id);
       document.getElementById(this.previusDragContainer).appendChild(document.getElementById(event.item.element.nativeElement.id));
+
 
     }
     // przesuniecie miedzy okienkami sklepu - NIE POZWOL WYKONAC
     if (this.previusDragContainer.includes('shop') && event.container.element.nativeElement.id.includes('shop')) {
-      document.getElementById(this.previusDragContainer).append
-      (document.getElementById(event.item.element.nativeElement.id));
-      event.previousContainer.addItem(event.item);
     }
     // przesuniecie miedzy okienkami  backpacka
     if (this.previusDragContainer.includes('slot') && event.container.element.nativeElement.id.includes('slot')) {

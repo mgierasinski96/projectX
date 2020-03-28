@@ -28,13 +28,13 @@ export class UpgradeItemComponent implements OnInit {
   myItemId;
   itemInBlacksmithSlotId;
 
-  constructor(private userItemsService: UserbackpackService) {
+  constructor(private userbackpackService: UserbackpackService) {
   }
 
   ngOnInit() {
     this.upgradeStatBoost = 1; // #TODO ILE BONUSU DO STATOW DAJE KAZDE ULEPSZENIE
     (<HTMLButtonElement>document.getElementById('upgradeButton')).disabled = true;
-    this.userItemsService.getUserItems(4).subscribe(response => { // W PRZYSZLOSCI NIE MOZNA POBIERAC LOSOWYCH OFC
+    this.userbackpackService.getUserItems(4).subscribe(response => { // W PRZYSZLOSCI NIE MOZNA POBIERAC LOSOWYCH OFC
       this.userItems = response;
       window.sessionStorage.setItem('userItems', JSON.stringify(this.userItems));
       for (const item of this.userItems) {  // dla wszystkich pobranych elementow
@@ -133,7 +133,7 @@ export class UpgradeItemComponent implements OnInit {
     if (this.previusDragContainer.includes('slot') && event.container.element.nativeElement.id.includes('slot')) {
       if (event.container.element.nativeElement.children[0].children.length === 0 &&
         event.container.element.nativeElement.children[0].id !== this.actualItemInBlacksmith) {
-        this.userItemsService.transferItemToDifferentSlot(event.item.element.nativeElement.children[0].id.split('-')[0],
+        this.userbackpackService.transferItemToDifferentSlot(event.item.element.nativeElement.children[0].id.split('-')[0],
           event.container.element.nativeElement.children[0].id).subscribe();
         document.getElementById(event.container.element.nativeElement.children[0].id).append
         (document.getElementById(event.item.element.nativeElement.children[0].id));
@@ -142,7 +142,7 @@ export class UpgradeItemComponent implements OnInit {
       if (event.container.element.nativeElement.children[0].children.length === 0) {
         document.getElementById(this.actualItemInBlacksmith).parentElement.style.border = '';
         this.actualItemInBlacksmith =  '';
-        this.userItemsService.transferItemToDifferentSlot(event.item.element.nativeElement.children[0].id.split('-')[0],
+        this.userbackpackService.transferItemToDifferentSlot(event.item.element.nativeElement.children[0].id.split('-')[0],
           event.container.element.nativeElement.children[0].id).subscribe();
 
         document.getElementById(event.container.element.nativeElement.children[0].id).append
@@ -192,10 +192,20 @@ export class UpgradeItemComponent implements OnInit {
       document.getElementById('upgradeStatsTable').style.display = 'none';
       document.getElementById(this.actualItemInBlacksmith).parentElement.style.border = '';
       this.actualItemInBlacksmith = '';
-      this.userItemsService.upgradeItem(this.itemInBlacksmithSlotId).subscribe();
     document.getElementById('shopAssisantDialog').style.animation = 'changeVisibility 2s';
     document.getElementById('dialog').innerText = 'Gratulacje';
-      window.location.reload();
+    for (const item of this.userItems) {
+      if (item.id === parseInt(this.itemInBlacksmithSlotId, 0)) {
+        console.log('tak rowna sie');
+        this.userItems.splice( this.userItems.indexOf(item), 1 );
+        this.userbackpackService.upgradeItem(this.itemInBlacksmithSlotId).subscribe(response => {
+          this.userItems.push(response);
+          window.sessionStorage.removeItem('userItems');
+          window.sessionStorage.setItem('userItems', JSON.stringify(this.userItems));
+          console.log(this.userItems);
+        });
+      }
+    }
     // } else {
     //   console.log('Masz za mało złota');
     // }

@@ -45,8 +45,8 @@ public class UserBackpackController {
     }
 
     @GetMapping(value = "/itemBought/{userId}/{itemId}")
-    public void itemBoughtGenerateNewItem(@PathVariable long userId,@PathVariable long itemId) {
-        itemService.itemBoughtGenerateNewItem(userId,itemId);
+    public Item itemBoughtGenerateNewItem(@PathVariable long userId,@PathVariable long itemId) {
+       return itemService.itemBoughtGenerateNewItem(userId,itemId);
     }
 
     @GetMapping(value = "/removeitemfromuser/{id}/{previousSlot}")
@@ -72,8 +72,8 @@ public class UserBackpackController {
 
     }
 
-    @PostMapping(value = "/additemtouser/{id}/{itemId}/{newSlot}")
-    public void addItemToUserBackpack(@PathVariable("id") Long userID,
+    @GetMapping(value = "/additemtouser/{id}/{itemId}/{newSlot}")
+    public UserItem addItemToUserBackpack(@PathVariable("id") Long userID,
                                       @PathVariable("itemId") Long itemID, @PathVariable("newSlot") String newSlot) {
 
         Item item = itemService.getItemById(itemID);
@@ -95,7 +95,7 @@ public class UserBackpackController {
         );
         userBackpack.addItem(userItem);
         userBackpackRepository.save(userBackpack);
-
+        return userItem;
     }
     @GetMapping(value = "/getUserItemsByUsername/{username}")
     List<UserItem> getUserItemsByUsername(@PathVariable("username") String username) {
@@ -107,9 +107,10 @@ public class UserBackpackController {
         return Collections.emptyList();
     }
     @GetMapping(value= "upgradeItem/{itemId}")
-    public void upgradeItem(@PathVariable("itemId") long itemId)
+    public UserItem upgradeItem(@PathVariable("itemId") long itemId)
     {
-        userItemService.upgradeItem(itemId,this.UPGRADE_BOOST);
+         userItemService.upgradeItem(itemId,this.UPGRADE_BOOST);
+         return userItemService.getUserItemById(itemId);
     }
 
 }
