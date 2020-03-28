@@ -51,9 +51,10 @@ public class ItemServiceImpl implements ItemService {
         return photo;
     }
 
-    public void itemBoughtGenerateNewItem(long userId, long itemId) {
+    public Item itemBoughtGenerateNewItem(long userId, long itemId) {
         Item item= itemRepository.getOneRandomItemThatIsNotInUserShop(userId,userService.getUser(userId).getLevel(),5);
         itemRepository.generateNewItem(userId,itemId,item.getId());
+        return  item;
     }
 
     @Override

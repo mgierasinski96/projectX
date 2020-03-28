@@ -72,4 +72,12 @@ public class ItemController {
         return item.getMonsterItems();
     }
 
+    @GetMapping(value = "/getItem/{itemId}")
+    Item getItem(@PathVariable ("itemId") Long itemId){
+       Item item = itemService.getItemById(itemId);
+       System.out.print(item.getItemName());
+       // return itemService.getItemById(itemId);
+        return null;
+    }
+
 }

@@ -12,6 +12,6 @@ public interface ItemService {
     Item getItemById(Long id);
     public Blob getPhotoById(long id);
     public List<Item> getRandomItemsToAuctionHouse();
-    void itemBoughtGenerateNewItem(long userId,long itemId);
+    Item itemBoughtGenerateNewItem(long userId,long itemId);
 
 }

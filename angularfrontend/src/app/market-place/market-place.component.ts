@@ -249,6 +249,7 @@ export class MarketPlaceComponent implements OnInit {
       this.newItem = response;
       this.userItems = JSON.parse(window.sessionStorage.getItem('userItems'));
       this.userItems.push(this.newItem);
+
       window.sessionStorage.setItem('userItems', JSON.stringify(this.userItems));
       window.sessionStorage.clear();
       window.sessionStorage.setItem('userItems', JSON.stringify(this.userItems));

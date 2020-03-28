@@ -23,6 +23,7 @@ export class UserbackpackService {
   API_URL_REMOVE_ITEM_FROM_MARKET =        'http://localhost:8080/market/removeItemFromMarket/';
   API_URL_ADD_ITEM_TO_NEW_OWNER =        'http://localhost:8080/market/addItemToNewOwner/';
   API_URL_GET_NEW_ITEM =                  'http://localhost:8080/userbackpack/getItem/';
+  API_URL_GET_ITEM =                      'http://localhost:8080/item/getItem/';
 
 
   constructor(private httpClient: HttpClient) {
@@ -39,7 +40,7 @@ export class UserbackpackService {
     return this.httpClient.get<any>(this.API_URL_TRANSFER_ITEM_TO_DIFF_SLOT + itemId + '/' + actualSlot);
   }
   addItemToUser(userId: number, itemId: number, actualSlot: String): Observable<any> {
-    return this.httpClient.post(this.API_URL_ADD_ITEM_TO_USER + userId + '/' + itemId + '/' + actualSlot, null);
+    return this.httpClient.get(this.API_URL_ADD_ITEM_TO_USER + userId + '/' + itemId + '/' + actualSlot);
   }
 
 removeItemFromUser(userId: number, previousSlot: String): Observable<any> {
@@ -66,6 +67,9 @@ removeItemFromUser(userId: number, previousSlot: String): Observable<any> {
   }
   getBrandNewItem(userItemID: number): Observable <any> {
     return this.httpClient.get(this.API_URL_GET_NEW_ITEM + userItemID);
+  }
+  getNewItem(itemID: number): Observable <any> {
+    return this.httpClient.get(this.API_URL_GET_ITEM + itemID);
   }
 
 }

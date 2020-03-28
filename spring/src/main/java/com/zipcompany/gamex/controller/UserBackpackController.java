@@ -46,8 +46,9 @@ public class UserBackpackController {
     }
 
     @GetMapping(value = "/itemBought/{userId}/{itemId}")
-    public void itemBoughtGenerateNewItem(@PathVariable long userId,@PathVariable long itemId) {
-        itemService.itemBoughtGenerateNewItem(userId,itemId);
+    public Item itemBoughtGenerateNewItem(@PathVariable long userId,@PathVariable long itemId) {
+        Item item = itemService.itemBoughtGenerateNewItem(userId,itemId);
+        return item;
     }
 
     @GetMapping(value = "/removeitemfromuser/{id}/{previousSlot}")
@@ -73,8 +74,8 @@ public class UserBackpackController {
 
     }
 
-    @PostMapping(value = "/additemtouser/{id}/{itemId}/{newSlot}")
-    public void addItemToUserBackpack(@PathVariable("id") Long userID,
+    @GetMapping(value = "/additemtouser/{id}/{itemId}/{newSlot}")
+    public UserItem addItemToUserBackpack(@PathVariable("id") Long userID,
                                       @PathVariable("itemId") Long itemID, @PathVariable("newSlot") String newSlot) {
 
         Item item = itemService.getItemById(itemID);
@@ -94,9 +95,10 @@ public class UserBackpackController {
                 newSlot,
                 userBackpack
         );
-        userBackpack.addItem(userItem);
-        userBackpackRepository.save(userBackpack);
-
+       userBackpack.addItem(userItem);
+      // userBackpackRepository.save(userBackpack);
+       userItemRepository.save(userItem);
+       return userItem;
     }
     @GetMapping(value = "/getUserItemsByUsername/{username}")
     List<UserItem> getUserItemsByUsername(@PathVariable("username") String username) {
