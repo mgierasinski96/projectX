@@ -43,9 +43,9 @@ export class UserbackpackService {
     return this.httpClient.get(this.API_URL_ADD_ITEM_TO_USER + userId + '/' + itemId + '/' + actualSlot);
   }
 
-removeItemFromUser(userId: number, previousSlot: String): Observable<any> {
-  return this.httpClient.get(this.API_URL_REMOVE_ITEM_FROM_USER + userId + '/' + previousSlot);
-}
+  removeItemFromUser(userId: number, previousSlot: String): Observable<any> {
+    return this.httpClient.get(this.API_URL_REMOVE_ITEM_FROM_USER + userId + '/' + previousSlot);
+  }
 
   itemBoughtGenerateNewItem(userId: number, itemId: number): Observable<any> {
     return this.httpClient.get(this.API_URL_ITEM_BOUGHT_GENERATE_NEW_ITEM + userId + '/' + itemId);

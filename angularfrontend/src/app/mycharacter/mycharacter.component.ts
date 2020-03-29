@@ -28,7 +28,7 @@ export class MycharacterComponent implements OnInit {
 
   ngOnInit() {
     // #TODO NA SZTYWNO PRZYPISANE ID USERA I POBIERANIE DLA NIEGO PRZEDMIOTOW
-    this.userItemsService.getUserItems(4).subscribe(response => {
+    this.userItemsService.getUserItems(14).subscribe(response => {
       this.userItems = response;
       window.sessionStorage.setItem('userItems', JSON.stringify(this.userItems));
       for (const item of this.userItems) {  // dla wszystkich pobranych elementow

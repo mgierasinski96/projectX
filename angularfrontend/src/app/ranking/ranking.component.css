@@ -7,6 +7,17 @@
   z-index: 300;
   transition: visibility 50ms linear;
 }
+#alreadyInGuildWarning
+{
+  color: indigo;
+  font-family: "Arial Black";
+  font-size: 25px;
+  position: absolute;
+  z-index: 300;
+  opacity: 0;
+  right:4%;
+  top:40%;
+}
 #userRanking
 {
   position: absolute;
@@ -63,7 +74,36 @@
 ::ng-deep .mat-sort-header-container {
 
 }
-
+#messageFormContainer
+{
+  display: none;
+  position: absolute;
+  width: 600px;
+  height: 400px;
+  margin-left: -300px;
+  left: 50%;
+  top:50%;
+  margin-top: -200px;
+  background: wheat;
+  z-index: 500;
+}
+input ::ng-deep, textarea ::ng-deep{
+  font-size: 28px;
+  background: white;
+}
+#messageFormContainerContent
+{
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+#closeMessageWindow
+{
+  z-index: 600;
+  position: absolute;
+  top:5px;
+  right: 5px;
+}
 
 mat-form-field {
   width: 70%;
@@ -133,7 +173,7 @@ th.mat-sort-header-sorted {
 {
   top:321px;
 }
-.guildMember:hover
+.guildMember:hover,#sendGuildInvitation:hover
 {
   background: lightgreen;
   cursor:pointer;
@@ -174,4 +214,10 @@ background: lightgray;
 #userStatistics tr:nth-child(2n+1)
 {
   background: antiquewhite;
+}
+@keyframes changeVisibility {
+  0% {opacity: 0;}
+  10% {opacity: 1; }
+  70% {opacity: 1; top:25%;}
+  100% {opacity: 0; top:25%;}
 }

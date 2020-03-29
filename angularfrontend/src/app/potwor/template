@@ -9,7 +9,7 @@
 //   templateUrl: './shop.component.html',
 //   styleUrls: ['./shop.component.scss']
 // })
-// export class ShopComponent implements OnInit {
+// export class GuildStoreComponent implements OnInit {
 //   previusDragContainer;
 //   idOfItemThatWasInEnteredSlot;
 //   wasItemInEnteredSlot;

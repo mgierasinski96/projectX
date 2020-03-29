@@ -210,8 +210,8 @@ export class ShopComponent implements OnInit {
           window.sessionStorage.removeItem('userItems');
           window.sessionStorage.setItem('userItems', JSON.stringify(this.userItems));
         });
-        document.getElementById(event.container.element.nativeElement.children[0].id).
-        appendChild(event.item.element.nativeElement.children[0]);
+        document.getElementById(event.container.element.nativeElement.children[0].id).appendChild
+        (event.item.element.nativeElement.children[0]);
         // # NOW GENERATE NEW ITEM
         this.userItemsService.itemBoughtGenerateNewItem(4, this.myItemId).subscribe(response => {
           this.newShopItem = response;
@@ -224,23 +224,11 @@ export class ShopComponent implements OnInit {
           this.itemImg.addEventListener('mouseover', this.mouseOverItem); // dodanie do obrazka obslugi zdarzen
           this.itemImg.addEventListener('mouseout', this.mouseOutItem);
           document.getElementById(event.previousContainer.element.nativeElement.children[0].id).appendChild(this.itemImg);
+          //  // przeliczaj zloto ODEJMIJ -> cena kupionego przedmiotu dostepna w zmiennej #TODO
+          // console.log('odejmij zloto ' + this.myItemPrice);
         });
       }
     }
-
-    //  // przeliczaj zloto ODEJMIJ -> cena kupionego przedmiotu dostepna w zmiennej
-    // console.log('odejmij zloto ' + this.myItemPrice);
-    // window.location.reload();
-
-   // jezeli przeciagniales w miejsce gdzie znajduje sie juz inny przedmot to cofnij cala operacje
-    if (event.container.element.nativeElement.children.length >= 2) {
-      document.getElementById(this.previusDragContainer).append
-      (document.getElementById(event.item.element.nativeElement.id));
-      event.previousContainer.addItem(event.item);
-    }
-
-    // upuszczenie z backpacka do sklepu czyli dodaj zloto usun przedmiot calkowicie i nie patrz na to czy cos tam jest w sklepie
-    // w tym okienku
     if (event.container.element.nativeElement.id.includes('shop') && this.previusDragContainer.includes('slot')) {
       // #TODO ID USERA NA SZTYWNO 4
       this.userItemsService.removeItemFromUser(4, 'userItem' + event.previousContainer.element.nativeElement.id.split('-')[1])
@@ -279,6 +267,4 @@ export class ShopComponent implements OnInit {
       }
     }
   }
-
-
 }

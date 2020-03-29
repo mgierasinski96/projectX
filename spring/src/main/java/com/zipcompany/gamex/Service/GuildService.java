@@ -7,4 +7,5 @@ import java.util.List;
 public interface GuildService {
     List<Guild> getAllGuilds();
     Guild findByGuildName(String guildName);
+    Guild safeGuild(Guild guild);
 }

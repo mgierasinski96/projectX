@@ -22,4 +22,10 @@ public class GuildServiceImpl implements GuildService {
     public Guild findByGuildName(String guildName) {
         return guildRepository.findByGuildName(guildName);
     }
+
+    @Override
+    public Guild safeGuild(Guild guild) {
+        return guildRepository.save(guild);
+    }
+
 }

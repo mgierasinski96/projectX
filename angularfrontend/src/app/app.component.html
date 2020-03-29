@@ -9,7 +9,7 @@
 
       <div id="messages">
         <div class="messageContent" *ngFor="let message of chatResponses">
-          <div style="font-weight: bold"> {{message.user.username}}</div>     <div> {{message.messageDate}}</div> {{message.messageContent}}
+          <div style="font-weight: bold"> {{message.sender.username}}</div>     <div> {{message.messageDate}}</div> {{message.messageContent}}
         </div>
       </div>
 
@@ -33,7 +33,8 @@
           <li><a [routerLink]="['/ranking']"><span>ranking</span></a></li>
           <li><a [routerLink]="['/blacksmith']"><span>kowal</span></a></li>
           <li><a [routerLink]="['/market-place']"><span>rynek</span></a></li>
-          <li>zielarstwo</li>
+          <li><a [routerLink]="['/guild']"><span>gildia</span></a></li>
+          <li><a [routerLink]="['/messages']"><span>wiadomosci</span></a></li>
 
         </ul>
       </div>

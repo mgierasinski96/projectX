@@ -1,0 +1,134 @@
+.example-form {
+  position: absolute;
+  height: 150px;
+  width: 50%;
+  left:50%;
+  margin-left: -25%;
+  top:50%;
+  margin-top: -75px;
+
+}
+#guildContent
+{
+  border:2px solid red;
+}
+.guildMember td a:hover
+{
+  color: white;
+  background: red;
+  cursor:pointer;
+  font-size: 16px;
+}
+.guildMember td a
+{
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+.guildMember td
+{
+  text-align: center;
+}
+#guildInfo{
+  border:2px solid green;
+}
+.example-full-width {
+  width: 100%;
+  height: 100px;
+}
+::ng-deep mat-form-field{
+  background: white;
+}
+input ::ng-deep{
+  font-size: 28px;
+}
+#guildDonate
+{
+  position: relative;
+}
+mat-error ::ng-deep{
+  color: blue;
+  font-size: 14px;
+}
+.removeUserFromGuild:hover, .navBuilding:hover
+{
+  cursor: pointer;
+  background: red;
+  color: white;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+}
+
+#container {
+  position: absolute;
+  left: 20%;
+  width: 1000px;
+  height: 600px;
+  background: aquamarine;
+}
+#closeCreatingGuildWindow
+ {
+  position: absolute;
+  top:5px;
+  right: 5px;
+ }
+::ng-deep th.mat-header-cell
+{
+  background: red;
+  font-size: 18px;
+  font-weight: bold;
+  z-index: 300;
+}
+th.mat-sort-header-sorted {
+  color: black;
+}
+::ng-deep .mat-sort-header-sorted {
+  color: white;
+}
+#content,#formContent
+{
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+#createGuildButton,#searchGuildButton
+{
+  position: absolute;
+  width: 200px;
+  height: 60px;
+  top: 50%;
+  margin-top: -30px;
+  left: 50%;
+  margin-left: -200px;
+}
+#searchGuildButton a
+{
+  position: center;
+  padding: 20px;
+  padding-left:54px;
+  padding-right: 54px;
+}
+#createGuildButton:hover,#searchGuildButton:hover,#closeCreatingGuildWindow:hover
+{
+  cursor: pointer;
+}
+#searchGuildButton
+{
+  margin-left: 0px;
+}
+#form
+{
+  position: absolute;
+  width: 800px;
+  height: 500px;
+  top:50%;
+  margin-top: -250px;
+  left: 50%;
+  margin-left: -400px;
+  background: darkgray;
+  display: none;
+
+}
