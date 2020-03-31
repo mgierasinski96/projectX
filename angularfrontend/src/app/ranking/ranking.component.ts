@@ -199,6 +199,7 @@ export class RankingComponent implements OnInit, AfterViewInit {
     }
     this.userItemsService.getUserItemsByUsername(username).subscribe(response => {
       this.userItems = response;
+      window.sessionStorage.setItem('userItems', JSON.stringify(this.userItems));
       for (const item of this.userItems) {
         for (const userSlot of this.userItemSlots) {
           if (userSlot.id === item.backpackSlot) {

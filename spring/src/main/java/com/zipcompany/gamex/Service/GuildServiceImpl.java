@@ -27,5 +27,17 @@ public class GuildServiceImpl implements GuildService {
     public Guild safeGuild(Guild guild) {
         return guildRepository.save(guild);
     }
+    @Override
+    public void upgradeGuildBulding(String guildName,String buildingName, int cost)
+    {
+        Guild guild= this.findByGuildName(guildName);
+        switch(buildingName)
+        {
+            case "mainBuilding": guild.setMainBuildingLevel(guild.getMainBuildingLevel()+1); break;
+            case "store": guild.setStoreLevel(guild.getStoreLevel()+1); break;
+        }
+        guild.setGuildGold(guild.getGuildGold()-cost);
+        this.safeGuild(guild);
+    };
 
 }

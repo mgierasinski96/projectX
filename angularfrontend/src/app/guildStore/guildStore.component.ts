@@ -51,6 +51,7 @@ export class GuildStoreComponent implements OnInit {
     this.userService.getUserByUsername(this.loggedUsername).subscribe(responseUser => { // #TODO ENTER USERNAME
    // #TODO LUB W OGOLE NIE POTRZEBNE JAK USER BEDZIE W PAMIECI
       this.appUser = responseUser;
+      this.checkGuildStoreLevel();
     this.userItemsService.getUserItems(this.appUser.id).subscribe(response => {
       this.userItems = response;
       window.sessionStorage.setItem('userItems', JSON.stringify(this.userItems));
@@ -199,5 +200,29 @@ export class GuildStoreComponent implements OnInit {
     }
   }
 
+  checkGuildStoreLevel() {
+    switch (this.appUser?.guild.storeLevel) {
+      case 1:
+        (<HTMLElement>(document.getElementById('forSecondGuildLevel').parentNode)).style.display = 'none';
+        document.getElementById('forSecondGuildLevel').style.display = 'none';
+        document.getElementById('forThirdGuildLevel').style.display = 'none';
+        document.getElementById('forFourthGuildLevel').style.display = 'none';
+        document.getElementById('forFifthGuildLevel').style.display = 'none';
+        break;
+      case 2:
+        document.getElementById('forThirdGuildLevel').style.display = 'none';
+        document.getElementById('forFourthGuildLevel').style.display = 'none';
+        document.getElementById('forFifthGuildLevel').style.display = 'none';
+        break;
+      case 3:
+        document.getElementById('forFourthGuildLevel').style.display = 'none';
+        document.getElementById('forFifthGuildLevel').style.display = 'none';
+        break;
+      case 4:
+        document.getElementById('forFifthGuildLevel').style.display = 'none';
+        break;
+      default:
+    }
+  }
 
 }

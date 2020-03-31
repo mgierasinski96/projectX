@@ -30,10 +30,14 @@ export class GuildComponent implements OnInit {
 appUser;
   guildLeader;
   guildMembers;
+  storeUpgradeCost;
+  mainBuildingUpgradeCost;
+  loggedUsername;
 
   ngOnInit() {
+    this.loggedUsername = 'gdden';
     // this.appUser=sessionStorage.getItem('') #TODO GET APP USER FROM SESSION STORAGE AND CHECK IF HE HAS GUILD
-    this.userService.getUserByUsername('dden').subscribe(response => {
+    this.userService.getUserByUsername( this.loggedUsername).subscribe(response => {
 
       this.appUser = response;
       if (this.appUser.guild) {
@@ -86,7 +90,7 @@ appUser;
     if (!this.newGuildForm.valid) {
       return false;
     }
-     this.guildService.saveGuild(this.newGuildForm.value, 'dden').subscribe(data => {
+     this.guildService.saveGuild(this.newGuildForm.value,  this.loggedUsername).subscribe(data => {
          this.toastr.success('Sukces!', 'Właśnie załozyłeś swoją gildię');
          this.closeCreatingGuildWindow();
         this.ngOnInit();
@@ -107,9 +111,37 @@ appUser;
     document.getElementById('form').style.display = 'none';
   }
   // GUILD BUILDINGS
-  showStore()
-  {
+  showStore() {
     this.router.navigateByUrl('/guildStore');
+  }
+
+  mainBuildingFunc() {
+    this.storeUpgradeCost = (this.appUser.guild.storeLevel + 1132) * this.appUser.guild.storeLevel;
+    this.mainBuildingUpgradeCost = (this.appUser.guild.mainBuildingLevel + 817) * this.appUser.guild.mainBuildingLevel;
+    document.getElementById('mainBuildingFunc').style.display = 'inline-block';
+  }
+
+  closeMainBuildingWindow() {
+    document.getElementById('mainBuildingFunc').style.display = 'none';
+  }
+
+  upgradeBuilding(event) {
+    document.getElementById('notEnoughGoldWarning').style.animation = '';
+    if (parseInt(document.getElementById('goldAmount').innerText, 0) <
+      parseInt(event.target.parentNode.parentNode.children[2].innerText, 0)) {
+      document.getElementById('notEnoughGoldWarning').style.animation = 'changeVisibility 2s';
+  } else {
+      this.guildService.upgradeGuildBuiling(this.appUser?.username, this.appUser?.guild?.guildName, event.target.id,
+        parseInt(event.target.parentNode.parentNode.children[2].innerText, 0)).subscribe(response => {
+      this.appUser = response;
+      console.log(this.appUser);
+      });
+      document.getElementById('goldAmount').innerText =
+        parseInt(document.getElementById('goldAmount').innerText, 0) -
+        parseInt(event.target.parentNode.parentNode.children[2].innerText, 0) + '';
+      this.closeMainBuildingWindow();
+      this.toastr.success('Sukces!', 'Gratulacje rozbudowałeś budynek!');
+    }
   }
 
 

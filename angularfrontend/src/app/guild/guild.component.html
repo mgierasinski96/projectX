@@ -1,5 +1,7 @@
 <div id="container">
   <div id="content">
+    <div id="notEnoughGoldWarning">Twoja gildia ma za mało złota!</div>
+
     <div id="nonGuildContent" *ngIf="!appUser?.guild">
       <button id="createGuildButton" (click)="createNewGuildWindow()">Załóż gildię</button>
       <button id="searchGuildButton"><a [routerLink]="['/ranking/guild/showAll']">Szukaj gildii</a></button>
@@ -23,9 +25,36 @@
             </button>
           </form>
 
-          <h2>Budynki </h2>
-          <h3 class="navBuilding">Budynek głowny: {{appUser?.guild.mainBuildingLevel}}</h3>
-          <h3 class="navBuilding" (click)="showStore()">Magazyn: {{appUser?.guild.storeLevel}}</h3>
+          <!--<h2>Budynki </h2>-->
+          <!--<h3 class="navBuilding">Budynek głowny: {{appUser?.guild.mainBuildingLevel}}</h3>-->
+          <!--<h3 class="navBuilding" (click)="showStore()">Magazyn: {{appUser?.guild.storeLevel}}</h3>-->
+          <div style="position: relative">
+            <div id="mainBuildingFunc">
+              <div id="mainBuildingContent">
+                <img id="closeMainBuildingWindow" (click)="closeMainBuildingWindow()"
+                     src="https://img.icons8.com/dusk/64/000000/close-window.png">
+                <table id="listGuildBuildings">
+                  <tr><th>Nazwa</th><th>Poziom</th><th>Koszt ulepszenia</th><th>Akcja</th></tr>
+                  <tr><td>Budynek główny</td><td>{{appUser?.guild?.mainBuildingLevel}}</td><td>{{mainBuildingUpgradeCost}}</td><td><button class="myButton" id='mainBuilding' (click)="upgradeBuilding($event)">Rozbuduj</button></td></tr>
+                  <tr><td>Magazyn</td><td>{{appUser?.guild?.storeLevel}}</td><td>{{storeUpgradeCost}}</td><td><button class="myButton" id='store' (click)="upgradeBuilding($event)">Rozbuduj</button></td></tr>
+                </table>
+
+              </div>
+
+            </div>
+          <img id="guildMap" style="width: 800px; height: 500px" src="/assets/images/guild.jpg">
+          <img  matTooltip="Budynek główny" (click)="mainBuildingFunc()" *ngIf="appUser?.guild?.mainBuildingLevel == 1" class="mainBuilding" src="/assets/images/main1.png">
+            <img matTooltip="Budynek główny" (click)="mainBuildingFunc()" *ngIf="appUser?.guild?.mainBuildingLevel == 2" class="mainBuilding" src="/assets/images/main2.png">
+            <img matTooltip="Budynek główny" (click)="mainBuildingFunc()" *ngIf="appUser?.guild?.mainBuildingLevel == 3" class="mainBuilding" src="/assets/images/main3.png">
+            <img matTooltip="Budynek główny" (click)="mainBuildingFunc()" *ngIf="appUser?.guild?.mainBuildingLevel == 4" class="mainBuilding" src="/assets/images/main4.png">
+            <img matTooltip="Budynek główny" (click)="mainBuildingFunc()" *ngIf="appUser?.guild?.mainBuildingLevel >= 5" class="mainBuilding" src="/assets/images/main5.png">
+
+            <img matTooltip="Magazyn gildii" (click)="showStore()" *ngIf="appUser?.guild?.storeLevel == 1" class="storeBulding" src="/assets/images/store1.png">
+            <img  matTooltip="Magazyn gildii"(click)="showStore()"*ngIf="appUser?.guild?.storeLevel == 2" class="storeBulding" src="/assets/images/store2.png">
+            <img  matTooltip="Magazyn gildii"(click)="showStore()"*ngIf="appUser?.guild?.storeLevel == 3" class="storeBulding" src="/assets/images/store3.png">
+            <img  matTooltip="Magazyn gildii"(click)="showStore()"*ngIf="appUser?.guild?.storeLevel >= 4" class="storeBulding" src="/assets/images/store4.png">
+
+          </div>
       <h2>Członkowie </h2>
       <table>
 
@@ -73,6 +102,8 @@
         </form>
       </div>
     </div>
+
+
 
   </div>
 </div>

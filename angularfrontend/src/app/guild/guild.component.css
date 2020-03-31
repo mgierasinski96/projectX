@@ -30,7 +30,47 @@
   text-align: center;
 }
 #guildInfo{
+  width: 500px;
+  margin-left:100px;
   border:2px solid green;
+}
+#listGuildBuildings
+{
+  font-size: 20px;
+  text-align: center;
+}
+#listGuildBuildings tr td,#listGuildBuildings tr th
+ {
+padding: 10px;
+ }
+#mainBuildingFunc
+{
+  position: absolute;
+  display: none;
+  width: 800px;
+  background: aquamarine;
+  z-index: 400;
+  height: 500px;
+}
+.mainBuilding
+{
+  position: absolute;
+  z-index: 300;
+  left:270px;
+  top:100px;
+}
+.storeBulding
+{
+  position: absolute;
+  z-index: 300;
+  right:10px;
+  top:90px;
+
+}
+.storeBulding:hover,.mainBuilding:hover
+{
+  opacity: 0.6;
+  cursor: pointer;
 }
 .example-full-width {
   width: 100%;
@@ -66,10 +106,10 @@ mat-error ::ng-deep{
   position: absolute;
   left: 20%;
   width: 1000px;
-  height: 600px;
+  height: 100%;
   background: aquamarine;
 }
-#closeCreatingGuildWindow
+#closeCreatingGuildWindow,#closeMainBuildingWindow
  {
   position: absolute;
   top:5px;
@@ -88,7 +128,7 @@ th.mat-sort-header-sorted {
 ::ng-deep .mat-sort-header-sorted {
   color: white;
 }
-#content,#formContent
+#content,#formContent,#mainBuildingContent
 {
   width: 100%;
   height: 100%;
@@ -111,7 +151,7 @@ th.mat-sort-header-sorted {
   padding-left:54px;
   padding-right: 54px;
 }
-#createGuildButton:hover,#searchGuildButton:hover,#closeCreatingGuildWindow:hover
+#createGuildButton:hover,#searchGuildButton:hover,#closeCreatingGuildWindow:hover,#closeMainBuildingWindow,.myButton
 {
   cursor: pointer;
 }
@@ -131,4 +171,21 @@ th.mat-sort-header-sorted {
   background: darkgray;
   display: none;
 
+}
+#notEnoughGoldWarning
+{
+  color: red;
+  font-family: "Arial Black";
+  font-size: 25px;
+  position: absolute;
+  z-index: 500;
+  opacity: 0;
+  right:30%;
+  top:40%;
+}
+@keyframes changeVisibility {
+  0% {opacity: 0;}
+  10% {opacity: 1; }
+  70% {opacity: 1; top:25%;}
+  100% {opacity: 0; top:25%;}
 }

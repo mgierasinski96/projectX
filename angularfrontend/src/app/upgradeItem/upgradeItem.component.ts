@@ -195,10 +195,10 @@ export class UpgradeItemComponent implements OnInit {
       if (item.id === parseInt(this.itemInBlacksmithSlotId, 0)) {
         console.log('tak rowna sie');
         this.userItems.splice( this.userItems.indexOf(item), 1 );
-        this.userbackpackService.upgradeItem(this.itemInBlacksmithSlotId).subscribe(response => {
-          this.userItems.push(response);
-          window.sessionStorage.removeItem('userItems');
-          window.sessionStorage.setItem('userItems', JSON.stringify(this.userItems));
+          this.userbackpackService.upgradeItem(this.itemInBlacksmithSlotId).subscribe(response => {
+            this.userItems.push(response);
+            window.sessionStorage.removeItem('userItems');
+            window.sessionStorage.setItem('userItems', JSON.stringify(this.userItems));
           console.log(this.userItems);
         });
       }

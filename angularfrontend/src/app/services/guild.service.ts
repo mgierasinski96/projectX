@@ -53,5 +53,10 @@ getGuildMembersByGuildName(guildName: string): Observable<any> {
       userItemId + '/' + username + '/' + userBackpackSlot);
 
   }
+  upgradeGuildBuiling(username: string, guildName: string, buildingName: string, upgradeCost: number): Observable<any> {
+    return this.httpClient.get(this.API_URL_GUILD + '/upgradeGuildBuiling/' + username + '/' +
+      guildName + '/' + buildingName + '/' + upgradeCost);
+
+  }
 
 }

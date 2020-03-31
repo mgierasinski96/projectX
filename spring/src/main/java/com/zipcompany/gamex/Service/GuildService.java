@@ -8,4 +8,5 @@ public interface GuildService {
     List<Guild> getAllGuilds();
     Guild findByGuildName(String guildName);
     Guild safeGuild(Guild guild);
+    void upgradeGuildBulding(String guildName,String buildingName, int cost);
 }

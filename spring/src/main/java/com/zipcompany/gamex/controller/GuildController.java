@@ -59,6 +59,12 @@ public class GuildController {
         guild.getGuildItems().add(guildItem);
         guildService.safeGuild(guild);
     }
+    @GetMapping(value ="/upgradeGuildBuiling/{appUserName}/{guildName}/{buildingName}/{cost}")
+    public User upgradeGuildBuiling(@PathVariable("appUserName") String username,@PathVariable("guildName") String guildName, @PathVariable("buildingName") String buildingName,@PathVariable("cost") int cost)
+    {
+        guildService.upgradeGuildBulding(guildName,buildingName,cost);
+        return userService.findByUsername(username);
+    }
 
     @GetMapping(value ="/removeUserItemFromGuildStoreAndAddToUser/{userItemId}/{username}/{backpackSlot}")
     public void removeUserItemFromGuildStoreAndAddToUser(@PathVariable("userItemId") long userItemId, @PathVariable("username") String username, @PathVariable("backpackSlot") String backpackSlot)
