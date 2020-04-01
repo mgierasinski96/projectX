@@ -39,7 +39,7 @@ public class SchedulerServiceImpl implements SchedulerService {
         for (int i = 0; i < items.size(); i++) {
             AuctionItems auctionItem = new AuctionItems(items.get(i), items.get(i).getItemPrice());
             auctionItemsService.save(auctionItem);
-            System.out.println("Wewnatrz randomItemsToAuction, cena: " + items.get(i).getItemPrice());
+            //System.out.println("Wewnatrz randomItemsToAuction, cena: " + items.get(i).getItemPrice());
         }
         Date date = new Date();
         System.out.println(date);
@@ -64,4 +64,6 @@ public class SchedulerServiceImpl implements SchedulerService {
 
         System.out.println("inserting new shop items for each user");
     }
+
+
 }

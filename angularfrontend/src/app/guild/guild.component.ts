@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {UserService} from '../services/user.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {GuildService} from '../services/guild.service';
@@ -14,7 +14,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./guild.component.css']
 })
 
-export class GuildComponent implements OnInit {
+export class GuildComponent implements OnInit,OnDestroy {
   newGuildForm = new FormGroup({
 
     id: new FormControl(''),
@@ -32,13 +32,14 @@ appUser;
   guildMembers;
   storeUpgradeCost;
   mainBuildingUpgradeCost;
+  mineUpgradeCost;
   loggedUsername;
+  interval;
 
   ngOnInit() {
-    this.loggedUsername = 'gdden';
+    this.loggedUsername = 'dden';
     // this.appUser=sessionStorage.getItem('') #TODO GET APP USER FROM SESSION STORAGE AND CHECK IF HE HAS GUILD
     this.userService.getUserByUsername( this.loggedUsername).subscribe(response => {
-
       this.appUser = response;
       if (this.appUser.guild) {
         this.guildService.getGuildLeaderByGuildName(this.appUser.guild.guildName).subscribe(response2 => {
@@ -48,6 +49,9 @@ appUser;
       }
 
     });
+  }
+  ngOnDestroy(): void {
+    clearInterval(this.interval);
   }
 
   donateGuild() {
@@ -92,39 +96,112 @@ appUser;
     }
      this.guildService.saveGuild(this.newGuildForm.value,  this.loggedUsername).subscribe(data => {
          this.toastr.success('Sukces!', 'Właśnie załozyłeś swoją gildię');
-         this.closeCreatingGuildWindow();
+         this.closeAnyWindow();
         this.ngOnInit();
        },
        error => {
          this.toastr.error('Błąd!', 'Coś poszło nie tak');
        });
   }
+  formatLabel(value: number) {
+    let format;
+    switch (value) {
+      case 1:  format = ' godzinę';  break;
+      case 5:
+      case 6:
+      case 7:
+      case 8:
+        format = ' godzin';
+        break;
+      case 2:
+      case 3:
+      case 4:
+        format = ' godziny';
+        break;
+    }
 
+    document.getElementById('reward').innerText = parseInt(document.getElementById('guildMineLevel').innerText, 0)
+      * value +  '';
+    document.getElementById('hours').innerText = value + '';
+    document.getElementById('format').innerText = format;
+    return value + 'h';
+  }
   hasError(controlName) {
     return this.newGuildForm.get(controlName).hasError;
   }
   createNewGuildWindow() {
     document.getElementById('form').style.display = 'inline-block';
   }
-
-  closeCreatingGuildWindow() {
-    document.getElementById('form').style.display = 'none';
-  }
   // GUILD BUILDINGS
-  showStore() {
+  navigateToStore() {
     this.router.navigateByUrl('/guildStore');
   }
 
   mainBuildingFunc() {
-    this.storeUpgradeCost = (this.appUser.guild.storeLevel + 1132) * this.appUser.guild.storeLevel;
-    this.mainBuildingUpgradeCost = (this.appUser.guild.mainBuildingLevel + 817) * this.appUser.guild.mainBuildingLevel;
-    document.getElementById('mainBuildingFunc').style.display = 'inline-block';
+    this.storeUpgradeCost =  1132 * this.appUser.guild.storeLevel;
+    this.mainBuildingUpgradeCost =  817 * this.appUser.guild.mainBuildingLevel;
+    this.mineUpgradeCost = this.appUser.guild.mineLevel > 0 ? 6806 * this.appUser.guild.mineLevel : 3000;
+    document.getElementById('buildingFunc').style.display = 'inline-block';
+    document.getElementById('listGuildBuildings').style.display = 'inline-block';
   }
 
-  closeMainBuildingWindow() {
-    document.getElementById('mainBuildingFunc').style.display = 'none';
+  mineBuildingFunc() {
+    document.getElementById('buildingFunc').style.display = 'inline-block';
+    document.getElementById('mineFunctionality').style.display = 'inline-block';
+    if (!this.appUser.working) {
+      document.getElementById('guildMineLevel').innerText = this.appUser.guild?.mineLevel + '';
+    } else {
+      const begin = this.appUser.workBeginDate;
+      const endDate = new Date(begin);
+      const howLongWorking = this.appUser.howLongWorking;
+      endDate.setTime(endDate.getTime() + (howLongWorking * 60 * 1000));
+      // endDate.setTime(endDate.getTime() + (24 * howLongWorking * 60 * 1000));
+     this.interval = setInterval(() => {
+        const now = new Date();
+        const diffMs = endDate.valueOf() - now.valueOf();
+        const diffHrs = Math.floor((diffMs % 86400000) / 3600000); // hours
+        const diffMins = Math.floor(((diffMs % 86400000) % 3600000) / 60000); // minutes
+        const diffSec = Math.round((((diffMs % 86400000) % 3600000) % 60000) / 1000); // secocds
+       if (diffMs > 0) {
+         document.getElementById('progressBar').style.width = (diffMs / (howLongWorking * 60 * 1000) * 100) + '%';
+         document.getElementById('alreadyWorkingHowLongTillEnd').innerText = diffHrs +
+           ' godzin ' + diffMins + ' minut ' + diffSec + ' sekund';
+       } else {
+         document.getElementById('alreadyWorkingHowLongTillEnd').innerText = '---------';
+         document.getElementById('progressBar').style.width = '0%';
+         document.getElementById('collectReward').style.display = 'inline-block';
+         document.getElementById('collectRewardAmount').innerText = this.appUser.workReward;
+       }
+      }, 1000);
+    }
   }
 
+  getRewardForWork() {
+    this.userService.getRewardForWork(this.loggedUsername).subscribe(response => {
+      this.appUser = response;
+    });
+    this.closeAnyWindow();
+    this.toastr.success('Sukces!', 'Odebrałeś nagrodę!');
+    clearInterval(this.interval);
+  }
+
+  mineWork() {
+    if (!this.appUser.working) {
+      this.userService.startWorking(this.loggedUsername, parseInt(document.getElementById('reward').innerText, 0),
+        'mining', parseInt(document.getElementById('hours').innerText, 0)).subscribe(response => {
+          this.appUser = response;
+      });
+      this.toastr.success('Sukces!', 'Zacząłeś pracę!');
+    }
+    this.closeAnyWindow();
+  }
+  closeAnyWindow() {
+    document.getElementById('buildingFunc').style.display = 'none';
+    document.getElementById('listGuildBuildings').style.display = 'none';
+    document.getElementById('mineFunctionality').style.display = 'none';
+    document.getElementById('form').style.display = 'none';
+    clearInterval(this.interval);
+  }
   upgradeBuilding(event) {
     document.getElementById('notEnoughGoldWarning').style.animation = '';
     if (parseInt(document.getElementById('goldAmount').innerText, 0) <
@@ -139,11 +216,9 @@ appUser;
       document.getElementById('goldAmount').innerText =
         parseInt(document.getElementById('goldAmount').innerText, 0) -
         parseInt(event.target.parentNode.parentNode.children[2].innerText, 0) + '';
-      this.closeMainBuildingWindow();
+      this.closeAnyWindow();
       this.toastr.success('Sukces!', 'Gratulacje rozbudowałeś budynek!');
     }
   }
-
-
 }
 

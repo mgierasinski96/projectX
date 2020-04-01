@@ -35,6 +35,7 @@ public class GuildServiceImpl implements GuildService {
         {
             case "mainBuilding": guild.setMainBuildingLevel(guild.getMainBuildingLevel()+1); break;
             case "store": guild.setStoreLevel(guild.getStoreLevel()+1); break;
+            case "mine": guild.setMineLevel(guild.getMineLevel()+1); break;
         }
         guild.setGuildGold(guild.getGuildGold()-cost);
         this.safeGuild(guild);

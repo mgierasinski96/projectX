@@ -4,9 +4,12 @@ import com.zipcompany.gamex.DTO.PrivateMessageDTO;
 import com.zipcompany.gamex.Service.*;
 import com.zipcompany.gamex.domain.Message;
 import com.zipcompany.gamex.domain.Item;
+import com.zipcompany.gamex.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -26,6 +29,28 @@ public class TempController {
 
     @Autowired
     MessageService messageService;
+
+    @GetMapping(value="/startWorking/{username}/{rewardForWork}/{typeOfWork}/{howLongWorking}")
+    public User startWorking(@PathVariable("username") String username, @PathVariable("rewardForWork") int rewardForWork,
+    @PathVariable("typeOfWork") String typeOfWork, @PathVariable("howLongWorking") int howLongWorking)
+    {
+        User user=userService.findByUsername(username);
+        user.setHowLongWorking(howLongWorking);
+        user.setTypeOfWork(typeOfWork);
+        user.setWorkBeginDate(new Date());
+        user.setWorkReward(rewardForWork);
+        user.setWorking(true);
+        userService.safeUser(user);
+        return user;
+    }
+
+    @GetMapping(value="/endWorking/{username}")
+    public User endWorking(@PathVariable("username") String username)
+    {
+        User user =userService.endWorking( userService.findByUsername(username));
+        userService.safeUser(user);
+        return user;
+    }
 
 
     @GetMapping(value = "/getAllChatMessages")

@@ -32,6 +32,7 @@ public class Guild {
 
     private int storeLevel;
 
+    private int mineLevel;
 
 
     @OneToMany(cascade = CascadeType.ALL)
@@ -108,5 +109,13 @@ public class Guild {
 
     public void setGuildTag(String guildTag) {
         this.guildTag = guildTag;
+    }
+
+    public int getMineLevel() {
+        return mineLevel;
+    }
+
+    public void setMineLevel(int mineLevel) {
+        this.mineLevel = mineLevel;
     }
 }

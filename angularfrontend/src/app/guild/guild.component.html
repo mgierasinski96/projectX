@@ -27,33 +27,58 @@
 
           <!--<h2>Budynki </h2>-->
           <!--<h3 class="navBuilding">Budynek głowny: {{appUser?.guild.mainBuildingLevel}}</h3>-->
-          <!--<h3 class="navBuilding" (click)="showStore()">Magazyn: {{appUser?.guild.storeLevel}}</h3>-->
-          <div style="position: relative">
-            <div id="mainBuildingFunc">
-              <div id="mainBuildingContent">
-                <img id="closeMainBuildingWindow" (click)="closeMainBuildingWindow()"
-                     src="https://img.icons8.com/dusk/64/000000/close-window.png">
-                <table id="listGuildBuildings">
-                  <tr><th>Nazwa</th><th>Poziom</th><th>Koszt ulepszenia</th><th>Akcja</th></tr>
-                  <tr><td>Budynek główny</td><td>{{appUser?.guild?.mainBuildingLevel}}</td><td>{{mainBuildingUpgradeCost}}</td><td><button class="myButton" id='mainBuilding' (click)="upgradeBuilding($event)">Rozbuduj</button></td></tr>
-                  <tr><td>Magazyn</td><td>{{appUser?.guild?.storeLevel}}</td><td>{{storeUpgradeCost}}</td><td><button class="myButton" id='store' (click)="upgradeBuilding($event)">Rozbuduj</button></td></tr>
-                </table>
+          <!--<h3 class="navBuilding" (click)="navigateToStore()">Magazyn: {{appUser?.guild.storeLevel}}</h3>-->
 
-              </div>
+              <div style="position: relative">
+                <div id="buildingFunc">
+                  <div id="buildingContent">
+                    <img id="closeBuildingWindow" (click)="closeAnyWindow()"
+                         src="https://img.icons8.com/dusk/64/000000/close-window.png">
+                    <table id="listGuildBuildings">
+                      <tr><th>Nazwa</th><th>Poziom</th><th>Koszt ulepszenia</th><th>Akcja</th></tr>
+                      <tr><td>Budynek główny</td><td>{{appUser?.guild?.mainBuildingLevel}}</td><td>{{mainBuildingUpgradeCost}}</td><td><button class="myButton" id='mainBuilding' (click)="upgradeBuilding($event)">Rozbuduj</button></td></tr>
+                      <tr><td>Magazyn</td><td>{{appUser?.guild?.storeLevel}}</td><td>{{storeUpgradeCost}}</td><td><button class="myButton" id='store' (click)="upgradeBuilding($event)">Rozbuduj</button></td></tr>
+                      <tr><td>Kopalnia</td><td>{{appUser?.guild?.mineLevel >0 ? appUser?.guild?.mineLevel : 'NIE ISTNIEJE'}}</td><td>{{mineUpgradeCost}}</td><td><button class="myButton" id='mine' (click)="upgradeBuilding($event)">Rozbuduj</button></td></tr>
+                    </table>
+                    <div id="mineFunctionality">
+                      <div *ngIf="!appUser?.working">
+                      <h2>Twoja gildia posiada kopalnię o poziomie <span id="guildMineLevel"></span></h2>
+                      <h2>W kopalni możesz zdobyć walutę premium.</h2>
+                      <h2>Pracuj w kopalni przez: <span id="hours"></span><span id="format"></span> <button id="mineWork" (click)="mineWork()">Pracuj</button></h2>
+                      <mat-slider thumbLabel [displayWith]="formatLabel" tickInterval="1" min="1" max="8"></mat-slider>
+                      <h2 id="mineReward">Za tę katorgę możesz zdobyć: <span id="reward"></span> premium currency</h2>
+                    </div>
+                      <div *ngIf="appUser?.working">
+                        <h1>JUŻ PRACUJESZ DO KOŃCA ZOSTAŁO <span id="alreadyWorkingHowLongTillEnd"></span></h1>
+                        <div id="progressContainer">
+                        <div id="progress">
+                          <div id="progressBar"></div>
+                        </div>
+                        </div>
+
+                        <button style='display: none; width: 120px; height:70px' id="collectReward" (click)="getRewardForWork()">Odbierz nagrodę <span id="collectRewardAmount"></span> premium currency</button>
+                      </div>
+                    </div>
+                  </div>
 
             </div>
           <img id="guildMap" style="width: 800px; height: 500px" src="/assets/images/guild.jpg">
-          <img  matTooltip="Budynek główny" (click)="mainBuildingFunc()" *ngIf="appUser?.guild?.mainBuildingLevel == 1" class="mainBuilding" src="/assets/images/main1.png">
-            <img matTooltip="Budynek główny" (click)="mainBuildingFunc()" *ngIf="appUser?.guild?.mainBuildingLevel == 2" class="mainBuilding" src="/assets/images/main2.png">
-            <img matTooltip="Budynek główny" (click)="mainBuildingFunc()" *ngIf="appUser?.guild?.mainBuildingLevel == 3" class="mainBuilding" src="/assets/images/main3.png">
-            <img matTooltip="Budynek główny" (click)="mainBuildingFunc()" *ngIf="appUser?.guild?.mainBuildingLevel == 4" class="mainBuilding" src="/assets/images/main4.png">
-            <img matTooltip="Budynek główny" (click)="mainBuildingFunc()" *ngIf="appUser?.guild?.mainBuildingLevel >= 5" class="mainBuilding" src="/assets/images/main5.png">
+          <img  matTooltip="Budynek główny poziom 1" (click)="mainBuildingFunc()" *ngIf="appUser?.guild?.mainBuildingLevel == 1" class="mainBuilding" src="/assets/images/main1.png">
+            <img matTooltip="Budynek główny poziom 2" (click)="mainBuildingFunc()" *ngIf="appUser?.guild?.mainBuildingLevel == 2" class="mainBuilding" src="/assets/images/main2.png">
+            <img matTooltip="Budynek główny poziom 3" (click)="mainBuildingFunc()" *ngIf="appUser?.guild?.mainBuildingLevel == 3" class="mainBuilding" src="/assets/images/main3.png">
+            <img matTooltip="Budynek główny poziom 4" (click)="mainBuildingFunc()" *ngIf="appUser?.guild?.mainBuildingLevel == 4" class="mainBuilding" src="/assets/images/main4.png">
+            <img matTooltip="Budynek główny poziom 5" (click)="mainBuildingFunc()" *ngIf="appUser?.guild?.mainBuildingLevel >= 5" class="mainBuilding" src="/assets/images/main5.png">
 
-            <img matTooltip="Magazyn gildii" (click)="showStore()" *ngIf="appUser?.guild?.storeLevel == 1" class="storeBulding" src="/assets/images/store1.png">
-            <img  matTooltip="Magazyn gildii"(click)="showStore()"*ngIf="appUser?.guild?.storeLevel == 2" class="storeBulding" src="/assets/images/store2.png">
-            <img  matTooltip="Magazyn gildii"(click)="showStore()"*ngIf="appUser?.guild?.storeLevel == 3" class="storeBulding" src="/assets/images/store3.png">
-            <img  matTooltip="Magazyn gildii"(click)="showStore()"*ngIf="appUser?.guild?.storeLevel >= 4" class="storeBulding" src="/assets/images/store4.png">
+            <img matTooltip="Magazyn gildii poziom 1" (click)="navigateToStore()" *ngIf="appUser?.guild?.storeLevel == 1" class="storeBulding" src="/assets/images/store1.png">
+            <img matTooltip="Magazyn gildii poziom 2" (click)="navigateToStore()" *ngIf="appUser?.guild?.storeLevel == 2" class="storeBulding" src="/assets/images/store2.png">
+            <img matTooltip="Magazyn gildii poziom 3" (click)="navigateToStore()" *ngIf="appUser?.guild?.storeLevel == 3" class="storeBulding" src="/assets/images/store3.png">
+            <img matTooltip="Magazyn gildii poziom 4" (click)="navigateToStore()" *ngIf="appUser?.guild?.storeLevel >= 4" class="storeBulding" src="/assets/images/store4.png">
 
+            <img matTooltip="Kopalnia poziom 1" (click)="mineBuildingFunc()" *ngIf="appUser?.guild?.mineLevel == 1" class="mineBuilding" src="/assets/images/mine1.png">
+            <img  matTooltip="Kopalnia poziom 2"(click)="mineBuildingFunc()"*ngIf="appUser?.guild?.mineLevel == 2" class="mineBuilding" src="/assets/images/mine2.png">
+            <img  matTooltip="Kopalnia poziom 3"(click)="mineBuildingFunc()"*ngIf="appUser?.guild?.mineLevel == 3" class="mineBuilding" src="/assets/images/mine3.png">
+            <img  matTooltip="Kopalnia poziom 4"(click)="mineBuildingFunc()"*ngIf="appUser?.guild?.mineLevel == 4" class="mineBuilding" src="/assets/images/mine4.png">
+            <img  matTooltip="Kopalnia poziom 5"(click)="mineBuildingFunc()"*ngIf="appUser?.guild?.mineLevel >= 5" class="mineBuilding" src="/assets/images/mine5.png">
           </div>
       <h2>Członkowie </h2>
       <table>
@@ -80,7 +105,7 @@
 
     <div id="form">
       <div id="formContent">
-        <img id="closeCreatingGuildWindow" (click)="closeCreatingGuildWindow()"
+        <img id="closeCreatingGuildWindow" (click)="closeAnyWindow()"
              src="https://img.icons8.com/dusk/64/000000/close-window.png">
         <form class="example-form" (ngSubmit)="createGuild()" [formGroup]="newGuildForm">
           <mat-form-field appearance="outline">

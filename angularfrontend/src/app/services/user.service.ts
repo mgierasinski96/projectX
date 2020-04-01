@@ -9,6 +9,7 @@ export class UserService {
 
   baseurl = 'http://localhost:8000';
   spring_baseurl = 'http://localhost:8080/user/';
+
   private httpHeaders: HttpHeaders;
 
   constructor(private http: HttpClient) { }
@@ -75,5 +76,14 @@ export class UserService {
     // this.httpHeaders = new HttpHeaders({Authorization: localStorage.getItem('token'),
     //   'Content-Type': 'application/json'});
     return this.http.get(this.spring_baseurl + 'userRankingLvlDesc' );
+  }
+  startWorking(username: string, rewardForWork: number, typeOfWork: string, howLongWorking: number): Observable<any> {
+    // console.log('getUserdata: ', localStorage.getItem('token'));
+    // this.httpHeaders = new HttpHeaders({Authorization: localStorage.getItem('token'),
+    //   'Content-Type': 'application/json'});
+    return this.http.get('http://localhost:8080/startWorking/' + username + '/' + rewardForWork + '/' + typeOfWork + '/' + howLongWorking );
+  }
+  getRewardForWork(username: string): Observable<any> {
+    return this.http.get('http://localhost:8080/endWorking/' + username);
   }
 }

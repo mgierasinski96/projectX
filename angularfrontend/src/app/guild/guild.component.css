@@ -34,8 +34,13 @@
   margin-left:100px;
   border:2px solid green;
 }
+#mineFunctionality
+{
+  display: none;
+}
 #listGuildBuildings
 {
+  display: none;
   font-size: 20px;
   text-align: center;
 }
@@ -43,7 +48,7 @@
  {
 padding: 10px;
  }
-#mainBuildingFunc
+#buildingFunc
 {
   position: absolute;
   display: none;
@@ -65,9 +70,15 @@ padding: 10px;
   z-index: 300;
   right:10px;
   top:90px;
-
 }
-.storeBulding:hover,.mainBuilding:hover
+.mineBuilding
+{
+  position: absolute;
+  z-index: 300;
+  left:120px;
+  top:230px;
+}
+.storeBulding:hover,.mainBuilding:hover,.mineBuilding:hover
 {
   opacity: 0.6;
   cursor: pointer;
@@ -106,10 +117,10 @@ mat-error ::ng-deep{
   position: absolute;
   left: 20%;
   width: 1000px;
-  height: 100%;
+  min-height: 700px;
   background: aquamarine;
 }
-#closeCreatingGuildWindow,#closeMainBuildingWindow
+#closeCreatingGuildWindow,#closeBuildingWindow
  {
   position: absolute;
   top:5px;
@@ -128,7 +139,12 @@ th.mat-sort-header-sorted {
 ::ng-deep .mat-sort-header-sorted {
   color: white;
 }
-#content,#formContent,#mainBuildingContent
+#content
+{
+  min-height: 700px;
+  border:2px solid indigo;
+}
+#content,#formContent,#buildingContent
 {
   width: 100%;
   height: 100%;
@@ -151,7 +167,39 @@ th.mat-sort-header-sorted {
   padding-left:54px;
   padding-right: 54px;
 }
-#createGuildButton:hover,#searchGuildButton:hover,#closeCreatingGuildWindow:hover,#closeMainBuildingWindow,.myButton
+#mineReward
+{
+  position: absolute;
+  top:330px;
+}
+#progressContainer
+{
+  position: absolute;
+  top:200px;
+  left:50%;
+  margin-left: -175px;
+  width: 350px;
+  height: 30px;
+}
+#progress
+{
+  display: flex;
+  justify-content: flex-end;
+  width: 350px;
+  height: 30px;
+  border:2px solid black;
+ align-content: end;
+  background: gray;
+}
+#progressBar
+{
+  position: relative;
+  height: 100%;
+  background: red;
+}
+#createGuildButton:hover,#searchGuildButton:hover,#closeCreatingGuildWindow:hover,#closeMainBuildingWindow,.myButton,
+#mineWork,#collectReward
+
 {
   cursor: pointer;
 }
@@ -188,4 +236,46 @@ th.mat-sort-header-sorted {
   10% {opacity: 1; }
   70% {opacity: 1; top:25%;}
   100% {opacity: 0; top:25%;}
+}
+#mineWork
+{
+  margin-left: 30px;
+  width: 100px;
+  text-align: center;
+  height: 50px;
+}
+::ng-deep .mat-slider.mat-slider-horizontal .mat-slider-wrapper {
+  top: 80px;
+  width: 400px;
+}
+::ng-deep .mat-slider.mat-slider-horizontal .mat-slider-track-wrapper {
+  height: 40px;
+}
+::ng-deep .mat-slider.mat-slider-horizontal .mat-slider-track-background,
+.mat-slider.mat-slider-horizontal .mat-slider-track-fill {
+  height: 100%;
+}
+::ng-deep .mat-slider.mat-slider-horizontal .mat-slider-track-fill {
+  background-color: blue;
+  height: 40px;
+}
+::ng-deep .mat-accent ::ng-deep ::ng-deep.mat-slider-thumb {
+  position: absolute;
+  top:-20px;
+  height: 80px;
+  width: 30px;
+  border-radius: 10px;
+  background-color: white;
+  border: solid 2px gray;
+}
+::ng-deep .mat-slider-thumb-label {
+  position: absolute !important;
+  top:-80px !important;
+  background-color: black !important;
+  min-width: 60px !important;
+  min-height: 60px !important;
+
+}
+::ng-deep .mat-slider-thumb-label-text {
+  font-size: 40px !important;
 }

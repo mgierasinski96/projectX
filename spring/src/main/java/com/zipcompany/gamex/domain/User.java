@@ -57,6 +57,56 @@ public class User {
     @JoinColumn(name = "guild_id")
     private Guild guild;
 
+    private boolean working;
+
+    private String typeOfWork;
+
+    private Date workBeginDate;
+
+    private int howLongWorking;
+
+    private int workReward;
+
+    public int getWorkReward() {
+        return workReward;
+    }
+
+    public int getHowLongWorking() {
+        return howLongWorking;
+    }
+
+    public void setHowLongWorking(int howLongWorking) {
+        this.howLongWorking = howLongWorking;
+    }
+
+    public void setWorkReward(int workReward) {
+        this.workReward = workReward;
+    }
+
+    public boolean isWorking() {
+        return working;
+    }
+
+    public void setWorking(boolean working) {
+        this.working = working;
+    }
+
+    public String getTypeOfWork() {
+        return typeOfWork;
+    }
+
+    public void setTypeOfWork(String typeOfWork) {
+        this.typeOfWork = typeOfWork;
+    }
+
+    public Date getWorkBeginDate() {
+        return workBeginDate;
+    }
+
+    public void setWorkBeginDate(Date workBeginDate) {
+        this.workBeginDate = workBeginDate;
+    }
+
     public Guild getGuild() {
         return guild;
     }

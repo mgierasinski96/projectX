@@ -43,6 +43,7 @@ import {DialogAddGuildComponent} from './userDialogs/addToGuildDialog/dialogAddG
 import {MessageComponent} from './message/message.component';
 import {SanitizeHtmlPipe} from './pipes/SanitizeHtmlPipe';
 import {GuildStoreComponent} from './guildStore/guildStore.component';
+import {MatSliderModule} from '@angular/material/slider';
 
 
 
@@ -82,6 +83,7 @@ import {GuildStoreComponent} from './guildStore/guildStore.component';
     FormsModule,
     HttpClientModule,
     DragDropModule,
+    MatSliderModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MatButtonModule,

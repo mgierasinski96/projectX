@@ -13,4 +13,6 @@ public interface UserService {
     User getUser(Long id);
     List<User> getAllUsersByLvlDesc();
     User findByUsername(String username);
+    List<User> getUsersWhoFinishedWorking();
+    User endWorking(User worker);
 }
