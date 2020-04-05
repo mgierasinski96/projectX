@@ -4,9 +4,11 @@ import com.zipcompany.gamex.DTO.PrivateMessageDTO;
 import com.zipcompany.gamex.Service.*;
 import com.zipcompany.gamex.domain.Message;
 import com.zipcompany.gamex.domain.Item;
+import com.zipcompany.gamex.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -26,6 +28,34 @@ public class TempController {
 
     @Autowired
     MessageService messageService;
+
+    @GetMapping(value = "/endAdventure/{userName}")
+    public boolean endAdventure(@PathVariable ("userName") String userName){
+        User user = userService.findByUsername(userName);
+        user.setOnAdventure(false);
+        userService.safeUser(user);
+        System.out.println("koniec wypawy");
+        return user.isOnAdventure();
+    }
+
+    @GetMapping(value = "/startAdventure/{userName}")
+    public User newAdventure(@PathVariable ("userName") String userName){
+        User user = userService.findByUsername(userName);
+        user.setLastAdventure(new Date());
+        user.setOnAdventure(true);
+        userService.safeUser(user);
+        return user;
+    }
+    @GetMapping(value = "/ifOnAdventure/{userName}")
+    public boolean ifOnAdventure(@PathVariable ("userName") String userName){
+        User user = userService.findByUsername(userName);
+        return  user.isOnAdventure();
+    }
+    @GetMapping(value = "/lastAdventure/{userName}")
+    public Date lastAdventure(@PathVariable ("userName") String userName){
+        User user = userService.findByUsername(userName);
+        return  user.getLastAdventure();
+    }
 
 
     @GetMapping(value = "/getAllChatMessages")

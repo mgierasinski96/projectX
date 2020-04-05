@@ -43,6 +43,8 @@ import {DialogAddGuildComponent} from './userDialogs/addToGuildDialog/dialogAddG
 import {MessageComponent} from './message/message.component';
 import {SanitizeHtmlPipe} from './pipes/SanitizeHtmlPipe';
 import {GuildStoreComponent} from './guildStore/guildStore.component';
+import {LocationService} from './services/location.service';
+import { FightComponent } from './fight/fight.component';
 
 
 
@@ -72,7 +74,8 @@ import {GuildStoreComponent} from './guildStore/guildStore.component';
     DialogRemoveFromGuildComponent,
     DialogAddGuildComponent,
     MessageComponent,
-    GuildStoreComponent
+    GuildStoreComponent,
+    FightComponent
 
   ],
   entryComponents: [DialogRemoveFromGuildComponent, DialogAddGuildComponent],
@@ -94,7 +97,7 @@ import {GuildStoreComponent} from './guildStore/guildStore.component';
     MatDialogModule,
     MatInputModule,
   ],
-  providers: [PotworService, DropService, ChatService, UserbackpackService, GuildService],
+  providers: [PotworService, DropService, ChatService, UserbackpackService, GuildService, LocationService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -16,6 +16,7 @@ import {MarketPlaceComponent} from './market-place/market-place.component';
 import {GuildComponent} from './guild/guild.component';
 import {MessageComponent} from './message/message.component';
 import {GuildStoreComponent} from './guildStore/guildStore.component';
+import {FightComponent} from './fight/fight.component';
 
 
 // Delkaracja na jakim url ma się wyrenderować jaki komponent. Pojawi się w miejscu deklaracji <router-outlet>
@@ -38,7 +39,8 @@ const routes: Routes = [
   {path: 'ranking/user/:user', component: RankingComponent, pathMatch: 'full'},
   {path: 'guild', component: GuildComponent},
   {path: 'messages', component: MessageComponent},
-  {path: 'guildStore', component: GuildStoreComponent}
+  {path: 'guildStore', component: GuildStoreComponent},
+  {path: 'fight', component: FightComponent}
 
 
 

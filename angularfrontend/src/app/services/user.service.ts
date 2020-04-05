@@ -76,4 +76,16 @@ export class UserService {
     //   'Content-Type': 'application/json'});
     return this.http.get(this.spring_baseurl + 'userRankingLvlDesc' );
   }
+  newAdventure(userName: string): Observable<any> {
+    return this.http.get('http://localhost:8080/startAdventure/' + userName);
+  }
+  isOnAdventure(userName: string): Observable<any> {
+    return this.http.get('http://localhost:8080/ifOnAdventure/' + userName);
+  }
+  lastAdventure(userName: string): Observable<any> {
+    return this.http.get('http://localhost:8080/lastAdventure/' + userName);
+  }
+  endAdventure(userName: string): Observable<any> {
+    return this.http.get('http://localhost:8080/endAdventure/' + userName);
+  }
 }

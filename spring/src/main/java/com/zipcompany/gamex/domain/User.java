@@ -57,6 +57,26 @@ public class User {
     @JoinColumn(name = "guild_id")
     private Guild guild;
 
+    private Date lastAdventure;
+
+    private boolean onAdventure;
+
+    public Date getLastAdventure() {
+        return lastAdventure;
+    }
+
+    public void setLastAdventure(Date lastAdventure) {
+        this.lastAdventure = lastAdventure;
+    }
+
+    public boolean isOnAdventure() {
+        return onAdventure;
+    }
+
+    public void setOnAdventure(boolean onAdventure) {
+        this.onAdventure = onAdventure;
+    }
+
     public Guild getGuild() {
         return guild;
     }
@@ -81,8 +101,9 @@ public class User {
         this.userBackpack = userBackpack;
     }
 
-    public User(){ this.date_joined=new Date();
-    this.last_login=new Date();
+    public User() {
+        this.date_joined = new Date();
+        this.last_login = new Date();
     }
 
 

@@ -1,19 +1,48 @@
 <div id="container">
-<div id="mapContent" (click)="closeFightWindow()">
-  <div (click)="fight($event)" id="grunwaldzka">GRUNWALDZKA</div>
-</div>
+
+  <!--<div id="goWyprawaa">{{czas  | date:'H:mm:ss':'pl'}}-->
+  <div id="licznik"></div>
+
+  <!--<div id="mapContent" (click)="closeFightWindow()">-->
+  <div (click)="templatefunkcja($event)" id="Wrzeszczaca_Chata"></div>
+  <label id="lokacja1label">Wrzeszcząca Chata</label>
+
+  <div (click)="templatefunkcja($event)" id="Magiczny_Krag"></div>
+  <label id="lokacja2label">Magiczny Krąg</label>
+
+  <div (click)="templatefunkcja($event)" id="Gora_Przeznaczenia"></div>
+  <label id="lokacja3label">Góra Przeznaczenia</label>
+
+  <div (click)="templatefunkcja($event)" id="Dol_Goldur"></div>
+  <label id="lokacja4label">Dol Goldur</label>
+
+
   <div id="fightWindow">
-    <span><h5>TO JEST RANDOMOWY POTWOR ZAMKNIJ I OTWORZ PARE RAZY PONOWNIE OKIENKO PO UTWORZENIU RELACJI</h5></span>
-    <div id="contentOfFightWindow">
-      <table id="infoAboutUpcomingFight" border="1">
-        <tr><td id="monsterName"></td></tr>
-        <tr><td id="monsterLevel"></td></tr>
-        <tr><td id="monsterHealth"></td></tr>
-        <tr><td id="monsterDamage"></td></tr>
-        <tr><td id="monsterExp"></td></tr>
-      </table>
-      <img id="monsterImage" src="https://cdn.blankstyle.com/files/imagefield_default_images/notfound_0.png">
-      <img id="closeFightWindowIcon" (click)="closeFightWindow()" src="https://img.icons8.com/dusk/64/000000/close-window.png">
-    </div>
+    <div id="title"></div>
+    <img id="photo" src="http://localhost:8080/location/getLocationImage/{{id}}">
+    <div id="opis"></div>
+    <ng-container *ngIf="czynawyprawie then thenBlock; else elseBlock"></ng-container>
+    <ng-template #elseBlock>
+      <div>
+        <button (click)="adventure(id)" class="goWyprawa">Idz na wyprawe</button>
+      </div>
+    </ng-template>
+
+    <ng-template #thenBlock>
+      <div id="x"></div>
+    </ng-template>
+
+    <img id="closeFightWindowIcon" (click)="closeFightWindow()"
+         src="https://img.icons8.com/dusk/64/000000/close-window.png">
+
   </div>
 </div>
+
+<div id="naWyprawie">
+  <p id="opiss"></p>
+  <div id="czas"></div>
+  <img id="photoo" src="http://localhost:8080/location/getLocationImage/{{miejsceWyprawy}}">
+</div>
+
+
+
