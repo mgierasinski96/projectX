@@ -27,6 +27,7 @@ public class Monster {
     @Lob
     private byte[] monsterImage;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     Location location;
 

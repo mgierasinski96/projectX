@@ -2,14 +2,14 @@ package com.zipcompany.gamex.controller;
 
 import com.zipcompany.gamex.DTO.PrivateMessageDTO;
 import com.zipcompany.gamex.Service.*;
-import com.zipcompany.gamex.domain.Message;
-import com.zipcompany.gamex.domain.Item;
-import com.zipcompany.gamex.domain.User;
+import com.zipcompany.gamex.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 @RestController
 public class TempController {
@@ -28,6 +28,23 @@ public class TempController {
 
     @Autowired
     MessageService messageService;
+
+    @Autowired
+    LocationService locationService;
+
+    @GetMapping(value = "/fight/{locationID}/{userName}")
+    public Object giveMeFight(@PathVariable ("locationID") Long locationID, @PathVariable ("userName") String userName){
+        User user = userService.findByUsername(userName);
+        Location location = locationService.findLocationById(locationID);
+        List<Object> data = new ArrayList<>();
+        List<Monster> template = location.getMonsters();
+        Random rand = new Random();
+        int index = rand.nextInt(3);
+        data.add(template.get(index));
+        data.add(user);
+        data.add(template.get(index).getMonsterItems());
+        return data;
+    }
 
     @GetMapping(value = "/endAdventure/{userName}")
     public boolean endAdventure(@PathVariable ("userName") String userName){

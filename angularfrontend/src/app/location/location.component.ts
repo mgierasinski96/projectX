@@ -80,7 +80,7 @@ export class LocationComponent implements OnInit {
          window.sessionStorage.setItem('destiny', data.id);
          this.miejsceWyprawy = data.id;
          this.nazwa = data.locationName;
-        this.funkcjaPrzeliczajaca();
+        this.funkcjaPrzeliczajaca(locationID);
       });
 
     });
@@ -91,7 +91,7 @@ export class LocationComponent implements OnInit {
     console.log(document.getElementById('fightWindow').style.display);
   }
 
-  funkcjaPrzeliczajaca() {
+  funkcjaPrzeliczajaca(locationID) {
     document.getElementById('container').style.display = 'none';
     document.getElementById('naWyprawie').style.display = 'block';
     document.getElementById('opiss').innerText = 'Jestes na wyprawie do ' + this.nazwa;
@@ -99,7 +99,7 @@ export class LocationComponent implements OnInit {
       // this.lastAdventure = response;
       const beginDate = new Date(response);
       const endDate = new Date(beginDate);
-      endDate.setTime(endDate.getTime() + 10 * 1000); // czas wyprawy + 10 kminut
+      endDate.setTime(endDate.getTime() + 5 * 1000); // czas wyprawy + 10 kminut
       this.interval = setInterval(() => {
         const now = new Date();
         const diffMs = endDate.valueOf() - now.valueOf();
@@ -112,7 +112,7 @@ export class LocationComponent implements OnInit {
             document.getElementById('czas').innerText = 'Na miejscu za ' + diffMins + ':0' + diffSecs;
           }
         } else if (diffMs < 0) {
-          this.koniecWyprawy(this.loggedUser);
+          this.koniecWyprawy(this.loggedUser, locationID);
           console.log(this.czynawyprawie);
           clearInterval(this.interval);
         }
@@ -121,14 +121,16 @@ export class LocationComponent implements OnInit {
 
   }
 
-  koniecWyprawy(userName: string) {
+  koniecWyprawy(userName: string, locationID) {
     this.userService.endAdventure(userName).subscribe(response => {
       this.czynawyprawie = response;
       console.log(this.czynawyprawie);
       // document.getElementById('naWyprawie').style.display = 'none';
       // document.getElementById('fightWindow').style.display = 'none';
       // document.getElementById('container').style.display = 'block';
+      // this.router.navigateByUrl('/fight/' +  locationID + '/' + userName);
       this.router.navigateByUrl('/fight');
+
     });
   }
 

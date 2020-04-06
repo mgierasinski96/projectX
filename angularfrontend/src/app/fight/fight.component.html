@@ -1,4 +1,58 @@
 <div id="wrapper">
-  <p>fight works!</p>
+
+  <table>
+    <tr>
+      <td>
+        <div class="imageWrapper" id="playerImage">
+          <p id="playerName"></p>
+          <img src="http://localhost:8080/monster/getMonsterImage/2">
+        </div>
+      </td>
+      <td>
+        <div class="imageWrapper" id="monsterImage">
+          <p id="monsterName"></p>
+          <img src="http://localhost:8080/monster/getMonsterImage/{{monsterID}}">
+        </div>
+      </td>
+    </tr>
+  </table>
+
+<div>
+<table>
+    <tr>
+      <td>
+        <table id="playerStats">
+          <tr>
+            <td id="playerLevel"></td>
+          </tr>
+          <tr>
+            <td id="playerHP"></td>
+          </tr>
+          <tr>
+            <td id="playerDMG"></td>
+          </tr>
+        </table>
+      </td>
+
+      <td>
+        <table id="monsterStats">
+          <tr>
+            <td id="monsterLevel"></td>
+          </tr>
+          <tr>
+            <td id="monsterHP"></td>
+          </tr>
+          <tr>
+            <td id="monsterDMG"></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+</table>
+
+</div>
+
+
+
 </div>
 

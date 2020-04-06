@@ -4,5 +4,36 @@
   background: crimson;
   width: 72%;
   left: 18%;
-  height: 800px;
+  height: 600px;
+}
+
+.imageWrapper#monsterImage
+{
+  margin-top: 100px;
+  margin-left: 300px;
+}
+
+.imageWrapper#playerImage
+{
+  margin-top: 100px;
+  margin-left: 300px;
+}
+
+#monsterStats {
+  font-size: 20px;
+  position: relative;
+  margin-left: 265px;
+}
+#playerStats
+{
+  font-size: 20px;
+  position: relative;
+  margin-left: 300px;
+
+}
+#monsterName{
+  font-size: 24px;
+}
+#playerName{
+  font-size: 24px;
 }
