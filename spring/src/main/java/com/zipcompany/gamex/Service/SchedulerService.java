@@ -8,5 +8,6 @@ public interface SchedulerService {
 
   void randomItemsToAuction();
    void randomItemsToShop();
+   void orcGuildBuilding();
 
 }

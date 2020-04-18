@@ -14,7 +14,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./guild.component.css']
 })
 
-export class GuildComponent implements OnInit,OnDestroy {
+export class GuildComponent implements OnInit, OnDestroy {
   newGuildForm = new FormGroup({
 
     id: new FormControl(''),
@@ -32,6 +32,7 @@ appUser;
   guildMembers;
   storeUpgradeCost;
   mainBuildingUpgradeCost;
+  orcUpgradeCost;
   mineUpgradeCost;
   loggedUsername;
   interval;
@@ -141,8 +142,18 @@ appUser;
     this.storeUpgradeCost =  1132 * this.appUser.guild.storeLevel;
     this.mainBuildingUpgradeCost =  817 * this.appUser.guild.mainBuildingLevel;
     this.mineUpgradeCost = this.appUser.guild.mineLevel > 0 ? 6806 * this.appUser.guild.mineLevel : 3000;
+    this.orcUpgradeCost = this.appUser.guild.orcLevel > 0 ? 10000 * this.appUser.guild.mineLevel : 5000;
     document.getElementById('buildingFunc').style.display = 'inline-block';
     document.getElementById('listGuildBuildings').style.display = 'inline-block';
+  }
+
+  orcBuildingFunc() {
+    document.getElementById('buildingFunc').style.display = 'inline-block';
+    document.getElementById('orcFunctionality').style.display = 'inline-block';
+    document.getElementById('orcBuildingLevel').innerText = this.appUser.guild.orcLevel;
+      document.getElementById('orcGoldAmount').innerText = this.appUser.guild.orcLevel * 100 + '';
+
+
   }
 
   mineBuildingFunc() {
@@ -199,6 +210,7 @@ appUser;
     document.getElementById('buildingFunc').style.display = 'none';
     document.getElementById('listGuildBuildings').style.display = 'none';
     document.getElementById('mineFunctionality').style.display = 'none';
+    document.getElementById('orcFunctionality').style.display = 'none';
     document.getElementById('form').style.display = 'none';
     clearInterval(this.interval);
   }

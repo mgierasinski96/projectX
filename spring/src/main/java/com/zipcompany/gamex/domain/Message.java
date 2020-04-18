@@ -27,6 +27,15 @@ public class Message {
         this.messageDate=new Date();
 
     }
+    private boolean ifRead;
+
+    public boolean isIfRead() {
+        return ifRead;
+    }
+
+    public void setIfRead(boolean ifRead) {
+        this.ifRead = ifRead;
+    }
 
     public Long getId() {
         return id;

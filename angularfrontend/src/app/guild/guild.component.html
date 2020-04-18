@@ -39,6 +39,7 @@
                       <tr><td>Budynek główny</td><td>{{appUser?.guild?.mainBuildingLevel}}</td><td>{{mainBuildingUpgradeCost}}</td><td><button class="myButton" id='mainBuilding' (click)="upgradeBuilding($event)">Rozbuduj</button></td></tr>
                       <tr><td>Magazyn</td><td>{{appUser?.guild?.storeLevel}}</td><td>{{storeUpgradeCost}}</td><td><button class="myButton" id='store' (click)="upgradeBuilding($event)">Rozbuduj</button></td></tr>
                       <tr><td>Kopalnia</td><td>{{appUser?.guild?.mineLevel >0 ? appUser?.guild?.mineLevel : 'NIE ISTNIEJE'}}</td><td>{{mineUpgradeCost}}</td><td><button class="myButton" id='mine' (click)="upgradeBuilding($event)">Rozbuduj</button></td></tr>
+                      <tr><td>Siedlisko orków</td><td>{{appUser?.guild?.orcLevel >0 ? appUser?.guild?.orcLevel : 'NIE ISTNIEJE'}}</td><td>{{orcUpgradeCost}}</td><td><button class="myButton" id='orc' (click)="upgradeBuilding($event)">Rozbuduj</button></td></tr>
                     </table>
                     <div id="mineFunctionality">
                       <div *ngIf="!appUser?.working">
@@ -58,6 +59,9 @@
 
                         <button style='display: none; width: 120px; height:70px' id="collectReward" (click)="getRewardForWork()">Odbierz nagrodę <span id="collectRewardAmount"></span> premium currency</button>
                       </div>
+                    </div>
+                    <div id="orcFunctionality">
+                      <h2>POZIOM <b id="orcBuildingLevel"></b> orkowie codziennie rabują pobliskie wioski przynosząc częśc złota do waszej gildii. 5 kowojów orków przybywa do Twojej po godzinie 13 przynosząć każdorazowo po <b id="orcGoldAmount"></b> złota</h2>
                     </div>
                   </div>
 
@@ -79,6 +83,12 @@
             <img  matTooltip="Kopalnia poziom 3"(click)="mineBuildingFunc()"*ngIf="appUser?.guild?.mineLevel == 3" class="mineBuilding" src="/assets/images/mine3.png">
             <img  matTooltip="Kopalnia poziom 4"(click)="mineBuildingFunc()"*ngIf="appUser?.guild?.mineLevel == 4" class="mineBuilding" src="/assets/images/mine4.png">
             <img  matTooltip="Kopalnia poziom 5"(click)="mineBuildingFunc()"*ngIf="appUser?.guild?.mineLevel >= 5" class="mineBuilding" src="/assets/images/mine5.png">
+
+                <img matTooltip="Siedlisko orków poziom 1" (click)="orcBuildingFunc()" *ngIf="appUser?.guild?.orcLevel == 1" class="orcBuilding" src="/assets/images/orcBuilding1.png">
+                <img  matTooltip="Siedlisko orków poziom 1"(click)="orcBuildingFunc()"*ngIf="appUser?.guild?.orcLevel == 2" class="orcBuilding" src="/assets/images/orcBuilding2.png">
+                <img  matTooltip="Siedlisko orków poziom 1"(click)="orcBuildingFunc()"*ngIf="appUser?.guild?.orcLevel == 3" class="orcBuilding" src="/assets/images/orcBuilding3.png">
+                <img  matTooltip="Siedlisko orków poziom 1"(click)="orcBuildingFunc()"*ngIf="appUser?.guild?.orcLevel == 4" class="orcBuilding" src="/assets/images/orcBuilding4.png">
+                <img  matTooltip="Siedlisko orków poziom 1"(click)="orcBuildingFunc()"*ngIf="appUser?.guild?.orcLevel >= 5" class="orcBuilding" src="/assets/images/orcBuilding5.png">
           </div>
       <h2>Członkowie </h2>
       <table>

@@ -34,6 +34,7 @@ public class Guild {
 
     private int mineLevel;
 
+    private int orcLevel;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(name ="guild_items")
@@ -117,5 +118,13 @@ public class Guild {
 
     public void setMineLevel(int mineLevel) {
         this.mineLevel = mineLevel;
+    }
+
+    public int getOrcLevel() {
+        return orcLevel;
+    }
+
+    public void setOrcLevel(int orcLevel) {
+        this.orcLevel = orcLevel;
     }
 }

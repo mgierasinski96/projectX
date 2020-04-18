@@ -22,7 +22,7 @@ import {SanitizeHtmlPipe} from '../pipes/SanitizeHtmlPipe';
 export class MessageComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   dataMessageSource;
-  displayedColumns: string[] = ['messageDate', 'messageContent', 'sender.username', 'action'];
+  displayedColumns: string[] = ['id', 'messageDate', 'messageContent', 'sender.username', 'action'];
   loggedUsername
   newMessageForm = new FormGroup({
     id: new FormControl(''),
@@ -57,19 +57,25 @@ export class MessageComponent implements OnInit {
     // const invit = document.getElementsByClassName('guildInvitation');
     // console.log(invit[0].innerHTML); //name of guilds than invited player
     if (event.target.parentNode.nodeName === 'TR') {
-      if (event.target.parentNode.children[1].style.textOverflow === 'clip') {
+      if (event.target.parentNode.children[2].style.textOverflow === 'clip') {
         event.target.parentNode.style.maxHeight = '35px';
         event.target.parentNode.style.height = '35px';
-        event.target.parentNode.children[1].style.whiteSpace = 'nowrap';
-        event.target.parentNode.children[1].style.overflow = 'hidden';
-        event.target.parentNode.children[1].style.textOverflow = 'ellipsis';
+        event.target.parentNode.children[2].style.whiteSpace = 'nowrap';
+        event.target.parentNode.children[2].style.overflow = 'hidden';
+        event.target.parentNode.children[2].style.textOverflow = 'ellipsis';
       } else {
         event.target.parentNode.style.maxHeight = 'none';
         event.target.parentNode.style.height = '150px';
-        event.target.parentNode.children[1].style.whiteSpace = 'normal';
-        event.target.parentNode.children[1].style.overflow = 'visible';
-        event.target.parentNode.children[1].style.textOverflow = 'clip';
-
+        event.target.parentNode.children[2].style.whiteSpace = 'normal';
+        event.target.parentNode.children[2].style.overflow = 'visible';
+        event.target.parentNode.children[2].style.textOverflow = 'clip';
+        this.chatService.readPrivateMessage(parseInt(event.target.parentNode.children[0].innerText, 0)).subscribe(response => {
+            const childs = event.target.parentNode.children;
+            for (const child of childs) {
+              child.style.background = 'none';
+            }
+          }
+        );
       }
     }
   }

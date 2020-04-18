@@ -9,7 +9,7 @@
 
       <div id="messages">
         <div class="messageContent" *ngFor="let message of chatResponses">
-          <div style="font-weight: bold"> {{message.sender.username}}</div>     <div> {{message.messageDate}}</div> {{message.messageContent}}
+          <div style="font-weight: bold"> {{message.sender.username}}</div>     <div> {{message.messageDate | date:'MMM d, y, H:mm':'pl'}}</div> {{message.messageContent}}
         </div>
       </div>
 

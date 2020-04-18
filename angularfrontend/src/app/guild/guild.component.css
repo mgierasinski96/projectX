@@ -34,7 +34,7 @@
   margin-left:100px;
   border:2px solid green;
 }
-#mineFunctionality
+#mineFunctionality,#orcFunctionality
 {
   display: none;
 }
@@ -64,6 +64,13 @@ padding: 10px;
   left:270px;
   top:100px;
 }
+.orcBuilding
+{
+  position: absolute;
+  z-index: 300;
+  right:60px;
+  bottom:60px;
+}
 .storeBulding
 {
   position: absolute;
@@ -78,7 +85,7 @@ padding: 10px;
   left:120px;
   top:230px;
 }
-.storeBulding:hover,.mainBuilding:hover,.mineBuilding:hover
+.storeBulding:hover,.mainBuilding:hover,.mineBuilding:hover,.orcBuilding:hover
 {
   opacity: 0.6;
   cursor: pointer;
@@ -188,7 +195,6 @@ th.mat-sort-header-sorted {
   width: 350px;
   height: 30px;
   border:2px solid black;
- align-content: end;
   background: gray;
 }
 #progressBar

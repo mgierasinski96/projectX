@@ -2,6 +2,7 @@ package com.zipcompany.gamex.Service;
 
 import com.zipcompany.gamex.controller.WebSocketController;
 import com.zipcompany.gamex.domain.AuctionItems;
+import com.zipcompany.gamex.domain.Guild;
 import com.zipcompany.gamex.domain.Item;
 import com.zipcompany.gamex.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,9 @@ public class SchedulerServiceImpl implements SchedulerService {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    GuildService guildService;
 
     @Override
     @Scheduled(cron = "0 0/1 * * * ?")
@@ -63,6 +67,18 @@ public class SchedulerServiceImpl implements SchedulerService {
         }
 
         System.out.println("inserting new shop items for each user");
+    }
+
+    @Scheduled(cron = "0 0-5 13 * * ?")//Every minute starting at 1 pm and ending on 1:05 pm, every day:
+    public void orcGuildBuilding() {
+        List<Guild> guilds = guildService.getAllGuilds();
+        for (Guild guild : guilds) {
+            if (guild.getOrcLevel() > 0) {
+                guild.setGuildGold(guild.getGuildGold() + 100 * guild.getOrcLevel());
+                guildService.safeGuild(guild);
+            }
+        }
+
     }
 
 

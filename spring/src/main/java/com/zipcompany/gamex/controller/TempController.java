@@ -64,9 +64,19 @@ public class TempController {
         message.setMessageContent(privateMessageDTO.getContent());
         message.setReceiver(userService.findByUsername(privateMessageDTO.getReceiver()));
         message.setSender(userService.findByUsername(privateMessageDTO.getSender()));
+        message.setIfRead(false);
 
        return messageService.safeMessage(message);
     }
+    @GetMapping(value = "/readPrivateMessage/{messageId}")
+    void readrivateMessage(@PathVariable("messageId") long messageId) {
+        Message message = messageService.findById(messageId);;
+                message.setIfRead(true);
+                messageService.safeMessage(message);
+
+    }
+
+
 
     @GetMapping(value = "/safeChatMessage/{userId}/{content}")
     Message safeNewChatMessege(@PathVariable("userId") long userId, @PathVariable("content") String cotent) {
