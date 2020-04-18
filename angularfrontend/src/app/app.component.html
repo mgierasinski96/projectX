@@ -1,166 +1,93 @@
-
-<!--<div class="wrapper" id="wrapper">-->
-
-<!--</div>-->
+<div class="container">
 
 
+  <ng-template [ngIf]="token!== null">
+    <div class="header">
+      <div id="playerInfo">
+        <table>
+          <tr>
+            <td>{{user.username}}</td>
+          </tr>
+          <tr>
+            <td>LEVEL {{user.level}}</td>
+          </tr>
+          <tr id="playerExperience">
+            <td> Exp:
+              <span id="charExp" class="statValue">{{ userData.exp }}/</span>
+              <span id="expToGo" class="statValue">{{ userData.level | getNextLvlExp }}</span>
 
-<div>
-
-  <div id="chat" (click)="showChatBox()">
-    <img src="https://img.icons8.com/material-outlined/32/000000/new-message.png">
-  </div>
-  <div id="chatBox">
-    <div id="contentOfChatBox"><h3>ZACHOWAJ WYSOKĄ KULTURE WYPOWIEDZI</h3> <img id="closeChatBox" src="https://img.icons8.com/dusk/48/000000/close-window.png"
-                                                                                (click)="closeChatBox()">
-
-      <div id="messages">
-        <div class="messageContent" *ngFor="let message of chatResponses">
-          <div style="font-weight: bold"> {{message.sender.username}}</div>     <div> {{message.messageDate}}</div> {{message.messageContent}}
-        </div>
+              <div class="progressBarBg">
+                <div style="background: gold" [ngStyle]="{'width.%': (userData.exp | getExpBarWidth) }"
+                     class="progressBarFg"></div>
+              </div>
+            </td>
+          </tr>
+        </table>
       </div>
 
-      <input type="text" id="newMessage" rows="4">
-    </div>
-  </div>
-  <div id="menuGorne">
-    <ol>
-      <li><h2><a [routerLink]="['/']"><span>Widok głowny</span></a></h2></li>
-      <li><h2><a [routerLink]="['/myMenu']"><span>menuU</span></a></h2></li>
-      <li><h2><a [routerLink]="['/potwor']"><span>Widok-potwor</span></a></h2></li>
-    </ol>
-    <div id="sideMenu">
-      <div id="insideSideMenu">
-        <ul>
-          <li><a [routerLink]="['/shop']"><span>Sklep</span></a></li>
-          <li><a [routerLink]="['/location1']"><span>Lokacja1</span></a></li>
-          <li><a [routerLink]="['/training']"><span>Trening</span></a></li>
-          <li><a [routerLink]="['/auctions']"><span>Dom aukcyjny</span></a></li>
-          <li><a [routerLink]="['/tmp']"><span>TMp</span></a></li>
-          <li><a [routerLink]="['/ranking']"><span>ranking</span></a></li>
-          <li><a [routerLink]="['/blacksmith']"><span>kowal</span></a></li>
-          <li><a [routerLink]="['/market-place']"><span>rynek</span></a></li>
-          <li><a [routerLink]="['/guild']"><span>gildia</span></a></li>
-          <li><a [routerLink]="['/messages']"><span>wiadomosci</span></a></li>
+      <div id="waluty">
+        <table>
+          <tr>
+            <td><img class="imageSlot" id="userGold"
+                     src="https://clipartart.com/images/heap-of-clipart-gold-coins-transparent-background-6.jpg"></td>
+            <td>{{user.gold}}</td>
+          </tr>
+          <tr>
+            <td><img class="imageSlot" id="premiumCurrency"
+                     src="https://images.vexels.com/media/users/3/151224/isolated/preview/58003c389b57ec8182abf593984eaa82-slot-diamond-icon-by-vexels.png">
+            </td>
+            <td>{{user.premium_curr}}</td>
+          </tr>
 
-        </ul>
+        </table>
       </div>
+      <button (click)="onLogout()" class="logoutButon">Wyloguj</button>
     </div>
-    <div id="userMenu">
-      <!--  User not authenticated view  -->
-      <div *ngIf="token == ''" style="text-align:center">
-        <h1>Welcome to ProjectX!</h1>
-        <h2 id="loggedUsername"></h2>
-        <input [(ngModel)]="register.username" placeholder="Username" type="text"><br>
-        <input [(ngModel)]="register.email" placeholder="Email" type="text"><br>
-        <input [(ngModel)]="register.password" placeholder="Password" type="password"><br>
+  </ng-template>
 
-        <div class="radio-item">
-          <div class="label-text">Profession</div>
-          <div class="item">
-            <input type="radio" name="profession" id="warrior" [(ngModel)]="register.profession" value="WR">
-            <label for="warrior"><span></span> Warrior</label>
-          </div>
-          <div class="item">
-            <input type="radio" name="profession" id="sorcerer" [(ngModel)]="register.profession" value="SC">
-            <label for="sorcerer"><span></span> Sorcerer</label>
-          </div>
-          <button (click)="onRegister()">Register</button>
-        </div>
+
+  <div class="content">
+       <ng-template [ngIf]="token === null">
+      <div id="userMenu">
+        <!--// [ngIf]="token === null">-->
         <input [(ngModel)]="login.username" placeholder="Username" type="text"><br>
         <input [(ngModel)]="login.password" placeholder="Password" type="password"><br>
         <button (click)="onLogin()">Login</button>
-      </div>
 
-      <!--  USER LOGGED IN VIEW -->
-      <div *ngIf="(token != '' && canRender)" style="text-align:left">
-        <div id="trainingMenu">
-          <h1>Gold: {{ userData.gold }}</h1>
-          <!--   User Skills Training Table   -->
-          <table id="trainingTable">
-            <tr>
-              <th>Strength: {{ userData.strength }}</th>
-              <th><span>Price: </span><span id="strUpgrade">{{ 'strength' | getSkillPrice: userData.strength }}</span>
-              </th>
-              <div *ngIf="'strength' | checkSkillPossible: userData.gold; else elseBlock">
-                <button mat-raised-button (click)="addSkill('strength')">+</button>
-              </div>
-              <ng-template #elseBlock>
-                <button mat-raised-button disabled>+</button>
-              </ng-template>
-            </tr>
-            <tr>
-              <th>Wisdom: {{ userData.wisdom }}</th>
-              <th><span>Price: </span><span id="wisUpgrade">{{ 'wisdom' | getSkillPrice: userData.wisdom }}</span></th>
-              <div *ngIf="'wisdom' | checkSkillPossible: userData.gold; else elseBlock">
-                <button mat-raised-button (click)="addSkill('wisdom')">+</button>
-              </div>
-              <ng-template #elseBlock>
-                <button mat-raised-button disabled>+</button>
-              </ng-template>
-            </tr>
-            <tr>
-              <th>Luck: {{ userData.luck }}</th>
-              <th><span>Price: </span><span id="lckUpgrade">{{ 'luck' | getSkillPrice: userData.luck }}</span></th>
-              <div *ngIf="'luck' | checkSkillPossible: userData.gold; else elseBlock">
-                <button mat-raised-button (click)="addSkill('luck')">+</button>
-              </div>
-              <ng-template #elseBlock>
-                <button mat-raised-button disabled>+</button>
-              </ng-template>
-            </tr>
-            <tr>
-              <th>Toughness: {{ userData.toughness }}</th>
-              <th><span>Price: </span><span id="tghUpgrade">{{ 'toughness' | getSkillPrice: userData.toughness }}</span>
-              </th>
-              <div *ngIf="'toughness' | checkSkillPossible: userData.gold; else elseBlock">
-                <button mat-raised-button (click)="addSkill('toughness')">+</button>
-              </div>
-              <ng-template #elseBlock>
-                <button mat-raised-button disabled>+</button>
-              </ng-template>
-            </tr>
-          </table>
-        </div>
 
-        <div id="playerInfo">
-          <div id="playerLevel">
-            <span class="statName">Level</span>
-            <span id="charLvl" class="statValue">{{ userData.level }}</span>
-          </div>
-          <div id="playerHealth">
-            <span class="statName">Health</span>
-            <span id="charHp" class="statValue">{{ userData.max_hp }}</span>
-            <div class="progressBarBg">
-              <div [ngStyle]="{'width.%': 10}" class="progressBarFg"></div>
-            </div>
-          </div>
-          <div id="playerExperience">
-            <span class="statName">Experience</span>
-            <span id="charExp" class="statValue">{{ userData.exp }}</span>
-            <div class="statName">
-              <span id="expToGo" class="statValue">{{ userData.level | getNextLvlExp }}</span>
-            </div>
-            <div class="progressBarBg">
-              <div style="background: gold" [ngStyle]="{'width.%': (userData.exp | getExpBarWidth) }"
-                   class="progressBarFg"></div>
-            </div>
-          </div>
-          <div id="playerDamage">
-            <span class="statName">Damage</span>
-            <span id="charDmg" class="statValue">{{ userData.total_damage }}</span>
-          </div>
-          <div id="playerDefense">
-            <span class="statName">Defense</span>
-            <span id="charDef" class="statValue">{{ userData.defense }}</span>
-          </div>
-        </div>
-        <button (click)="onLogout()">Logout</button>
-        <button (click)="updateUserData()">Update User Data</button>
-        <input [(ngModel)]="addedExpPoints" type="number">
-        <button (click)="addExpPoints()">Submit</button>
+
+
       </div>
-    </div>
+    </ng-template>
   </div>
+  <ng-template [ngIf]="token === null">
+  <p [routerLink]="['signup']" class="registerText">Don't have account yet? Sign UP HERE</p>
+  </ng-template>
+
+  <ng-template [ngIf]="token !== null">
+    <div id="sideMenu">
+      <ul>
+        <li><a [routerLink]="['/shop']"><span>Sklep</span></a></li>
+        <li><a [routerLink]="['/location1']"><span>Lokacja1</span></a></li>
+        <li><a [routerLink]="['/auctions']"><span>Dom aukcyjny</span></a></li>
+        <li><a [routerLink]="['/ranking']"><span>ranking</span></a></li>
+        <li><a [routerLink]="['/blacksmith']"><span>kowal</span></a></li>
+        <li><a [routerLink]="['/market-place']"><span>rynek</span></a></li>
+        <li><a [routerLink]="['/guild']"><span>gildia</span></a></li>
+        <li><a [routerLink]="['/messages']"><span>wiadomosci</span></a></li>
+        <li><a [routerLink]="['/potwor']"><span>Potwory</span></a></li>
+      </ul>
+    </div>
+  </ng-template>
+
+
+
   <router-outlet></router-outlet>
 </div>
+
+
+
+
+
+
+

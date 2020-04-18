@@ -16,7 +16,7 @@ import java.sql.Blob;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/user")
 public class ExampleController {

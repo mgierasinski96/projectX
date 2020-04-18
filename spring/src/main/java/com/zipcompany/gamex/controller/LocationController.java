@@ -6,10 +6,7 @@ import com.zipcompany.gamex.domain.Location;
 import com.zipcompany.gamex.domain.Monster;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
@@ -17,6 +14,7 @@ import java.io.InputStream;
 import java.sql.Blob;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/location")
 public class LocationController {

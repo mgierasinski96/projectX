@@ -1,0 +1,20 @@
+<div id="homeContainer">
+
+  <p>home works!</p>
+  <h1>Witaj {{username}}</h1>
+
+  <button (click)="onLogout()">Wyloguj</button>
+
+  <ng-template [ngIf]="showAdminBoard()">
+    TO JEST DLA ADMINA INFO
+  </ng-template>
+
+  <ng-template [ngIf]="showUserBaoard()">
+    TO JEST DLA ADMINA INFO
+  </ng-template>
+
+
+  <button (click)="test()">TEST</button>
+
+</div>
+

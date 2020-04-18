@@ -1,174 +1,74 @@
-* {
-  padding: 0;
-  margin: 0;
-  /*height: 100%;*/
-
-}
-/*.wrapper {*/
-  /*margin: 0;*/
-  /*padding: 0;*/
-  /*background-image: linear-gradient(rgba(0,0,0, 0.5), rgba(0,0,0, .8)), url(../assets/images/heroimage.jpg);*/
-  /*background-repeat: no-repeat;*/
-  /*background-size: 100% 100%*/
-/*}*/
-
-#menuGorne
-{
-  height: 90px;
-  background: yellow;
-  z-index: 100;
-}
-#sideMenu
-{
-  position: absolute;
-  height: 400px;
-  width: 15%;
-  background: green;
-  top: 180px;
-  z-index: 100;
-  left: 25px;
-  top: 250px;
-}
-#userMenu
-{
-  position: absolute;
-  height: 400px;
-  width: 60%;
-  background: gray;
-  left: 20%;
-  top: 250px;
-}
-#trainingMenu
-{
-  position: relative;
-  top: 25px;
-  left: 25px;
-  width: auto;
-  float: left;
-
-}
-#chat,#chatBox
-{
-  position: fixed;
-  bottom: 0%;
-  right: 1%;
-  z-index: 700;
-  background: red;
-  width: 150px;
-  height: 35px;
-  border-top-right-radius: 25%;
-  border-top-left-radius: 25%;
-  text-align: center;
-}
-#chat:hover
-{
-  cursor: pointer;
-}
-.messageContent
-{
-  border-bottom: 2px dotted black;
-  background: white;
-}
-#messages
-{
-  position: absolute;
-  width: 90%;
-  height: 55%;
-  top:20%;
-  left:5%;
-  border: 2px solid yellow;
-  overflow: scroll;
-}
-#chatBox{
-  width: 300px;
- height: 600px;
-  display: none;
-  background: antiquewhite;
-  border-radius: 0;
-  z-index: 701;
-}
-#contentOfChatBox
-{
-  width: 290px;
+.container{
+  width: 100%;
   height: 100%;
-  border: 5px solid red;
-  position: relative;
 }
-#newMessage
+
+.content{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background: gray;
+
+}
+
+
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: coral;
+  width: 100%;
+  height: 15%;
+  z-index: 100;
+}
+
+
+.imageSlot {
+  height: 50px;
+  width: 50px;
+  background-size: cover;
+}
+
+.logoutButon {
+  position: absolute;
+  width: 120px;
+  height: 60px;
+  left: 90%;
+}
+#waluty {
+  position: absolute;
+  left: 70%;
+  font-size: 26px;
+}
+
+#playerInfo
 {
   position: absolute;
-  bottom: 1%;
-  left:2%;
-  height: 19%;
-  width: 96%;
+  left: 20%;
+  font-size: 26px;
+
 }
-#closeChatBox
-{
-  position: absolute;
-  top:5%;
-  right: 5%;
-}
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
+#playerInfo td{
   padding: 8px;
 }
 
-#sideMenu ul {
-  list-style-image: url("https://img.icons8.com/metro/15/000000/sword.png");
-
-}
-
-#sideMenu ul li:hover{
-  background: red;
-  cursor: pointer;
-  font-weight: bold;
-
-}
-#sideMenu ul li{
-  height: 40px;
-  border-bottom:2px solid gold;
-}
-#sideMenu ul li a{
-  color: black;
-  text-decoration: none;
-  padding-top: 10px;
-  font-size: 20px;
- text-align: center;
-  vertical-align: middle;
+.progressBarFg{
+  position: relative;
+  height: 10px;
   width: 100%;
-  position: absolute;
-  height: 30px;
+  display: block;
+  background: green;
 }
-.mat-raised-button {
-  margin: 6px 8px 6px 8px;
-  min-width: 25px;
-  border-radius: 3px;
-  font-size: 25px;
-  text-align: center;
-  text-transform: uppercase;
-  text-decoration:none;
-  /*border: none;*/
-  outline: none;
-  margin-right: 8px;
-  margin-right: 8px;
-  background-color: darkgreen;
-
-}
-.mat-raised-button[disabled] {
-  background-color: firebrick;
-
-}
-#playerInfo{
-  /*color: #695220;*/
-  width: 20%;
-  position: absolute;
-  margin-top: 2%;
-  text-align: left;
-  right: 2%;
-  float: right;
-  display: inline-flex;
-  flex-direction: column;
+.progressBarBg{
+  position: relative;
+  display: block;
+  height: 10px;
+  width: 150px;
+  top: 10px;
+  background: red;
 }
 .statName {
   position: relative;
@@ -184,44 +84,82 @@ td, th {
   width: 70%;
 
 }
-.statValue {
-  position: relative;
-  display: block;
-  float: right;
-  width: 20%;
-  text-align: right;
-  top: -23px;
-  right: 5px;
-  font-weight: bold;
-}
 
-.progressBarFg{
-  position: relative;
-  height: 10px;
-  width: 100%;
-  display: block;
+
+
+#sideMenu {
+  left: 0;
+  position: absolute;
+  height: 85%;
+  width: 15%;
   background: green;
+  top: 15%;
+  z-index: 100;
 }
-.progressBarBg{
-  position: relative;
-  display: block;
-  height: 10px;
-  top: 20px;
+
+
+
+#userMenu {
+  position: absolute;
+  top: 30%;
+  left: 30%;
+
+}
+#sideMenu ul {
+  list-style-image: url("https://img.icons8.com/metro/15/000000/sword.png");
+
+}
+
+#sideMenu ul li:hover {
   background: red;
+  cursor: pointer;
+  font-weight: bold;
+
 }
 
-/*#charLvl{*/
-/*  */
-/*}*/
+#sideMenu ul li {
+  height: 40px;
+  border-bottom: 2px solid gold;
+}
 
-/*#charExp{*/
+#sideMenu ul li a {
+  color: black;
+  text-decoration: none;
 
-/*}*/
+  font-size: 20px;
+  text-align: center;
+  vertical-align: middle;
+  width: 100%;
+  position: absolute;
+  height: 30px;
+}
 
-/*#charDmg{*/
+#rejestruj{
+  position: absolute;
+  width: 200px;
+  height: 80px;
+  padding: 15px;
+  margin-top: 200px;
 
-/*}*/
 
-/*#charDef{*/
+}
+.registerText{
+  position: absolute;
+  font-size: 40px;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.registerText:hover{
+  cursor: pointer;
+  color: lightblue;
+}
+#errorMSG
+{
+  position: absolute;
+  font-size: 30px;
+  color: coral;
+  margin-top: 100px;
+}
 
-/*}*/
+

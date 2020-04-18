@@ -1,0 +1,121 @@
+#marketPlace {
+
+  position: absolute;
+  width: 85%;
+  left: 15%;
+  height: 85%;
+  top: 15%;
+  background-color: #fab;
+
+}
+
+::ng-deep th.mat-header-cell
+{
+
+  z-index: 200;
+  width: 150px;
+
+}
+
+#przedmioty
+{
+  position: absolute;
+ top: 55%;
+  left: 20%;
+}
+
+#filtrowanie
+{
+  position: absolute;
+  top: 50%;
+  left: 30%;
+}
+
+#marketPlaceSlotHolder
+{
+
+  border:2px solid black;
+  left: 15%;
+}
+
+#panel
+{
+
+  left: 15%;
+
+}
+
+#backpack
+{
+  background: rgb(198,193,137);
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  height: 260px;
+}
+#backpack td
+{
+  opacity: 1;
+  max-height: 120px;
+  height: 120px;
+}
+
+
+.itemSlot
+{
+  width: 120px;
+  height: 120px;
+//background-image: url('../../../assets/images/backpackSlot.png');
+  background: antiquewhite;
+}
+
+#infoAboutItem
+{
+  position: absolute;
+  width: 150px;
+  background:yellow;
+  visibility: hidden;
+  z-index: 300;
+  transition: visibility 50ms linear;
+}
+#infoAboutItem td
+{
+  color: black;
+  font-weight: bold;
+}
+#infoAboutItem tr
+{
+  width: 100%;
+}
+
+@keyframes changeVisibility {
+  0% {opacity: 0;}
+  10% {opacity: 1; }
+  70% {opacity: 1; }
+  100% {opacity: 0; }
+}
+
+
+.cdk-drag-placeholder
+{
+  opacity: 0;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+  0 8px 10px 1px rgba(0, 0, 0, 0.14),
+  0 3px 14px 2px rgba(0, 0, 0, 0.12)
+
+}
+
+#iteminfo
+{
+  position: absolute;
+  width: 180px;
+  height: 100px;
+  background:grey;
+  visibility: hidden;
+  z-index: 300;
+  transition: visibility 50ms linear;
+}

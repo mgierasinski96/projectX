@@ -1,0 +1,8 @@
+#homeContainer{
+  z-index: 1000;
+  position: relative;
+  width: 82%;
+  margin-left: 18%;
+  height: 1400px;
+  background-color: #fab;
+}

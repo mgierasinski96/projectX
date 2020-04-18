@@ -1,0 +1,36 @@
+<div class="registerContainer">
+
+  <div class="contentRegister">
+    <p [routerLink]="['']" class="loginText">Already registered? Sign in HERE</p>
+
+    <div class="registerForm">
+      <table>
+        <tr>
+          <td><label for="username">Username</label></td>
+          <td>
+            <input id="username" [(ngModel)]="register.username" placeholder="username" type="text"></td>
+        </tr>
+
+        <tr>
+          <td>
+            <label for="email">Email</label>
+          </td>
+          <td>
+            <input id="email" [(ngModel)]="register.email" placeholder="email" type="email"></td>
+        </tr>
+        <tr>
+          <td><label for="password">Password</label></td>
+          <td><input id="password" [(ngModel)]="register.password" placeholder="password" type="password"></td>
+        </tr>
+
+          <button (click)="onRegister()" class="onRegisterButton">Zarejestruj</button>
+
+      </table>
+
+
+    </div>
+
+
+  </div>
+
+</div>

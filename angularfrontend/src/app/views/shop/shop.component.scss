@@ -1,0 +1,132 @@
+#guildStore{
+
+  position: absolute;
+  width: 85%;
+  background: whitesmoke;
+  left: 15%;
+  top: 15%;
+  height: 85%;
+}
+
+#backpack
+ {
+  background: rgb(198,193,137);
+  position: absolute;
+   top: 20%;
+  left: 50%;
+  height: 260px;
+ }
+#guildStoreItems
+{
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  border:1px solid black;
+
+}
+
+#backpack tr td
+{
+  opacity: 1;
+  //max-height: 120px;
+  //height: 120px;
+}
+#backpack td
+{
+  opacity: 1;
+  max-height: 120px;
+  height: 120px;
+}
+.itemSlot,.shopSlot
+{
+  width: 120px;
+  height: 120px;
+  //background-image: url('../../assets/images/backpackSlot.png');
+  background: antiquewhite;
+}
+
+.exItem:hover
+{
+  cursor: move;
+}
+//.cdk-drag-placeholder {
+//  display:none;
+//}
+.cdk-drag-placeholder
+{
+  opacity: 0;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+  0 8px 10px 1px rgba(0, 0, 0, 0.14),
+  0 3px 14px 2px rgba(0, 0, 0, 0.12)
+
+}
+#shopAssisantDialog
+{
+  z-index: 200;
+  opacity: 0;
+  position: absolute;
+  width: 140px;
+  height: 100px;
+  top:-85px;
+  left:120px;
+
+}
+#dialog{
+  font-family: "Arial Black";
+  font-size: 20px;
+  position: absolute;
+  text-align: center;
+  top:40px;
+  left: 30px;
+  width: 100px;
+  height: 80px;
+}
+#infoAboutItem
+{
+  position: absolute;
+  width: 150px;
+  background:yellow;
+  visibility: hidden;
+  z-index: 300;
+  transition: visibility 50ms linear;
+}
+#infoAboutItem td
+{
+  color: black;
+  font-weight: bold;
+}
+#infoAboutItem tr
+{
+  width: 100%;
+}
+.cdk-drop-list-dragging div // zawartosc tego diva musi miec pozycje absolutna, bo inaczej jezeli jest jakis item
+  //w miejscu na ktore przeciagamy nowy item to stary sie przesuwa
+{
+  position: absolute;
+}
+
+@keyframes changeVisibility {
+  0% {opacity: 0;}
+  10% {opacity: 1; }
+  70% {opacity: 1; }
+  100% {opacity: 0; }
+}
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+.cdk-drop-list-dragging
+{
+  opacity: 0;
+}
+#backpack .cdk-drop-list
+{
+  border:1px solid red;
+  max-height: 120px;
+}
+
+
+
