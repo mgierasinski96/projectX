@@ -45,6 +45,10 @@ public class UserBackpack {
 
     }
 
+    public UserBackpack(String kolor){
+        this.kolor = kolor;
+    }
+
     public User getUser() {
         return user;
     }

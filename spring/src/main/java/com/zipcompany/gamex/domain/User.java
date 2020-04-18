@@ -3,9 +3,7 @@ package com.zipcompany.gamex.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name = "users_user")
@@ -17,6 +15,12 @@ public class User {
     private String password;
     private String email;
     private String username;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(	name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 
     private Date date_joined;
     private Date last_login;
@@ -41,6 +45,15 @@ public class User {
     private int toughness;
     private double total_damage;
     private double defense;
+    private boolean working;
+    private String typeOfWork;
+    private Date workBeginDate;
+    private int howLongWorking;
+    private int workReward;
+
+
+
+
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "userShopItems",
@@ -57,54 +70,24 @@ public class User {
     @JoinColumn(name = "guild_id")
     private Guild guild;
 
-    private boolean working;
+    private Date lastAdventure;
 
-    private String typeOfWork;
+    private boolean onAdventure;
 
-    private Date workBeginDate;
-
-    private int howLongWorking;
-
-    private int workReward;
-
-    public int getWorkReward() {
-        return workReward;
+    public Date getLastAdventure() {
+        return lastAdventure;
     }
 
-    public int getHowLongWorking() {
-        return howLongWorking;
+    public void setLastAdventure(Date lastAdventure) {
+        this.lastAdventure = lastAdventure;
     }
 
-    public void setHowLongWorking(int howLongWorking) {
-        this.howLongWorking = howLongWorking;
+    public boolean isOnAdventure() {
+        return onAdventure;
     }
 
-    public void setWorkReward(int workReward) {
-        this.workReward = workReward;
-    }
-
-    public boolean isWorking() {
-        return working;
-    }
-
-    public void setWorking(boolean working) {
-        this.working = working;
-    }
-
-    public String getTypeOfWork() {
-        return typeOfWork;
-    }
-
-    public void setTypeOfWork(String typeOfWork) {
-        this.typeOfWork = typeOfWork;
-    }
-
-    public Date getWorkBeginDate() {
-        return workBeginDate;
-    }
-
-    public void setWorkBeginDate(Date workBeginDate) {
-        this.workBeginDate = workBeginDate;
+    public void setOnAdventure(boolean onAdventure) {
+        this.onAdventure = onAdventure;
     }
 
     public Guild getGuild() {
@@ -131,10 +114,74 @@ public class User {
         this.userBackpack = userBackpack;
     }
 
-    public User(){ this.date_joined=new Date();
-    this.last_login=new Date();
+    public boolean isWorking() {
+        return working;
     }
 
+    public void setWorking(boolean working) {
+        this.working = working;
+    }
+
+    public String getTypeOfWork() {
+        return typeOfWork;
+    }
+
+    public void setTypeOfWork(String typeOfWork) {
+        this.typeOfWork = typeOfWork;
+    }
+
+    public Date getWorkBeginDate() {
+        return workBeginDate;
+    }
+
+    public void setWorkBeginDate(Date workBeginDate) {
+        this.workBeginDate = workBeginDate;
+    }
+
+    public int getHowLongWorking() {
+        return howLongWorking;
+    }
+
+    public void setHowLongWorking(int howLongWorking) {
+        this.howLongWorking = howLongWorking;
+    }
+
+    public int getWorkReward() {
+        return workReward;
+    }
+
+    public void setWorkReward(int workReward) {
+        this.workReward = workReward;
+    }
+
+    public User() {
+        this.date_joined = new Date();
+        this.last_login = new Date();
+    }
+
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
+
+    public User(String profession,String password, String email, String username, Date date_joined, Date last_login, int gold, int premium_curr, int level, double exp, double total_exp, UserBackpack userBackpack, Guild guild, Date lastAdventure, boolean onAdventure) {
+        this.profession = profession;
+        this.password = password;
+        this.email = email;
+        this.username = username;
+        this.date_joined = date_joined;
+        this.last_login = last_login;
+        this.gold = gold;
+        this.premium_curr = premium_curr;
+        this.level = level;
+        this.exp = exp;
+        this.total_exp = total_exp;
+        this.userBackpack = userBackpack;
+        this.guild = guild;
+        this.lastAdventure = lastAdventure;
+        this.onAdventure = onAdventure;
+    }
 
     public Long getId() {
         return id;
@@ -334,6 +381,14 @@ public class User {
 
     public void setDefense(double defense) {
         this.defense = defense;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     @Override

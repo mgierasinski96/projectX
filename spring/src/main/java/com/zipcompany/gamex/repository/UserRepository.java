@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @Transactional
@@ -17,6 +18,13 @@ public interface UserRepository extends JpaRepository<User,Long> {
     User findUserById(Long id);
     List<User> findAllByOrderByLevelDesc();
     User findByUsername(String username);
+
+    //TODO: OPTIONAL?
+    Optional<User> findUserByUsername(String username);
+
+    Boolean existsByUsername(String username);
+
+    Boolean existsByEmail(String email);
 
     @Transactional
     @Query(value = "select *\n" +

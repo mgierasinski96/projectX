@@ -12,7 +12,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.util.List;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/monster")
 public class MonsterController {

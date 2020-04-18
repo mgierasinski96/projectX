@@ -17,6 +17,11 @@ public class Location {
 
     private String locationName;
 
+    private String locationDescription;
+
+    @Lob
+    private byte[] locationPicture;
+
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "location")
     @OrderBy("monsterLevel ASC")
@@ -29,6 +34,22 @@ public class Location {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getLocationDescription() {
+        return locationDescription;
+    }
+
+    public void setLocationDescription(String locationDescription) {
+        this.locationDescription = locationDescription;
+    }
+
+    public byte[] getLocationPicture() {
+        return locationPicture;
+    }
+
+    public void setLocationPicture(byte[] locationPicture) {
+        this.locationPicture = locationPicture;
     }
 
     public String getLocationName() {

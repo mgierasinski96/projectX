@@ -3,25 +3,28 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {UserData} from '../models/user-data';
 import {SkillPricePipe} from '../pipes/skill-price.pipe';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class UserService {
 
   baseurl = 'http://localhost:8000';
+  test = 'http://localhost:8080';
   spring_baseurl = 'http://localhost:8080/user/';
-
+  API_RUL_SIGN_UP = 'http://localhost:8080/api/auth/signup';
   private httpHeaders: HttpHeaders;
 
   constructor(private http: HttpClient) { }
+
 
   getUserByUsername(username: String): Observable<any> {
     return this.http.get<any>(this.spring_baseurl + 'getUserByUsername/' + username);
   }
   registerUser(userData): Observable<any> {
-    return this.http.post(this.baseurl + '/create/', userData);
+    return this.http.post(this.API_RUL_SIGN_UP, userData);
   }
   loginUser(userData): Observable<any> {
-    return this.http.post(this.baseurl + '/auth/', userData);
+    return this.http.post(this.test + '/api/auth/signin', userData);
   }
   getUserData(): Observable<any> {
     console.log('getUserdata: ', localStorage.getItem('token'));
@@ -85,5 +88,17 @@ export class UserService {
   }
   getRewardForWork(username: string): Observable<any> {
     return this.http.get('http://localhost:8080/endWorking/' + username);
+  }
+  newAdventure(userName: string): Observable<any> {
+    return this.http.get('http://localhost:8080/startAdventure/' + userName);
+  }
+  isOnAdventure(userName: string): Observable<any> {
+    return this.http.get('http://localhost:8080/ifOnAdventure/' + userName);
+  }
+  lastAdventure(userName: string): Observable<any> {
+    return this.http.get('http://localhost:8080/lastAdventure/' + userName);
+  }
+  endAdventure(userName: string): Observable<any> {
+    return this.http.get('http://localhost:8080/endAdventure/' + userName);
   }
 }

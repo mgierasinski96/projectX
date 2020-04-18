@@ -1,0 +1,240 @@
+#container {
+  position: absolute;
+  left: 15%;
+  width: 85%;
+  height: 85%;
+  top: 15%;
+  background-image: url('/assets/images/exmap.png');
+  background-repeat: no-repeat;
+  z-index: 100;
+}
+
+
+
+  #mapContent
+  {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+
+
+#Wrzeszczaca_Chata
+{
+  background: transparent;
+  position: absolute;
+  height: 95px;
+  width: 140px;
+  left: 710px;
+  top:240px;
+
+}
+#lokacja1label
+{
+  position: absolute;
+  left: 690px;
+  top: 340px;
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+}
+#Wrzeszczaca_Chata:hover
+{
+  cursor: pointer;
+}
+
+#Magiczny_Krag
+{
+  background: transparent;
+  position: absolute;
+  width: 170px;
+  height: 80px;
+  left: 680px;
+}
+#lokacja2label
+{
+  position: absolute;
+  left: 690px;
+  top: 85px;
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+#Magiczny_Krag:hover
+{
+  cursor: pointer;
+}
+
+
+#Gora_Przeznaczenia{
+  background: transparent;
+  position: absolute;
+  width: 140px;
+  height: 120px;
+  left: 490px;
+  top: 390px;
+}
+#lokacja3label
+{
+  position: absolute;
+  left: 460px;
+  top: 525px;
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+}
+#Gora_Przeznaczenia:hover{
+  cursor: pointer;
+}
+
+/*lokacja 4*/
+
+#Dol_Goldur{
+  top: 60px;
+  background: transparent;
+  position: absolute;
+  width: 165px;
+  height: 160px;
+
+}
+#lokacja4label
+{
+  position: absolute;
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  top: 225px;
+  left: 30px;
+}
+#Dol_Goldur:hover{
+  cursor: pointer;
+}
+
+#fightWindow
+{
+  z-index: 200;
+  width: 800px;
+  height: 580px;
+  left:40%;
+  top:40%;
+  transform: translate(-50%, -50%);
+
+  position: absolute;
+  background: lightgray;
+  display: none;
+}
+#opis
+{
+  font-family: sans-serif;
+  text-align: justify;
+  font-size: 17px;
+  position: relative;
+  margin-top: 355px;
+  margin-left: 60px;
+  width: 80%;
+  height: 100%;
+}
+
+#photo {
+  position: absolute;
+  left: 50%;
+  top: 35%;
+  transform: translate(-50%, -50%);
+  height: 50%;
+  width: 70%;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+#photoo
+{
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%);
+  height: 60%;
+  width: 70%;
+  background-repeat: no-repeat;
+  background-size: contain;
+
+}
+#opiss {
+  font-family: sans-serif;
+  text-align: center;
+  font-size: 30px;
+  left: 25%;
+  top: 20px;
+  position: absolute;
+}
+
+#title
+{
+  font-family: sans-serif;
+  text-align: center;
+  font-size: 30px;
+  left: 30%;
+  top: 20px;
+  position: absolute;
+}
+
+.goWyprawa
+{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 240px;
+  background: crimson;
+  font-size: 20px;
+  font-family: sans-serif;
+  color: ghostwhite;
+  padding: 20px;
+}
+#x
+{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 240px;
+  font-size: 26px;
+  font-family: sans-serif;
+  color: crimson;
+
+}
+
+#closeFightWindowIcon
+{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+#closeFightWindowIcon:hover
+{
+  cursor: pointer;
+}
+#naWyprawie
+{
+  position: absolute;
+  left: 20%;
+  width: 1000px;
+  height: 600px;
+  background: #dddddd;
+  font-size: 30px;
+  display: none;
+  color: crimson;
+
+}
+#czas
+{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 240px;
+  font-size: 26px;
+  font-family: sans-serif;
+  color: crimson;
+}

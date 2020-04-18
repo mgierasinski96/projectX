@@ -9,5 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public interface LocationRepository extends JpaRepository<Location,Long> {
     Location findByLocationName(String locationName);
+    Location findLocationById(Long id);
 
 }

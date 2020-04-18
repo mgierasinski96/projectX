@@ -1,4 +1,6 @@
-export interface UserData {
+
+export class UserData {
+
   id: number;
   username: string;
   is_active: false;
@@ -17,4 +19,5 @@ export interface UserData {
   toughness: number;
   total_damage: number;
   defense: number;
+
 }

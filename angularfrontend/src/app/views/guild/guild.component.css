@@ -1,0 +1,289 @@
+#container {
+  position: absolute;
+  left: 15%;
+  top: 15%;
+  width: 85%;
+  height: 85%;
+  background: aquamarine;
+}
+
+
+.example-form {
+  position: absolute;
+  height: 150px;
+  width: 50%;
+  left:50%;
+  margin-left: -25%;
+  top:50%;
+  margin-top: -75px;
+
+}
+#guildContent
+{
+  border:2px solid red;
+}
+.guildMember td a:hover
+{
+  color: white;
+  background: red;
+  cursor:pointer;
+  font-size: 16px;
+}
+.guildMember td a
+{
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+.guildMember td
+{
+  text-align: center;
+}
+#guildInfo{
+  width: 500px;
+  margin-left:100px;
+  border:2px solid green;
+}
+#mineFunctionality,#orcFunctionality
+{
+  display: none;
+}
+#listGuildBuildings
+{
+  display: none;
+  font-size: 20px;
+  text-align: center;
+}
+#listGuildBuildings tr td,#listGuildBuildings tr th
+{
+  padding: 10px;
+}
+#buildingFunc
+{
+  position: absolute;
+  display: none;
+  width: 800px;
+  background: aquamarine;
+  z-index: 400;
+  height: 500px;
+}
+.mainBuilding
+{
+  position: absolute;
+  z-index: 300;
+  left:270px;
+  top:100px;
+}
+.orcBuilding
+{
+  position: absolute;
+  z-index: 300;
+  right:60px;
+  bottom:60px;
+}
+.storeBulding
+{
+  position: absolute;
+  z-index: 300;
+  right:10px;
+  top:90px;
+}
+.mineBuilding
+{
+  position: absolute;
+  z-index: 300;
+  left:120px;
+  top:230px;
+}
+.storeBulding:hover,.mainBuilding:hover,.mineBuilding:hover,.orcBuilding:hover
+{
+  opacity: 0.6;
+  cursor: pointer;
+}
+.example-full-width {
+  width: 100%;
+  height: 100px;
+}
+::ng-deep mat-form-field{
+  background: white;
+}
+input ::ng-deep{
+  font-size: 28px;
+}
+#guildDonate
+{
+  position: relative;
+}
+mat-error ::ng-deep{
+  color: blue;
+  font-size: 14px;
+}
+.removeUserFromGuild:hover, .navBuilding:hover
+{
+  cursor: pointer;
+  background: red;
+  color: white;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+}
+#closeCreatingGuildWindow,#closeBuildingWindow
+{
+  position: absolute;
+  top:5px;
+  right: 5px;
+}
+::ng-deep th.mat-header-cell
+{
+  background: red;
+  font-size: 18px;
+  font-weight: bold;
+  z-index: 300;
+}
+th.mat-sort-header-sorted {
+  color: black;
+}
+::ng-deep .mat-sort-header-sorted {
+  color: white;
+}
+#content
+{
+  min-height: 700px;
+  border:2px solid indigo;
+}
+#content,#formContent,#buildingContent
+{
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+#createGuildButton,#searchGuildButton
+{
+  position: absolute;
+  width: 200px;
+  height: 60px;
+  top: 50%;
+  margin-top: -30px;
+  left: 50%;
+  margin-left: -200px;
+}
+#searchGuildButton a
+{
+  position: center;
+  padding: 20px;
+  padding-left:54px;
+  padding-right: 54px;
+}
+#mineReward
+{
+  position: absolute;
+  top:330px;
+}
+#progressContainer
+{
+  position: absolute;
+  top:200px;
+  left:50%;
+  margin-left: -175px;
+  width: 350px;
+  height: 30px;
+}
+#progress
+{
+  display: flex;
+  justify-content: flex-end;
+  width: 350px;
+  height: 30px;
+  border:2px solid black;
+  background: gray;
+}
+#progressBar
+{
+  position: relative;
+  height: 100%;
+  background: red;
+}
+#createGuildButton:hover,#searchGuildButton:hover,#closeCreatingGuildWindow:hover,#closeMainBuildingWindow,.myButton,
+#mineWork,#collectReward
+
+{
+  cursor: pointer;
+}
+#searchGuildButton
+{
+  margin-left: 0px;
+}
+#form
+{
+  position: absolute;
+  width: 800px;
+  height: 500px;
+  top:50%;
+  margin-top: -250px;
+  left: 50%;
+  margin-left: -400px;
+  background: darkgray;
+  display: none;
+
+}
+#notEnoughGoldWarning
+{
+  color: red;
+  font-family: "Arial Black";
+  font-size: 25px;
+  position: absolute;
+  z-index: 500;
+  opacity: 0;
+  right:30%;
+  top:40%;
+}
+@keyframes changeVisibility {
+  0% {opacity: 0;}
+  10% {opacity: 1; }
+  70% {opacity: 1; top:25%;}
+  100% {opacity: 0; top:25%;}
+}
+#mineWork
+{
+  margin-left: 30px;
+  width: 100px;
+  text-align: center;
+  height: 50px;
+}
+::ng-deep .mat-slider.mat-slider-horizontal .mat-slider-wrapper {
+  top: 80px;
+  width: 400px;
+}
+::ng-deep .mat-slider.mat-slider-horizontal .mat-slider-track-wrapper {
+  height: 40px;
+}
+::ng-deep .mat-slider.mat-slider-horizontal .mat-slider-track-background,
+.mat-slider.mat-slider-horizontal .mat-slider-track-fill {
+  height: 100%;
+}
+::ng-deep .mat-slider.mat-slider-horizontal .mat-slider-track-fill {
+  background-color: blue;
+  height: 40px;
+}
+::ng-deep .mat-accent ::ng-deep ::ng-deep.mat-slider-thumb {
+  position: absolute;
+  top:-20px;
+  height: 80px;
+  width: 30px;
+  border-radius: 10px;
+  background-color: white;
+  border: solid 2px gray;
+}
+::ng-deep .mat-slider-thumb-label {
+  position: absolute !important;
+  top:-80px !important;
+  background-color: black !important;
+  min-width: 60px !important;
+  min-height: 60px !important;
+
+}
+::ng-deep .mat-slider-thumb-label-text {
+  font-size: 40px !important;
+}
