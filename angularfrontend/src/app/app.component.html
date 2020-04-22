@@ -3,46 +3,44 @@
 
   <ng-template [ngIf]="token!== null">
     <div class="header">
-      <div id="playerInfo">
-        <table>
-          <tr>
-            <td>{{user.username}}</td>
-          </tr>
-          <tr>
-            <td>LEVEL {{user.level}}</td>
-          </tr>
-          <tr id="playerExperience">
-            <td> Exp:
-              <span id="charExp" class="statValue">{{ userData.exp }}/</span>
-              <span id="expToGo" class="statValue">{{ userData.level | getNextLvlExp }}</span>
+      <div id="headerContent">
+        <img id="messageNavi"matTooltip="Prywatne wiadomości" (click)="navigateToPrivateMessages()" src="https://pngimage.net/wp-content/uploads/2018/06/message-icon-white-png-2.png">
+        <img id="logo" src="../assets/images/logo.png">
+          <table id="playerInfo">
+            <tr style="color: coral;">
+              <td>Poziom: <span style="color: white">{{user.level}}</span></td>
+            </tr>
+            <tr id="playerExperience">
+              <td style="color: #950740"> Exp:
+                <span id="charExp" class="statValue">{{ userData.exp }}/</span>
+                <span id="expToGo" class="statValue">{{ userData.level | getNextLvlExp }}</span>
 
-              <div class="progressBarBg">
-                <div style="background: gold" [ngStyle]="{'width.%': (userData.exp | getExpBarWidth) }"
-                     class="progressBarFg"></div>
-              </div>
-            </td>
-          </tr>
-        </table>
+                <div class="progressBarBg">
+                  <div style="background: gold" [ngStyle]="{'width.%': (userData.exp | getExpBarWidth) }"
+                       class="progressBarFg"></div>
+                </div>
+              </td>
+            </tr>
+          </table>
+
+          <table id="waluty">
+            <tr>
+              <td><img class="imageSlot"
+                       src="https://cdn3.iconfinder.com/data/icons/business-and-seo-7/48/37-512.png"></td>
+              <td style="color: #ffaabb" id="userGold">{{user.gold}}</td>
+            </tr>
+            <tr>
+              <td><img class="imageSlot"
+                       src="https://images.vexels.com/media/users/3/151224/isolated/preview/58003c389b57ec8182abf593984eaa82-slot-diamond-icon-by-vexels.png">
+              </td>
+              <td style="color: #C3073F" id="userPremiumCurrency">{{user.premium_curr}}</td>
+            </tr>
+
+          </table>
+        <button (click)="onLogout()" class="logoutButon">Wyloguj</button>
+        </div>
+
       </div>
-
-      <div id="waluty">
-        <table>
-          <tr>
-            <td><img class="imageSlot" id="userGold"
-                     src="https://clipartart.com/images/heap-of-clipart-gold-coins-transparent-background-6.jpg"></td>
-            <td>{{user.gold}}</td>
-          </tr>
-          <tr>
-            <td><img class="imageSlot" id="premiumCurrency"
-                     src="https://images.vexels.com/media/users/3/151224/isolated/preview/58003c389b57ec8182abf593984eaa82-slot-diamond-icon-by-vexels.png">
-            </td>
-            <td>{{user.premium_curr}}</td>
-          </tr>
-
-        </table>
-      </div>
-      <button (click)="onLogout()" class="logoutButon">Wyloguj</button>
-    </div>
   </ng-template>
 
 
@@ -53,8 +51,6 @@
         <input [(ngModel)]="login.username" placeholder="Username" type="text"><br>
         <input [(ngModel)]="login.password" placeholder="Password" type="password"><br>
         <button (click)="onLogin()">Login</button>
-
-
 
 
       </div>
@@ -70,16 +66,14 @@
         <li><a [routerLink]="['/shop']"><span>Sklep</span></a></li>
         <li><a [routerLink]="['/location1']"><span>Lokacja1</span></a></li>
         <li><a [routerLink]="['/auctions']"><span>Dom aukcyjny</span></a></li>
-        <li><a [routerLink]="['/ranking']"><span>ranking</span></a></li>
-        <li><a [routerLink]="['/blacksmith']"><span>kowal</span></a></li>
-        <li><a [routerLink]="['/market-place']"><span>rynek</span></a></li>
-        <li><a [routerLink]="['/guild']"><span>gildia</span></a></li>
-        <li><a [routerLink]="['/messages']"><span>wiadomosci</span></a></li>
+        <li><a [routerLink]="['/ranking']"><span>Ranking</span></a></li>
+        <li><a [routerLink]="['/blacksmith']"><span>Kowal</span></a></li>
+        <li><a [routerLink]="['/market-place']"><span>Rynek</span></a></li>
+        <li><a [routerLink]="['/guild']"><span>Gildia</span></a></li>
         <li><a [routerLink]="['/potwor']"><span>Potwory</span></a></li>
       </ul>
     </div>
   </ng-template>
-
 
 
   <router-outlet></router-outlet>

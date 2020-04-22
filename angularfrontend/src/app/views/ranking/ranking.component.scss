@@ -1,0 +1,326 @@
+*{
+letter-spacing: 0;
+}
+$darkone: #1A1A1D;
+$cherryone: #950740;
+$coral: coral;
+$white: white;
+$pinkone: #ffaabb;
+
+#userRanking
+{
+  position: absolute;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  left:0;
+  top:0;
+  height: 100%;
+  background: #4E4E50;
+
+}
+
+#infoAboutItem
+{
+  position: absolute;
+  background:yellow;
+  visibility: hidden;
+  z-index: 300;
+  transition: visibility 50ms linear;
+}
+#alreadyInGuildWarning
+{
+  color: $coral;
+  font-family: "Arial Black";
+  font-size: 30px;
+  position: absolute;
+  z-index: 300;
+  opacity: 0;
+  right:4%;
+  top:40%;
+}
+
+#rankingTableHolder {
+  position: absolute;
+  left: 20%;
+  top:37%;
+  width: 50%;
+  height: 60%;
+  overflow-y: scroll;
+
+}
+
+#rankingGuildTable, #rankingTable {
+  background: $darkone;
+  box-shadow: none;
+}
+
+#rankingTableBackground {
+  position: absolute;
+  width: 100%;
+  height: 101%;
+  background: $darkone;
+}
+
+
+::ng-deep .mat-row
+{
+  text-align: left;
+}
+.mat-row td,#guildContentInfo,#userStatistics tr:nth-child(3n),#guildData tr:nth-child(3n),#guildMembers tr:nth-child(3n+1)
+{
+  color: $coral;
+}
+.mat-row:hover{
+  font-weight: bold;
+  cursor: pointer;
+}
+::ng-deep th.mat-header-cell
+{
+  background: $darkone !important;
+  color: $white !important;
+  font-size: 1rem !important;
+  min-width: 100%;
+  border-bottom: 2px solid $white;
+  z-index: 300;
+ width: 200px;
+
+}
+
+#rankingTableHolder::-webkit-scrollbar-track {
+  border-radius: 12px;
+}
+
+#rankingTableHolder::-webkit-scrollbar-thumb {
+  border-radius: 12px;
+  background: $cherryone;
+}
+​
+::ng-deep .mat-sort-header-container {
+
+}
+#messageFormContainer
+{
+  border:2px solid $white;
+  display: none;
+  position: absolute;
+  width: 50%;
+  margin-left: -25%;
+  left: 50%;
+  top:20%;
+  background: $darkone;
+  z-index: 500;
+  color:$white;
+}
+input ::ng-deep, #textAreaContent ::ng-deep{
+  font-size: 30px;
+  background: $cherryone;
+  padding: 1%;
+}
+
+::ng-deep mat-label
+{
+  color: $white;
+}
+#messageFormContainerContent
+{
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+#closeMessageWindow
+{
+  z-index: 600;
+  position: absolute;
+  top:5px;
+  right: 5px;
+}
+
+mat-form-field {
+  width: 70%;
+}
+
+#filtrInput ::ng-deep .mat-form-field-underline .mat-form-field-ripple, #filtrInput ::ng-deep .mat-form-field-underline, #rankingTableHolder::-webkit-scrollbar{
+
+  background:$white;
+
+}
+
+#filtrInput
+{
+  background: $cherryone;
+  color: $white;
+  z-index: 200;
+  left:30%;
+  padding: 5px;
+  top:17%;
+  position: absolute;
+  width: 200px;
+  border: 2px solid black;
+}
+
+#guilds,#users
+{
+  border-radius: 10%;
+}
+#users
+{
+  background: $darkone;
+}
+
+#rankingGuildTable
+{
+  display: none;
+}
+#navi
+{
+  padding: 5px 0px;
+  color: $cherryone;
+  top:20%;
+  background: $white;
+  position: absolute;
+  left:50%;
+  font-size: 30px;
+}
+
+
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+::ng-deep .mat-sort-header-sorted {
+  color: $cherryone;
+
+}
+
+#earring, #helmet,#necklace,#weapon,#plate,#shield,#gauntlets,#boots,#ring
+{
+  left:14.5px;
+  width: 120px;
+  height: 120px;
+  top:14px;
+  position: absolute;
+}
+
+#helmet,#plate,#boots
+{
+  left:164.5px;
+}
+#necklace,#shield,#ring
+{
+  left:314.5px;
+}
+
+#weapon,#plate,#shield
+{
+  top:167.5px;
+}
+#gauntlets,#boots,#ring
+{
+  top:321px;
+}
+#sendGuildInvitation:hover,#sendPrivateMessage:hover
+{
+  background: darkred;
+  cursor:pointer;
+}
+
+#userInfo,#guildInfo
+{
+  width:440px;
+  top: 14%;
+  height: 60%;
+  right:1%;
+  position: absolute;
+  display: none;
+  transform: scale(0.8);
+}
+#guildContentInfo
+{
+  text-align: justify;
+  border: 2px solid white;
+  letter-spacing: 2px;
+  padding: 15px;
+  background: $darkone;
+}
+#guildData
+{
+  margin-top: 10%;
+}
+#equippedItems
+{
+  background: $cherryone;
+}
+#userStatistics,#guildData
+{
+  border:1px solid white;
+}
+#userStatistics tr td, #guildData tr td
+{
+  padding: 5px;
+}
+
+#userStatistics tr td:nth-child(n),#guildData tr td:nth-child(n),#guildMembers tr td:nth-child(n)
+{
+  min-width: 50px;
+  text-align: center;
+  background: $darkone;
+}
+#guildData tr td
+{
+  min-width: 150px;
+}
+::ng-deep .mat-form-field-appearance-outline ::ng-deep .mat-form-field-outline{
+  box-shadow: inset 0 0 7px #ffaabb;
+}
+
+#myMessageForm
+{
+  padding: 1%;
+}
+.logoutButon {
+  float: right;
+  padding: 20px;
+  width: 180px;
+  height: 60px;
+  border-radius: 15px;
+  background: $cherryone;
+  color: #dddddd;
+}
+.logoutButon:hover,#users:hover,#guilds:hover,#closeMessageWindow:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+#guildMembers td,#guildMembers th
+{
+  padding: 5px 15px !important;
+  border:1px solid white;
+}
+#users,#guilds
+{
+  border:1px solid white;
+  padding: 15px 15px;
+}
+#userStatistics tr:nth-child(3n+1), #guildData tr:nth-child(3n+1),#guildMembers tr:nth-child(3n+2)
+{
+  color: $cherryone;
+}
+#userStatistics tr:nth-child(3n+2),#guildData tr:nth-child(3n+2),#guildMembers tr:nth-child(3n+3)
+{
+  color: $pinkone;
+}
+#guildMembers tr:nth-child(3n+1):hover,#guildMembers tr:nth-child(3n+2):hover,#guildMembers tr:nth-child(3n+3):hover
+{
+  color: $white;
+  cursor: pointer;
+}
+#guildMembers td
+{
+  font-size: 1rem;
+}
+@keyframes changeVisibility {
+  0% {opacity: 0;}
+  10% {opacity: 1; }
+  70% {opacity: 1; top:25%;}
+  100% {opacity: 0; top:25%;}
+}

@@ -27,7 +27,7 @@ import {ChatService} from '../../services/chat.service';
 @Component({
   selector: 'app-ranking',
   templateUrl: './ranking.component.html',
-  styleUrls: ['./ranking.component.css']
+  styleUrls: ['./ranking.component.scss']
 })
 export class RankingComponent implements OnInit, AfterViewInit {
   dataSource;
@@ -55,7 +55,7 @@ export class RankingComponent implements OnInit, AfterViewInit {
   userData;
 
   displayedColumns: string[] = ['position', 'username', 'level', 'total_exp', 'profession', 'guild'];
-  displayedGuildColumns: string[] = ['position', 'guild_name', 'guild_tag'];
+  displayedGuildColumns: string[] = ['position', 'guild_name', 'guild_tag', 'guildGold'];
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(private userService: UserService, private userItemsService: UserbackpackService,
@@ -97,7 +97,10 @@ export class RankingComponent implements OnInit, AfterViewInit {
   }
 
   applyFilter(filterValue: string) {
+    // document.getElementById('rankingTable').style.minHeight = '0';
+    // document.getElementById('rankingGuildTable').style.minHeight = '0';
     this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.dataGuildSource.filter = filterValue.trim().toLowerCase();
   }
 
   sendGuildInvitation() {
@@ -125,11 +128,11 @@ export class RankingComponent implements OnInit, AfterViewInit {
       document.getElementById('rankingTable').style.display = 'none';
       document.getElementById('users').style.background = 'none';
       document.getElementById('rankingGuildTable').style.display = 'inline-block';
-      document.getElementById('guilds').style.background = 'red';
+      document.getElementById('guilds').style.background = '#1A1A1D';
       document.getElementById('userInfo').style.display = 'none';
       this.rows = document.getElementsByClassName('mat-row cdk-row ng-star-inserted');
       for (const row of this.rows) {
-        row.style.background = 'none';
+        row.style.background = '#1A1A1D';
       }
       if (event?.target?.parentNode?.children[5]?.innerText) { // przejscie do gildii bezposrednio od usera
         this.rows = document.getElementsByClassName('mat-row cdk-row ng-star-inserted');
@@ -147,19 +150,19 @@ export class RankingComponent implements OnInit, AfterViewInit {
     document.getElementById('rankingGuildTable').style.display = 'none';
     document.getElementById('guilds').style.background = 'none';
     document.getElementById('rankingTable').style.display = 'inline-block';
-    document.getElementById('users').style.background = 'red';
+    document.getElementById('users').style.background = '#1A1A1D';
     document.getElementById('guildInfo').style.display = 'none';
     this.rows = document.getElementsByClassName('mat-row cdk-row ng-star-inserted');
     for (const row of this.rows) {
-      row.style.background = 'none';
+      row.style.background = '#1A1A1D';
     }
   }
 
   displayGuildData(event) {
     for (let i = 0; i < event.target.parentNode.parentNode.children.length; i++) {
-      event.target.parentNode.parentNode.children[i].style.background = 'none';
+      event.target.parentNode.parentNode.children[i].style.background = '#1A1A1D';
     }
-    event.target.parentNode.style.background = 'lightgreen';
+    event.target.parentNode.style.background = '#950740';
     this.getGuildData(event.target.parentNode.children[1].innerText);
   }
 
@@ -168,9 +171,9 @@ export class RankingComponent implements OnInit, AfterViewInit {
     // czy user moze wyswietlic dane o samym sobie ?
     document.getElementById('userInfo').style.display = 'inline-block';
     for (let i = 0; i < event.target.parentNode.parentNode.children.length; i++) {
-      event.target.parentNode.parentNode.children[i].style.background = 'none';
+      event.target.parentNode.parentNode.children[i].style.background = '#1A1A1D';
     }
-    event.target.parentNode.style.background = 'lightgreen';
+    event.target.parentNode.style.background = '#950740';
     this.getUserItemsAndStats(event.target.parentNode.children[1].innerText);
   }
 
@@ -311,7 +314,7 @@ export class RankingComponent implements OnInit, AfterViewInit {
       if (this.rows.length > 0) {
         for (let i = 0; i < this.rows.length; i++) {
           if (this.rows[i].children[1].innerText === userNameOrGuildName) {
-            this.rows[i].style.background = 'lightgreen';
+            this.rows[i].style.background = '#950740';
             this.rows[i].scrollIntoView({
               behavior: 'smooth', // or auto
               block: 'center'

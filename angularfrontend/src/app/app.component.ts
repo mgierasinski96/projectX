@@ -19,7 +19,7 @@ const EXAMPLE_URL = '/topic/server-broadcaster';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.scss'],
   providers: [UserService],
 
 })
@@ -83,6 +83,10 @@ export class AppComponent implements OnInit {
   onLogout() {
     localStorage.clear();
     this.ngOnInit();
+  }
+  navigateToPrivateMessages()
+  {
+    this.router.navigateByUrl('messages');
   }
 
   nav() {
