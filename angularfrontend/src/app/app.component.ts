@@ -71,6 +71,7 @@ export class AppComponent implements OnInit {
         localStorage.setItem('token', this.token);
         this.user = response;
         console.log(this.token);
+        console.log(localStorage.getItem('userData'));
         // this.router.navigateByUrl('/home');
       },
       error => {

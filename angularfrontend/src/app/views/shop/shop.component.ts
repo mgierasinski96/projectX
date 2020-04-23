@@ -26,6 +26,7 @@ export class ShopComponent implements OnInit {
   newShopItem;
   userData;
   token;
+  shopStoreWindow;
 
   constructor(private dropService: DropService, private userItemsService: UserbackpackService, private router: Router) {
   }
@@ -109,46 +110,51 @@ export class ShopComponent implements OnInit {
     document.getElementById('itemLevel').innerText = this.actualHoverItem.itemLevel;
     document.getElementById('itemId').innerText = this.actualHoverItem.id;
     if (this.actualHoverItem.itemDamage !== 0) {
-      document.getElementById('itemDamage').parentElement.style.display = 'inline-block';
+      document.getElementById('itemDamage').parentElement.style.display = 'table-row';
       document.getElementById('itemDamage').innerText = this.actualHoverItem.itemDamage;
     } else {
       document.getElementById('itemDamage').parentElement.style.display = 'none';
       document.getElementById('itemDamage').innerText = this.actualHoverItem.itemDamage;
     }
     if (this.actualHoverItem.itemDefense !== 0) {
-      document.getElementById('itemDefense').parentElement.style.display = 'inline-block';
+      document.getElementById('itemDefense').parentElement.style.display = 'table-row';
       document.getElementById('itemDefense').innerText = this.actualHoverItem.itemDefense;
     } else {
       document.getElementById('itemDefense').parentElement.style.display = 'none';
       document.getElementById('itemDefense').innerText = this.actualHoverItem.itemDefense;
     }
     if (this.actualHoverItem.itemStrength !== 0) {
-      document.getElementById('itemStrength').parentElement.style.display = 'inline-block';
+      document.getElementById('itemStrength').parentElement.style.display = 'table-row';
       document.getElementById('itemStrength').innerText = this.actualHoverItem.itemStrength;
     } else {
       document.getElementById('itemStrength').parentElement.style.display = 'none';
       document.getElementById('itemStrength').innerText = this.actualHoverItem.itemStrength;
     }
     if (this.actualHoverItem.itemWidsdom !== 0) {
-      document.getElementById('itemWidsdom').parentElement.style.display = 'inline-block';
+      document.getElementById('itemWidsdom').parentElement.style.display = 'table-row';
       document.getElementById('itemWidsdom').innerText = this.actualHoverItem.itemWidsdom;
     } else {
       document.getElementById('itemWidsdom').parentElement.style.display = 'none';
       document.getElementById('itemWidsdom').innerText = this.actualHoverItem.itemWidsdom;
     }
     if (ev.target.parentNode.id.includes('shop')) {
-      document.getElementById('itemPrice').parentElement.style.display = 'inline-block';
+      document.getElementById('itemPrice').parentElement.style.display = 'table-row';
       document.getElementById('itemPrice').innerText = this.actualHoverItem.itemPrice || 0;
       document.getElementById('itemValue').parentElement.style.display = 'none';
     } else {
-      document.getElementById('itemValue').parentElement.style.display = 'inline-block';
+      document.getElementById('itemValue').parentElement.style.display = 'table-row';
       document.getElementById('itemValue').innerText = this.actualHoverItem.itemValue || 0;
       document.getElementById('itemPrice').parentElement.style.display = 'none';
     }
 
+    this.shopStoreWindow = document.getElementById('shopStore');
+    this.infoAboutItem.style.left = this.rect.left - this.infoAboutItem.getBoundingClientRect().width / 2 + 50 + this.infoAboutItem.getBoundingClientRect().width/4  + 'px';
+    this.infoAboutItem.style.top = this.rect.top - this.infoAboutItem.getBoundingClientRect().height - 2 + 'px';
 
-    this.infoAboutItem.style.left = this.rect.left + 121 + 'px';
-    this.infoAboutItem.style.top = this.rect.top - 121 + 'px';
+    if (this.infoAboutItem.getBoundingClientRect().left + this.infoAboutItem.getBoundingClientRect().width >
+      this.shopStoreWindow.getBoundingClientRect().width) {
+      this.infoAboutItem.style.left = this.rect.left - (this.infoAboutItem.getBoundingClientRect().width) + 120 + 'px';
+    }
     this.infoAboutItem.style.visibility = 'visible';
   }
 

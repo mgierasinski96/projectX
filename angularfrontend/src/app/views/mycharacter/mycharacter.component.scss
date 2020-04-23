@@ -1,0 +1,234 @@
+@import '../../../globalScssVariables';
+
+#userMenu{
+
+  position: absolute;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  left:0;
+  top:0;
+  height: 100%;
+  background: $darkgray;
+}
+#infoAboutItem
+{
+  padding: 5px;
+  position: absolute;
+  background-color: rgba($black, 0.9);
+  visibility: hidden;
+  max-width: 200px;
+  min-width: 200px;
+  z-index: 3000;
+  transition: visibility 50ms linear;
+  border:2px solid $cherry;
+}
+
+#infoAboutItem td
+{
+  font-size: 1rem;
+}
+
+#infoAboutItem tr td:last-child
+{
+  text-align: right;
+}
+
+#infoAboutItem  tr:nth-child(3n+1),#trainingMenu tr:nth-child(3n+1)
+{
+  color: $cherry;
+}
+#infoAboutItem  tr:nth-child(3n+2), #trainingMenu tr:nth-child(3n+2)
+{
+  color: $pinkone;
+}
+#infoAboutItem  tr:nth-child(3n+3), #trainingMenu tr:nth-child(3n+3)
+{
+  color: $coral;
+}
+
+#earring, #helmet,#necklace,#weapon,#plate,#shield,#gauntlets,#boots,#ring
+{
+  left:14.5px;
+  width: 120px;
+  height: 120px;
+  top:14px;
+  position: absolute;
+}
+
+#helmet,#plate,#boots
+{
+  left:164.5px;
+}
+#necklace,#shield,#ring
+{
+  left:314.5px;
+}
+
+#weapon,#plate,#shield
+{
+  top:167.5px;
+}
+#gauntlets,#boots,#ring
+{
+  top:321px;
+}
+
+#equippedItems
+{
+
+  bottom: 1%;
+  left:270px;
+  position: absolute;
+  background: $cherry;
+}
+
+#backpack
+{
+  background: $cherry;
+  position: absolute;
+  top: calc(15% + 15px + 250px + 8px);
+  right: 1px;
+  height: 244px;
+}
+
+#backpack td
+{
+  opacity: 1;
+  max-height: 120px;
+  height: 120px;
+}
+.itemSlot
+{
+  max-height: 120px !important;
+  max-width: 120px !important;
+  min-height: 120px !important;
+  min-width: 120px !important;
+  //background-image: url('../../assets/images/backpackSlot.png');
+  background: $lightgray;
+}
+
+.cdk-drag-preview {
+  //box-sizing: border-box;
+  //box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+  //0 8px 10px 1px rgba(0, 0, 0, 0.14),
+  //0 3px 14px 2px rgba(0, 0, 0, 0.12)
+
+}
+.cdk-drag-placeholder
+{
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drop-list-dragging div // zawartosc tego diva musi miec pozycje absolutna, bo inaczej jezeli jest jakis item
+  //w miejscu na ktore przeciagamy nowy item to stary sie przesuwa
+{
+  position: absolute;
+}
+#backpack .cdk-drop-list
+{
+  border:2px solid $cherry;
+  max-height: 120px !important;
+  max-width: 120px !important;
+  min-height: 120px !important;
+  min-width: 120px !important;
+}
+
+#wrongItemWarning
+{
+color: red;
+  font-family: "Arial Black";
+  font-size: 25px;
+  position: absolute;
+  z-index: 300;
+  opacity: 0;
+  left:19%;
+  top:20%;
+}
+
+@keyframes changeVisibility {
+  0% {opacity: 0;}
+  10% {opacity: 1; }
+  70% {opacity: 1; top:15%;}
+  100% {opacity: 0; top:15%;}
+}
+#trainingMenu
+{
+  position: absolute;
+  height: 30%;
+  width: 30%;
+  top: 17%;
+  border:2px solid $cherry;
+  right: calc(1px + 120px + 120px + 120px + 120px + 120px + 16px - 30%);
+  background: $black;
+  font-size: 1rem;
+}
+#trainingField
+{
+  position: relative;
+  width: 90%;
+  left:5%;
+}
+#trainingField tr
+{
+  box-shadow: inset 0 0 7px $pinkone;
+}
+#trainingField tr td
+{
+  padding: 10px;
+}
+#userGold{
+  position: relative;
+  font-weight: bold;
+  font-size: 1rem;
+  color: white;
+  margin: 2%;
+
+}
+
+.mat-raised-button {
+  float: right;
+  padding: 2px;
+  border-radius: 10px;
+  background: $cherry;
+  border:2px solid #dddddd;
+  color: green;
+}
+.mat-raised-button[disabled] {
+  color: red;
+  cursor: not-allowed;
+}
+.mat-raised-button:hover:not([disabled])
+{
+  cursor: pointer;
+  background-color: goldenrod;
+}
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+.tooltip .tooltiptext {
+  font-size: 0.7rem;
+  visibility: hidden;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 100;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+
+

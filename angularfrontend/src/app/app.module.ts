@@ -4,7 +4,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MycharacterComponent} from './POZOSTALE/mycharacter/mycharacter.component';
+import {MycharacterComponent} from './views/mycharacter/mycharacter.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {PotworComponent} from './views/potwor/potwor.component';
 import {PotworService} from './services/potwor.service';

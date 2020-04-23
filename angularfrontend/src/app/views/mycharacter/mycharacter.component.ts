@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CdkDragDrop, CdkDragEnter, CdkDragExit, CdkDragStart, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import {DropService} from '../../services/drop.service';
 import {UserbackpackService} from '../../services/userbackpack.service';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,16 +23,28 @@ export class MycharacterComponent implements OnInit {
   myItemWisdom;
   myItemDefense;
   userData;
+  userMenu;
+  userSkills;
 
 
-  constructor(private userItemsService: UserbackpackService) {
+  constructor(private userService: UserService, private userItemsService: UserbackpackService) {
   }
 
   ngOnInit() {
-    this.userData = JSON.parse(sessionStorage.getItem('userData'));
+    this.userData = JSON.parse(localStorage.getItem('userData'));
+    this.userService.getUserByUsername(this.userData.username).subscribe(response => {
+        console.log(response);
+        this.userData = response;
+      this.userSkills = [
+        {name: 'Siła', price: response.strength + 1, userValue: response.strength},
+        {name: 'Wytrzymałość', price: response.stamina + 1, userValue: response.stamina},
+        {name: 'Mądrość', price: response.wisdom + 1, userValue: response.wisdom},
+        {name: 'Szczęście', price: response.luck + 1, userValue: response.luck}
+      ];
+      }
+    );
     console.log('Zalogowany jako' + this.userData.username);
-    // #TODO NA SZTYWNO PRZYPISANE ID USERA I POBIERANIE DLA NIEGO PRZEDMIOTOW
-    this.userItemsService.getUserItems(14).subscribe(response => {
+    this.userItemsService.getUserItems(this.userData.id).subscribe(response => {
       this.userItems = response;
       window.sessionStorage.setItem('userItems', JSON.stringify(this.userItems));
       for (const item of this.userItems) {  // dla wszystkich pobranych elementow
@@ -54,6 +67,10 @@ export class MycharacterComponent implements OnInit {
 
       }
     });
+  }
+
+  addSkill() {
+    alert('dodaje');
   }
 
   // obsluga zdarzenie przenoszenia przedmiotow z eq/plecak i plecak/eq
@@ -115,8 +132,13 @@ export class MycharacterComponent implements OnInit {
     document.getElementById(this.actualHoverItem.itemType.toLowerCase() + 'HolderPhoto').style.opacity = '0.3';
     this.rect = ev.target.getBoundingClientRect();
     this.infoAboutItem = document.getElementById('infoAboutItem');
-    this.infoAboutItem.style.left = this.rect.left + 121 + 'px';
-    this.infoAboutItem.style.top = this.rect.top - 121 + 'px';
+    this.userMenu = document.getElementById('userMenu');
+    this.infoAboutItem.style.left = this.rect.left - this.infoAboutItem.getBoundingClientRect().width / 2 + 50 + this.infoAboutItem.getBoundingClientRect().width/4  + 'px';
+    this.infoAboutItem.style.top = this.rect.top - this.infoAboutItem.getBoundingClientRect().height - 2 + 'px';
+    if (this.infoAboutItem.getBoundingClientRect().left + this.infoAboutItem.getBoundingClientRect().width >
+      this.userMenu.getBoundingClientRect().width) {
+      this.infoAboutItem.style.left = this.rect.left - (this.infoAboutItem.getBoundingClientRect().width) + 120 + 'px';
+    }
     this.infoAboutItem.style.visibility = 'visible';
   }
 

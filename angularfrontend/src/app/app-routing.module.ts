@@ -3,7 +3,7 @@ import {Routes, RouterModule, CanActivate} from '@angular/router';
 import {PotworComponent} from './views/potwor/potwor.component';
 import {ItemDetailsComponent} from './POZOSTALE/itemDetails/itemDetails.component';
 import {ShopComponent} from './views/shop/shop.component';
-import {MycharacterComponent} from './POZOSTALE/mycharacter/mycharacter.component';
+import {MycharacterComponent} from './views/mycharacter/mycharacter.component';
 import {MonsterDetailsComponent} from './POZOSTALE/monsterDetails/monsterDetails.component';
 import {UserItemsComponent} from './POZOSTALE/user-items/user-items.component';
 import {TrainingComponent} from './POZOSTALE/training/training.component';

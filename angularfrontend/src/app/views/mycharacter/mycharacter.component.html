@@ -1,36 +1,65 @@
-<div id ="items">
+<div id ="userMenu">
 <div id="wrongItemWarning">Niewłaściwy przedmiot!</div>
-  <div id="infoAboutItem">
-    <table style="width: 100%">
-      <tr>
-        <td colspan="2" style="text-align: center;" id="itemName"></td>
-      </tr>
-      <tr>
-        <td> Obrażenia: </td>
-        <td id="itemDamage"></td>
-      </tr>
-      <tr>
-        <td> Obrona: </td>
-        <td id="itemDefense"></td>
-      </tr>
-      <tr>
-        <td> Siła: </td>
-        <td id="itemStrength"></td>
-      </tr>
-      <tr>
-        <td> Mądrość: </td>
-        <td id="itemWidsdom"></td> <!--UWAGA NA LITEROWKE -->
-      </tr>
-      <tr>
-        <td> Wartość: </td>
-        <td id="itemValue"></td>
-      </tr>
-      <tr>
-        <td> Poziom: </td>
-        <td id="itemLevel"></td>
+  <table id="infoAboutItem">
+    <tr>
+      <td colspan = "2" style="text-align: center; color: white; font-size: 1.4rem" id="itemName"></td>
+    </tr>
+    <tr>
+      <td id="itemId" style="opacity: 0" colspan="2">2</td>
+    </tr>
+    <tr>
+      <td> Obrażenia:</td>
+      <td id="itemDamage">-</td>
+    </tr>
+    <tr>
+      <td> Obrona:</td>
+      <td id="itemDefense">-</td>
+    </tr>
+    <tr>
+      <td> Siła:</td>
+      <td id="itemStrength">-</td>
+    </tr>
+    <tr>
+      <td> Mądrość:</td>
+      <td id="itemWidsdom">-</td> <!--UWAGA NA LITEROWKE -->
+    </tr>
+    <tr>
+      <td style=" color: white"> Wartość:</td>
+      <td id="itemValue" style=" color: white">-</td>
+    </tr>
+    <tr>
+      <td style=" color: white"> Cena:</td>
+      <td id="itemPrice" style=" color: white">-</td>
+    </tr>
+
+    <tr>
+      <td style=" color: white"> Poziom:</td>
+      <td id="itemLevel" style=" color: white">-</td>
+    </tr>
+
+  </table>
+  <div id="trainingMenu">
+    <div id="userGold">
+      <span>Gold: {{ userData.gold }}</span>
+      <span style="padding-left: 40px">Prof: {{ userData.profession }}</span>
+    </div>
+    <table id="trainingField">
+      <tr *ngFor="let skill of userSkills;">
+        <td width="40%">{{ skill.name}}</td>
+        <td style="text-align: center">{{ skill.userValue}}</td>
+        <td style="text-align: right">Cena: {{ skill.price}}</td>
+      <td id="trainingButton" *ngIf="skill.price <= userData.gold; else elseBlock">
+       <button mat-raised-button (click)="addSkill(skill.key)">+</button>
+      </td>
+      <ng-template #elseBlock>
+        <button class="tooltip" mat-raised-button disabled>+<span class="tooltiptext">Niewystarczająco złota</span></button>
+      </ng-template>
       </tr>
     </table>
+
   </div>
+
+
   <table id="backpack" cellpadding="0" cellspacing="0">
     <tr>
       <td><div id="slot1" cdkDropList #slot1="cdkDropList"  [cdkDropListConnectedTo]="[earringList,helmetList,necklaceList,weaponList,
